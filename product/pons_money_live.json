@@ -1,0 +1,174 @@
+{
+  "config_version": "flytrade-pons-live-1",
+  "what": "Explicit signed native-ETH Pons worker; frozen entry and holder-controlled exit; disabled until explicit env and nonzero reviewed entry size",
+  "spec": "docs/SPEC.md, P1 owner decision (2026-09-13, Portuguese, verbatim) and Fable addenda 2-7",
+  "spec_commit": "f207679",
+  "run_id": "pons-money-live",
+  "branch": "money-live",
+  "venue": "PONS",
+  "chain_id": 4663,
+  "network": "Robinhood Chain",
+  "native_asset": "ETH",
+  "mode": "LIVE",
+  "learning": "FROZEN",
+  "this_is_not_an_experiment": "no hypothesis, no registered threshold, no verdict. Nothing this loop produces is a measurement of predictive skill, and no number it writes may be reported as one. The only condition it answers is operational: it runs, it resumes, it feeds.",
+  "brain": {
+    "artifact": "brains/trader-v1",
+    "checkpoint": "brains/trader-v1/brain.npz",
+    "manifest": "brains/trader-v1/manifest.json",
+    "state_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+    "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+    "input_schema_sha256": "3bf4f34c334a47cc960ad2619e091c4978f24d3eab0add63bb5c0a9501ff4615",
+    "rule": "on every start the brain is loaded and its digest asserted against this value; a mismatch refuses the start rather than trading a brain nobody declared",
+    "plasticity": "none. Learning is FROZEN, mb.forget() is never called, and the digest is asserted unchanged across every settled episode"
+  },
+  "environment": {
+    "from": "experiments/d11/config.json",
+    "unchanged": "Frozen brain, admission, sensory encoder and decoder. Signed receipts replace paper fills; holders control normal exit.",
+    "d11_config_sha256": "7cddf32c89ba471896205557a62ad0105a83fb3be3ded10c14d72f3be5f24a25",
+    "note": "the numbers below are restated from experiments/d11/d11_001.json's fixed_for_the_whole_wave so this file is readable on its own; a test asserts every one of them equals D11's registered value, and D11 is read-only here"
+  },
+  "fixed_for_the_whole_wave": {
+    "max_open_positions": 1,
+    "horizon_seconds": 900,
+    "cadence_seconds": 30,
+    "max_candidates_per_round": 6,
+    "readout_k": 8,
+    "readout_namespace": "comparison_v1",
+    "paper_size_wei": "0",
+    "latency_seconds": 2,
+    "gas_wei": {
+      "buy": "26513686360000",
+      "sell": "21543833760000",
+      "approval": "16104600000000"
+    },
+    "initial_cash_eth": 0,
+    "admission": "admission_v2",
+    "context": "pons_context_v2",
+    "encoder": "pons_encoder_v2",
+    "reinforce_full_scale": 0.131032424,
+    "reinforce_cap": 1.0,
+    "track_seconds": 3600
+  },
+  "admission": {
+    "require_coverage": false,
+    "why": "'cutoff + latency + horizon lies inside the token's coverage' is the replay clause; live has no end of data to keep a horizon inside. This is the one admission fact that differs from a replay, and it is the same one d10-live-001 declared.",
+    "admission_never_closes": "a position still open when the loop stops is retained and reported open, never closed at the last mark, and a restart re-opens it from the durable state rather than settling it"
+  },
+  "settlement": {
+    "confirm_depth_blocks": 594,
+    "confirm_seconds": 60,
+    "safe_tag_supported": true,
+    "median_block_interval_s": 0.101,
+    "source": "experiments/d10/config.json \u2014 the constants d10-live-001 itself ran with, so the live object is unchanged",
+    "rule": "the entry-fill block and the exit block must both be at least confirm_depth behind head and at or below the safe tag, and the grid anchor below each must still hash to what was stored"
+  },
+  "limits": {
+    "hourly_request_cap": 3000,
+    "hourly_reserve": 60,
+    "window_seconds": 3600,
+    "cap_rule": "a ROLLING hour of request attempts, counted from the ledger's own cumulative total. At the cap the loop emits THROTTLED and waits for the window to free; it never exits, and the window survives a restart because it is written into state.json.",
+    "cap_value_rule": "D10's per-run cap of 3,000 per hour, kept as addendum 3(b) names it. d10-live-001 spent 1,493 attempts in its hour \u2014 490 of backfill and about 1,000 of steady state \u2014 so the cap is roughly twice the observed steady state and has never bound.",
+    "no_wall_clock_stop": true,
+    "stop_conditions": [
+      "the stop file",
+      "SIGTERM or SIGINT",
+      "an invariant violation: the brain digest is not the registered one at start, or eth_chainId is not 4663",
+      "a provider halt recorded in the ledger (RPC_QUOTA_STOP)"
+    ],
+    "never_a_stop": "a transient endpoint error. RPC errors are retried with exponential backoff (1 s doubling to 60 s) and written as RPC_ERROR events with counters. The four codes a retry cannot cure \u2014 RPC_METHOD_NOT_ALLOWED, RPC_RANGE_TOO_LARGE (the collector halves its own chunk), RPC_NOT_CONFIGURED, RPC_ENV_UNREADABLE \u2014 are raised on the first failure.",
+    "backfill_seconds": 3600,
+    "backfill_requests": 1200,
+    "backfill_wall_seconds": 900,
+    "tick_chunk_blocks": 500,
+    "ledger_caps": {
+      "run": 100000,
+      "day": 100000,
+      "wave": 1000000,
+      "why": "backstops far above what the rolling hourly cap can pass (3,000/h is 72,000/day), so the binding budget is the hourly window and a cap can never turn into the wall-clock stop addendum 3(a) forbids. Reaching one is an operator event and stops the loop with its state on disk."
+    },
+    "ledger_file": "data/pons/live/rpc_ledger.json",
+    "separate_from_the_experiment_ledgers": "experiments/d10/rpc_ledger.json and experiments/d11/rpc_ledger_local.json are not touched by the product"
+  },
+  "endpoint": {
+    "env_file": "data/runtime/local-node.env",
+    "env_key": "FLYTRADE_LOCAL_RPC",
+    "read_rule": "Local read-only node. The service sets FLYTRADE_LOCAL_RPC; foreground commands read the local-node.env file.",
+    "methods": [
+      "eth_chainId",
+      "eth_blockNumber",
+      "eth_getBlockByNumber",
+      "eth_getLogs",
+      "eth_getCode",
+      "eth_call"
+    ],
+    "signing": "Only private LIVE sender; encrypted dedicated wallet with explicit enabled flag and limits"
+  },
+  "paths": {
+    "directory": "./data/pons/money-live",
+    "feed_events": "./data/pons/money-live/events-YYYY-MM-DD.jsonl",
+    "state": "./data/pons/money-live/state.json",
+    "journal": "./data/pons/money-live/journal",
+    "chain": "./data/pons/money-live/chain",
+    "ledger": "./data/pons/money-live/rpc_ledger.json",
+    "pid": "./data/pons/money-live/worker.pid",
+    "stop": "./data/pons/money-live/stop",
+    "log": "./data/pons/money-live/worker.log",
+    "summary": "./data/pons/money-live/summary.json",
+    "gitignored": "everything under data/pons/live is runtime state and is never committed; brains/trader-v1 is the committed artifact"
+  },
+  "feed": {
+    "contract": "docs/SPECTACLE_FEED.md",
+    "kinds": [
+      "SNIFF",
+      "PICK",
+      "OPEN",
+      "MARK",
+      "CLOSE",
+      "CREDIT",
+      "HEARTBEAT",
+      "THROTTLED",
+      "RPC_ERROR"
+    ],
+    "one_sniff_per_tick": "SNIFF lists every candidate the tick considered with its admission outcome. There is never one event per candidate.",
+    "state_written": "atomically after every event",
+    "keep_events_in_state": 200,
+    "keep_episodes_in_state": 100,
+    "no_secret": "no endpoint, no key and no PII in either file"
+  },
+  "credit": {
+    "rule": "absolute_profit_v1 \u2014 the existing rule, unchanged",
+    "recorded_never_applied": "every settled episode is scored REWARD / PUNISHMENT / NEUTRAL by that rule and written as a CREDIT event with applied: false. No weight moves; the checkpoint digest before and after the settlement is on the event and the loop raises if they differ.",
+    "why": "the product uses the virgin brain because the trained one stopped trading (D12). The credit is the spectacle's REWARD/PUNISHMENT, not a learning signal."
+  },
+  "resume": {
+    "brain": "loaded from brains/trader-v1 the first time, from the journal's own checkpoint afterwards; the digest is asserted against brain.state_digest at every start",
+    "restored": [
+      "the account",
+      "the open position with its own reserve delta and its horizon",
+      "the pending confirmation",
+      "the last cutoff",
+      "the tick counter, so episode ids stay monotone across restarts",
+      "the rolling request window",
+      "the spectacle's event window, episode history and extremes"
+    ],
+    "tapes": "rebuilt from the chain store the previous process wrote \u2014 the same append-only events.jsonl the collector resumes its cursor from. A tick whose held token has no tape yet marks nothing and decides nothing; the exposure is retained.",
+    "an_open_position_is_never_closed_at_a_restart": true
+  },
+  "spectacle_feed_version": 2,
+  "maintenance": {
+    "enabled": true
+  },
+  "post_curve_exit": {
+    "enabled": true,
+    "version": "pons-v4-paper-exit-1",
+    "registry": "product/pons_v4_exit.json"
+  },
+  "bag_room": {
+    "enabled": true,
+    "fixture": false
+  },
+  "live_execution": {
+    "enabled": true
+  }
+}

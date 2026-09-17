@@ -1,0 +1,25 @@
+observer/static — asset provenance
+==================================
+
+D9(a), Fable addendum 10.
+
+No raster asset is used by this viewer.
+
+`upstream/assets/flycoin.png` and `upstream/assets/flycoin_square.png` are
+token imagery and are **out of scope**: the launch layer never enters Flytrade
+code or docs.
+
+`upstream/site/web/fly.png` was **not** used. It is 704 KB, above the 200 KB
+ceiling addendum 10 sets for any raster added in this wave, and using it would
+have meant committing a resized derivative rather than the licensed file.
+
+The fly-and-circuit figure on the watch screen is therefore an original
+schematic authored in this wave: inline SVG in `observer/index.html`, drawn
+from the populations the run actually records (ORN drive, Kenyon cells, the
+two decoder MBON populations and their modulatory partners). It carries the
+word SCHEMATIC visibly. It is a diagram, not an anatomical rendering, and it
+claims no coordinates.
+
+`upstream/` itself remains vendored unmodified under the MIT licence of
+`upstream/LICENSE` (Copyright (c) 2026 fruitflydev). Nothing in this directory
+is derived from it.

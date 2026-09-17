@@ -1,0 +1,30 @@
+{
+  "chromium": {
+    "page_errors": [],
+    "connection": "LIVE \u00b7 MARKET 4s AGO",
+    "headline": "THE FLY IS HOLDING $MOBS",
+    "mascot_ready": true,
+    "mobile_width": 390,
+    "overflow": false,
+    "automatic_network_reconnect": true,
+    "first_seq": 104030,
+    "later_seq": 104041,
+    "initial_api_latency_s": 0.0344,
+    "episode": "pons-live:3360016764",
+    "market_age_s": 4
+  },
+  "webkit": {
+    "page_errors": [],
+    "connection": "LIVE \u00b7 MARKET 34s AGO",
+    "headline": "THE FLY IS HOLDING $MOBS",
+    "mascot_ready": true,
+    "mobile_width": 390,
+    "overflow": false,
+    "automatic_network_reconnect": true,
+    "first_seq": 104046,
+    "later_seq": 104060,
+    "initial_api_latency_s": 0.0116,
+    "episode": "pons-live:3360016764",
+    "market_age_s": 5
+  }
+}

@@ -1,0 +1,62 @@
+{
+ "file": "the live exercise, registered before it runs",
+ "registered": "committed with experiments/d10/LIVE_PLAN.md, alone and before d10-live-001 existed and before any live observation was looked at. experiments/d10/PLAN.md and config.json are not edited: their register-then-compute check (tests/d10/test_scales_hygiene.py) pins them to the commit that precedes the replay run, so the live registration is these two files and LIVE_PLAN.md says so.",
+ "amendment": "docs/SPEC.md D10 addendum 14 and 15",
+ "run_id": "d10-live-001",
+ "branch": "live",
+ "mode": "LIVE_PAPER",
+ "learning": "LEARN",
+ "venue": "PONS",
+ "chain_id": 4663,
+ "dataset_label": "d10-live-001",
+ "starts_from": {
+  "run": "d10-001",
+  "branch": "learning",
+  "checkpoint": "experiments/d10/runs/d10-001/learning/brain.npz",
+  "state_digest": "999d32450a3b1b6f382edd10e9d95b79a7e12e01cbbbe458bf2087bb79325a9c",
+  "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+  "declared_in": "experiments/d10/results.md, committed: the learning branch's end digest 999d32450a3b…",
+  "rule": "the run is refused unless the checkpoint on disk carries exactly this digest: continuity replay to live is the point of starting here, and a different brain would not be that"
+ },
+ "limits": {
+  "max_seconds": 3600,
+  "max_requests": 3000,
+  "reserve_requests": 30,
+  "backfill_seconds": 3600,
+  "backfill_requests": 1200,
+  "backfill_wall_seconds": 900,
+  "tick_chunk_blocks": 500,
+  "max_creator_tax_reads": 50,
+  "stop_conditions": "60 minutes wall clock, 3,000 requests, the stop file flag or SIGTERM, whichever comes first",
+  "on_error": "the run stops on the first endpoint error. No retry, no fallback, no provider switch.",
+  "wave_cap": 10000
+ },
+ "admission": {
+  "require_coverage": false,
+  "why": "the replay rule 'cutoff + latency + horizon lies inside the token's coverage' is addendum 10's replay clause: live has no end of data to keep a horizon inside. Every other admission fact is unchanged.",
+  "admission_never_closes": "a position still open when the run stops is retained and reported open or pending, never closed at the last mark"
+ },
+ "settlement": {
+  "rule": "unchanged from config.json: the entry-fill block and the exit block must both be at least 594 blocks behind head and at or below the safe tag, and the grid anchor below each must still hash to what was stored",
+  "expected": "the safe tag was measured about 5,400 blocks (~9 minutes) behind head, so an episode whose exit block is inside the last ~10 minutes of the run will still be PENDING_CONFIRMATION at the stop and is reported as such, not settled"
+ },
+ "expected_activity_before_the_run": {
+  "ticks": 120,
+  "arithmetic": "60 minutes at a 30-second cadence is 120 ticks; one position at a time, each locking 900 s = 30 ticks, gives at most 4 episodes",
+  "max_episodes": 4,
+  "expected_fewer_because": "an entry needs a decoded BUY, and settlement needs confirmation the last ten minutes of the run cannot supply",
+  "zero_is_admissible": "zero episodes, and zero admitted candidates in an hour, are admissible results to be reported as such. Nothing is touched to produce activity."
+ },
+ "commands": {
+  "start": "nohup .venv/bin/python experiments/d10/run.py --mode LIVE_PAPER > experiments/d10/runs/d10-live-001/worker.out 2>&1 &",
+  "stop": ".venv/bin/python experiments/d10/run.py --mode LIVE_PAPER --stop   (or: kill -TERM $(cat experiments/d10/runs/d10-live-001/worker.pid))",
+  "status": ".venv/bin/python experiments/d10/run.py --mode LIVE_PAPER --status   (reads the files the worker writes; opens no socket)"
+ },
+ "health": {
+  "file": "experiments/d10/runs/d10-live-001/health.json",
+  "written_by": "the worker, once per tick, write-temp-rename",
+  "read_by": "the status command and observer/serve.py's /api/summary; neither opens a socket",
+  "fresh_rule": "fresh is false whenever the last confirmed block is older than 120 s: a connection is not fresh data"
+ },
+ "secrets": "the endpoint and its key are read by key name at runtime and never printed, logged or written to any artifact"
+}

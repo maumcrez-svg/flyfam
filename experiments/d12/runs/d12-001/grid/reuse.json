@@ -1,0 +1,24 @@
+{
+ "version": "d12-001-reuse-1",
+ "files": {
+  "rows.jsonl": {
+   "source": "./experiments/d11/runs/d11-001/grid/rows.jsonl",
+   "source_sha256": "f972f5ece3ea47a4a82f2c0b99c8c1028e7e257912857c9d8fa245e333b8d934",
+   "copy_sha256": "f972f5ece3ea47a4a82f2c0b99c8c1028e7e257912857c9d8fa245e333b8d934",
+   "lines": 5177
+  },
+  "labels.jsonl": {
+   "source": "./experiments/d11/runs/d11-001/grid/labels.jsonl",
+   "source_sha256": "2546d458a3e6aeb2366463bb34b64738a5d13a7bf0d0bcba8a76b58b0f3ef640",
+   "copy_sha256": "2546d458a3e6aeb2366463bb34b64738a5d13a7bf0d0bcba8a76b58b0f3ef640",
+   "lines": 5177
+  },
+  "scores_reference.jsonl": {
+   "source": "./experiments/d11/runs/d11-001/grid/scores_reference.jsonl",
+   "source_sha256": "cde2a79cf6e22f0a2f5fcb6e82a7c36f9011c3b0162de60e8877086dea4a78e2",
+   "copy_sha256": "cde2a79cf6e22f0a2f5fcb6e82a7c36f9011c3b0162de60e8877086dea4a78e2",
+   "lines": 5177
+  }
+ },
+ "rule": "the same store, the same cutoff T, the same admission_v2 and comparison_v1 seeds that are not keyed to the learned state; reuse is checked by --verify-reference, never assumed"
+}

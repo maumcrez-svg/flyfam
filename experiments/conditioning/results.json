@@ -1,0 +1,5573 @@
+{
+  "protocol": "experiments/conditioning/PROTOCOL.md",
+  "mushroom_version": "flytrade-mb-1",
+  "odour_version": "flytrade-odour-1",
+  "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+  "graph_mod_sha256": "22b29abc1a30fc6e38b603b100a49e9f3b509145de1cb493734191227a493f66",
+  "python": "3.13.9",
+  "numpy": "2.4.2",
+  "odour_A": {
+    "glomeruli": [
+      "DL2d",
+      "DL2v",
+      "VL2a",
+      "DM6",
+      "VC3"
+    ],
+    "orns": 228
+  },
+  "odour_B": {
+    "glomeruli": [
+      "VM5d",
+      "DA2",
+      "VM4",
+      "DM5",
+      "VM7d"
+    ],
+    "orns": 281
+  },
+  "readout_ppl1_mbons": 56,
+  "readout_pam_mbons": 41,
+  "global_gain": 0.1,
+  "drive_hz": 150.0,
+  "steps": 100,
+  "trials": 20,
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "runs": [
+    {
+      "condition": "PAIRED_ON",
+      "seed": 1,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 41.07142857142857,
+        "pam": 59.75609756097561,
+        "kc_fraction": 0.21628937007874016,
+        "kc_hz": 12.426181102362206
+      },
+      "post_A": {
+        "ppl1": 13.392857142857142,
+        "pam": 64.63414634146342,
+        "kc_fraction": 0.21456692913385828,
+        "kc_hz": 12.426181102362206
+      },
+      "pre_B": {
+        "ppl1": 22.321428571428573,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.09596456692913385,
+        "kc_hz": 4.9704724409448815
+      },
+      "post_B": {
+        "ppl1": 7.142857142857143,
+        "pam": 31.70731707317073,
+        "kc_fraction": 0.10334645669291338,
+        "kc_hz": 5.351870078740157
+      },
+      "d_A_ppl1": -27.678571428571427,
+      "d_A_pam": 4.878048780487809,
+      "d_B_ppl1": -15.17857142857143,
+      "d_B_pam": 8.536585365853657,
+      "d_A_kc_fraction": -0.0017224409448818867,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 6818,
+        "moved_ppl1_side": 6818,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9203174710273743,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.48527735471725464,
+        "total_abs_weight_change_mv": 7968.2041015625,
+        "max_abs_weight_change_mv": 7.368206977844238
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 66284
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 13982,
+          "depressed": 6104,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 15055,
+          "depressed": 6580,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 9502,
+          "depressed": 4152,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 10891,
+          "depressed": 4743,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 12790,
+          "depressed": 5588,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 5926,
+          "depressed": 2579,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 5710,
+          "depressed": 2478,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 10556,
+          "depressed": 4608,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 11401,
+          "depressed": 4969,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 9137,
+          "depressed": 3987,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 9968,
+          "depressed": 4320,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 7840,
+          "depressed": 3417,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 9417,
+          "depressed": 4114,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 12000,
+          "depressed": 5225,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 8588,
+          "depressed": 3746,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 12145,
+          "depressed": 5285,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 12128,
+          "depressed": 5298,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 11909,
+          "depressed": 5220,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 10432,
+          "depressed": 4544,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 10088,
+          "depressed": 4386,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_ON",
+      "seed": 2,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 44.642857142857146,
+        "pam": 76.82926829268293,
+        "kc_fraction": 0.25098425196850394,
+        "kc_hz": 15.034448818897637
+      },
+      "post_A": {
+        "ppl1": 14.285714285714286,
+        "pam": 87.8048780487805,
+        "kc_fraction": 0.2512303149606299,
+        "kc_hz": 15.046751968503937
+      },
+      "pre_B": {
+        "ppl1": 32.142857142857146,
+        "pam": 40.24390243902439,
+        "kc_fraction": 0.1434547244094488,
+        "kc_hz": 7.7263779527559056
+      },
+      "post_B": {
+        "ppl1": 10.714285714285714,
+        "pam": 30.48780487804878,
+        "kc_fraction": 0.10260826771653543,
+        "kc_hz": 5.339566929133858
+      },
+      "d_A_ppl1": -30.35714285714286,
+      "d_A_pam": 10.975609756097569,
+      "d_B_ppl1": -21.42857142857143,
+      "d_B_pam": -9.756097560975608,
+      "d_A_kc_fraction": 0.0002460629921259838,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 7214,
+        "moved_ppl1_side": 7214,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9172805547714233,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.49499163031578064,
+        "total_abs_weight_change_mv": 8289.5615234375,
+        "max_abs_weight_change_mv": 7.368206977844238
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 70554
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 7651,
+          "depressed": 3314,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 10533,
+          "depressed": 4580,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 13096,
+          "depressed": 5741,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 14703,
+          "depressed": 6438,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 6651,
+          "depressed": 2897,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 12751,
+          "depressed": 5570,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 12270,
+          "depressed": 5341,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 11639,
+          "depressed": 5064,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 8391,
+          "depressed": 3635,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 9231,
+          "depressed": 4019,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 11253,
+          "depressed": 4937,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 11089,
+          "depressed": 4862,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 9004,
+          "depressed": 3918,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 15196,
+          "depressed": 6654,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 8331,
+          "depressed": 3648,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 5215,
+          "depressed": 2272,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 11113,
+          "depressed": 4862,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 10789,
+          "depressed": 4700,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 13121,
+          "depressed": 5731,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 13516,
+          "depressed": 5915,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_ON",
+      "seed": 3,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.14616141732283464,
+        "kc_hz": 7.8125
+      },
+      "post_A": {
+        "ppl1": 7.142857142857143,
+        "pam": 43.90243902439025,
+        "kc_fraction": 0.14591535433070865,
+        "kc_hz": 7.800196850393701
+      },
+      "pre_B": {
+        "ppl1": 2.6785714285714284,
+        "pam": 3.658536585365854,
+        "kc_fraction": 0.019192913385826772,
+        "kc_hz": 0.9596456692913385
+      },
+      "post_B": {
+        "ppl1": 1.7857142857142858,
+        "pam": 3.658536585365854,
+        "kc_fraction": 0.019192913385826772,
+        "kc_hz": 0.9596456692913385
+      },
+      "d_A_ppl1": -20.535714285714285,
+      "d_A_pam": 4.878048780487809,
+      "d_B_ppl1": -0.8928571428571426,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": -0.0002460629921259838,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 7477,
+        "moved_ppl1_side": 7477,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9174007773399353,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.5134633779525757,
+        "total_abs_weight_change_mv": 8279.009765625,
+        "max_abs_weight_change_mv": 7.368206977844238
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 88492
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 6539,
+          "depressed": 2837,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 16581,
+          "depressed": 7233,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 13123,
+          "depressed": 5737,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 7830,
+          "depressed": 3412,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 13031,
+          "depressed": 5683,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 11005,
+          "depressed": 4817,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 5548,
+          "depressed": 2431,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 9389,
+          "depressed": 4093,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 8862,
+          "depressed": 3847,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 9149,
+          "depressed": 4030,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 13581,
+          "depressed": 5952,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 10179,
+          "depressed": 4457,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 6039,
+          "depressed": 2634,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 14706,
+          "depressed": 6428,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 13704,
+          "depressed": 6010,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 4835,
+          "depressed": 2109,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 9895,
+          "depressed": 4324,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 12968,
+          "depressed": 5637,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 11606,
+          "depressed": 5081,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 12723,
+          "depressed": 5540,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_ON",
+      "seed": 4,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 32.142857142857146,
+        "pam": 53.65853658536585,
+        "kc_fraction": 0.21776574803149606,
+        "kc_hz": 12.536909448818898
+      },
+      "post_A": {
+        "ppl1": 10.714285714285714,
+        "pam": 57.31707317073171,
+        "kc_fraction": 0.2204724409448819,
+        "kc_hz": 12.721456692913385
+      },
+      "pre_B": {
+        "ppl1": 29.464285714285715,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.15378937007874016,
+        "kc_hz": 7.997047244094488
+      },
+      "post_B": {
+        "ppl1": 7.142857142857143,
+        "pam": 45.1219512195122,
+        "kc_fraction": 0.1545275590551181,
+        "kc_hz": 8.033956692913385
+      },
+      "d_A_ppl1": -21.42857142857143,
+      "d_A_pam": 3.6585365853658587,
+      "d_B_ppl1": -22.321428571428573,
+      "d_B_pam": 6.09756097560976,
+      "d_A_kc_fraction": 0.002706692913385822,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 6536,
+        "moved_ppl1_side": 6536,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9261714816093445,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.5025162100791931,
+        "total_abs_weight_change_mv": 7392.1494140625,
+        "max_abs_weight_change_mv": 7.368206977844238
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 67661
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 8772,
+          "depressed": 3828,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 5486,
+          "depressed": 2396,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 8984,
+          "depressed": 3911,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 13441,
+          "depressed": 5868,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 13276,
+          "depressed": 5781,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 9651,
+          "depressed": 4202,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 8868,
+          "depressed": 3856,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 9768,
+          "depressed": 4277,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 12955,
+          "depressed": 5653,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 10805,
+          "depressed": 4712,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 7041,
+          "depressed": 3107,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 8133,
+          "depressed": 3537,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 10742,
+          "depressed": 4685,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 9435,
+          "depressed": 4113,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 11327,
+          "depressed": 4941,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 3928,
+          "depressed": 1711,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 7616,
+          "depressed": 3355,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 13267,
+          "depressed": 5793,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 9600,
+          "depressed": 4168,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 8043,
+          "depressed": 3528,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_ON",
+      "seed": 5,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 46.42857142857143,
+        "pam": 71.95121951219512,
+        "kc_fraction": 0.2455708661417323,
+        "kc_hz": 14.406988188976378
+      },
+      "post_A": {
+        "ppl1": 11.607142857142858,
+        "pam": 73.17073170731707,
+        "kc_fraction": 0.23031496062992127,
+        "kc_hz": 13.262795275590552
+      },
+      "pre_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 20.73170731707317,
+        "kc_fraction": 0.0639763779527559,
+        "kc_hz": 3.3341535433070866
+      },
+      "post_B": {
+        "ppl1": 6.25,
+        "pam": 20.73170731707317,
+        "kc_fraction": 0.0578248031496063,
+        "kc_hz": 3.0265748031496065
+      },
+      "d_A_ppl1": -34.82142857142857,
+      "d_A_pam": 1.2195121951219505,
+      "d_B_ppl1": -8.928571428571429,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": -0.015255905511811024,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 6854,
+        "moved_ppl1_side": 6854,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9237799644470215,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.5102298855781555,
+        "total_abs_weight_change_mv": 7640.00146484375,
+        "max_abs_weight_change_mv": 7.368206977844238
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 73834
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 8833,
+          "depressed": 3874,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 10711,
+          "depressed": 4698,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 12740,
+          "depressed": 5568,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 5318,
+          "depressed": 2320,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 14324,
+          "depressed": 6266,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 9724,
+          "depressed": 4250,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 7057,
+          "depressed": 3088,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 9883,
+          "depressed": 4308,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 8831,
+          "depressed": 3851,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 11606,
+          "depressed": 5077,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 6222,
+          "depressed": 2715,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 5989,
+          "depressed": 2600,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 9445,
+          "depressed": 4107,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 9201,
+          "depressed": 4014,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 10799,
+          "depressed": 4687,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 15046,
+          "depressed": 6582,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 9188,
+          "depressed": 4004,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 9645,
+          "depressed": 4225,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 13700,
+          "depressed": 5974,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 8807,
+          "depressed": 3851,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_ON",
+      "seed": 6,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 34.146341463414636,
+        "kc_fraction": 0.11589566929133858,
+        "kc_hz": 6.114665354330708
+      },
+      "post_A": {
+        "ppl1": 8.035714285714286,
+        "pam": 36.58536585365854,
+        "kc_fraction": 0.11614173228346457,
+        "kc_hz": 6.126968503937008
+      },
+      "pre_B": {
+        "ppl1": 4.464285714285714,
+        "pam": 8.536585365853659,
+        "kc_fraction": 0.0265748031496063,
+        "kc_hz": 1.328740157480315
+      },
+      "post_B": {
+        "ppl1": 1.7857142857142858,
+        "pam": 8.536585365853659,
+        "kc_fraction": 0.0265748031496063,
+        "kc_hz": 1.328740157480315
+      },
+      "d_A_ppl1": -19.64285714285714,
+      "d_A_pam": 2.439024390243901,
+      "d_B_ppl1": -2.678571428571429,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0002460629921259838,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 7661,
+        "moved_ppl1_side": 7661,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9252139925956726,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.5700658559799194,
+        "total_abs_weight_change_mv": 7503.83544921875,
+        "max_abs_weight_change_mv": 7.368206977844238
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 81708
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 4510,
+          "depressed": 1971,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 10204,
+          "depressed": 4472,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 8212,
+          "depressed": 3606,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 14264,
+          "depressed": 6244,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 9118,
+          "depressed": 3986,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 8779,
+          "depressed": 3814,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 6078,
+          "depressed": 2655,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 9543,
+          "depressed": 4146,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 17310,
+          "depressed": 7588,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 9232,
+          "depressed": 4041,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 10072,
+          "depressed": 4407,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 10301,
+          "depressed": 4502,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 9497,
+          "depressed": 4142,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 5624,
+          "depressed": 2456,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 10383,
+          "depressed": 4533,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 9624,
+          "depressed": 4159,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 8029,
+          "depressed": 3484,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 10208,
+          "depressed": 4474,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 10557,
+          "depressed": 4601,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 11005,
+          "depressed": 4773,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_ON",
+      "seed": 7,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 16.071428571428573,
+        "pam": 24.390243902439025,
+        "kc_fraction": 0.11491141732283465,
+        "kc_hz": 6.077755905511811
+      },
+      "post_A": {
+        "ppl1": 4.464285714285714,
+        "pam": 28.048780487804876,
+        "kc_fraction": 0.11294291338582677,
+        "kc_hz": 5.979330708661418
+      },
+      "pre_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.06938976377952756,
+        "kc_hz": 3.6171259842519685
+      },
+      "post_B": {
+        "ppl1": 6.25,
+        "pam": 24.390243902439025,
+        "kc_fraction": 0.06963582677165354,
+        "kc_hz": 3.6294291338582676
+      },
+      "d_A_ppl1": -11.607142857142858,
+      "d_A_pam": 3.6585365853658516,
+      "d_B_ppl1": -8.928571428571429,
+      "d_B_pam": 1.2195121951219505,
+      "d_A_kc_fraction": -0.0019685039370078844,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 6621,
+        "moved_ppl1_side": 6621,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9225987195968628,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.4851369261741638,
+        "total_abs_weight_change_mv": 7758.7890625,
+        "max_abs_weight_change_mv": 7.368206977844238
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 61951
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 8832,
+          "depressed": 3848,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 11886,
+          "depressed": 5175,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 13677,
+          "depressed": 5975,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 12215,
+          "depressed": 5336,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 11113,
+          "depressed": 4848,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 11843,
+          "depressed": 5196,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 7745,
+          "depressed": 3365,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 8431,
+          "depressed": 3666,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 13626,
+          "depressed": 5941,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 8547,
+          "depressed": 3718,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 8722,
+          "depressed": 3793,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 7393,
+          "depressed": 3220,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 8978,
+          "depressed": 3919,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 11344,
+          "depressed": 4945,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 7695,
+          "depressed": 3351,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 11265,
+          "depressed": 4927,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 10296,
+          "depressed": 4508,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 8933,
+          "depressed": 3891,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 12038,
+          "depressed": 5266,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 9774,
+          "depressed": 4280,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_ON",
+      "seed": 8,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 43.75,
+        "pam": 67.07317073170732,
+        "kc_fraction": 0.21875,
+        "kc_hz": 13.373523622047244
+      },
+      "post_A": {
+        "ppl1": 11.607142857142858,
+        "pam": 69.51219512195122,
+        "kc_fraction": 0.24606299212598426,
+        "kc_hz": 14.308562992125983
+      },
+      "pre_B": {
+        "ppl1": 6.25,
+        "pam": 7.317073170731708,
+        "kc_fraction": 0.030019685039370077,
+        "kc_hz": 1.5378937007874016
+      },
+      "post_B": {
+        "ppl1": 4.464285714285714,
+        "pam": 7.317073170731708,
+        "kc_fraction": 0.030019685039370077,
+        "kc_hz": 1.5378937007874016
+      },
+      "d_A_ppl1": -32.14285714285714,
+      "d_A_pam": 2.439024390243901,
+      "d_B_ppl1": -1.7857142857142856,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.02731299212598426,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 6764,
+        "moved_ppl1_side": 6764,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9198582768440247,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.47817814350128174,
+        "total_abs_weight_change_mv": 8035.26318359375,
+        "max_abs_weight_change_mv": 7.368206977844238
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 60969
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 11639,
+          "depressed": 5070,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 7377,
+          "depressed": 3235,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 8739,
+          "depressed": 3792,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 9775,
+          "depressed": 4249,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 9668,
+          "depressed": 4210,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 13274,
+          "depressed": 5803,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 11254,
+          "depressed": 4892,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 8654,
+          "depressed": 3772,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 8634,
+          "depressed": 3772,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 11702,
+          "depressed": 5135,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 10443,
+          "depressed": 4545,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 10180,
+          "depressed": 4447,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 13435,
+          "depressed": 5875,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 8755,
+          "depressed": 3816,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 8517,
+          "depressed": 3699,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 12402,
+          "depressed": 5414,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 12662,
+          "depressed": 5537,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 14296,
+          "depressed": 6255,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 10385,
+          "depressed": 4547,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 9584,
+          "depressed": 4206,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_OFF",
+      "seed": 1,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 41.07142857142857,
+        "pam": 59.75609756097561,
+        "kc_fraction": 0.21628937007874016,
+        "kc_hz": 12.426181102362206
+      },
+      "post_A": {
+        "ppl1": 41.07142857142857,
+        "pam": 59.75609756097561,
+        "kc_fraction": 0.21628937007874016,
+        "kc_hz": 12.426181102362206
+      },
+      "pre_B": {
+        "ppl1": 22.321428571428573,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.09596456692913385,
+        "kc_hz": 4.9704724409448815
+      },
+      "post_B": {
+        "ppl1": 22.321428571428573,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.09596456692913385,
+        "kc_hz": 4.9704724409448815
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 13982,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 14779,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 9502,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 11222,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 12822,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 5926,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 5710,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 10689,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 11529,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 13455,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 10361,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 7829,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 11083,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 11831,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 8591,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 14393,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 11838,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 13193,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 10768,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 11318,
+          "depressed": 0,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_OFF",
+      "seed": 2,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 44.642857142857146,
+        "pam": 76.82926829268293,
+        "kc_fraction": 0.25098425196850394,
+        "kc_hz": 15.034448818897637
+      },
+      "post_A": {
+        "ppl1": 44.642857142857146,
+        "pam": 76.82926829268293,
+        "kc_fraction": 0.25098425196850394,
+        "kc_hz": 15.034448818897637
+      },
+      "pre_B": {
+        "ppl1": 32.142857142857146,
+        "pam": 40.24390243902439,
+        "kc_fraction": 0.1434547244094488,
+        "kc_hz": 7.7263779527559056
+      },
+      "post_B": {
+        "ppl1": 32.142857142857146,
+        "pam": 40.24390243902439,
+        "kc_fraction": 0.1434547244094488,
+        "kc_hz": 7.7263779527559056
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 7651,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 10543,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 13235,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 11522,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 6708,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 12751,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 12321,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 11902,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 9217,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 9181,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 12090,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 11092,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 8562,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 14999,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 8311,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 7386,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 11380,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 12191,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 12841,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 13424,
+          "depressed": 0,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_OFF",
+      "seed": 3,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.14616141732283464,
+        "kc_hz": 7.8125
+      },
+      "post_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.14616141732283464,
+        "kc_hz": 7.8125
+      },
+      "pre_B": {
+        "ppl1": 2.6785714285714284,
+        "pam": 3.658536585365854,
+        "kc_fraction": 0.019192913385826772,
+        "kc_hz": 0.9596456692913385
+      },
+      "post_B": {
+        "ppl1": 2.6785714285714284,
+        "pam": 3.658536585365854,
+        "kc_fraction": 0.019192913385826772,
+        "kc_hz": 0.9596456692913385
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 6539,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 16581,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 13123,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 7830,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 12994,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 11005,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 5548,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 8695,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 8862,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 9027,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 13507,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 10141,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 5785,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 14039,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 12997,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 4957,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 9826,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 12937,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 11735,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 11629,
+          "depressed": 0,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_OFF",
+      "seed": 4,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 32.142857142857146,
+        "pam": 53.65853658536585,
+        "kc_fraction": 0.21776574803149606,
+        "kc_hz": 12.536909448818898
+      },
+      "post_A": {
+        "ppl1": 32.142857142857146,
+        "pam": 53.65853658536585,
+        "kc_fraction": 0.21776574803149606,
+        "kc_hz": 12.536909448818898
+      },
+      "pre_B": {
+        "ppl1": 29.464285714285715,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.15378937007874016,
+        "kc_hz": 7.997047244094488
+      },
+      "post_B": {
+        "ppl1": 29.464285714285715,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.15378937007874016,
+        "kc_hz": 7.997047244094488
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 8772,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 5486,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 9041,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 13424,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 12361,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 9641,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 8893,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 9778,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 12900,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 8499,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 7081,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 7793,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 10742,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 9325,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 11278,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 3951,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 7624,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 9919,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 9875,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 9598,
+          "depressed": 0,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_OFF",
+      "seed": 5,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 46.42857142857143,
+        "pam": 71.95121951219512,
+        "kc_fraction": 0.2455708661417323,
+        "kc_hz": 14.406988188976378
+      },
+      "post_A": {
+        "ppl1": 46.42857142857143,
+        "pam": 71.95121951219512,
+        "kc_fraction": 0.2455708661417323,
+        "kc_hz": 14.406988188976378
+      },
+      "pre_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 20.73170731707317,
+        "kc_fraction": 0.0639763779527559,
+        "kc_hz": 3.3341535433070866
+      },
+      "post_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 20.73170731707317,
+        "kc_fraction": 0.0639763779527559,
+        "kc_hz": 3.3341535433070866
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 8833,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 10711,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 12740,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 5318,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 14324,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 8913,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 7067,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 8545,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 8831,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 11606,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 6222,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 5989,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 9436,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 9201,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 11101,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 15034,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 9261,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 9563,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 12991,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 10183,
+          "depressed": 0,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_OFF",
+      "seed": 6,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 34.146341463414636,
+        "kc_fraction": 0.11589566929133858,
+        "kc_hz": 6.114665354330708
+      },
+      "post_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 34.146341463414636,
+        "kc_fraction": 0.11589566929133858,
+        "kc_hz": 6.114665354330708
+      },
+      "pre_B": {
+        "ppl1": 4.464285714285714,
+        "pam": 8.536585365853659,
+        "kc_fraction": 0.0265748031496063,
+        "kc_hz": 1.328740157480315
+      },
+      "post_B": {
+        "ppl1": 4.464285714285714,
+        "pam": 8.536585365853659,
+        "kc_fraction": 0.0265748031496063,
+        "kc_hz": 1.328740157480315
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 4510,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 10204,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 8212,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 14427,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 9118,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 9096,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 6038,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 9540,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 16380,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 9187,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 8864,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 10390,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 9261,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 5758,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 9810,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 8410,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 8145,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 10543,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 10545,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 11805,
+          "depressed": 0,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_OFF",
+      "seed": 7,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 16.071428571428573,
+        "pam": 24.390243902439025,
+        "kc_fraction": 0.11491141732283465,
+        "kc_hz": 6.077755905511811
+      },
+      "post_A": {
+        "ppl1": 16.071428571428573,
+        "pam": 24.390243902439025,
+        "kc_fraction": 0.11491141732283465,
+        "kc_hz": 6.077755905511811
+      },
+      "pre_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.06938976377952756,
+        "kc_hz": 3.6171259842519685
+      },
+      "post_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.06938976377952756,
+        "kc_hz": 3.6171259842519685
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 8832,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 11886,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 13456,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 12206,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 12574,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 12499,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 8693,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 8468,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 13799,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 5228,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 9679,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 7551,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 9880,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 12192,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 9653,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 10485,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 9751,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 8625,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 11707,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 9732,
+          "depressed": 0,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "PAIRED_OFF",
+      "seed": 8,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 43.75,
+        "pam": 67.07317073170732,
+        "kc_fraction": 0.21875,
+        "kc_hz": 13.373523622047244
+      },
+      "post_A": {
+        "ppl1": 43.75,
+        "pam": 67.07317073170732,
+        "kc_fraction": 0.21875,
+        "kc_hz": 13.373523622047244
+      },
+      "pre_B": {
+        "ppl1": 6.25,
+        "pam": 7.317073170731708,
+        "kc_fraction": 0.030019685039370077,
+        "kc_hz": 1.5378937007874016
+      },
+      "post_B": {
+        "ppl1": 6.25,
+        "pam": 7.317073170731708,
+        "kc_fraction": 0.030019685039370077,
+        "kc_hz": 1.5378937007874016
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 11639,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 7377,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 8793,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 9775,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 9657,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 13343,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 11699,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 8640,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 8085,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 13941,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 11827,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 10258,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 14464,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 9693,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 8517,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 13916,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 12585,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 14776,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 9803,
+          "depressed": 0,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 9110,
+          "depressed": 0,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "UNPAIRED",
+      "seed": 1,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 41.07142857142857,
+        "pam": 59.75609756097561,
+        "kc_fraction": 0.21628937007874016,
+        "kc_hz": 12.426181102362206
+      },
+      "post_A": {
+        "ppl1": 41.07142857142857,
+        "pam": 59.75609756097561,
+        "kc_fraction": 0.21628937007874016,
+        "kc_hz": 12.426181102362206
+      },
+      "pre_B": {
+        "ppl1": 22.321428571428573,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.09596456692913385,
+        "kc_hz": 4.9704724409448815
+      },
+      "post_B": {
+        "ppl1": 22.321428571428573,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.09596456692913385,
+        "kc_hz": 4.9704724409448815
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 13982,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 1,
+          "eligible": 14779,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 2,
+          "eligible": 9502,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 3,
+          "eligible": 11222,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 4,
+          "eligible": 12822,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 5,
+          "eligible": 5926,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 6,
+          "eligible": 5710,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 7,
+          "eligible": 10689,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 8,
+          "eligible": 11529,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 9,
+          "eligible": 13455,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 10,
+          "eligible": 10361,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 11,
+          "eligible": 7829,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 12,
+          "eligible": 11083,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 13,
+          "eligible": 11831,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 14,
+          "eligible": 8591,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 15,
+          "eligible": 14393,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 16,
+          "eligible": 11838,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 17,
+          "eligible": 13193,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 18,
+          "eligible": 10768,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 19,
+          "eligible": 11318,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        }
+      ]
+    },
+    {
+      "condition": "UNPAIRED",
+      "seed": 2,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 44.642857142857146,
+        "pam": 76.82926829268293,
+        "kc_fraction": 0.25098425196850394,
+        "kc_hz": 15.034448818897637
+      },
+      "post_A": {
+        "ppl1": 44.642857142857146,
+        "pam": 76.82926829268293,
+        "kc_fraction": 0.25098425196850394,
+        "kc_hz": 15.034448818897637
+      },
+      "pre_B": {
+        "ppl1": 32.142857142857146,
+        "pam": 40.24390243902439,
+        "kc_fraction": 0.1434547244094488,
+        "kc_hz": 7.7263779527559056
+      },
+      "post_B": {
+        "ppl1": 32.142857142857146,
+        "pam": 40.24390243902439,
+        "kc_fraction": 0.1434547244094488,
+        "kc_hz": 7.7263779527559056
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 7651,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 1,
+          "eligible": 10543,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 2,
+          "eligible": 13235,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 3,
+          "eligible": 11522,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 4,
+          "eligible": 6708,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 5,
+          "eligible": 12751,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 6,
+          "eligible": 12321,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 7,
+          "eligible": 11902,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 8,
+          "eligible": 9217,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 9,
+          "eligible": 9181,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 10,
+          "eligible": 12090,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 11,
+          "eligible": 11092,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 12,
+          "eligible": 8562,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 13,
+          "eligible": 14999,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 14,
+          "eligible": 8311,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 15,
+          "eligible": 7386,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 16,
+          "eligible": 11380,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 17,
+          "eligible": 12191,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 18,
+          "eligible": 12841,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 19,
+          "eligible": 13424,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        }
+      ]
+    },
+    {
+      "condition": "UNPAIRED",
+      "seed": 3,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.14616141732283464,
+        "kc_hz": 7.8125
+      },
+      "post_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.14616141732283464,
+        "kc_hz": 7.8125
+      },
+      "pre_B": {
+        "ppl1": 2.6785714285714284,
+        "pam": 3.658536585365854,
+        "kc_fraction": 0.019192913385826772,
+        "kc_hz": 0.9596456692913385
+      },
+      "post_B": {
+        "ppl1": 2.6785714285714284,
+        "pam": 3.658536585365854,
+        "kc_fraction": 0.019192913385826772,
+        "kc_hz": 0.9596456692913385
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 6539,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 1,
+          "eligible": 16581,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 2,
+          "eligible": 13123,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 3,
+          "eligible": 7830,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 4,
+          "eligible": 12994,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 5,
+          "eligible": 11005,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 6,
+          "eligible": 5548,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 7,
+          "eligible": 8695,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 8,
+          "eligible": 8862,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 9,
+          "eligible": 9027,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 10,
+          "eligible": 13507,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 11,
+          "eligible": 10141,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 12,
+          "eligible": 5785,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 13,
+          "eligible": 14039,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 14,
+          "eligible": 12997,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 15,
+          "eligible": 4957,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 16,
+          "eligible": 9826,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 17,
+          "eligible": 12937,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 18,
+          "eligible": 11735,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 19,
+          "eligible": 11629,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        }
+      ]
+    },
+    {
+      "condition": "UNPAIRED",
+      "seed": 4,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 32.142857142857146,
+        "pam": 53.65853658536585,
+        "kc_fraction": 0.21776574803149606,
+        "kc_hz": 12.536909448818898
+      },
+      "post_A": {
+        "ppl1": 32.142857142857146,
+        "pam": 53.65853658536585,
+        "kc_fraction": 0.21776574803149606,
+        "kc_hz": 12.536909448818898
+      },
+      "pre_B": {
+        "ppl1": 29.464285714285715,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.15378937007874016,
+        "kc_hz": 7.997047244094488
+      },
+      "post_B": {
+        "ppl1": 29.464285714285715,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.15378937007874016,
+        "kc_hz": 7.997047244094488
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 8772,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 1,
+          "eligible": 5486,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 2,
+          "eligible": 9041,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 3,
+          "eligible": 13424,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 4,
+          "eligible": 12361,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 5,
+          "eligible": 9641,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 6,
+          "eligible": 8893,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 7,
+          "eligible": 9778,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 8,
+          "eligible": 12900,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 9,
+          "eligible": 8499,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 10,
+          "eligible": 7081,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 11,
+          "eligible": 7793,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 12,
+          "eligible": 10742,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 13,
+          "eligible": 9325,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 14,
+          "eligible": 11278,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 15,
+          "eligible": 3951,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 16,
+          "eligible": 7624,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 17,
+          "eligible": 9919,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 18,
+          "eligible": 9875,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 19,
+          "eligible": 9598,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        }
+      ]
+    },
+    {
+      "condition": "UNPAIRED",
+      "seed": 5,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 46.42857142857143,
+        "pam": 71.95121951219512,
+        "kc_fraction": 0.2455708661417323,
+        "kc_hz": 14.406988188976378
+      },
+      "post_A": {
+        "ppl1": 46.42857142857143,
+        "pam": 71.95121951219512,
+        "kc_fraction": 0.2455708661417323,
+        "kc_hz": 14.406988188976378
+      },
+      "pre_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 20.73170731707317,
+        "kc_fraction": 0.0639763779527559,
+        "kc_hz": 3.3341535433070866
+      },
+      "post_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 20.73170731707317,
+        "kc_fraction": 0.0639763779527559,
+        "kc_hz": 3.3341535433070866
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 8833,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 1,
+          "eligible": 10711,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 2,
+          "eligible": 12740,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 3,
+          "eligible": 5318,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 4,
+          "eligible": 14324,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 5,
+          "eligible": 8913,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 6,
+          "eligible": 7067,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 7,
+          "eligible": 8545,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 8,
+          "eligible": 8831,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 9,
+          "eligible": 11606,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 10,
+          "eligible": 6222,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 11,
+          "eligible": 5989,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 12,
+          "eligible": 9436,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 13,
+          "eligible": 9201,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 14,
+          "eligible": 11101,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 15,
+          "eligible": 15034,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 16,
+          "eligible": 9261,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 17,
+          "eligible": 9563,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 18,
+          "eligible": 12991,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 19,
+          "eligible": 10183,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        }
+      ]
+    },
+    {
+      "condition": "UNPAIRED",
+      "seed": 6,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 34.146341463414636,
+        "kc_fraction": 0.11589566929133858,
+        "kc_hz": 6.114665354330708
+      },
+      "post_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 34.146341463414636,
+        "kc_fraction": 0.11589566929133858,
+        "kc_hz": 6.114665354330708
+      },
+      "pre_B": {
+        "ppl1": 4.464285714285714,
+        "pam": 8.536585365853659,
+        "kc_fraction": 0.0265748031496063,
+        "kc_hz": 1.328740157480315
+      },
+      "post_B": {
+        "ppl1": 4.464285714285714,
+        "pam": 8.536585365853659,
+        "kc_fraction": 0.0265748031496063,
+        "kc_hz": 1.328740157480315
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 4510,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 1,
+          "eligible": 10204,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 2,
+          "eligible": 8212,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 3,
+          "eligible": 14427,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 4,
+          "eligible": 9118,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 5,
+          "eligible": 9096,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 6,
+          "eligible": 6038,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 7,
+          "eligible": 9540,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 8,
+          "eligible": 16380,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 9,
+          "eligible": 9187,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 10,
+          "eligible": 8864,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 11,
+          "eligible": 10390,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 12,
+          "eligible": 9261,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 13,
+          "eligible": 5758,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 14,
+          "eligible": 9810,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 15,
+          "eligible": 8410,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 16,
+          "eligible": 8145,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 17,
+          "eligible": 10543,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 18,
+          "eligible": 10545,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 19,
+          "eligible": 11805,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        }
+      ]
+    },
+    {
+      "condition": "UNPAIRED",
+      "seed": 7,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 16.071428571428573,
+        "pam": 24.390243902439025,
+        "kc_fraction": 0.11491141732283465,
+        "kc_hz": 6.077755905511811
+      },
+      "post_A": {
+        "ppl1": 16.071428571428573,
+        "pam": 24.390243902439025,
+        "kc_fraction": 0.11491141732283465,
+        "kc_hz": 6.077755905511811
+      },
+      "pre_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.06938976377952756,
+        "kc_hz": 3.6171259842519685
+      },
+      "post_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.06938976377952756,
+        "kc_hz": 3.6171259842519685
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 8832,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 1,
+          "eligible": 11886,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 2,
+          "eligible": 13456,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 3,
+          "eligible": 12206,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 4,
+          "eligible": 12574,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 5,
+          "eligible": 12499,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 6,
+          "eligible": 8693,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 7,
+          "eligible": 8468,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 8,
+          "eligible": 13799,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 9,
+          "eligible": 5228,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 10,
+          "eligible": 9679,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 11,
+          "eligible": 7551,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 12,
+          "eligible": 9880,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 13,
+          "eligible": 12192,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 14,
+          "eligible": 9653,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 15,
+          "eligible": 10485,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 16,
+          "eligible": 9751,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 17,
+          "eligible": 8625,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 18,
+          "eligible": 11707,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 19,
+          "eligible": 9732,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        }
+      ]
+    },
+    {
+      "condition": "UNPAIRED",
+      "seed": 8,
+      "trained_on": "A",
+      "pre_A": {
+        "ppl1": 43.75,
+        "pam": 67.07317073170732,
+        "kc_fraction": 0.21875,
+        "kc_hz": 13.373523622047244
+      },
+      "post_A": {
+        "ppl1": 43.75,
+        "pam": 67.07317073170732,
+        "kc_fraction": 0.21875,
+        "kc_hz": 13.373523622047244
+      },
+      "pre_B": {
+        "ppl1": 6.25,
+        "pam": 7.317073170731708,
+        "kc_fraction": 0.030019685039370077,
+        "kc_hz": 1.5378937007874016
+      },
+      "post_B": {
+        "ppl1": 6.25,
+        "pam": 7.317073170731708,
+        "kc_fraction": 0.030019685039370077,
+        "kc_hz": 1.5378937007874016
+      },
+      "d_A_ppl1": 0.0,
+      "d_A_pam": 0.0,
+      "d_B_ppl1": 0.0,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 0,
+        "moved_ppl1_side": 0,
+        "moved_pam_side": 0,
+        "mean_gain": 1.0,
+        "min_gain": 1.0,
+        "mean_gain_moved": 1.0,
+        "total_abs_weight_change_mv": 0.0,
+        "max_abs_weight_change_mv": 0.0
+      },
+      "events": {
+        "reward": 0,
+        "punish": 0,
+        "rejected_episode": 0
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 11639,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 1,
+          "eligible": 7377,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 2,
+          "eligible": 8793,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 3,
+          "eligible": 9775,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 4,
+          "eligible": 9657,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 5,
+          "eligible": 13343,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 6,
+          "eligible": 11699,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 7,
+          "eligible": 8640,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 8,
+          "eligible": 8085,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 9,
+          "eligible": 13941,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 10,
+          "eligible": 11827,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 11,
+          "eligible": 10258,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 12,
+          "eligible": 14464,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 13,
+          "eligible": 9693,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 14,
+          "eligible": 8517,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 15,
+          "eligible": 13916,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 16,
+          "eligible": 12585,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 17,
+          "eligible": 14776,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 18,
+          "eligible": 9803,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        },
+        {
+          "trial": 19,
+          "eligible": 9110,
+          "depressed": 0,
+          "max_trace": 0.027680642902851105
+        }
+      ]
+    },
+    {
+      "condition": "OTHER_ODOUR",
+      "seed": 1,
+      "trained_on": "B",
+      "pre_A": {
+        "ppl1": 41.07142857142857,
+        "pam": 59.75609756097561,
+        "kc_fraction": 0.21628937007874016,
+        "kc_hz": 12.426181102362206
+      },
+      "post_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 62.19512195121951,
+        "kc_fraction": 0.20816929133858267,
+        "kc_hz": 12.04478346456693
+      },
+      "pre_B": {
+        "ppl1": 22.321428571428573,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.09596456692913385,
+        "kc_hz": 4.9704724409448815
+      },
+      "post_B": {
+        "ppl1": 13.392857142857142,
+        "pam": 32.926829268292686,
+        "kc_fraction": 0.11589566929133858,
+        "kc_hz": 6.003937007874016
+      },
+      "d_A_ppl1": -13.392857142857142,
+      "d_A_pam": 2.439024390243901,
+      "d_B_ppl1": -8.92857142857143,
+      "d_B_pam": 9.756097560975611,
+      "d_A_kc_fraction": -0.008120078740157494,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 2697,
+        "moved_ppl1_side": 2697,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9778133630752563,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.637691855430603,
+        "total_abs_weight_change_mv": 2287.587158203125,
+        "max_abs_weight_change_mv": 6.78712272644043
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 44377
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 2582,
+          "depressed": 1145,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 4479,
+          "depressed": 1968,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 3212,
+          "depressed": 1414,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 1308,
+          "depressed": 587,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 3012,
+          "depressed": 1327,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 1064,
+          "depressed": 469,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 1007,
+          "depressed": 451,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 34,
+          "depressed": 14,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 3530,
+          "depressed": 1547,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 5806,
+          "depressed": 2523,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 1329,
+          "depressed": 589,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 1996,
+          "depressed": 879,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 683,
+          "depressed": 308,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 35,
+          "depressed": 14,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 3147,
+          "depressed": 1391,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 3212,
+          "depressed": 1419,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 3434,
+          "depressed": 1510,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 4526,
+          "depressed": 1981,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 3661,
+          "depressed": 1605,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 3184,
+          "depressed": 1397,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "OTHER_ODOUR",
+      "seed": 2,
+      "trained_on": "B",
+      "pre_A": {
+        "ppl1": 44.642857142857146,
+        "pam": 76.82926829268293,
+        "kc_fraction": 0.25098425196850394,
+        "kc_hz": 15.034448818897637
+      },
+      "post_A": {
+        "ppl1": 38.392857142857146,
+        "pam": 79.26829268292683,
+        "kc_fraction": 0.25098425196850394,
+        "kc_hz": 15.034448818897637
+      },
+      "pre_B": {
+        "ppl1": 32.142857142857146,
+        "pam": 40.24390243902439,
+        "kc_fraction": 0.1434547244094488,
+        "kc_hz": 7.7263779527559056
+      },
+      "post_B": {
+        "ppl1": 14.285714285714286,
+        "pam": 30.48780487804878,
+        "kc_fraction": 0.10260826771653543,
+        "kc_hz": 5.339566929133858
+      },
+      "d_A_ppl1": -6.25,
+      "d_A_pam": 2.439024390243901,
+      "d_B_ppl1": -17.85714285714286,
+      "d_B_pam": -9.756097560975608,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 2883,
+        "moved_ppl1_side": 2883,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9820217490196228,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.7253559231758118,
+        "total_abs_weight_change_mv": 1850.670654296875,
+        "max_abs_weight_change_mv": 6.570578098297119
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 47514
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 1039,
+          "depressed": 465,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 174,
+          "depressed": 77,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 957,
+          "depressed": 429,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 6233,
+          "depressed": 2719,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 1421,
+          "depressed": 638,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 1316,
+          "depressed": 593,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 1661,
+          "depressed": 740,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 1290,
+          "depressed": 583,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 3588,
+          "depressed": 1562,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 2190,
+          "depressed": 983,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 2815,
+          "depressed": 1248,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 1737,
+          "depressed": 780,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 1342,
+          "depressed": 602,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 1653,
+          "depressed": 744,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 3560,
+          "depressed": 1575,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 2419,
+          "depressed": 1073,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 653,
+          "depressed": 293,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 4800,
+          "depressed": 2097,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 98,
+          "depressed": 47,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 902,
+          "depressed": 407,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "OTHER_ODOUR",
+      "seed": 3,
+      "trained_on": "B",
+      "pre_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.14616141732283464,
+        "kc_hz": 7.8125
+      },
+      "post_A": {
+        "ppl1": 22.321428571428573,
+        "pam": 40.24390243902439,
+        "kc_fraction": 0.14616141732283464,
+        "kc_hz": 7.8125
+      },
+      "pre_B": {
+        "ppl1": 2.6785714285714284,
+        "pam": 3.658536585365854,
+        "kc_fraction": 0.019192913385826772,
+        "kc_hz": 0.9596456692913385
+      },
+      "post_B": {
+        "ppl1": 1.7857142857142858,
+        "pam": 3.658536585365854,
+        "kc_fraction": 0.019192913385826772,
+        "kc_hz": 0.9596456692913385
+      },
+      "d_A_ppl1": -5.357142857142854,
+      "d_A_pam": 1.2195121951219505,
+      "d_B_ppl1": -0.8928571428571426,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 3239,
+        "moved_ppl1_side": 3239,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9793777465820312,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.7195903062820435,
+        "total_abs_weight_change_mv": 2115.96142578125,
+        "max_abs_weight_change_mv": 6.056196689605713
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 47998
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 49,
+          "depressed": 22,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 6341,
+          "depressed": 2773,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 5648,
+          "depressed": 2462,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 642,
+          "depressed": 287,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 571,
+          "depressed": 259,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 802,
+          "depressed": 360,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 1264,
+          "depressed": 565,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 35,
+          "depressed": 15,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 299,
+          "depressed": 130,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 1002,
+          "depressed": 452,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 3238,
+          "depressed": 1421,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 1079,
+          "depressed": 487,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 1641,
+          "depressed": 734,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 3529,
+          "depressed": 1558,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 790,
+          "depressed": 352,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 3386,
+          "depressed": 1500,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 1940,
+          "depressed": 859,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 3186,
+          "depressed": 1404,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 6706,
+          "depressed": 2912,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 2044,
+          "depressed": 909,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "OTHER_ODOUR",
+      "seed": 4,
+      "trained_on": "B",
+      "pre_A": {
+        "ppl1": 32.142857142857146,
+        "pam": 53.65853658536585,
+        "kc_fraction": 0.21776574803149606,
+        "kc_hz": 12.536909448818898
+      },
+      "post_A": {
+        "ppl1": 24.107142857142858,
+        "pam": 52.4390243902439,
+        "kc_fraction": 0.21776574803149606,
+        "kc_hz": 12.536909448818898
+      },
+      "pre_B": {
+        "ppl1": 29.464285714285715,
+        "pam": 39.02439024390244,
+        "kc_fraction": 0.15378937007874016,
+        "kc_hz": 7.997047244094488
+      },
+      "post_B": {
+        "ppl1": 18.75,
+        "pam": 42.68292682926829,
+        "kc_fraction": 0.1545275590551181,
+        "kc_hz": 8.033956692913385
+      },
+      "d_A_ppl1": -8.035714285714288,
+      "d_A_pam": -1.2195121951219505,
+      "d_B_ppl1": -10.714285714285715,
+      "d_B_pam": 3.6585365853658516,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 3188,
+        "moved_ppl1_side": 3188,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9781332015991211,
+        "min_gain": 0.3132639229297638,
+        "mean_gain_moved": 0.69791179895401,
+        "total_abs_weight_change_mv": 2236.16015625,
+        "max_abs_weight_change_mv": 6.052722454071045
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 57495
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 3769,
+          "depressed": 1663,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 989,
+          "depressed": 441,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 5204,
+          "depressed": 2269,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 3021,
+          "depressed": 1331,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 175,
+          "depressed": 78,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 1139,
+          "depressed": 523,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 5846,
+          "depressed": 2540,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 96,
+          "depressed": 44,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 2384,
+          "depressed": 1059,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 3390,
+          "depressed": 1496,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 1084,
+          "depressed": 494,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 1361,
+          "depressed": 608,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 348,
+          "depressed": 154,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 324,
+          "depressed": 147,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 1220,
+          "depressed": 542,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 13,
+          "depressed": 5,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 5805,
+          "depressed": 2527,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 6551,
+          "depressed": 2852,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 393,
+          "depressed": 178,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 3774,
+          "depressed": 1670,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "OTHER_ODOUR",
+      "seed": 5,
+      "trained_on": "B",
+      "pre_A": {
+        "ppl1": 46.42857142857143,
+        "pam": 71.95121951219512,
+        "kc_fraction": 0.2455708661417323,
+        "kc_hz": 14.406988188976378
+      },
+      "post_A": {
+        "ppl1": 33.92857142857143,
+        "pam": 69.51219512195122,
+        "kc_fraction": 0.2389271653543307,
+        "kc_hz": 13.779527559055119
+      },
+      "pre_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 20.73170731707317,
+        "kc_fraction": 0.0639763779527559,
+        "kc_hz": 3.3341535433070866
+      },
+      "post_B": {
+        "ppl1": 8.035714285714286,
+        "pam": 20.73170731707317,
+        "kc_fraction": 0.0578248031496063,
+        "kc_hz": 3.0265748031496065
+      },
+      "d_A_ppl1": -12.5,
+      "d_A_pam": -2.439024390243901,
+      "d_B_ppl1": -7.142857142857142,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": -0.006643700787401591,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 3137,
+        "moved_ppl1_side": 3137,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9800280928611755,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.7196038961410522,
+        "total_abs_weight_change_mv": 2055.6669921875,
+        "max_abs_weight_change_mv": 6.348350524902344
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 51827
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 4056,
+          "depressed": 1780,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 3328,
+          "depressed": 1464,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 2764,
+          "depressed": 1220,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 1400,
+          "depressed": 626,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 997,
+          "depressed": 453,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 1438,
+          "depressed": 642,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 2520,
+          "depressed": 1111,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 450,
+          "depressed": 197,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 1330,
+          "depressed": 604,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 6977,
+          "depressed": 3040,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 3967,
+          "depressed": 1743,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 3823,
+          "depressed": 1680,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 3277,
+          "depressed": 1450,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 902,
+          "depressed": 404,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 2376,
+          "depressed": 1050,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 936,
+          "depressed": 426,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 226,
+          "depressed": 102,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 2188,
+          "depressed": 969,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 782,
+          "depressed": 355,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 919,
+          "depressed": 413,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "OTHER_ODOUR",
+      "seed": 6,
+      "trained_on": "B",
+      "pre_A": {
+        "ppl1": 27.678571428571427,
+        "pam": 34.146341463414636,
+        "kc_fraction": 0.11589566929133858,
+        "kc_hz": 6.114665354330708
+      },
+      "post_A": {
+        "ppl1": 17.857142857142858,
+        "pam": 32.926829268292686,
+        "kc_fraction": 0.11589566929133858,
+        "kc_hz": 6.114665354330708
+      },
+      "pre_B": {
+        "ppl1": 4.464285714285714,
+        "pam": 8.536585365853659,
+        "kc_fraction": 0.0265748031496063,
+        "kc_hz": 1.328740157480315
+      },
+      "post_B": {
+        "ppl1": 1.7857142857142858,
+        "pam": 8.536585365853659,
+        "kc_fraction": 0.0265748031496063,
+        "kc_hz": 1.328740157480315
+      },
+      "d_A_ppl1": -9.82142857142857,
+      "d_A_pam": -1.2195121951219505,
+      "d_B_ppl1": -2.678571428571429,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.0,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 3333,
+        "moved_ppl1_side": 3333,
+        "moved_pam_side": 0,
+        "mean_gain": 0.976833164691925,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.6938745975494385,
+        "total_abs_weight_change_mv": 2386.49755859375,
+        "max_abs_weight_change_mv": 6.571065425872803
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 59178
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 1169,
+          "depressed": 522,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 145,
+          "depressed": 61,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 6504,
+          "depressed": 2830,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 3925,
+          "depressed": 1728,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 5287,
+          "depressed": 2303,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 2712,
+          "depressed": 1196,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 5296,
+          "depressed": 2325,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 2351,
+          "depressed": 1048,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 2042,
+          "depressed": 901,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 985,
+          "depressed": 447,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 6601,
+          "depressed": 2878,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 805,
+          "depressed": 360,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 2662,
+          "depressed": 1179,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 1287,
+          "depressed": 581,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 3653,
+          "depressed": 1609,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 1173,
+          "depressed": 528,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 2256,
+          "depressed": 1003,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 1091,
+          "depressed": 490,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 1386,
+          "depressed": 616,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 329,
+          "depressed": 142,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "OTHER_ODOUR",
+      "seed": 7,
+      "trained_on": "B",
+      "pre_A": {
+        "ppl1": 16.071428571428573,
+        "pam": 24.390243902439025,
+        "kc_fraction": 0.11491141732283465,
+        "kc_hz": 6.077755905511811
+      },
+      "post_A": {
+        "ppl1": 13.392857142857142,
+        "pam": 26.829268292682926,
+        "kc_fraction": 0.11368110236220473,
+        "kc_hz": 6.016240157480315
+      },
+      "pre_B": {
+        "ppl1": 15.178571428571429,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.06938976377952756,
+        "kc_hz": 3.6171259842519685
+      },
+      "post_B": {
+        "ppl1": 8.035714285714286,
+        "pam": 23.170731707317074,
+        "kc_fraction": 0.06963582677165354,
+        "kc_hz": 3.6294291338582676
+      },
+      "d_A_ppl1": -2.6785714285714306,
+      "d_A_pam": 2.439024390243901,
+      "d_B_ppl1": -7.142857142857142,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": -0.001230314960629919,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 3061,
+        "moved_ppl1_side": 3061,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9789018630981445,
+        "min_gain": 0.29490840435028076,
+        "mean_gain_moved": 0.6964387893676758,
+        "total_abs_weight_change_mv": 2173.78369140625,
+        "max_abs_weight_change_mv": 6.2302703857421875
+      },
+      "events": {
+        "reward": 0,
+        "punish": 20,
+        "rejected_episode": 56738
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 3992,
+          "depressed": 1746,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 411,
+          "depressed": 185,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 3756,
+          "depressed": 1644,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 2912,
+          "depressed": 1286,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 628,
+          "depressed": 283,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 3531,
+          "depressed": 1547,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 932,
+          "depressed": 417,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 3462,
+          "depressed": 1519,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 1142,
+          "depressed": 511,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 890,
+          "depressed": 398,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 3074,
+          "depressed": 1362,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 948,
+          "depressed": 427,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 3967,
+          "depressed": 1753,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 6813,
+          "depressed": 2977,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 14,
+          "eligible": 24,
+          "depressed": 10,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 593,
+          "depressed": 264,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 3614,
+          "depressed": 1588,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 1113,
+          "depressed": 499,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 822,
+          "depressed": 375,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 4136,
+          "depressed": 1817,
+          "max_trace": 1.0
+        }
+      ]
+    },
+    {
+      "condition": "OTHER_ODOUR",
+      "seed": 8,
+      "trained_on": "B",
+      "pre_A": {
+        "ppl1": 43.75,
+        "pam": 67.07317073170732,
+        "kc_fraction": 0.21875,
+        "kc_hz": 13.373523622047244
+      },
+      "post_A": {
+        "ppl1": 25.0,
+        "pam": 65.85365853658537,
+        "kc_fraction": 0.24458661417322836,
+        "kc_hz": 14.21013779527559
+      },
+      "pre_B": {
+        "ppl1": 6.25,
+        "pam": 7.317073170731708,
+        "kc_fraction": 0.030019685039370077,
+        "kc_hz": 1.5378937007874016
+      },
+      "post_B": {
+        "ppl1": 4.464285714285714,
+        "pam": 7.317073170731708,
+        "kc_fraction": 0.030019685039370077,
+        "kc_hz": 1.5378937007874016
+      },
+      "d_A_ppl1": -18.75,
+      "d_A_pam": -1.2195121951219505,
+      "d_B_ppl1": -1.7857142857142856,
+      "d_B_pam": 0.0,
+      "d_A_kc_fraction": 0.025836614173228356,
+      "weights": {
+        "synapses_total": 44042,
+        "synapses_moved": 3359,
+        "moved_ppl1_side": 3359,
+        "moved_pam_side": 0,
+        "mean_gain": 0.9778969883918762,
+        "min_gain": 0.31343379616737366,
+        "mean_gain_moved": 0.710193395614624,
+        "total_abs_weight_change_mv": 2279.782470703125,
+        "max_abs_weight_change_mv": 6.230587959289551
+      },
+      "events": {
+        "reward": 0,
+        "punish": 19,
+        "rejected_episode": 40660
+      },
+      "trials": [
+        {
+          "trial": 0,
+          "eligible": 3542,
+          "depressed": 1565,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 1,
+          "eligible": 4119,
+          "depressed": 1812,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 2,
+          "eligible": 4398,
+          "depressed": 1923,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 3,
+          "eligible": 3502,
+          "depressed": 1544,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 4,
+          "eligible": 1857,
+          "depressed": 827,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 5,
+          "eligible": 1209,
+          "depressed": 543,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 6,
+          "eligible": 956,
+          "depressed": 432,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 7,
+          "eligible": 871,
+          "depressed": 385,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 8,
+          "eligible": 1207,
+          "depressed": 539,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 9,
+          "eligible": 965,
+          "depressed": 428,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 10,
+          "eligible": 575,
+          "depressed": 261,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 11,
+          "eligible": 2219,
+          "depressed": 990,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 12,
+          "eligible": 581,
+          "depressed": 262,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 13,
+          "eligible": 0,
+          "depressed": 0,
+          "max_trace": 0.550000011920929
+        },
+        {
+          "trial": 14,
+          "eligible": 3946,
+          "depressed": 1726,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 15,
+          "eligible": 1348,
+          "depressed": 605,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 16,
+          "eligible": 5681,
+          "depressed": 2472,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 17,
+          "eligible": 831,
+          "depressed": 371,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 18,
+          "eligible": 7530,
+          "depressed": 3287,
+          "max_trace": 1.0
+        },
+        {
+          "trial": 19,
+          "eligible": 3182,
+          "depressed": 1403,
+          "max_trace": 1.0
+        }
+      ]
+    }
+  ],
+  "primary": {
+    "assoc_per_seed": {
+      "1": -27.678571428571427,
+      "2": -30.35714285714286,
+      "3": -20.535714285714285,
+      "4": -21.42857142857143,
+      "5": -34.82142857142857,
+      "6": -19.64285714285714,
+      "7": -11.607142857142858,
+      "8": -32.14285714285714
+    },
+    "n_negative": 8,
+    "n_seeds": 8,
+    "mean": -24.776785714285715,
+    "paired_off_all_zero": true,
+    "decision": {
+      "min_negative_seeds": 7,
+      "min_mean_abs_effect_hz": 1.0,
+      "passed": true
+    }
+  },
+  "elapsed_s": 19.018540382385254
+}

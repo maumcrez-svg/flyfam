@@ -1,0 +1,14 @@
+{
+ "version": "d12-001-reference-verification-1",
+ "rows_recomputed": 200,
+ "rows_in_the_grid": 5177,
+ "compared": 200,
+ "mismatched": 0,
+ "max_abs_difference_hz": 0.0,
+ "tolerance_hz": 1e-09,
+ "start_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+ "digest_unchanged": true,
+ "examples": [],
+ "rule": "identical seeds and identical weights must give identical valences; a single disagreement stops the wave",
+ "verdict": "REUSE_VERIFIED"
+}

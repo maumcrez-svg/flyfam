@@ -1,0 +1,32 @@
+{
+ "rule": "twelve contiguous hours ending at the confirmed head at probe time; end_block = min(head - confirm_depth, safe), start_block = the smallest block whose timestamp is at least timestamp(end_block) - 43200",
+ "head_block": 61671056,
+ "safe_block": 61663368,
+ "confirm_depth_blocks": 591,
+ "first_block": 61237774,
+ "last_block": 61663368,
+ "safe_block_used_as_end": true,
+ "blocks": 425595,
+ "first_ts": 1789229564,
+ "last_ts": 1789272764,
+ "seconds": 43200,
+ "window_seconds_requested": 43200,
+ "minutes": 720.0,
+ "median_block_interval_s": 0.10149559411114202,
+ "admission_minutes": 705,
+ "admission_blocks": 416767,
+ "admission_last_block": 61654540,
+ "settlement_tail_minutes": 15,
+ "bisection_steps": 19,
+ "first_ts_utc": "2026-09-12T16:12:44Z",
+ "last_ts_utc": "2026-09-13T04:12:44Z",
+ "overlaps_d10_backfill_v1": false,
+ "d10_backfill_v1": {
+  "first_block": 60721229,
+  "last_block": 60801426,
+  "first_ts": 1789181856,
+  "last_ts": 1789190005,
+  "label": "d10-backfill-v1"
+ },
+ "resolved_at": "2026-09-13T04:25:42.167700Z"
+}

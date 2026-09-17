@@ -1,0 +1,74 @@
+/* The guide is a layer over the broadcast, never a second landing page. */
+.guide-mobile-link{display:none}
+#about-dialog{width:min(960px,calc(100vw - 40px));max-width:960px;max-height:calc(100dvh - 48px);padding:0;overflow:hidden;background:#10130e;border:1px solid #657149;color:var(--ink);box-shadow:0 32px 120px #000b}
+#about-dialog::backdrop{background:#030603d9;backdrop-filter:blur(7px)}
+#about-dialog[open]{display:flex;flex-direction:column;animation:guide-enter .18s ease-out}
+#about-dialog .guide-top{display:flex;align-items:center;gap:12px;padding:16px 26px;border-bottom:1px solid var(--line);flex-shrink:0}
+.guide-top img{width:30px;height:30px}.guide-top>span{font:11px var(--mono);letter-spacing:.12em}.guide-top small{color:var(--muted);margin-left:auto;font:10px var(--mono)}
+#about-dialog .dialog-close{position:static;margin-left:10px;flex:0 0 36px;width:36px;height:36px;padding:0;border:1px solid #3e4831;font:25px var(--mono);color:var(--ink)}
+.guide-tabs{display:grid;grid-template-columns:repeat(4,1fr);padding:0 26px;border-bottom:1px solid var(--line);flex-shrink:0}
+.guide-tabs button{min-height:52px;border-bottom:2px solid transparent;text-align:left;font:11px var(--mono);color:#a5ad9b;letter-spacing:.04em}
+.guide-tabs button span{color:#737e63;margin-right:8px}.guide-tabs button[aria-selected=true]{border-color:var(--acid);color:var(--acid)}
+.guide-tabs button:focus-visible{outline-offset:-5px}
+.guide-scroll{overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:28px 32px 26px;min-height:0}
+.guide-panel:focus-visible{outline:1px solid #657149;outline-offset:5px}
+#about-dialog h2{font:700 clamp(32px,4vw,52px)/.98 var(--display);letter-spacing:-.8px;margin:10px 0 16px;text-transform:uppercase}
+#about-dialog h2 em{font-style:normal;color:var(--acid)}
+#about-dialog p{font:14px/1.65 var(--sans);color:#b6beaa;margin:10px 0}
+#about-dialog p strong{color:#e6ebdc;font-weight:600}
+.guide-kicker{font:10px/1.5 var(--mono);letter-spacing:.12em;color:var(--amber)}
+.guide-hero{display:grid;grid-template-columns:minmax(0,1fr) 190px;align-items:center;gap:22px}
+.guide-specimen{position:relative;display:grid;place-items:center;height:170px;border:1px solid #34412b;border-radius:50%;background:radial-gradient(ellipse,#31431c44,transparent 70%)}
+.guide-specimen:before,.guide-specimen:after{position:absolute;color:#86956d;font:14px var(--mono);content:'+';left:-5px;top:50%}.guide-specimen:after{left:auto;right:-5px}
+.guide-specimen img{width:180px;height:180px;object-fit:contain;mix-blend-mode:lighten}.guide-specimen small{position:absolute;bottom:0;padding:4px;background:#10130e;color:#aab995;font:9px var(--mono)}
+.guide-loop{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid #3d4930}
+.guide-loop li{padding:19px 16px;position:relative}.guide-loop li+li{border-left:1px solid #3d4930}.guide-loop li+li:before{content:'→';position:absolute;top:17px;left:-9px;background:#10130e;color:var(--acid);padding:0 3px}
+.guide-loop .guide-num{font:11px var(--mono);color:var(--acid)}
+#about-dialog h3{font:700 24px/1.05 var(--display);margin:12px 0 8px;color:var(--ink)}
+#about-dialog .guide-loop p{font-size:13px;line-height:1.55;margin:0}
+.guide-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.guide-rule{border:1px solid #3d4930;padding:18px 20px;background:#171d12}
+.guide-rule>span{font:10px var(--mono);color:#afbb97;letter-spacing:.08em}
+#about-dialog .guide-rule h3{font-size:32px;margin:12px 0}.guide-rule h3 small{font:12px var(--mono)}
+#about-dialog .guide-rule p{margin:0;font-size:13px}
+.guide-faq{margin-top:14px;border-bottom:1px solid #303929}
+.guide-faq summary{font:12px/1.5 var(--mono);padding:14px 20px 14px 0;cursor:pointer;color:#d6dec8}
+#about-dialog .guide-faq p{margin:0 0 16px;font-size:13px;max-width:740px}
+.guide-footnote{padding-left:13px;border-left:2px solid var(--amber)}
+.guide-next{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:22px;padding:14px 0;border-top:1px solid #465333;color:var(--acid);font:12px var(--mono);text-align:left;min-height:44px}
+.guide-next span:last-child{font-size:22px}
+.guide-example{margin-top:22px;border:1px solid #53613b}
+.guide-example-label{padding:10px 16px;background:#222918;color:#c6d4aa;font:10px/1.6 var(--mono);letter-spacing:.06em}
+.guide-waterfall{display:grid;grid-template-columns:1fr 1fr 1fr;padding:20px;gap:22px}
+.guide-waterfall>div{display:flex;flex-direction:column;gap:7px;position:relative}
+.guide-waterfall small{font:10px/1.5 var(--mono);color:#aebba0}.guide-waterfall strong{font:700 36px var(--display);white-space:nowrap}.guide-waterfall strong i{font:12px var(--mono);font-style:normal}.guide-waterfall .guide-profit{color:var(--acid)}
+.guide-waterfall>div+div:before{content:'→';position:absolute;left:-21px;top:26px;color:#8c9f69}
+.guide-example-note{padding:0 20px 15px}#about-dialog .guide-example-note p{font-size:13px;margin:0}
+.guide-allocation{display:grid;grid-template-columns:1fr 3fr 6fr;margin:14px 0 10px;height:7px;gap:3px}.guide-allocation i:nth-child(1){background:#769547}.guide-allocation i:nth-child(2){background:#9cbd61}.guide-allocation i:nth-child(3){background:#c1ed5b}
+.guide-allocation-labels{display:flex;justify-content:space-between;gap:10px;font:11px/1.6 var(--mono);color:#bccca1}
+.guide-science{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:22px 0;padding:18px;border:1px solid #485435;color:var(--amber);font:11px/1.7 var(--mono)}.guide-science span{color:#d1d8c4}.guide-science b{color:var(--acid);font-weight:400}
+.guide-fees{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:3px 0 15px;font:10px/1.6 var(--mono);color:#aebba0}.guide-fees strong{display:block;color:#d9e4c9;font-size:18px;font-weight:400}
+.guide-bottom{flex-shrink:0;border-top:1px solid #465333;padding:16px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;background:#171c12}
+.guide-runtime{min-width:0}.guide-runtime span{display:block;font:10px/1.6 var(--mono);color:#a4b28e}.guide-runtime strong{display:block;font:11px/1.7 var(--mono);font-weight:400;color:var(--amber);margin-top:3px}
+.guide-bottom button{flex-shrink:0;border:1px solid #778955;padding:12px 16px;min-height:44px;font:11px var(--mono);color:var(--acid)}
+html:has(#about-dialog[open]){overflow:hidden;scrollbar-gutter:stable}
+@keyframes guide-enter{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:780px){
+ .guide-mobile-link{display:inline-flex;margin-top:14px;padding:7px 0;min-height:32px;align-items:center;gap:10px;color:var(--acid);font:10px var(--mono);text-decoration:none}.guide-mobile-link span{color:#899777}
+ #about-dialog{width:calc(100vw - 20px);max-height:calc(100dvh - 20px)}
+ #about-dialog .guide-top{padding:12px 16px;gap:9px}.guide-top>span{font-size:10px}.guide-top small{display:none}#about-dialog .dialog-close{margin-left:auto}
+ .guide-tabs{padding:0 15px}.guide-tabs button{font-size:10px;text-align:center;min-height:49px}.guide-tabs button span{display:none}
+ .guide-scroll{padding:22px 20px}.guide-hero{grid-template-columns:minmax(0,1fr) 70px;gap:8px}
+ #about-dialog h2{font-size:34px;letter-spacing:-.5px}.guide-specimen{height:74px}.guide-specimen img{width:70px;height:70px}.guide-specimen small{display:none}
+ #about-dialog .guide-hero p{grid-column:1/-1}.guide-hero>div:first-child{min-width:0}
+ .guide-loop{grid-template-columns:1fr 1fr;margin-top:18px}.guide-loop li{padding:16px 13px}.guide-loop li:nth-child(3){border-left:0}.guide-loop li:nth-child(n+3){border-top:1px solid #3d4930}.guide-loop li:nth-child(3):before{display:none}
+ .guide-two{grid-template-columns:1fr;gap:12px;margin-top:18px}.guide-rule{padding:16px}
+ .guide-bottom{padding:13px 16px;gap:12px;align-items:flex-end}.guide-runtime span{font-size:9px}.guide-runtime strong{font-size:10px}.guide-bottom button{font-size:10px;max-width:112px;padding:10px 12px;line-height:1.6}
+ .guide-waterfall{gap:14px;padding:17px 14px}.guide-waterfall strong{font-size:28px}.guide-waterfall strong i{font-size:10px}.guide-waterfall small{font-size:9px}.guide-waterfall>div+div:before{left:-13px;font-size:10px}.guide-example-note{padding:0 14px 14px}.guide-allocation-labels{font-size:10px;flex-wrap:wrap}
+ .guide-fees{grid-template-columns:1fr 1fr}.guide-science{font-size:10px;padding:14px}.guide-next{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){#about-dialog[open]{animation:none}#about-dialog::backdrop{backdrop-filter:none}.guide-scroll{scroll-behavior:auto}}
+.guide-science-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0;border-top:1px solid #455034;border-bottom:1px solid #455034;padding:18px 0}.guide-science-stats strong{display:block;font:700 34px var(--display);color:var(--acid)}.guide-science-stats span{display:block;font:10px/1.7 var(--mono);color:#b5c29e}
+.guide-science-diagram{display:grid;grid-template-columns:1fr 16px 1.2fr 16px 1.35fr 16px 1.2fr;gap:10px;align-items:center;padding:18px 16px;background:#181f12;border:1px solid #3e4d2e}.guide-signal{display:flex;flex-direction:column;gap:10px;min-width:0}.guide-signal span{color:#99aa7d;font:9px/1.5 var(--mono)}.guide-signal b,.guide-network b{font:700 18px/1.1 var(--display)}.guide-signal small,.guide-network small{color:#afbc99;font:10px/1.6 var(--mono)}.guide-arrow{color:var(--amber)}.guide-network{display:flex;align-items:center;flex-direction:column;text-align:center;gap:5px;color:var(--amber)}.guide-network svg{width:100%;max-width:130px;height:64px}
+#about-dialog .guide-diagram-caption{font:9px/1.8 var(--mono);color:#9aa889;letter-spacing:.03em;margin:8px 0 20px}.guide-faq a{color:#ccdfa7;text-underline-offset:4px}
+@media(max-width:780px){.guide-science-stats{gap:12px}.guide-science-stats strong{font-size:27px}.guide-science-stats span{font-size:10px}.guide-science-diagram{grid-template-columns:1fr 16px 1fr;gap:12px;padding:16px}.guide-science-diagram>.guide-arrow:nth-child(4){display:none}.guide-network{grid-column:1}.guide-network svg{max-width:92px;height:50px}.guide-signal b,.guide-network b{font-size:19px}}

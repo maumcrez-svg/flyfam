@@ -1,0 +1,32 @@
+{
+ "version": "d12-001-determinism-1",
+ "ticks": 100,
+ "rule": "the first 100 LEARNING ticks of the school replay, run twice from the clean reference, give an identical checkpoint digest and an identical sha256 of the LESSON log",
+ "first": {
+  "end_digest": "c83881d0f00c459593aa80307b323ba7ba54a60cb2ceb641bb2446753469bc3b",
+  "learned_digest": "c83881d0f00c459593aa80307b323ba7ba54a60cb2ceb641bb2446753469bc3b",
+  "lesson_log_sha256": "d77350e52d2ead08219bcdbdb751ed095f0475facf407a44f5ef806b727d64ef",
+  "lesson_lines": 1107,
+  "log_normalised_sha256": "389b6e76b2b7664aae568c790df62280e489cb1b72fab5b2b1d0857f14aef08b",
+  "log_lines": 1920,
+  "ticks": 100,
+  "wall_s": 421.44
+ },
+ "second": {
+  "end_digest": "c83881d0f00c459593aa80307b323ba7ba54a60cb2ceb641bb2446753469bc3b",
+  "learned_digest": "c83881d0f00c459593aa80307b323ba7ba54a60cb2ceb641bb2446753469bc3b",
+  "lesson_log_sha256": "d77350e52d2ead08219bcdbdb751ed095f0475facf407a44f5ef806b727d64ef",
+  "lesson_lines": 1107,
+  "log_normalised_sha256": "389b6e76b2b7664aae568c790df62280e489cb1b72fab5b2b1d0857f14aef08b",
+  "log_lines": 1920,
+  "ticks": 100,
+  "wall_s": 430.78
+ },
+ "lessons_applied": 1107,
+ "digest_identical": true,
+ "lesson_log_identical": true,
+ "whole_log_identical": true,
+ "normalisation": "the fields ['t', 'path'] are removed before hashing, as experiments/d10/determinism.py does: a second process cannot reproduce a wall clock or an absolute path",
+ "both_runs_are_stamped": "prefix",
+ "why": "the journal stamps its branch on every record; the two runs live in two directories but are stamped with one name, so a difference in the logs can only be a difference in the run"
+}

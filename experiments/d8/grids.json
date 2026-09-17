@@ -1,0 +1,565 @@
+{
+ "artifact": "flytrade-d8-grids-1",
+ "label": "RETROSPECTIVE DIAGNOSTIC \u2014 D7 RESULTS PREVIOUSLY OBSERVED",
+ "written_utc": "2026-09-11T22:08:54Z",
+ "sklearn_pin": "scikit-learn==1.9.1",
+ "artifact_hashes_found": {
+  "withheld probe table": "108f11a9e80634885dc0ad64e0855b4118a3f48b2723cc53e41a88b93d5f5c46",
+  "the registered horizon artifact": "bb494cac316edefb4d9e8146894e2630cc12ca4831b4f5f6841d6acbe0639c52",
+  "experiments/d7/config.json": "e7e1e6eb1d2d5f2953acbba8d606d34c9db70cafd9be9eb6edc922aec6c7a555",
+  "withheld d7 context summary": "f37b1dc56a0f2c6806f367a370c08cc9da9060732cf3ca9f07f5cbec131ab867",
+  "data/market/IBM_1min_unadjusted.txt": "b1ace385f069764c6030f1c292595548166c2478e0390284f1875507e2673db9",
+  "experiments/d7/runs/d7-001/learned/events.jsonl": "f24748be0c5af63e1e794a698c7e987d56e4cfb7cbcfe95411e887b2de876206",
+  "experiments/d7/runs/d7-001/frozen_trained/events.jsonl": "e5a2a4351608791732b03a250f7701f9309d1c67f0dea0d21d1543c608763e21",
+  "experiments/d7/runs/d7-001/frozen_reference/events.jsonl": "df8fdb223196b17e8376ecac1cd08d9932fd14ca2d06ca73f2bead2c3a70f87d",
+  "experiments/d7/runs/d7-001/learned/brain.npz": "bafb87839b8fe1657e169cb4d4d3320adfc4b0b87da5588a637d3bd2d6635ba6",
+  "experiments/d7/runs/d7-001/frozen_trained/brain.npz": "2b713cea00152449a3059d8d396a11ddb4b778895a68fc72f7cd8504a529192a",
+  "experiments/d7/runs/d7-001/frozen_reference/brain.npz": "9c85fe87dd8f0b9e1fb57f7f8869fe08ea07825dfb742b4591c39ba450ba3e6b"
+ },
+ "artifact_hashes_match_registration": true,
+ "encoder": {
+  "version": "flytrade-encoder-1",
+  "features": [
+   "r1",
+   "r5",
+   "r20",
+   "rv20",
+   "relvol"
+  ],
+  "glomeruli": [
+   "VL2a",
+   "VM5d",
+   "DL1",
+   "VL1",
+   "VM4",
+   "DM3",
+   "DM6",
+   "V",
+   "DM2",
+   "DA2"
+  ],
+  "orn_count": {
+   "VL2a": 98,
+   "VM5d": 84,
+   "DL1": 83,
+   "VL1": 82,
+   "VM4": 78,
+   "DM3": 63,
+   "DM6": 58,
+   "V": 55,
+   "DM2": 54,
+   "DA2": 48
+  },
+  "n_orns": 703,
+  "sequence": "none: one constant rate vector per presentation, so the amendment's ordered-sequence clause is vacuous",
+  "rows_per_minute": 1
+ },
+ "fitting": {
+  "grid": "fitting",
+  "n": 2789,
+  "sessions": [
+   "2026-07-06",
+   "2026-07-07",
+   "2026-07-08",
+   "2026-07-09",
+   "2026-07-10",
+   "2026-07-13",
+   "2026-07-14",
+   "2026-07-15",
+   "2026-07-16",
+   "2026-07-17"
+  ],
+  "n_sessions": 10,
+  "class_counts": {
+   "Y=1": 1020,
+   "Y=0": 1769
+  },
+  "per_session": {
+   "2026-07-06": {
+    "n": 279,
+    "Y=1": 146,
+    "Y=0": 133
+   },
+   "2026-07-07": {
+    "n": 279,
+    "Y=1": 141,
+    "Y=0": 138
+   },
+   "2026-07-08": {
+    "n": 279,
+    "Y=1": 114,
+    "Y=0": 165
+   },
+   "2026-07-09": {
+    "n": 279,
+    "Y=1": 78,
+    "Y=0": 201
+   },
+   "2026-07-10": {
+    "n": 278,
+    "Y=1": 2,
+    "Y=0": 276
+   },
+   "2026-07-13": {
+    "n": 279,
+    "Y=1": 39,
+    "Y=0": 240
+   },
+   "2026-07-14": {
+    "n": 279,
+    "Y=1": 152,
+    "Y=0": 127
+   },
+   "2026-07-15": {
+    "n": 279,
+    "Y=1": 26,
+    "Y=0": 253
+   },
+   "2026-07-16": {
+    "n": 279,
+    "Y=1": 245,
+    "Y=0": 34
+   },
+   "2026-07-17": {
+    "n": 279,
+    "Y=1": 77,
+    "Y=0": 202
+   }
+  },
+  "X_FEATURES": {
+   "dim": 5,
+   "shape": [
+    2789,
+    5
+   ],
+   "finite_coverage": 1.0,
+   "constant_channels": [],
+   "columns": {
+    "r1": {
+     "min": -0.9909666832225321,
+     "max": 0.9933779245348944,
+     "mean": 0.0015022574072742882,
+     "sd": 0.3929542528863355,
+     "constant": false,
+     "finite": 2789
+    },
+    "r5": {
+     "min": -0.9879436993956162,
+     "max": 0.9866710413983306,
+     "mean": 0.008022674222406179,
+     "sd": 0.419132936841527,
+     "constant": false,
+     "finite": 2789
+    },
+    "r20": {
+     "min": -0.9947140583807661,
+     "max": 0.9970676250258337,
+     "mean": 0.003379457668081093,
+     "sd": 0.4724169732569773,
+     "constant": false,
+     "finite": 2789
+    },
+    "rv20": {
+     "min": -0.9522108103029029,
+     "max": 0.9989258120250906,
+     "mean": -0.12726144515010748,
+     "sd": 0.48085664066633915,
+     "constant": false,
+     "finite": 2789
+    },
+    "relvol": {
+     "min": -0.9374808016293302,
+     "max": 0.955847674849666,
+     "mean": -0.03366544432654285,
+     "sd": 0.41696707659909527,
+     "constant": false,
+     "finite": 2789
+    }
+   },
+   "at_or_beyond_clip_abs_1": 0
+  },
+  "X_SENSORY": {
+   "dim": 10,
+   "shape": [
+    2789,
+    10
+   ],
+   "finite_coverage": 1.0,
+   "constant_channels": [],
+   "columns": {
+    "VL2a": {
+     "min": 3.3919,
+     "max": 54.4188,
+     "mean": 15.547568160631052,
+     "sd": 11.4345969485753,
+     "constant": false,
+     "finite": 2789
+    },
+    "VM5d": {
+     "min": 3.1657,
+     "max": 62.2889,
+     "mean": 15.751808748655435,
+     "sd": 11.825466887924179,
+     "constant": false,
+     "finite": 2789
+    },
+    "DL1": {
+     "min": 3.3919,
+     "max": 66.5674,
+     "mean": 16.382761670849767,
+     "sd": 12.149465723494195,
+     "constant": false,
+     "finite": 2789
+    },
+    "VL1": {
+     "min": 3.1657,
+     "max": 61.7314,
+     "mean": 16.133851237002514,
+     "sd": 12.404160477002103,
+     "constant": false,
+     "finite": 2789
+    },
+    "VM4": {
+     "min": 3.3919,
+     "max": 60.3846,
+     "mean": 17.911792147723197,
+     "sd": 13.818147078410606,
+     "constant": false,
+     "finite": 2789
+    },
+    "DM3": {
+     "min": 3.1657,
+     "max": 66.316,
+     "mean": 18.460292255288632,
+     "sd": 15.051186297313793,
+     "constant": false,
+     "finite": 2789
+    },
+    "DM6": {
+     "min": 3.7352,
+     "max": 71.449,
+     "mean": 14.663905987809251,
+     "sd": 12.506777168074752,
+     "constant": false,
+     "finite": 2789
+    },
+    "V": {
+     "min": 3.1657,
+     "max": 74.846,
+     "mean": 24.187285012549307,
+     "sd": 17.622319579403282,
+     "constant": false,
+     "finite": 2789
+    },
+    "DM2": {
+     "min": 3.3919,
+     "max": 68.973,
+     "mean": 15.642719254212977,
+     "sd": 12.468558114045965,
+     "constant": false,
+     "finite": 2789
+    },
+    "DA2": {
+     "min": 3.1657,
+     "max": 79.7872,
+     "mean": 18.433525672283974,
+     "sd": 15.087164864015202,
+     "constant": false,
+     "finite": 2789
+    }
+   },
+   "at_drive_max_hz": 0,
+   "drive_max_hz": 150.0
+  },
+  "meta": {
+   "grid_points": 2789,
+   "log_counts": {
+    "DECISION": 3699
+   },
+   "exclusions": {
+    "UNAVAILABLE_LABEL": {},
+    "NO_DECISION_EVENT": 0,
+    "NON_FINITE": 0
+   },
+   "partition": "LEARNING",
+   "first": "2026-07-06",
+   "last": "2026-07-17",
+   "rule": "PROTOCOL.md D7 section 6 applied to the ten LEARNING sessions: a market minute whose HistoricalSeries observation status is OK and which satisfies the clock rule (m + 1) + delay + H <= 390, and whose H = 90 label is available from flytrade.horizon.hold on the price file. Independent of positions, trades and inventory."
+  }
+ },
+ "evaluation": {
+  "grid": "evaluation",
+  "n": 2790,
+  "sessions": [
+   "2026-07-20",
+   "2026-07-21",
+   "2026-07-22",
+   "2026-07-23",
+   "2026-07-24",
+   "2026-07-27",
+   "2026-07-28",
+   "2026-07-29",
+   "2026-07-30",
+   "2026-07-31"
+  ],
+  "n_sessions": 10,
+  "class_counts": {
+   "Y=1": 1235,
+   "Y=0": 1555
+  },
+  "per_session": {
+   "2026-07-20": {
+    "n": 279,
+    "Y=1": 119,
+    "Y=0": 160
+   },
+   "2026-07-21": {
+    "n": 279,
+    "Y=1": 85,
+    "Y=0": 194
+   },
+   "2026-07-22": {
+    "n": 279,
+    "Y=1": 7,
+    "Y=0": 272
+   },
+   "2026-07-23": {
+    "n": 279,
+    "Y=1": 156,
+    "Y=0": 123
+   },
+   "2026-07-24": {
+    "n": 279,
+    "Y=1": 149,
+    "Y=0": 130
+   },
+   "2026-07-27": {
+    "n": 279,
+    "Y=1": 54,
+    "Y=0": 225
+   },
+   "2026-07-28": {
+    "n": 279,
+    "Y=1": 176,
+    "Y=0": 103
+   },
+   "2026-07-29": {
+    "n": 279,
+    "Y=1": 175,
+    "Y=0": 104
+   },
+   "2026-07-30": {
+    "n": 279,
+    "Y=1": 101,
+    "Y=0": 178
+   },
+   "2026-07-31": {
+    "n": 279,
+    "Y=1": 213,
+    "Y=0": 66
+   }
+  },
+  "X_FEATURES": {
+   "dim": 5,
+   "shape": [
+    2790,
+    5
+   ],
+   "finite_coverage": 1.0,
+   "constant_channels": [],
+   "columns": {
+    "r1": {
+     "min": -0.9859605598447879,
+     "max": 0.9905238634343371,
+     "mean": -0.002922087910095343,
+     "sd": 0.3897265219840131,
+     "constant": false,
+     "finite": 2790
+    },
+    "r5": {
+     "min": -0.9588962770077043,
+     "max": 0.9772630500232558,
+     "mean": -0.004643741454100085,
+     "sd": 0.4137077461398334,
+     "constant": false,
+     "finite": 2790
+    },
+    "r20": {
+     "min": -0.9894226700784761,
+     "max": 0.9812517152449319,
+     "mean": -0.0019308215225218052,
+     "sd": 0.46840552228287563,
+     "constant": false,
+     "finite": 2790
+    },
+    "rv20": {
+     "min": -0.96972409071853,
+     "max": 0.9986833055217137,
+     "mean": -0.11464612136910868,
+     "sd": 0.4854713456845069,
+     "constant": false,
+     "finite": 2790
+    },
+    "relvol": {
+     "min": -0.9210500188348172,
+     "max": 0.9754620919130268,
+     "mean": -0.03582215507265064,
+     "sd": 0.41300108197898805,
+     "constant": false,
+     "finite": 2790
+    }
+   },
+   "at_or_beyond_clip_abs_1": 0
+  },
+  "X_SENSORY": {
+   "dim": 10,
+   "shape": [
+    2790,
+    10
+   ],
+   "finite_coverage": 1.0,
+   "constant_channels": [],
+   "columns": {
+    "VL2a": {
+     "min": 3.7302,
+     "max": 59.8194,
+     "mean": 15.339819318996415,
+     "sd": 11.1391603847346,
+     "constant": false,
+     "finite": 2790
+    },
+    "VM5d": {
+     "min": 3.1468,
+     "max": 62.1794,
+     "mean": 15.873820716845877,
+     "sd": 11.861300169830358,
+     "constant": false,
+     "finite": 2790
+    },
+    "DL1": {
+     "min": 3.7302,
+     "max": 60.9843,
+     "mean": 15.92217193548387,
+     "sd": 11.783646774653427,
+     "constant": false,
+     "finite": 2790
+    },
+    "VL1": {
+     "min": 3.1468,
+     "max": 61.5059,
+     "mean": 16.52473759856631,
+     "sd": 12.576418906448932,
+     "constant": false,
+     "finite": 2790
+    },
+    "VM4": {
+     "min": 3.8829,
+     "max": 63.5127,
+     "mean": 17.74436842293907,
+     "sd": 13.57175325743662,
+     "constant": false,
+     "finite": 2790
+    },
+    "DM3": {
+     "min": 3.1468,
+     "max": 71.928,
+     "mean": 18.669606164874555,
+     "sd": 15.061381385614837,
+     "constant": false,
+     "finite": 2790
+    },
+    "DM6": {
+     "min": 4.0453,
+     "max": 70.4825,
+     "mean": 15.387531326164874,
+     "sd": 13.193424347415904,
+     "constant": false,
+     "finite": 2790
+    },
+    "V": {
+     "min": 3.1468,
+     "max": 75.9637,
+     "mean": 24.039148494623657,
+     "sd": 17.93230987483893,
+     "constant": false,
+     "finite": 2790
+    },
+    "DM2": {
+     "min": 3.7302,
+     "max": 85.8189,
+     "mean": 15.424050143369175,
+     "sd": 12.625840815001451,
+     "constant": false,
+     "finite": 2790
+    },
+    "DA2": {
+     "min": 3.1468,
+     "max": 82.1316,
+     "mean": 18.311526415770608,
+     "sd": 14.552006322573304,
+     "constant": false,
+     "finite": 2790
+    }
+   },
+   "at_drive_max_hz": 0,
+   "drive_max_hz": 150.0
+  },
+  "meta": {
+   "probes_n": 2790,
+   "log_counts": {
+    "DECISION": 3700
+   },
+   "exclusions": {
+    "NO_DECISION_EVENT": 0,
+    "NON_FINITE": 0
+   },
+   "frozen_trained_identical": {
+    "compared": 2790,
+    "identical": 2790,
+    "differing": 0
+   },
+   "partition": "FROZEN",
+   "first": "2026-07-20",
+   "last": "2026-07-31",
+   "rule": "withheld probe table rows exactly as stored, 2790 reconciled as 279 per session over 10 sessions; Y as stored."
+  }
+ },
+ "temporal_order": {
+  "max_fitting_exit_ts": 1784318340,
+  "min_evaluation_market_ts": 1784555460,
+  "max_fitting_exit_utc": "2026-07-17T15:59:00-04:00",
+  "min_evaluation_market_utc": "2026-07-20T09:51:00-04:00",
+  "strictly_before": true,
+  "gap_seconds": 237120
+ },
+ "verification": {
+  "fitting": {
+   "grid": "fitting",
+   "n": 2789,
+   "tolerance": 1e-12,
+   "X_FEATURES_max_abs_diff": 0.0,
+   "X_FEATURES_mismatches": 0,
+   "X_SENSORY_max_abs_diff_after_stored_rounding": 0.0,
+   "X_SENSORY_mismatches": 0,
+   "X_SENSORY_max_abs_diff_unrounded": 4.9994036871225944e-05,
+   "stored_rate_decimals": 4,
+   "market_ts_equals_bar_end": 2789,
+   "mismatches_total": 0
+  },
+  "evaluation": {
+   "grid": "evaluation",
+   "n": 2790,
+   "tolerance": 1e-12,
+   "X_FEATURES_max_abs_diff": 0.0,
+   "X_FEATURES_mismatches": 0,
+   "X_SENSORY_max_abs_diff_after_stored_rounding": 0.0,
+   "X_SENSORY_mismatches": 0,
+   "X_SENSORY_max_abs_diff_unrounded": 4.998526926414115e-05,
+   "stored_rate_decimals": 4,
+   "market_ts_equals_bar_end": 2790,
+   "mismatches_total": 0
+  }
+ },
+ "mismatches_total": 0,
+ "elapsed_s": 2.33
+}

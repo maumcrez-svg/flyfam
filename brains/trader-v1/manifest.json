@@ -1,0 +1,82 @@
+{
+ "artifact": "trader-v1",
+ "what": "the frozen trader of the P1 product wave: the clean reference brain of d11-001/d12-001, learning FROZEN",
+ "spec": "docs/SPEC.md, P1 owner decision (2026-09-13) and Fable addendum 2",
+ "learning": "FROZEN",
+ "never": "no plasticity is applied in the product loop; a settled episode is recorded as a CREDIT event and changes no weight",
+ "state_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+ "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+ "plastic_synapses": 44042,
+ "gain": {
+  "min": 1.0,
+  "max": 1.0,
+  "mean": 1.0,
+  "note": "every plastic KC->MBON gain at the ceiling 1.0: never depressed by any lesson"
+ },
+ "encoder": {
+  "version": "pons_encoder_v2",
+  "input_schema_sha256": "3bf4f34c334a47cc960ad2619e091c4978f24d3eab0add63bb5c0a9501ff4615",
+  "features": [
+   "age",
+   "since_last_trade",
+   "ret_30s",
+   "ret_2m",
+   "ret_5m",
+   "flow_imb_2m",
+   "trade_count_2m",
+   "gross_volume_2m",
+   "rv_2m",
+   "drawdown_5m"
+  ]
+ },
+ "d11_config": {
+  "path": "experiments/d11/config.json",
+  "sha256": "7cddf32c89ba471896205557a62ad0105a83fb3be3ded10c14d72f3be5f24a25"
+ },
+ "checkpoint": {
+  "path": "brains/trader-v1/brain.npz",
+  "schema": "flytrade-state-1",
+  "episode": -1,
+  "episode_meaning": "last settled episode; -1 is 'this brain has settled nothing'",
+  "sha256": "13a82eecb5db9d76066785e94da9d921d341a8f4a6cb7cf9157b660df56bf3f4",
+  "sha256_is_the_file_as_committed": "an .npz is a zip and carries per-entry mtimes, so rebuilding it gives a different file hash for the same weights; the identity of this brain is state_digest, and this hash is a tamper check on the committed file"
+ },
+ "provenance": {
+  "run_ids": [
+   "d10-001",
+   "d11-001",
+   "d12-001"
+  ],
+  "declared_in": [
+   "experiments/d11/config.json next_run.clean_reference_checkpoint",
+   "experiments/d12/runs/d12-001/report.md",
+   "the session log 2026-09-13 (m)"
+  ],
+  "checkpoints_compared": [
+   {
+    "run_branch": "d11-001/frozen_reference",
+    "path": "experiments/d11/runs/d11-001/frozen_reference/brain.npz",
+    "present": true,
+    "gain_identical": true,
+    "pos_identical": true,
+    "state_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+    "episode_counter_in_that_checkpoint": 161005172,
+    "note": "the weights are identical; that branch's own episode counter and credit counters are not carried into the artifact"
+   },
+   {
+    "run_branch": "d12-001/frozen_reference",
+    "path": "experiments/d12/runs/d12-001/frozen_reference/brain.npz",
+    "present": true,
+    "gain_identical": true,
+    "pos_identical": true,
+    "state_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+    "episode_counter_in_that_checkpoint": 161005172,
+    "note": "the weights are identical; that branch's own episode counter and credit counters are not carried into the artifact"
+   }
+  ],
+  "spec_commit": "f207679",
+  "head_commit_at_build": "f207679827a3",
+  "built_by": "product/freeze.py"
+ },
+ "wei_exact_replay_is_not_repeated_here": "d12-001's frozen_reference branch already reproduced d11-001 to the wei (+0.00511362 ETH, digest unchanged); addendum 2 says that proof is not repeated"
+}

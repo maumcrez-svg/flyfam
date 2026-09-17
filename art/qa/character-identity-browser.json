@@ -1,0 +1,116 @@
+{
+  "chromium": {
+    "rows": [
+      {
+        "address": "0xfd4f8b5120e735ca63aa105763a16fdeec69e492",
+        "ticker": "$CHRON",
+        "name": "Chronicle",
+        "contract": "0xfd4f8\u2026e492",
+        "icon": true
+      },
+      {
+        "address": "0xed327ce212c851d00ac65911dbdc1043735877d2",
+        "ticker": "$CHRON",
+        "name": "Chronicle",
+        "contract": "0xed327\u202677d2",
+        "icon": true
+      },
+      {
+        "address": "0xe96184c99b3a3b89c907ea0753c5fde9e3c572ab",
+        "ticker": "$SYNAPSE",
+        "name": "Synapse Protocol",
+        "contract": "0xe9618\u202672ab",
+        "icon": true
+      },
+      {
+        "address": "0xae7b972ac5a340de1a3cd5febd4d25d3139217ec",
+        "ticker": "$LANE",
+        "name": "Fast Lane",
+        "contract": "0xae7b9\u202617ec",
+        "icon": false
+      },
+      {
+        "address": "0xb819466e27431fe0030b4e147bdb5a9284fb67a0",
+        "ticker": "$OCTL",
+        "name": "Octolume",
+        "contract": "0xb8194\u202667a0",
+        "icon": true
+      },
+      {
+        "address": "0x202cf8841097dcb458a4d7e66ed034849ea280af",
+        "ticker": "$TEST",
+        "name": "test",
+        "contract": "0x202cf\u202680af",
+        "icon": true
+      }
+    ],
+    "contract_copy": "PASS",
+    "static_resize_nonempty_pixels": {
+      "390": 3225,
+      "430": 3228,
+      "1440": 25034
+    },
+    "motion_frames": 147,
+    "max_foot_contact_error": 7.158937828500675e-08,
+    "head_pose_range_radians": 0.39629705814502675,
+    "page_errors": [],
+    "character_demo_video": "/tmp/flytrade-strong-v1/art/qa/motion-video/eabc86013a8723fb5d9e76d3dcd89581.webm"
+  },
+  "webkit": {
+    "rows": [
+      {
+        "address": "0xfd4f8b5120e735ca63aa105763a16fdeec69e492",
+        "ticker": "$CHRON",
+        "name": "Chronicle",
+        "contract": "0xfd4f8\u2026e492",
+        "icon": true
+      },
+      {
+        "address": "0xed327ce212c851d00ac65911dbdc1043735877d2",
+        "ticker": "$CHRON",
+        "name": "Chronicle",
+        "contract": "0xed327\u202677d2",
+        "icon": true
+      },
+      {
+        "address": "0xe96184c99b3a3b89c907ea0753c5fde9e3c572ab",
+        "ticker": "$SYNAPSE",
+        "name": "Synapse Protocol",
+        "contract": "0xe9618\u202672ab",
+        "icon": true
+      },
+      {
+        "address": "0xae7b972ac5a340de1a3cd5febd4d25d3139217ec",
+        "ticker": "$LANE",
+        "name": "Fast Lane",
+        "contract": "0xae7b9\u202617ec",
+        "icon": false
+      },
+      {
+        "address": "0xb819466e27431fe0030b4e147bdb5a9284fb67a0",
+        "ticker": "$OCTL",
+        "name": "Octolume",
+        "contract": "0xb8194\u202667a0",
+        "icon": true
+      },
+      {
+        "address": "0x202cf8841097dcb458a4d7e66ed034849ea280af",
+        "ticker": "$TEST",
+        "name": "test",
+        "contract": "0x202cf\u202680af",
+        "icon": true
+      }
+    ],
+    "contract_copy": "PASS",
+    "static_resize_nonempty_pixels": {
+      "390": 3218,
+      "430": 3220,
+      "1440": 25260
+    },
+    "motion_frames": 238,
+    "max_foot_contact_error": 7.240721902198947e-08,
+    "head_pose_range_radians": 0.4016150648496968,
+    "page_errors": [],
+    "character_demo_video": null
+  }
+}

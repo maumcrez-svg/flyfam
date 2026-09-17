@@ -1,0 +1,18 @@
+{
+ "first": "experiments/d10/runs/d10-001/learning/events.jsonl",
+ "second": "~",
+ "lines": 1495,
+ "lines_second": 1495,
+ "normalised_sha256": "34a74b0b780e420d39cc3ade6bc77aade3e37961d25c3cdf1cd72479bea7830c",
+ "normalised_sha256_second": "34a74b0b780e420d39cc3ade6bc77aade3e37961d25c3cdf1cd72479bea7830c",
+ "removed_fields": [
+  "t",
+  "path"
+ ],
+ "removed_why": "the wall clock every event line carries and the absolute checkpoint path; a second process cannot reproduce either by construction",
+ "log_identical": true,
+ "first_difference": null,
+ "digest_identical": true,
+ "final_digest": "999d32450a3b1b6f382edd10e9d95b79a7e12e01cbbbe458bf2087bb79325a9c",
+ "final_digest_second": "999d32450a3b1b6f382edd10e9d95b79a7e12e01cbbbe458bf2087bb79325a9c"
+}

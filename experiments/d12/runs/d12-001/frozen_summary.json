@@ -1,0 +1,858 @@
+{
+ "version": "d12-001-frozen-1",
+ "run_id": "d12-001",
+ "python": "3.13.9",
+ "numpy": "2.4.2",
+ "branches": {
+  "frozen_reference": {
+   "branch": "frozen_reference",
+   "run_id": "d12-001",
+   "mode": "REPLAY_PAPER",
+   "learning": "FROZEN",
+   "ticks": 402,
+   "start_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "end_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "digest_unchanged": true,
+   "tokens_discovered": 9342,
+   "tapes": 6029,
+   "tally": {
+    "per_candidate_evaluation": {
+     "status": {
+      "VALID": 239
+     },
+     "action": {
+      "SELL": 14,
+      "BUY": 163,
+      "WAIT": 62
+     },
+     "n": 239
+    },
+    "per_decision_round": {
+     "status": {
+      "VALID": 193,
+      "NO_USABLE_CANDIDATE": 25
+     },
+     "action": {
+      "BUY": 144,
+      "SELL": 8,
+      "WAIT": 41
+     },
+     "n": 218
+    },
+    "after_execution_constraints": {
+     "BUY": 7,
+     "blocked_by_fixed_hold": 8,
+     "HOLD:WAIT": 40,
+     "HOLD:BUY": 137,
+     "POLICY_CLOSE_FIXED_HOLD": 6,
+     "SETTLED_FROZEN": 6,
+     "NO_ORDER:WAIT": 1,
+     "UNRESOLVED:ROUTE_TRANSITION": 1,
+     "UNRESOLVED:END_OF_DATA": 1
+    },
+    "admission": {
+     "TAPE_OPENED": 6029,
+     "NO_INITIAL_STATE": 457,
+     "QUOTE_UNSUPPORTED|NO_INITIAL_STATE": 2856,
+     "INACTIVE": 3501,
+     "ADMITTED": 102,
+     "ROUTE_COMPLETED": 45,
+     "STATE_INVALID": 47,
+     "COVERAGE": 45
+    },
+    "observation_status": {
+     "OK": 3749,
+     "ROUTE_COMPLETED": 248
+    },
+    "candidate_evaluations": 239,
+    "presentations": 1912,
+    "silent_replicates": 133,
+    "silent_replicate_denominator": 1912,
+    "invalid_replicates": 0
+   },
+   "episodes": [
+    {
+     "episode_id": 1004500,
+     "token": "0x6cd251fa69d39e4a53f37f24d1a33302314a26ae",
+     "stable_id": 4500,
+     "entry_block": 61535455,
+     "entry_ts": 1789259806,
+     "entry_fill": 3.056209277300651e-09,
+     "entry_reference": 3.042885622631807e-09,
+     "exit_block": 61544320,
+     "exit_ts": 1789260706,
+     "exit_fill": 3.5398100011854148e-09,
+     "exit_reference": 3.5564989344375567e-09,
+     "quantity": 3239306.965504673,
+     "fees_eth": 0.00027882743205402997,
+     "slippage_eth": 9.721998510527104e-05,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": 0.0015665311934030173,
+     "gross_reference_pnl": 0.0016637511785082882,
+     "net_pnl": 0.0012877037613489872,
+     "return_on_notional": 0.12877037613489872,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 61535455,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 61544320,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 33004659,
+     "token": "0xa0f2c22b8e03e02809c27736e8b4804665835388",
+     "stable_id": 4659,
+     "entry_block": 61544910,
+     "entry_ts": 1789260766,
+     "entry_fill": 9.787044942241394e-09,
+     "entry_reference": 9.76354030047826e-09,
+     "exit_block": 61553790,
+     "exit_ts": 1789261666,
+     "exit_fill": 1.4530494703567277e-08,
+     "exit_reference": 1.4573149069140398e-08,
+     "quantity": 996214.9001603634,
+     "fees_eth": 0.000676049503379873,
+     "slippage_eth": 6.590858888819574e-05,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": 0.004725495330394964,
+     "gross_reference_pnl": 0.00479140391928316,
+     "net_pnl": 0.0040494458270150906,
+     "return_on_notional": 0.40494458270150907,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 61544910,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 61553790,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 65004860,
+     "token": "0xccb174cf470ec226809e9605870a4c4960b3fd06",
+     "stable_id": 4860,
+     "entry_block": 61554390,
+     "entry_ts": 1789261726,
+     "entry_fill": 1.7102759190563247e-09,
+     "entry_reference": 1.7003162385971854e-09,
+     "exit_block": 61563260,
+     "exit_ts": 1789262626,
+     "exit_fill": 1.709481249231182e-09,
+     "exit_reference": 1.7194922671057532e-09,
+     "quantity": 5788539.667600829,
+     "fees_eth": 0.000263116120341945,
+     "slippage_eth": 0.00011560117949437312,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -4.5999778054844e-06,
+     "gross_reference_pnl": 0.00011100120168888872,
+     "net_pnl": -0.0002677160981474294,
+     "return_on_notional": -0.026771609814742938,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 61554390,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 61563260,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 97004990,
+     "token": "0x1f66c1bfc99dc4692c94a5a8a12471c3da6d5f93",
+     "stable_id": 4990,
+     "entry_block": 61563850,
+     "entry_ts": 1789262686,
+     "entry_fill": 1.855369285078e-09,
+     "entry_reference": 1.845203539578e-09,
+     "exit_block": 61572700,
+     "exit_ts": 1789263586,
+     "exit_fill": 2.178941323328935e-09,
+     "exit_reference": 2.1919592274668326e-09,
+     "quantity": 5228069.731461686,
+     "fees_eth": 0.000705911835493811,
+     "slippage_eth": 0.00012120573693670509,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": 0.0016916571791270763,
+     "gross_reference_pnl": 0.0018128629160637814,
+     "net_pnl": 0.0009857453436332652,
+     "return_on_notional": 0.09857453436332651,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 61563850,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 61572700,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 129005091,
+     "token": "0x77009cc53b125c4b1af4b0b07baace5bc9c1e9ba",
+     "stable_id": 5091,
+     "entry_block": 61573310,
+     "entry_ts": 1789263646,
+     "entry_fill": 1.7220196158877712e-09,
+     "entry_reference": 1.712146490015714e-09,
+     "exit_block": 61582190,
+     "exit_ts": 1789264546,
+     "exit_fill": 1.6897799999999997e-09,
+     "exit_reference": 1.6994317147755814e-09,
+     "quantity": 5679377.812986185,
+     "fees_eth": 0.00049529389901821,
+     "slippage_eth": 0.00011088894677629172,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -0.00018310095917220646,
+     "gross_reference_pnl": -7.221201239591472e-05,
+     "net_pnl": -0.0006783948581904164,
+     "return_on_notional": -0.06783948581904164,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 61573310,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 61582190,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 161005172,
+     "token": "0x0437d88c0dfcb2c777bb30d1c40cd52335f038a2",
+     "stable_id": 5172,
+     "entry_block": 61582780,
+     "entry_ts": 1789264606,
+     "entry_fill": 1.7234266668212022e-09,
+     "entry_reference": 1.7134286568211403e-09,
+     "exit_block": 61591682,
+     "exit_ts": 1789265506,
+     "exit_fill": 1.7234266668212017e-09,
+     "exit_reference": 1.733483016106978e-09,
+     "quantity": 5744369.743483308,
+     "fees_eth": 0.000263162120119999,
+     "slippage_eth": 0.00011519965470651155,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -2.3758156415728005e-18,
+     "gross_reference_pnl": 0.00011519965470650917,
+     "net_pnl": -0.0002631621201200014,
+     "return_on_notional": -0.02631621201200014,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 61582780,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 61591682,
+       "confirmed": true,
+       "head": 61663368,
+       "safe_block": 61663368,
+       "confirm_depth": 591,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    }
+   ],
+   "unresolved": [
+    {
+     "episode_id": 194005148,
+     "token": "0xe733e15b2b813035f16bbae498472e80c7d3ae0f",
+     "reason": "ROUTE_TRANSITION",
+     "detail": "the curve completed at 1789265752",
+     "cutoff_ts": 1789266524,
+     "settled": false,
+     "is_a_loss": false,
+     "retryable": false
+    },
+    {
+     "episode_id": 194005148,
+     "token": "0xe733e15b2b813035f16bbae498472e80c7d3ae0f",
+     "reason": "END_OF_DATA",
+     "detail": "the window ended with the position still open",
+     "cutoff_ts": 1789272764,
+     "settled": false,
+     "is_a_loss": false,
+     "retryable": false
+    }
+   ],
+   "marks": 394,
+   "restarts": [],
+   "execution": {
+    "trades": 6,
+    "wins": 3,
+    "losses": 3,
+    "flat": 0,
+    "gross_pnl": 0.007795982765947364,
+    "gross_reference_pnl": 0.008422006857854712,
+    "slippage_paid": 0.0006260240919073482,
+    "fees_paid": 0.002808874596767868,
+    "net_pnl": 0.005113621855539494,
+    "reconciliation": {
+     "gross_reference_pnl": 0.008422006857854712,
+     "minus_fees": 0.002808874596767868,
+     "minus_slippage": 0.0006260240919073482,
+     "equals_net_pnl": 0.004987108169179496,
+     "booked_net_pnl": 0.005113621855539494,
+     "residual": -0.00012651368635999832
+    },
+    "cash": 9.995087108169173,
+    "equity": 10.004987108169173,
+    "close_reasons": {
+     "POLICY_CLOSE_FIXED_HOLD": 6
+    },
+    "fill_flags": {},
+    "rejections": {
+     "FIXED_HOLD": 8
+    },
+    "rejections_total": 8
+   },
+   "account": {
+    "cash": 9.99508711,
+    "initial_cash": 10.0,
+    "realized_pnl": 0.00511362,
+    "fees_paid": 0.00280887,
+    "slippage_paid": 0.00062602,
+    "equity": 10.00498711,
+    "trades": 6,
+    "position": {
+     "episode_id": 194005148,
+     "symbol": "0xe733e15b2b813035f16bbae498472e80c7d3ae0f",
+     "stable_id": 5148,
+     "entry": {
+      "side": "BUY",
+      "symbol": "0xe733e15b2b813035f16bbae498472e80c7d3ae0f",
+      "bar_index": 61592590,
+      "ts": 1789265596,
+      "reference_price": 1e-08,
+      "fill_price": 1e-08,
+      "quantity": 784485.2650290995,
+      "fee": 0.00012651,
+      "value": 0.0099,
+      "slippage": 2.126e-05,
+      "delay_minutes": 2,
+      "flag": ""
+     },
+     "horizon_bar": 61592590
+    }
+   },
+   "credit": {
+    "accepted": 0,
+    "open": [
+     194005148
+    ],
+    "settled": 6,
+    "rejections": {
+     "EPISODE_MISMATCH": 0,
+     "ALREADY_SETTLED": 0,
+     "UNKNOWN_EPISODE": 0,
+     "TRACE_EXPIRED": 0,
+     "SHAPE_MISMATCH": 0
+    },
+    "rejections_total": 0
+   },
+   "journal": {
+    "events": 9961,
+    "by_kind": {
+     "CHECKPOINT": 7,
+     "PARTITION": 2,
+     "DISCOVERY": 9342,
+     "ROUND": 199,
+     "DECISION": 193,
+     "EXECUTION": 7,
+     "OUTCOME": 6,
+     "ROUND_ABORTED": 203,
+     "UNRESOLVED": 2
+    },
+    "settled_frozen": 6,
+    "last_settled_episode": 161005172,
+    "pending": 194005148,
+    "credit": {
+     "accepted": 0,
+     "open": [
+      194005148
+     ],
+     "settled": 6,
+     "rejections": {
+      "EPISODE_MISMATCH": 0,
+      "ALREADY_SETTLED": 0,
+      "UNKNOWN_EPISODE": 0,
+      "TRACE_EXPIRED": 0,
+      "SHAPE_MISMATCH": 0
+     },
+     "rejections_total": 0
+    }
+   },
+   "final_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "log_path": "./experiments/d12/runs/d12-001/frozen_reference/events.jsonl",
+   "trace": [
+    {
+     "event": "BUY",
+     "tick": 1,
+     "cutoff_ts": 1789259804,
+     "token": "0x6cd251fa69d39e4a53f37f24d1a33302314a26ae",
+     "episode_id": 1004500,
+     "v": 2.73,
+     "block": 61535455,
+     "fill": 3.056209277300651e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 32,
+     "cutoff_ts": 1789260734,
+     "token": "0x6cd251fa69d39e4a53f37f24d1a33302314a26ae",
+     "episode_id": 1004500,
+     "net_pnl": 0.0012877037613489872
+    },
+    {
+     "event": "BUY",
+     "tick": 33,
+     "cutoff_ts": 1789260764,
+     "token": "0xa0f2c22b8e03e02809c27736e8b4804665835388",
+     "episode_id": 33004659,
+     "v": 3.633,
+     "block": 61544910,
+     "fill": 9.787044942241394e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 64,
+     "cutoff_ts": 1789261694,
+     "token": "0xa0f2c22b8e03e02809c27736e8b4804665835388",
+     "episode_id": 33004659,
+     "net_pnl": 0.0040494458270150906
+    },
+    {
+     "event": "BUY",
+     "tick": 65,
+     "cutoff_ts": 1789261724,
+     "token": "0xccb174cf470ec226809e9605870a4c4960b3fd06",
+     "episode_id": 65004860,
+     "v": 2.569,
+     "block": 61554390,
+     "fill": 1.7102759190563247e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 96,
+     "cutoff_ts": 1789262654,
+     "token": "0xccb174cf470ec226809e9605870a4c4960b3fd06",
+     "episode_id": 65004860,
+     "net_pnl": -0.0002677160981474294
+    },
+    {
+     "event": "BUY",
+     "tick": 97,
+     "cutoff_ts": 1789262684,
+     "token": "0x1f66c1bfc99dc4692c94a5a8a12471c3da6d5f93",
+     "episode_id": 97004990,
+     "v": 5.99,
+     "block": 61563850,
+     "fill": 1.855369285078e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 128,
+     "cutoff_ts": 1789263614,
+     "token": "0x1f66c1bfc99dc4692c94a5a8a12471c3da6d5f93",
+     "episode_id": 97004990,
+     "net_pnl": 0.0009857453436332652
+    },
+    {
+     "event": "BUY",
+     "tick": 129,
+     "cutoff_ts": 1789263644,
+     "token": "0x77009cc53b125c4b1af4b0b07baace5bc9c1e9ba",
+     "episode_id": 129005091,
+     "v": 5.02,
+     "block": 61573310,
+     "fill": 1.7220196158877712e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 160,
+     "cutoff_ts": 1789264574,
+     "token": "0x77009cc53b125c4b1af4b0b07baace5bc9c1e9ba",
+     "episode_id": 129005091,
+     "net_pnl": -0.0006783948581904164
+    },
+    {
+     "event": "BUY",
+     "tick": 161,
+     "cutoff_ts": 1789264604,
+     "token": "0x0437d88c0dfcb2c777bb30d1c40cd52335f038a2",
+     "episode_id": 161005172,
+     "v": 3.269,
+     "block": 61582780,
+     "fill": 1.7234266668212022e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 192,
+     "cutoff_ts": 1789265534,
+     "token": "0x0437d88c0dfcb2c777bb30d1c40cd52335f038a2",
+     "episode_id": 161005172,
+     "net_pnl": -0.0002631621201200014
+    },
+    {
+     "event": "BUY",
+     "tick": 194,
+     "cutoff_ts": 1789265594,
+     "token": "0xe733e15b2b813035f16bbae498472e80c7d3ae0f",
+     "episode_id": 194005148,
+     "v": 2.299,
+     "block": 61592590,
+     "fill": 1.2619739899936517e-08
+    }
+   ],
+   "wall_s": 115.72,
+   "clean_reference_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "starts_from_digest": null,
+   "dataset": {
+    "mode": "REPLAY_PAPER",
+    "dataset": "d11-backfill-v1",
+    "directory": "./data/pons/d11-backfill-v1",
+    "events": 462056,
+    "first_block": 61237774,
+    "last_block": 61663368,
+    "first_ts": 1789229566,
+    "last_ts": 1789272764,
+    "admission_last_block": 61654540,
+    "coverage_end_ts": 1789272764,
+    "safe_block": 61663368,
+    "anchor_ts": 1789229564,
+    "first_tick": 1789259804,
+    "last_tick": 1789271834,
+    "partition_ticks": 402
+   },
+   "log_sha256": "6a6a135a93b06bece87d11b3e7a6353f56aff735e920e50daf9518a49601bcd5",
+   "partition": {
+    "first_tick": 1789259804,
+    "last_tick": 1789271834,
+    "ticks": 402
+   },
+   "position_open_at_end": true,
+   "paper": {
+    "episodes": 6,
+    "settled_frozen": 6,
+    "gross_pnl_eth": 0.007795982765947364,
+    "fees_eth": 0.002682360910407868,
+    "slippage_eth": 0.0006260240919073482,
+    "net_pnl_eth": 0.005113621855539496,
+    "realized_pnl_eth": 0.00511362,
+    "trades": 6,
+    "wins": 3,
+    "holding_seconds": {
+     "min": 900,
+     "max": 900,
+     "median": 900.0
+    },
+    "unresolved_count": 2,
+    "marks": 394,
+    "per_round_action": {
+     "BUY": 144,
+     "SELL": 8,
+     "WAIT": 41
+    },
+    "per_candidate_action": {
+     "SELL": 14,
+     "BUY": 163,
+     "WAIT": 62
+    },
+    "after_execution": {
+     "BUY": 7,
+     "blocked_by_fixed_hold": 8,
+     "HOLD:WAIT": 40,
+     "HOLD:BUY": 137,
+     "POLICY_CLOSE_FIXED_HOLD": 6,
+     "SETTLED_FROZEN": 6,
+     "NO_ORDER:WAIT": 1,
+     "UNRESOLVED:ROUTE_TRANSITION": 1,
+     "UNRESOLVED:END_OF_DATA": 1
+    }
+   }
+  },
+  "frozen_school": {
+   "branch": "frozen_school",
+   "run_id": "d12-001",
+   "mode": "REPLAY_PAPER",
+   "learning": "FROZEN",
+   "ticks": 402,
+   "start_digest": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+   "end_digest": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+   "digest_unchanged": true,
+   "tokens_discovered": 9342,
+   "tapes": 6029,
+   "tally": {
+    "per_candidate_evaluation": {
+     "status": {
+      "NO_RESPONSE": 619,
+      "VALID": 1789
+     },
+     "action": {
+      "NO_RESPONSE": 619,
+      "SELL": 302,
+      "WAIT": 1487
+     },
+     "n": 2408
+    },
+    "per_decision_round": {
+     "status": {
+      "VALID": 402
+     },
+     "action": {
+      "WAIT": 401,
+      "SELL": 1
+     },
+     "n": 402
+    },
+    "after_execution_constraints": {
+     "NO_ORDER:WAIT": 401,
+     "NO_ORDER:SELL": 1
+    },
+    "admission": {
+     "TAPE_OPENED": 6029,
+     "NO_INITIAL_STATE": 457,
+     "QUOTE_UNSUPPORTED|NO_INITIAL_STATE": 2856,
+     "INACTIVE": 166236,
+     "ADMITTED": 5177,
+     "ROUTE_COMPLETED": 1892,
+     "STATE_INVALID": 1944,
+     "COVERAGE": 1892
+    },
+    "observation_status": {
+     "OK": 169549,
+     "ROUTE_COMPLETED": 1892
+    },
+    "candidate_evaluations": 2408,
+    "presentations": 19264,
+    "silent_replicates": 15256,
+    "silent_replicate_denominator": 19264,
+    "invalid_replicates": 0
+   },
+   "episodes": [],
+   "unresolved": [],
+   "marks": 0,
+   "restarts": [],
+   "execution": {
+    "trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "flat": 0,
+    "gross_pnl": 0,
+    "gross_reference_pnl": 0,
+    "slippage_paid": 0,
+    "fees_paid": 0.0,
+    "net_pnl": 0.0,
+    "reconciliation": {
+     "gross_reference_pnl": 0,
+     "minus_fees": 0.0,
+     "minus_slippage": 0,
+     "equals_net_pnl": 0.0,
+     "booked_net_pnl": 0.0,
+     "residual": 0.0
+    },
+    "cash": 10.0,
+    "equity": 10.0,
+    "close_reasons": {},
+    "fill_flags": {},
+    "rejections": {},
+    "rejections_total": 0
+   },
+   "account": {
+    "cash": 10.0,
+    "initial_cash": 10.0,
+    "realized_pnl": 0.0,
+    "fees_paid": 0.0,
+    "slippage_paid": 0.0,
+    "equity": 10.0,
+    "trades": 0,
+    "position": null
+   },
+   "credit": {
+    "accepted": 19180,
+    "open": [],
+    "settled": 1,
+    "rejections": {
+     "EPISODE_MISMATCH": 0,
+     "ALREADY_SETTLED": 0,
+     "UNKNOWN_EPISODE": 0,
+     "TRACE_EXPIRED": 0,
+     "SHAPE_MISMATCH": 0
+    },
+    "rejections_total": 0
+   },
+   "journal": {
+    "events": 10150,
+    "by_kind": {
+     "RECOVERY": 1,
+     "CHECKPOINT": 1,
+     "PARTITION": 2,
+     "DISCOVERY": 9342,
+     "ROUND": 402,
+     "DECISION": 402
+    },
+    "settled_frozen": 0,
+    "last_settled_episode": -1,
+    "pending": null,
+    "credit": {
+     "accepted": 19180,
+     "open": [],
+     "settled": 1,
+     "rejections": {
+      "EPISODE_MISMATCH": 0,
+      "ALREADY_SETTLED": 0,
+      "UNKNOWN_EPISODE": 0,
+      "TRACE_EXPIRED": 0,
+      "SHAPE_MISMATCH": 0
+     },
+     "rejections_total": 0
+    }
+   },
+   "final_digest": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+   "log_path": "./experiments/d12/runs/d12-001/frozen_school/events.jsonl",
+   "trace": [],
+   "wall_s": 642.32,
+   "clean_reference_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "starts_from_digest": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+   "dataset": {
+    "mode": "REPLAY_PAPER",
+    "dataset": "d11-backfill-v1",
+    "directory": "./data/pons/d11-backfill-v1",
+    "events": 462056,
+    "first_block": 61237774,
+    "last_block": 61663368,
+    "first_ts": 1789229566,
+    "last_ts": 1789272764,
+    "admission_last_block": 61654540,
+    "coverage_end_ts": 1789272764,
+    "safe_block": 61663368,
+    "anchor_ts": 1789229564,
+    "first_tick": 1789259804,
+    "last_tick": 1789271834,
+    "partition_ticks": 402
+   },
+   "log_sha256": "d753eadd59d2bec5b12c3002ea8fea9e16197fee8c23e64b76cb21a01414e879",
+   "partition": {
+    "first_tick": 1789259804,
+    "last_tick": 1789271834,
+    "ticks": 402
+   },
+   "position_open_at_end": false,
+   "paper": {
+    "episodes": 0,
+    "settled_frozen": 0,
+    "gross_pnl_eth": 0,
+    "fees_eth": 0,
+    "slippage_eth": 0,
+    "net_pnl_eth": 0,
+    "realized_pnl_eth": 0.0,
+    "trades": 0,
+    "wins": 0,
+    "holding_seconds": {
+     "min": null,
+     "max": null,
+     "median": null
+    },
+    "unresolved_count": 0,
+    "marks": 0,
+    "per_round_action": {
+     "WAIT": 401,
+     "SELL": 1
+    },
+    "per_candidate_action": {
+     "NO_RESPONSE": 619,
+     "SELL": 302,
+     "WAIT": 1487
+    },
+    "after_execution": {
+     "NO_ORDER:WAIT": 401,
+     "NO_ORDER:SELL": 1
+    }
+   }
+  }
+ },
+ "peak_rss_mib": 2677.7
+}

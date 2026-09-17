@@ -1,0 +1,420 @@
+{
+ "config_version": "flytrade-d10-config-1",
+ "plan": "experiments/d10/PLAN.md",
+ "committed_alone_before_any_run": true,
+ "amendment": "docs/SPEC.md, D10 canonical amendment (owner, 2026-09-12), the nineteen Fable addenda, and the reviewer decisions after dispatch 1",
+ "wave": "D10",
+ "venue": "PONS",
+ "chain_id": 4663,
+ "network": "Robinhood Chain",
+ "native_asset": "ETH",
+ "label": "PONS MEMECOIN REPLAY ON A BOUNDED GENUINE COLLECTION",
+ "not_a_prediction_test": "no predictive evaluation is designed for D10. There is no probe grid, no label, no AUC and no holdout in this wave, and conclusion 4 of amendment section 13 therefore reads 'not tested'.",
+ "modes": {
+  "REPLAY_PAPER": "chronological recorded Pons events on a virtual 30-second clock",
+  "LIVE_PAPER": "newly received Pons events on the wall clock \u2014 dispatch 3"
+ },
+ "learning_modes": {
+  "LEARN": "the normalised update is applied",
+  "FROZEN": "weights do not move; settlements are counted SETTLED_FROZEN"
+ },
+ "cadence_seconds": 30,
+ "max_candidates_per_round": 6,
+ "max_open_positions": 1,
+ "long_only": true,
+ "horizon_seconds": 900,
+ "horizon_rounds": 30,
+ "horizon_note": "fifteen minutes is a product-test setting, not a scientifically optimal memecoin horizon, and IBM's 90 minutes is not carried over. No other horizon is tried.",
+ "paper_size_wei": "10000000000000000",
+ "paper_size_eth": 0.01,
+ "latency_seconds": 2,
+ "latency_rule": "a decision at cutoff t fills at the reconstructed state of the first block whose timestamp is at or after t + 2 s; the exit uses the same rule at entry_fill_time + 900 s",
+ "initial_cash_eth": 10.0,
+ "exit_policy": "fixed_hold",
+ "exit_policy_rule": "a decoded SELL while holding is refused by the execution policy with RejectReason.FIXED_HOLD and closes nothing; the position closes only at the declared horizon, labelled CloseReason.POLICY_CLOSE_FIXED_HOLD",
+ "gas": {
+  "buy_wei": "26513686360000",
+  "sell_wei": "21543833760000",
+  "approval_wei": "16104600000000",
+  "source": "donor calibration medians over 40 buy and 40 sell receipts, ~/Documentos/PONS/artifacts/curve-simulation/gas.json sha256 23e3df06cc2a986734b7ca661107d0397a15b5f77ff6db0e30ac7d2d1b726daf, recorded in experiments/d10/REUSE.md by dispatch 1",
+  "approval_is_an_assumption": "the approval leg is a 60,000-gas assumption at the same gas price, not a receipt, and is charged once per episode on the exit",
+  "charged": "into Fill.fee on each leg, so net = quote_out - spent - gas"
+ },
+ "cost_model": {
+  "fee_bps_of_flytrade_execution": "NOT USED on this route",
+  "slippage_bps_of_flytrade_execution": "NOT USED on this route",
+  "curve_costs": [
+   "base fee (feeBps)",
+   "creator tax (creatorTaxBps)",
+   "snipe tax, capped and decaying over the first 5 s"
+  ],
+  "into_fees": "the three curve costs plus the gas of that leg",
+  "into_slippage": "the price impact of our own size: the gap between the pre-trade marginal price and the price actually achieved",
+  "identity": "gross_reference_pnl - slippage - fees = net_pnl and net_pnl = gross_pnl - fees both hold, so flytrade.execution.Account's existing invariant tests still bite",
+  "own_impact_carried": true,
+  "changes_the_public_market": false
+ },
+ "features": {
+  "version": "pons_context_v1",
+  "order": [
+   "age",
+   "ret_30s",
+   "ret_2m",
+   "ret_5m",
+   "flow_imb_2m",
+   "trade_rate_2m",
+   "rv_2m",
+   "drawdown_5m"
+  ],
+  "marginal_price": "quote_reserve / token_reserve, phantom reserve included",
+  "windows_clipped_to_launch": "ret_w = log(p(cutoff) / p(max(cutoff - w, launch))) and drawdown_5m maxes since max(cutoff - 5 min, launch): a token younger than the window measures since its launch, it is not zeroed",
+  "three_prices_are_separate": [
+   "last trade price",
+   "marginal curve price",
+   "executable amount-out for 0.01 ETH"
+  ],
+  "only_the_marginal_price_enters_a_feature": true,
+  "single_signed": [
+   "age",
+   "trade_rate_2m",
+   "drawdown_5m"
+  ],
+  "single_signed_note": "three of the eight features never change sign, so one glomerulus of each of those pairs only ever receives the carrier. Declared, not hidden.",
+  "normalisation": "tanh(raw / scale), fixed declared scales, never refitted",
+  "scales": {
+   "age": 600.0,
+   "ret_30s": 0.0051,
+   "ret_2m": 0.11,
+   "ret_5m": 0.36,
+   "flow_imb_2m": 1.0,
+   "trade_rate_2m": 6.0,
+   "rv_2m": 0.029,
+   "drawdown_5m": 0.51
+  },
+  "scale_rule": "p90(|x|) rounded to two significant figures over the tokens launched in the first 60 minutes of the backfill window, at 30-second grid points, age >= 60 s and >= 3 trades; age is the declared constant 600 s",
+  "scale_artifact": "experiments/d10/feature_scales_v2.json",
+  "scale_statistics": {
+   "age": {
+    "median_abs": 870.0,
+    "p90_abs": 2220.0,
+    "scale": 600.0,
+    "n": 5612
+   },
+   "ret_30s": {
+    "median_abs": 0.0,
+    "p90_abs": 0.00509908469970584,
+    "scale": 0.0051,
+    "n": 5612
+   },
+   "ret_2m": {
+    "median_abs": 0.0,
+    "p90_abs": 0.1115214849089408,
+    "scale": 0.11,
+    "n": 5612
+   },
+   "ret_5m": {
+    "median_abs": 0.0,
+    "p90_abs": 0.3566783892166435,
+    "scale": 0.36,
+    "n": 5612
+   },
+   "flow_imb_2m": {
+    "median_abs": 0.0,
+    "p90_abs": 1.0,
+    "scale": 1.0,
+    "n": 5612
+   },
+   "trade_rate_2m": {
+    "median_abs": 0.0,
+    "p90_abs": 6.0,
+    "scale": 6.0,
+    "n": 5612
+   },
+   "rv_2m": {
+    "median_abs": 0.0,
+    "p90_abs": 0.02887531817614259,
+    "scale": 0.029,
+    "n": 5612
+   },
+   "drawdown_5m": {
+    "median_abs": 0.0,
+    "p90_abs": 0.5109879001659773,
+    "scale": 0.51,
+    "n": 5612
+   }
+  },
+  "supersedes": "experiments/d10/feature_scales.json, dispatch 1, which zeroed windows predating the launch on a dataset whose tokens live ~62 s"
+ },
+ "encoder": {
+  "version": "pons_encoder_v1",
+  "interface": "flytrade.pons.encoder.SensoryEncoder",
+  "modalities_returned": [
+   "olfactory"
+  ],
+  "extension_points_named_and_unimplemented": [
+   "visual",
+   "taste",
+   "mechanosensory"
+  ],
+  "olfactory": "flytrade.encoder.MarketToSensoryEncoder, unchanged",
+  "channels_needed": 16,
+  "channels_available": 16,
+  "features_dropped_for_want_of_channels": [],
+  "channel_map": [
+   {
+    "feature": "age",
+    "positive": "VL2a",
+    "pos_orns": 98,
+    "pos_upns": 8,
+    "negative": "VM5d",
+    "neg_orns": 84,
+    "neg_upns": 12
+   },
+   {
+    "feature": "ret_30s",
+    "positive": "DL1",
+    "pos_orns": 83,
+    "pos_upns": 4,
+    "negative": "VL1",
+    "neg_orns": 82,
+    "neg_upns": 4
+   },
+   {
+    "feature": "ret_2m",
+    "positive": "VM4",
+    "pos_orns": 78,
+    "pos_upns": 8,
+    "negative": "DM3",
+    "neg_orns": 63,
+    "neg_upns": 4
+   },
+   {
+    "feature": "ret_5m",
+    "positive": "DM6",
+    "pos_orns": 58,
+    "pos_upns": 7,
+    "negative": "V",
+    "neg_orns": 55,
+    "neg_upns": 4
+   },
+   {
+    "feature": "flow_imb_2m",
+    "positive": "DM2",
+    "pos_orns": 54,
+    "pos_upns": 4,
+    "negative": "DA2",
+    "neg_orns": 48,
+    "neg_upns": 10
+   },
+   {
+    "feature": "trade_rate_2m",
+    "positive": "VL2p",
+    "pos_orns": 45,
+    "pos_upns": 6,
+    "negative": "VM3",
+    "neg_orns": 43,
+    "neg_upns": 4
+   },
+   {
+    "feature": "rv_2m",
+    "positive": "VC4",
+    "pos_orns": 38,
+    "pos_upns": 6,
+    "negative": "VM7d",
+    "neg_orns": 36,
+    "neg_upns": 7
+   },
+   {
+    "feature": "drawdown_5m",
+    "positive": "DC3",
+    "pos_orns": 35,
+    "pos_upns": 6,
+    "negative": "DM5",
+    "neg_orns": 35,
+    "neg_upns": 7
+   }
+  ],
+  "coding": "normalized",
+  "carrier": 0.1,
+  "drive_budget_hz": 12000.0,
+  "drive_max_hz": 150.0,
+  "steps": 100,
+  "window_ms": 20,
+  "global_gain": 0.1
+ },
+ "admission": {
+  "version": "admission_v1",
+  "rules": [
+   "deployment pons-v2",
+   "quote asset native ETH",
+   "observation usable: age >= 60 s, >= 3 trades, consistent state",
+   "curve not completed at the cutoff",
+   "sellableTokens > 0 and realQuoteReserve > 0",
+   "the paper buy of 0.01 ETH would not exhaust the curve",
+   "cutoff + 2 s + 900 s lies inside the token's coverage"
+  ],
+  "track_seconds": 3600,
+  "launch_admission_window": "launches in the first 120 minutes of the window only",
+  "rotation": "round-robin: rounds since last presentation descending, then launch block, then launch log index, then curve address. Blind to price, volume, flow, outcome and ticker.",
+  "omitted_are_recorded": "ROTATED",
+  "every_launch_gets_a_DISCOVERY_record": true,
+  "three_vocabularies_stay_distinct": [
+   "NOT_ADMITTED(*)",
+   "readout status",
+   "RejectReason.*"
+  ],
+  "while_holding": "only the held token is presented, as D5-D9(b) do; the ROUND record still carries the tick's full admitted / rotated tallies"
+ },
+ "brain": {
+  "clean_reference_checkpoint": {
+   "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+   "plastic_synapses": 44042,
+   "gain": 1.0,
+   "state_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "note": "amendment section 3: the Pons experiment starts from the declared clean reference checkpoint, never from the IBM-trained checkpoint"
+  },
+  "gain": 0.1,
+  "steps": 100,
+  "window_ms": 20
+ },
+ "readout": {
+  "k": 8,
+  "policy": "flytrade.readout.ComparisonReadoutPolicy",
+  "namespace": "comparison_v1",
+  "seed_rule": "sha256(comparison_v1:observation_id:stable_id:replicate_index)[:8]",
+  "keyed_to_learned_state": false,
+  "why": "the seed schedule must not change because the weights differ, so the LEARN branch and the FROZEN branch draw the same Poisson stream for the same observation; order and metadata invariance then hold by construction, because observation_id is a content hash and stable_id is assigned at registration and never from the address spelling",
+  "baseline_artifact": "experiments/k8_readout/baseline_k8.json",
+  "aggregation": "mean of per-neuron rates over the k replicates, decoder applied once",
+  "decoder": "flytrade.decoder.ActionDecoder at the stored k=8 baseline and margin"
+ },
+ "reinforcement": {
+  "updates_per_settled_episode": 1,
+  "attributed_to": "the entry decision's stored k=8 eligibility trace set, by episode id",
+  "mapping": "valence is the sign of the settled net outcome and amount is min(|net_pnl / notional| / reinforce_full_scale, reinforce_cap) with reinforce_full_scale = 0.01 and reinforce_cap = 1.0 \u2014 flytrade.execution.ExecutionPolicy.reinforcement, unchanged, with no new constant added by this wave",
+  "consequence_declared_before_the_run": "a memecoin's fifteen-minute return on a 0.01 ETH notional will usually exceed 1 %, so amount will usually saturate at the cap. That is a consequence of reusing the existing rule and is recorded here rather than fixed by inventing a Pons scale.",
+  "no_interim_reward": true,
+  "no_reward_from_a_blocked_sell": true,
+  "no_reward_from_a_mark": true,
+  "no_reset_on_a_new_token_or_after_a_loss": true,
+  "no_counterfactual_reward_for_skipped_entries": true
+ },
+ "settlement": {
+  "confirm_seconds": 60,
+  "confirm_depth_blocks": 594,
+  "safe_tag_supported": true,
+  "rule": "a block is confirmed when it is at least confirm_depth behind head and, since the endpoint answers the safe tag, also at or below safe",
+  "outcome_requires": "the entry-fill block and the exit block both confirmed",
+  "until_then": "PENDING_CONFIRMATION, retried on later ticks, never a loss",
+  "unresolved_reasons": {
+   "ROUTE_TRANSITION": "the curve completed onto the unsupported Uniswap V4 route before the horizon: the exposure is retained, nothing settles and nothing is taught. It is neither a loss nor a win.",
+   "COVERAGE": "the data does not reach the horizon block",
+   "PENDING_CONFIRMATION": "the blocks are not confirmed yet",
+   "END_OF_DATA": "the window ended with the position still open"
+  },
+  "replay_confirmation": "evaluated against the head the collection recorded. The window ends at the safe block, so every block in it satisfies both rules and the check is exercised rather than skipped."
+ },
+ "budgets": {
+  "wave_cap_requests": 10000,
+  "day_cap_requests": 10000,
+  "backfill_cap_requests": 3000,
+  "backfill_spent_attempts": 1158,
+  "backfill_spent_units": 2314,
+  "replay_run_cost_requests": 0,
+  "replay_run_cost_note": "the replay run opens no socket, by construction",
+  "live_cap": "60 minutes wall clock or 3000 requests, whichever first (dispatch 3)",
+  "ledger": "experiments/d10/rpc_ledger.json",
+  "header_grid_blocks": 100,
+  "header_precision_seconds": 10.1,
+  "header_grid_rule": "one header per 100 blocks plus each tick's latest; timestamps between anchors are linearly interpolated and carry block_timestamp_interpolated with that precision"
+ },
+ "dataset": {
+  "label": "d10-backfill-v1",
+  "directory": "data/pons/d10-backfill-v1",
+  "manifest": "data/MANIFEST.md",
+  "gitignored": true,
+  "collected_by": "flytrade/pons/collector.py through experiments/d10/backfill.py",
+  "window": {
+   "rule": "the N minutes of blocks ending at the safe block recorded by verification.json, block count from the measured interval",
+   "safe_block": 60801426,
+   "first_block": 60721229,
+   "last_block": 60801426,
+   "blocks": 80198,
+   "minutes": 135,
+   "median_block_interval_s": 0.101,
+   "admission_minutes": 120,
+   "admission_blocks": 71287,
+   "admission_last_block": 60792515,
+   "settlement_tail_minutes": 15
+  },
+  "sha256": {
+   "cursor.json": "32d55a0df694105ccacc7e3aae82c28020c6ef8a88c768f61bde0954dd36e14b",
+   "discovery.json": "70b131a5232c122efc04737f3dbff6bb956624ac1d88a03618817828db030052",
+   "events.jsonl": "3dfa76fbac31d557a6bda8633c8ee630b641fe1d103f730c24f462de828368f9",
+   "headers.jsonl": "4febc4a292bf8e74a4bae408559df15c18ec77974381ce8ec55d09d590089036",
+   "initial_states.json": "bd7e98de09f6e0890966ff33ea6db9ab3602cb13b2d2754d296933679195f2c1",
+   "raw.jsonl": "c0d0b49224422e50989c6bcd43ff5d93d2e77195abba8b5f5667e89e6d5b88f8"
+  },
+  "bytes": {
+   "cursor.json": 258,
+   "discovery.json": 470884,
+   "events.jsonl": 66385619,
+   "headers.jsonl": 167232,
+   "initial_states.json": 436978,
+   "raw.jsonl": 62910647
+  },
+  "launches_total": 991,
+  "launches_native": 672,
+  "launches_quote_unsupported": 319,
+  "curve_completed": 7,
+  "events": 62338,
+  "validation_dataset_not_used_for_the_run": {
+   "label": "d10-replay-v1",
+   "why": "it covers ~62 s per token, so a 15-minute horizon admits nothing on it. Reviewer decision 1 keeps it as validation evidence and probe material."
+  }
+ },
+ "expected_activity_before_the_run": {
+  "ticks": 270,
+  "max_episodes": 9,
+  "arithmetic": "135 minutes at a 30-second cadence is 270 ticks; one position at a time, each locking 900 s = 30 ticks, gives at most 9 episodes in the window, and admission is closed after minute 120.",
+  "expected_fewer_because": "an entry also needs a decoded BUY, and a curve that completes before the horizon settles nothing",
+  "zero_is_admissible": "zero episodes is an admissible result to be reported as such. Nothing \u2014 gain, thresholds, scales, admission \u2014 is touched to produce activity."
+ },
+ "runs": {
+  "id": "d10-001",
+  "directory": "experiments/d10/runs/<run_id>/",
+  "gitignored": true,
+  "branches": {
+   "learning": "LEARN, from the clean reference checkpoint, strict chronological order over the window, one brain carried through",
+   "frozen_reference": "FROZEN, the same data and the same seeds from the same clean checkpoint: the mechanical control, not a scientific comparison. Its end digest must equal its start digest and its settlements must all count SETTLED_FROZEN with credit accepted 0."
+  },
+  "determinism": "the learning branch is executed a second time and must reproduce the first bit for bit, after removing the two fields a second process cannot reproduce by construction: the wall-clock 't' stamped on every event line and the absolute checkpoint path. Every other byte, and the final state digest, must be identical.",
+  "restart_after_settled_episodes": 1,
+  "restart_rule": "after the first settled episode the learning branch destroys its in-memory gains, rebuilds the journal and recovers from the checkpoint and the log; the run is refused unless the gains are restored exactly",
+  "live": {
+   "id": "d10-live-001",
+   "starts_from": "d10-001/learning's final checkpoint",
+   "status": "dispatch 3"
+  }
+ },
+ "frozen_and_not_decided_by_this_run": [
+  "k = 8",
+  "gain 0.10",
+  "the 20 ms / 100-step window",
+  "the encoder coding rule, its carrier, budget and bounds",
+  "MBON membership and the decoder formula, its sign and THETA_SD = 1.0",
+  "the stored k = 8 baseline artifact",
+  "one normalised learning update per settled outcome",
+  "episode-specific credit assignment",
+  "upstream/ and tests/upstream_audit/",
+  "experiments/d5 .. d9b and every committed IBM artifact"
+ ],
+ "success_is_not": [
+  "profitability",
+  "more BUY actions",
+  "more reward events",
+  "a preferred reward/punishment balance"
+ ],
+ "no_parameter_changes_after_observing_results": true,
+ "profitability_is_not_a_gate_metric": true
+}

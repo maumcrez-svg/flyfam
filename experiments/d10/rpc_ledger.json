@@ -1,0 +1,89 @@
+{
+  "attempts": 2748,
+  "by_day": {
+    "2026-09-12": {
+      "attempts": 2748,
+      "errors": 3,
+      "last_error": "RPC_TRANSPORT_FAILED",
+      "units": 4719
+    }
+  },
+  "by_method": {
+    "eth_blockNumber": {
+      "attempts": 2,
+      "errors": 0,
+      "units": 2
+    },
+    "eth_call": {
+      "attempts": 7,
+      "errors": 0,
+      "units": 14
+    },
+    "eth_chainId": {
+      "attempts": 5,
+      "errors": 0,
+      "units": 5
+    },
+    "eth_getBlockByNumber": {
+      "attempts": 1885,
+      "errors": 1,
+      "last_error": "RPC_TRANSPORT_FAILED",
+      "units": 3355
+    },
+    "eth_getCode": {
+      "attempts": 5,
+      "errors": 1,
+      "last_error": "RPC_ERROR_-32000",
+      "units": 5
+    },
+    "eth_getLogs": {
+      "attempts": 844,
+      "errors": 1,
+      "last_error": "RPC_QUOTA_STOP",
+      "units": 1338
+    }
+  },
+  "by_run": {
+    "d10-backfill": {
+      "attempts": 1158,
+      "errors": 1,
+      "last_error": "RPC_TRANSPORT_FAILED",
+      "units": 2314
+    },
+    "d10-live-000": {
+      "attempts": 74,
+      "errors": 0,
+      "units": 120
+    },
+    "d10-live-001": {
+      "attempts": 1493,
+      "errors": 0,
+      "units": 2255
+    },
+    "d10-verify": {
+      "attempts": 23,
+      "errors": 2,
+      "last_error": "RPC_QUOTA_STOP",
+      "units": 30
+    }
+  },
+  "caps": {
+    "day": 10000,
+    "run": 3000,
+    "wave": 10000
+  },
+  "cleared_halts": [
+    {
+      "at": "2026-09-12T04:02:37.806402Z",
+      "cleared_at": "2026-09-12T04:03:44.401551Z",
+      "cleared_by": "d10-verify",
+      "reason": "PROVIDER_QUOTA",
+      "run_id": "d10-verify",
+      "why": "halt recorded by the first version of the halt path, which did not preserve the provider message; re-verifying once with the message captured and a bounded 3000-block log span"
+    }
+  ],
+  "errors": 3,
+  "halted": null,
+  "units": 4719,
+  "version": "d10-rpc-ledger-1"
+}

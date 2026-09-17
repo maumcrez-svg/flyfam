@@ -1,0 +1,219 @@
+{
+  "config_version": "flytrade-d7-config-1",
+  "protocol": "experiments/d7/PROTOCOL.md",
+  "committed_alone_before_any_run": true,
+  "amendment": "docs/SPEC.md, D7 canonical amendment (owner, 2026-09-11) plus the twelve Fable addenda",
+  "wave": "D7",
+
+  "dataset": {
+    "label": "HISTORICAL_MARKET",
+    "vendor": "Kibot free one-minute intraday samples",
+    "manifest": "data/MANIFEST.md",
+    "retrieved_utc": "2026-09-11T11:52Z",
+    "adjustment": "unadjusted",
+    "downloaded_for_this_wave": false,
+    "note": "the same file D5/D6 hashed; the amendment forbids replacing it with a newly downloaded rolling sample",
+    "committed": false,
+    "redistributed": false
+  },
+
+  "instruments": [
+    {
+      "symbol": "IBM",
+      "stable_id": 0,
+      "file": "IBM_1min_unadjusted.txt",
+      "url": "https://api.kibot.com/?get=e4Vuqcxk",
+      "sha256": "b1ace385f069764c6030f1c292595548166c2478e0390284f1875507e2673db9",
+      "bytes": 1243177,
+      "rows": 23777,
+      "adjustment": "unadjusted"
+    }
+  ],
+  "instruments_used": 1,
+  "instrument_capacity": 6,
+  "oih_excluded_because": "amendment section 1: the previously reported availability problem, not its returns. OIH stays in data/market/ and in the system, untouched.",
+  "no_duplicated_or_renamed_series": true,
+
+  "window": { "first": "2026-06-15", "last": "2026-07-31", "inclusive": true },
+  "disjoint_from": { "first": "2026-08-03", "last": "2026-09-04", "used_by": "hist-003" },
+
+  "partitions": {
+    "WARMUP": {
+      "first": "2026-06-15", "last": "2026-07-02", "sessions": 13,
+      "neural": false, "learning": false, "forgetting": false,
+      "note": "feature initialisation and horizon calibration only; no brain is run, no DECISION event is written, no reinforcement occurs"
+    },
+    "LEARNING": {
+      "first": "2026-07-06", "last": "2026-07-17", "sessions": 10,
+      "neural": true, "learning": true, "forgetting": false,
+      "note": "the complete sequential decision/outcome/learning loop at H*"
+    },
+    "FROZEN": {
+      "first": "2026-07-20", "last": "2026-07-31", "sessions": 10,
+      "neural": true, "learning": false, "forgetting": false,
+      "note": "two branches, TRAINED and REFERENCE; learning and forgetting off; end checkpoint hash must equal start hash"
+    }
+  },
+  "holidays_in_window": ["2026-06-19", "2026-07-03"],
+  "scheduled_weekdays_in_window": 35,
+  "scheduled_sessions_in_window": 33,
+
+  "horizon_rule": {
+    "H_SET": [8, 15, 30, 60, 90, 120],
+    "unit": "elapsed market minutes",
+    "statistic": "A(H) = median across qualifying WARMUP sessions of [median across the session's common origins of abs(g(t,H))]",
+    "g": "gross fixed-hold long return in basis points at the reference (unslipped) opens, before costs, under the existing entry/exit convention, inside one session",
+    "multiple_of_cost": 2,
+    "selection": "smallest H in H_SET with A(H) >= multiple * C",
+    "cost_measurement": "C is measured by one flat-price round trip through flytrade.historical.HistoricalExecution at the configured notional; the measured figure governs and is never inferred from rounded report text",
+    "no_interpolation": true,
+    "no_other_multipliers": true,
+    "failure_result": "NO_HORIZON_MEETS_RULE",
+    "artifact": "the registered horizon artifact",
+    "frozen_after_selection": true,
+    "not_selected_by": ["strategy PnL", "mean signed return", "win rate", "reward balance", "decoder output", "LEARNING or FROZEN results"]
+  },
+
+  "warmup_qualification": {
+    "min_fraction_of_scheduled_bars": 0.95,
+    "min_common_origins": 100,
+    "min_qualifying_sessions": 10,
+    "ohlcv": "validated and deduplicated by flytrade.historical.parse_kibot_minute, which rejects rather than repairs",
+    "basis": "data quality only, never volatility, profitability or reward balance",
+    "use_all_qualifying": true,
+    "failure_result": "INSUFFICIENT_WARMUP",
+    "on_failure": "report it; do not extend dates, relax criteria or substitute instruments"
+  },
+
+  "brain": {
+    "clean_reference_checkpoint": {
+      "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+      "plastic_synapses": 44042,
+      "gain": 1.0,
+      "state_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+      "note": "the declared clean reference; not hist-003 and not an odour-trained demonstration checkpoint"
+    },
+    "gain": 0.10,
+    "steps": 100,
+    "window_ms": 20
+  },
+
+  "readout": {
+    "k": 8,
+    "namespace_learning": "flytrade-k8-round-1",
+    "baseline_artifact": "experiments/k8_readout/baseline_k8.json",
+    "baseline_loaded_exactly": true,
+    "theta_sd": 1.0,
+    "aggregation": "mean of per-neuron rates over the k replicates, decoder applied once"
+  },
+
+  "seeds": {
+    "LEARNING": {
+      "schedule": "D4, unchanged",
+      "namespace": "flytrade-k8-round-1",
+      "rule": "sha256(namespace:state_digest:observation_id:stable_id:replicate_index)[:8]",
+      "keyed_to_learned_state": true,
+      "one_schedule_only": "one preregistered training seed schedule for this wave; no search over training seeds and no retained winner"
+    },
+    "FROZEN": {
+      "schedule": "comparison_v1",
+      "namespace": "comparison_v1",
+      "rule": "sha256(namespace:observation_id:stable_id:replicate_index)[:8]",
+      "keyed_to_learned_state": false,
+      "identical_in_both_branches": true,
+      "why": "amendment section 6: seeds must not depend on the checkpoint's weight digest, so a difference between branches is a difference in weights and not in noise"
+    }
+  },
+
+  "execution": {
+    "policy": "flytrade.historical.HistoricalExecution, v1 numbers preserved",
+    "notional": 1000.0,
+    "initial_cash": 10000.0,
+    "max_open_positions": 1,
+    "long_only": true,
+    "fee_bps": 5.0,
+    "slippage_bps": 5.0,
+    "cost_basis": "per execution (charged on the entry and again on the exit)",
+    "delay_minutes": 1,
+    "delay_unit": "market minutes",
+    "horizon_source": "the registered horizon artifact, selected by the WARMUP calibration; deliberately NOT a field of this file",
+    "fill_rule": "open of the first available regular-session bar with bar_start >= bar_end(decision), same session",
+    "settlement_rule": "open of the first available bar with bar_start >= fill.bar_start + H*, same session",
+    "entry_eligibility": "bar_end(t) + 1 market minute + H* <= 16:00 on the same session",
+    "session_close_rule": "a position still open at its instrument's last available bar of the session closes at that bar's close, flagged SESSION_CLOSE_FILL",
+    "sequencing_guard": "an entry may not fill before the previous exit filled",
+    "no_invented_fills": "a due fill or settlement without a valid price is a recorded Rejection, never a fabricated price and never a dropped episode",
+    "reconciliation": "gross_reference_pnl - fees - slippage = net_pnl, residual must be 0 to 1e-6",
+    "reinforce_full_scale": 0.01,
+    "reinforce_cap": 1.0,
+    "unchanged": "costs, sizing, delay, long-only inventory and session-boundary rules are exactly D5/D6's; the permitted behavioural change in this wave is the fixed H alone"
+  },
+
+  "evaluation": {
+    "probe": "the ordinary per-round readout, extracted from the two FROZEN event logs after both branches finished; no runtime hook and no second neural pass",
+    "score": "DECISION.valence_hz, the decoder's continuous centred V, before thresholding and before inventory constraints",
+    "statuses_scored": ["VALID", "NO_RESPONSE", "POLICY_REJECT"],
+    "statuses_excluded": ["INVALID_STATE", "DATA_GAP", "STALE_DATA", "WARMUP"],
+    "grid_rule": "observation status OK and (m + 1) + delay + H* <= 390, computed from the session calendar and the price file before either event log is opened",
+    "label": "G(t) = net return on notional of a hypothetical fixed-notional long entered under the existing fill convention and held H* market minutes, including unchanged costs; Y(t) = 1 when G(t) > 0",
+    "label_unavailable": "UNAVAILABLE_LABEL, counted; never invented and never replaced by a loss",
+    "primary_metric": "DELTA_AUC = mean across qualifying sessions of [AUC_TRAINED - AUC_REFERENCE]",
+    "auc": "pairwise, ties at 0.5 credit; a one-class session is undefined, not 0.5",
+    "min_per_class": 10,
+    "min_qualifying_sessions": 5,
+    "min_coverage": 0.95,
+    "coverage_rule": "if either branch or the paired set covers less than 95% of otherwise label-available probes, the aggregate inference is marked coverage-limited/inconclusive",
+    "bootstrap_draws": 2000,
+    "bootstrap_seed": 3219987367,
+    "bootstrap_seed_label": "sha256('flytrade-d7-bootstrap-1')[:4] as a big-endian unsigned integer",
+    "bootstrap_unit": "whole qualifying sessions, both branches kept paired",
+    "top_fraction": 0.20,
+    "top_fraction_ties": "fractional weighting; never broken by a future label or by time order",
+    "top_fraction_fixed": "0.20 is fixed and no percentile is searched over",
+    "conclusions": ["A: context-discrimination evidence in this experiment", "B: suppression without demonstrated discrimination improvement", "C: inconclusive"],
+    "positive_delta_alone_insufficient": "if TRAINED remains at or below chance-level ranking"
+  },
+
+  "compute_budget": {
+    "measured_ms_per_presentation": 29.3,
+    "rounds": { "WARMUP": 5070, "LEARNING": 3899, "FROZEN_per_branch": 3900 },
+    "encodable_rounds": { "WARMUP": 4751, "LEARNING": 3699, "FROZEN_per_branch": 3700 },
+    "estimate_minutes": { "WARMUP": 0, "LEARNING": 14.5, "FROZEN_trained": 14.5, "FROZEN_reference": 14.5, "total": 43.5 },
+    "ceiling_minutes": 90,
+    "reduction_rule": "if the pre-run estimate exceeds 90 minutes, LEARNING is run on its last N sessions only, N the largest integer for which the total falls under 90 minutes; the dropped sessions are named in the report; WARMUP and FROZEN are never shortened; dates are never shifted; k is never reduced",
+    "reduction_rule_fires": false,
+    "parallelism": "none, one process"
+  },
+
+  "runs": {
+    "id_format": "d7-NNN",
+    "directory": "experiments/d7/runs/<run_id>/",
+    "gitignored": true,
+    "stages": ["learn", "frozen"],
+    "branches": ["learned", "frozen_trained", "frozen_reference"],
+    "restart_after_settled_episodes": 3,
+    "retry_rule": "a retry after a software correction gets a new run id; the failed run's directory and its explanation are kept and reported",
+    "discard_rule": "a run started before the commit of this file is discarded and said to be discarded; likewise a run that read a substituted dataset, a horizon not taken from registered-horizon-artifact, or whose frozen-branch checkpoint hash moved",
+    "hist_003_untouched": true
+  },
+
+  "frozen_and_not_decided_by_this_run": [
+    "k = 8",
+    "gain 0.10",
+    "the 20 ms / 100-step window",
+    "the encoder mapping, normalisation algorithm and bounds",
+    "MBON membership: 29 avoid, 16 approach",
+    "the decoder formula and its sign",
+    "THETA_SD = 1.0 and the stored k = 8 baseline artifact",
+    "one normalised learning update per settled outcome",
+    "episode-specific credit assignment",
+    "market and brain clock semantics",
+    "long-only inventory-aware execution, sizing, fees and modelled slippage",
+    "execution delay and session-boundary rules",
+    "upstream/ and tests/upstream_audit/"
+  ],
+  "success_is_not": ["profitability", "more BUY actions", "more reward events", "a preferred reward/punishment balance"],
+  "no_recalibration_against_historical_outcomes": true,
+  "no_heuristic_trader": true,
+  "profitability_is_not_a_gate_metric": true
+}

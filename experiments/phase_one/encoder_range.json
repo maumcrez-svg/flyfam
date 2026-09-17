@@ -1,0 +1,4998 @@
+{
+  "encoder_version": "flytrade-encoder-1",
+  "market_version": "flytrade-market-1",
+  "mushroom_version": "flytrade-mb-1",
+  "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+  "python": "3.13.9",
+  "numpy": "2.4.2",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "patterns": {
+    "strong_up": [
+      0.8,
+      0.9,
+      0.9,
+      0.2,
+      0.5
+    ],
+    "strong_down": [
+      -0.8,
+      -0.9,
+      -0.9,
+      0.6,
+      0.7
+    ],
+    "flat_low_vol": [
+      0.0,
+      0.0,
+      0.0,
+      -0.8,
+      -0.6
+    ],
+    "flat_high_vol": [
+      0.0,
+      0.0,
+      0.0,
+      0.8,
+      0.6
+    ],
+    "corner_plus": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "corner_minus": [
+      -1.0,
+      -1.0,
+      -1.0,
+      -1.0,
+      -1.0
+    ]
+  },
+  "criteria": {
+    "max_kc_fraction": 0.25,
+    "max_jaccard": 0.4,
+    "saturated_hz": 431.81818181818176,
+    "discrimination_patterns": [
+      "strong_up",
+      "strong_down",
+      "flat_low_vol",
+      "flat_high_vol"
+    ]
+  },
+  "part0_rejected_codings": {
+    "balanced/150": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "balanced",
+        "drive_budget_hz": 12000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 50.12886597938144,
+          "mbon_max_hz": 237.5,
+          "mbon_active_fraction": 0.40463917525773196,
+          "pam_hz": 65.54878048780488,
+          "ppl1_hz": 38.839285714285715,
+          "kc_fraction": 0.2295767716535433,
+          "kc_hz": 13.830278051181104,
+          "total_hz": 3.003271823257955,
+          "mbon_sd_hz": 6.963534065003244,
+          "pam_sd_hz": 9.485578772014664,
+          "ppl1_sd_hz": 5.746877717382047,
+          "valence_mean_hz": -26.70949477351916,
+          "valence_sd_hz": 5.939073505337615,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 54915.0,
+          "max_orn_hz": 142.5
+        },
+        "strong_down": {
+          "mbon_mean_hz": 43.363402061855666,
+          "mbon_max_hz": 200.0,
+          "mbon_active_fraction": 0.3943298969072165,
+          "pam_hz": 55.640243902439025,
+          "ppl1_hz": 34.375,
+          "kc_fraction": 0.20524729330708663,
+          "kc_hz": 11.895607775590552,
+          "total_hz": 2.65780756047044,
+          "mbon_sd_hz": 8.170840597999652,
+          "pam_sd_hz": 10.72967790440856,
+          "ppl1_sd_hz": 6.43848442047141,
+          "valence_mean_hz": -21.265243902439025,
+          "valence_sd_hz": 4.888343107387091,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 51255.0,
+          "max_orn_hz": 142.5
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 42.71907216494845,
+          "mbon_max_hz": 200.0,
+          "mbon_active_fraction": 0.3891752577319587,
+          "pam_hz": 52.13414634146341,
+          "ppl1_hz": 35.82589285714286,
+          "kc_fraction": 0.1995263287401575,
+          "kc_hz": 11.689530019685039,
+          "total_hz": 2.707732767287218,
+          "mbon_sd_hz": 13.357912724260732,
+          "pam_sd_hz": 18.399802504842757,
+          "ppl1_sd_hz": 10.151430651805965,
+          "valence_mean_hz": -16.30825348432056,
+          "valence_sd_hz": 9.95014304820863,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 52275.0,
+          "max_orn_hz": 135.0
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 47.80927835051547,
+          "mbon_max_hz": 212.5,
+          "mbon_active_fraction": 0.3801546391752577,
+          "pam_hz": 62.5,
+          "ppl1_hz": 37.05357142857143,
+          "kc_fraction": 0.22388656496062992,
+          "kc_hz": 13.265871062992126,
+          "total_hz": 2.770602948123206,
+          "mbon_sd_hz": 11.898016197103486,
+          "pam_sd_hz": 16.577549910755707,
+          "ppl1_sd_hz": 8.72210254963202,
+          "valence_mean_hz": -25.44642857142857,
+          "valence_sd_hz": 8.710785838711844,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 53175.0,
+          "max_orn_hz": 135.0
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 57.28092783505154,
+          "mbon_max_hz": 262.5,
+          "mbon_active_fraction": 0.42783505154639173,
+          "pam_hz": 73.17073170731707,
+          "ppl1_hz": 45.64732142857143,
+          "kc_fraction": 0.2493540846456693,
+          "kc_hz": 15.538877952755906,
+          "total_hz": 3.075226196388125,
+          "mbon_sd_hz": 7.5276769436274735,
+          "pam_sd_hz": 9.3785845530974,
+          "ppl1_sd_hz": 6.3751589901857155,
+          "valence_mean_hz": -27.523410278745647,
+          "valence_sd_hz": 4.036506212134955,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 55650.0,
+          "max_orn_hz": 150.0
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 48.71134020618557,
+          "mbon_max_hz": 206.25,
+          "mbon_active_fraction": 0.4007731958762887,
+          "pam_hz": 61.58536585365854,
+          "ppl1_hz": 39.28571428571429,
+          "kc_fraction": 0.222779281496063,
+          "kc_hz": 13.219734251968504,
+          "total_hz": 2.7406629643536293,
+          "mbon_sd_hz": 10.187051581303457,
+          "pam_sd_hz": 13.673461233692393,
+          "ppl1_sd_hz": 7.971683669387623,
+          "valence_mean_hz": -22.299651567944252,
+          "valence_sd_hz": 6.994172601474522,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 49800.0,
+          "max_orn_hz": 150.0
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.763055470401267,
+          "valence_gap_hz": 5.444250871080136
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.740646603542967,
+          "valence_gap_hz": 10.401241289198602
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.774999494620612,
+          "valence_gap_hz": 1.2630662020905916
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.7775589536338023,
+          "valence_gap_hz": 0.8139155052264861
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.7221518902476527,
+          "valence_gap_hz": 4.409843205574909
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.7310053216211414,
+          "valence_gap_hz": 4.956990418118465
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.7361752661188647,
+          "valence_gap_hz": 4.181184668989545
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.7095658439332438,
+          "valence_gap_hz": 6.258166376306622
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.6948780701368534,
+          "valence_gap_hz": 1.0344076655052277
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.7522007589028656,
+          "valence_gap_hz": 9.13817508710801
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.6859243082971453,
+          "valence_gap_hz": 11.215156794425088
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.7041618498142443,
+          "valence_gap_hz": 5.991398083623693
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.7673107960843528,
+          "valence_gap_hz": 2.0769817073170778
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.6900506510257995,
+          "valence_gap_hz": 3.146777003484317
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.685526392377676,
+          "valence_gap_hz": 5.223758710801395
+        }
+      },
+      "max_kc_fraction": 0.2493540846456693,
+      "min_kc_fraction": 0.1995263287401575,
+      "max_jaccard_nominal": 0.774999494620612,
+      "max_jaccard_all": 0.7775589536338023,
+      "silent_trials": 0,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "max nominal KC Jaccard 0.775 >= 0.4"
+    },
+    "balanced/90": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "balanced",
+        "drive_budget_hz": 12000.0,
+        "drive_max_hz": 90.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 42.59020618556701,
+          "mbon_max_hz": 200.0,
+          "mbon_active_fraction": 0.3788659793814433,
+          "pam_hz": 53.048780487804876,
+          "ppl1_hz": 34.933035714285715,
+          "kc_fraction": 0.19586614173228345,
+          "kc_hz": 11.380413385826772,
+          "total_hz": 2.463405845374935,
+          "mbon_sd_hz": 14.532419712130604,
+          "pam_sd_hz": 19.588266346596356,
+          "ppl1_sd_hz": 10.908502272514136,
+          "valence_mean_hz": -18.115744773519168,
+          "valence_sd_hz": 8.982671249327261,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 32949.0,
+          "max_orn_hz": 85.5
+        },
+        "strong_down": {
+          "mbon_mean_hz": 35.76030927835052,
+          "mbon_max_hz": 175.0,
+          "mbon_active_fraction": 0.36597938144329895,
+          "pam_hz": 43.75,
+          "ppl1_hz": 29.910714285714285,
+          "kc_fraction": 0.17107529527559057,
+          "kc_hz": 9.490342027559056,
+          "total_hz": 2.2161265609670426,
+          "mbon_sd_hz": 11.617762471334593,
+          "pam_sd_hz": 14.19847266990007,
+          "ppl1_sd_hz": 10.033653285355683,
+          "valence_mean_hz": -13.839285714285714,
+          "valence_sd_hz": 5.853044637331688,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 30753.0,
+          "max_orn_hz": 85.5
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 33.50515463917526,
+          "mbon_max_hz": 175.0,
+          "mbon_active_fraction": 0.3569587628865979,
+          "pam_hz": 40.85365853658537,
+          "ppl1_hz": 28.125,
+          "kc_fraction": 0.15357406496062992,
+          "kc_hz": 8.421505905511811,
+          "total_hz": 2.171878974334129,
+          "mbon_sd_hz": 7.227006860904446,
+          "pam_sd_hz": 9.333167411831967,
+          "ppl1_sd_hz": 5.998967355257575,
+          "valence_mean_hz": -12.728658536585366,
+          "valence_sd_hz": 4.689147799923321,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 31365.0,
+          "max_orn_hz": 81.0
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 38.72422680412372,
+          "mbon_max_hz": 175.0,
+          "mbon_active_fraction": 0.375,
+          "pam_hz": 47.256097560975604,
+          "ppl1_hz": 32.47767857142857,
+          "kc_fraction": 0.17381274606299213,
+          "kc_hz": 9.860974409448819,
+          "total_hz": 2.219684536282264,
+          "mbon_sd_hz": 14.846377143659915,
+          "pam_sd_hz": 20.785439693974773,
+          "ppl1_sd_hz": 10.649650918531975,
+          "valence_mean_hz": -14.778418989547037,
+          "valence_sd_hz": 10.649383730151705,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 31905.0,
+          "max_orn_hz": 81.0
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 43.75,
+          "mbon_max_hz": 212.5,
+          "mbon_active_fraction": 0.39690721649484534,
+          "pam_hz": 55.48780487804878,
+          "ppl1_hz": 35.15625,
+          "kc_fraction": 0.19848056102362205,
+          "kc_hz": 11.626476377952756,
+          "total_hz": 2.537442012572522,
+          "mbon_sd_hz": 9.010356039012805,
+          "pam_sd_hz": 10.888153304529439,
+          "ppl1_sd_hz": 8.07018541762995,
+          "valence_mean_hz": -20.33155487804878,
+          "valence_sd_hz": 5.170087034651005,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 33390.0,
+          "max_orn_hz": 90.0
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 30.54123711340206,
+          "mbon_max_hz": 162.5,
+          "mbon_active_fraction": 0.32603092783505155,
+          "pam_hz": 37.04268292682927,
+          "ppl1_hz": 25.78125,
+          "kc_fraction": 0.13730314960629922,
+          "kc_hz": 7.654096948818898,
+          "total_hz": 2.0928465013747415,
+          "mbon_sd_hz": 14.22571018824683,
+          "pam_sd_hz": 19.380407515371935,
+          "ppl1_sd_hz": 10.718935003163365,
+          "valence_mean_hz": -11.261432926829269,
+          "valence_sd_hz": 9.649058865055059,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 29880.0,
+          "max_orn_hz": 90.0
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.6028282152464282,
+          "valence_gap_hz": 4.276459059233455
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.666143036543606,
+          "valence_gap_hz": 5.387086236933802
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.6434067941273102,
+          "valence_gap_hz": 3.3373257839721315
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.6710031359548229,
+          "valence_gap_hz": 2.215810104529613
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.567411595708768,
+          "valence_gap_hz": 6.8543118466899
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.6545622080342507,
+          "valence_gap_hz": 1.1106271777003478
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.6733218373706796,
+          "valence_gap_hz": 0.9391332752613231
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.6657374586720133,
+          "valence_gap_hz": 6.492269163763067
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.5711962902048157,
+          "valence_gap_hz": 2.577852787456445
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.6656087746996716,
+          "valence_gap_hz": 2.049760452961671
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.6799229081443598,
+          "valence_gap_hz": 7.602896341463415
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.7091317700740558,
+          "valence_gap_hz": 1.4672256097560972
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.7042447026665648,
+          "valence_gap_hz": 5.553135888501744
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.5842233567264967,
+          "valence_gap_hz": 3.516986062717768
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.5812044675808852,
+          "valence_gap_hz": 9.070121951219512
+        }
+      },
+      "max_kc_fraction": 0.19848056102362205,
+      "min_kc_fraction": 0.13730314960629922,
+      "max_jaccard_nominal": 0.6733218373706796,
+      "max_jaccard_all": 0.7091317700740558,
+      "silent_trials": 0,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "max nominal KC Jaccard 0.673 >= 0.4"
+    },
+    "rectified/150": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "rectified",
+        "drive_budget_hz": 12000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 50.83762886597938,
+          "mbon_max_hz": 237.5,
+          "mbon_active_fraction": 0.3969072164948454,
+          "pam_hz": 65.70121951219512,
+          "ppl1_hz": 39.95535714285714,
+          "kc_fraction": 0.21758120078740156,
+          "kc_hz": 13.181286909448819,
+          "total_hz": 2.7865002846380253,
+          "mbon_sd_hz": 15.407204546267387,
+          "pam_sd_hz": 20.05386538261956,
+          "ppl1_sd_hz": 12.221291552089173,
+          "valence_mean_hz": -25.745862369337978,
+          "valence_sd_hz": 8.784513822029375,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 45901.5,
+          "max_orn_hz": 136.5
+        },
+        "strong_down": {
+          "mbon_mean_hz": 36.98453608247423,
+          "mbon_max_hz": 175.0,
+          "mbon_active_fraction": 0.3621134020618556,
+          "pam_hz": 45.88414634146342,
+          "ppl1_hz": 30.46875,
+          "kc_fraction": 0.17372047244094488,
+          "kc_hz": 9.868663877952756,
+          "total_hz": 2.467531582708543,
+          "mbon_sd_hz": 11.535176280311642,
+          "pam_sd_hz": 16.567133604411058,
+          "ppl1_sd_hz": 8.119426491598906,
+          "valence_mean_hz": -15.415396341463413,
+          "valence_sd_hz": 9.279525808640209,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 47035.5,
+          "max_orn_hz": 136.5
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 3.801546391752577,
+          "mbon_max_hz": 56.25,
+          "mbon_active_fraction": 0.07345360824742267,
+          "pam_hz": 4.420731707317073,
+          "ppl1_hz": 3.3482142857142856,
+          "kc_fraction": 0.015255905511811023,
+          "kc_hz": 0.7627952755905512,
+          "total_hz": 0.8770409152020929,
+          "mbon_sd_hz": 2.168408414098172,
+          "pam_sd_hz": 3.1892717141154723,
+          "ppl1_sd_hz": 1.5647760390797572,
+          "valence_mean_hz": -1.0725174216027875,
+          "valence_sd_hz": 2.0353136766943214,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 20373.0,
+          "max_orn_hz": 123.00000000000001
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 27.31958762886598,
+          "mbon_max_hz": 150.0,
+          "mbon_active_fraction": 0.30154639175257736,
+          "pam_hz": 32.77439024390244,
+          "ppl1_hz": 23.32589285714286,
+          "kc_fraction": 0.128783218503937,
+          "kc_hz": 6.963582677165355,
+          "total_hz": 1.8417442860430469,
+          "mbon_sd_hz": 13.61560920164609,
+          "pam_sd_hz": 16.966284384415655,
+          "ppl1_sd_hz": 11.278081853057131,
+          "valence_mean_hz": -9.44849738675958,
+          "valence_sd_hz": 6.310656745619701,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 21183.0,
+          "max_orn_hz": 123.00000000000001
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 59.2139175257732,
+          "mbon_max_hz": 262.5,
+          "mbon_active_fraction": 0.4252577319587629,
+          "pam_hz": 77.59146341463415,
+          "ppl1_hz": 45.75892857142857,
+          "kc_fraction": 0.25716658464566927,
+          "kc_hz": 15.854146161417322,
+          "total_hz": 3.2008908564576495,
+          "mbon_sd_hz": 11.308153591115275,
+          "pam_sd_hz": 15.575658261518049,
+          "ppl1_sd_hz": 8.372342492078587,
+          "valence_mean_hz": -31.832534843205572,
+          "valence_sd_hz": 7.875810052130624,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 60630.0,
+          "max_orn_hz": 150.0
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 46.06958762886598,
+          "mbon_max_hz": 206.25,
+          "mbon_active_fraction": 0.3981958762886598,
+          "pam_hz": 57.92682926829269,
+          "ppl1_hz": 37.38839285714286,
+          "kc_fraction": 0.2202263779527559,
+          "kc_hz": 12.975209153543307,
+          "total_hz": 2.765606642361406,
+          "mbon_sd_hz": 10.040447404932692,
+          "pam_sd_hz": 13.797205486566781,
+          "ppl1_sd_hz": 7.4920618218595605,
+          "valence_mean_hz": -20.538436411149828,
+          "valence_sd_hz": 7.029366119929525,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 55365.0,
+          "max_orn_hz": 150.0
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.678441136944637,
+          "valence_gap_hz": 10.330466027874564
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.07279634606479593,
+          "valence_gap_hz": 24.673344947735192
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.5504138817617876,
+          "valence_gap_hz": 16.297364982578397
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.7157949566960703,
+          "valence_gap_hz": 6.086672473867594
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.7573723968978225,
+          "valence_gap_hz": 5.20742595818815
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.0903275106969507,
+          "valence_gap_hz": 14.342878919860626
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.6108625584521143,
+          "valence_gap_hz": 5.966898954703833
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.6251976509138772,
+          "valence_gap_hz": 16.41713850174216
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.695830046480945,
+          "valence_gap_hz": 5.1230400696864145
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.1348316119378303,
+          "valence_gap_hz": 8.375979965156793
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.06090342006670846,
+          "valence_gap_hz": 30.760017421602786
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.07262688756450009,
+          "valence_gap_hz": 19.465918989547042
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.49017346603758055,
+          "valence_gap_hz": 22.38403745644599
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.5379855573578212,
+          "valence_gap_hz": 11.089939024390247
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.7218687655678154,
+          "valence_gap_hz": 11.294098432055744
+        }
+      },
+      "max_kc_fraction": 0.25716658464566927,
+      "min_kc_fraction": 0.015255905511811023,
+      "max_jaccard_nominal": 0.678441136944637,
+      "max_jaccard_all": 0.7573723968978225,
+      "silent_trials": 0,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "max KC fraction 0.257 >= 0.25; max nominal KC Jaccard 0.678 >= 0.4"
+    },
+    "rectified/90": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "rectified",
+        "drive_budget_hz": 12000.0,
+        "drive_max_hz": 90.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 38.33762886597938,
+          "mbon_max_hz": 200.0,
+          "mbon_active_fraction": 0.3711340206185567,
+          "pam_hz": 47.103658536585364,
+          "ppl1_hz": 31.91964285714286,
+          "kc_fraction": 0.1685531496062992,
+          "kc_hz": 9.681040846456693,
+          "total_hz": 2.302312835358099,
+          "mbon_sd_hz": 13.25092502254865,
+          "pam_sd_hz": 17.4660799846372,
+          "ppl1_sd_hz": 10.376806632544177,
+          "valence_mean_hz": -15.184015679442506,
+          "valence_sd_hz": 7.975589950457087,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 27540.9,
+          "max_orn_hz": 81.9
+        },
+        "strong_down": {
+          "mbon_mean_hz": 20.360824742268044,
+          "mbon_max_hz": 137.5,
+          "mbon_active_fraction": 0.2706185567010309,
+          "pam_hz": 24.390243902439025,
+          "ppl1_hz": 17.410714285714285,
+          "kc_fraction": 0.10374630905511811,
+          "kc_hz": 5.471825787401574,
+          "total_hz": 1.7613870350407577,
+          "mbon_sd_hz": 4.459794971937178,
+          "pam_sd_hz": 6.420043823236335,
+          "ppl1_sd_hz": 3.53939717487541,
+          "valence_mean_hz": -6.979529616724738,
+          "valence_sd_hz": 4.418516671738399,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 28221.3,
+          "max_orn_hz": 81.9
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 3.479381443298969,
+          "mbon_max_hz": 43.75,
+          "mbon_active_fraction": 0.06958762886597938,
+          "pam_hz": 4.115853658536586,
+          "ppl1_hz": 3.013392857142857,
+          "kc_fraction": 0.009104330708661417,
+          "kc_hz": 0.4552165354330709,
+          "total_hz": 0.642971560421991,
+          "mbon_sd_hz": 2.8333774679780546,
+          "pam_sd_hz": 3.961739125876943,
+          "ppl1_sd_hz": 2.130999291658626,
+          "valence_mean_hz": -1.102460801393728,
+          "valence_sd_hz": 2.243104979654626,
+          "silent_trials": 1,
+          "saturated_trials": 0,
+          "total_drive_hz": 12223.8,
+          "max_orn_hz": 73.80000000000001
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 15.206185567010309,
+          "mbon_max_hz": 106.25,
+          "mbon_active_fraction": 0.21649484536082475,
+          "pam_hz": 16.920731707317074,
+          "ppl1_hz": 13.950892857142858,
+          "kc_fraction": 0.07621801181102363,
+          "kc_hz": 4.029281496062993,
+          "total_hz": 1.4480581024939134,
+          "mbon_sd_hz": 7.758912274004033,
+          "pam_sd_hz": 8.358965988630542,
+          "ppl1_sd_hz": 7.392596798629945,
+          "valence_mean_hz": -2.9698388501742157,
+          "valence_sd_hz": 1.903035202510659,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12709.800000000001,
+          "max_orn_hz": 73.80000000000001
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 45.2319587628866,
+          "mbon_max_hz": 193.75,
+          "mbon_active_fraction": 0.4059278350515464,
+          "pam_hz": 56.859756097560975,
+          "ppl1_hz": 36.71875,
+          "kc_fraction": 0.20866141732283464,
+          "kc_hz": 12.383120078740157,
+          "total_hz": 2.6854007945640195,
+          "mbon_sd_hz": 8.73794423044158,
+          "pam_sd_hz": 11.80450189454554,
+          "ppl1_sd_hz": 6.773577693807939,
+          "valence_mean_hz": -20.141006097560975,
+          "valence_sd_hz": 6.08500891867349,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 36378.0,
+          "max_orn_hz": 90.0
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 32.66752577319588,
+          "mbon_max_hz": 156.25,
+          "mbon_active_fraction": 0.32474226804123707,
+          "pam_hz": 39.9390243902439,
+          "ppl1_hz": 27.34375,
+          "kc_fraction": 0.14751476377952755,
+          "kc_hz": 8.25695127952756,
+          "total_hz": 2.1727495427623214,
+          "mbon_sd_hz": 15.753155374584603,
+          "pam_sd_hz": 20.978749461153637,
+          "ppl1_sd_hz": 12.157643121137129,
+          "valence_mean_hz": -12.595274390243901,
+          "valence_sd_hz": 9.749664679215707,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 33219.0,
+          "max_orn_hz": 90.0
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.571730411808749,
+          "valence_gap_hz": 8.204486062717768
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.06420757084632596,
+          "valence_gap_hz": 14.081554878048777
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.4246318399833455,
+          "valence_gap_hz": 12.21417682926829
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.706771256556183,
+          "valence_gap_hz": 4.956990418118469
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.6042055766592067,
+          "valence_gap_hz": 2.5887412891986052
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.08409463016171408,
+          "valence_gap_hz": 5.87706881533101
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.5667613939498692,
+          "valence_gap_hz": 4.009690766550523
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.4966698463663713,
+          "valence_gap_hz": 13.161476480836237
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.563924550035392,
+          "valence_gap_hz": 5.615744773519163
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.13795928475064695,
+          "valence_gap_hz": 1.8673780487804876
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.047937898358793,
+          "valence_gap_hz": 19.038545296167246
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.058733059479432616,
+          "valence_gap_hz": 11.492813588850172
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.37808056237173926,
+          "valence_gap_hz": 17.17116724738676
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.4296895757072885,
+          "valence_gap_hz": 9.625435540069684
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.5793276970267747,
+          "valence_gap_hz": 7.545731707317074
+        }
+      },
+      "max_kc_fraction": 0.20866141732283464,
+      "min_kc_fraction": 0.009104330708661417,
+      "max_jaccard_nominal": 0.571730411808749,
+      "max_jaccard_all": 0.706771256556183,
+      "silent_trials": 1,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "1 silent MBON trials; max nominal KC Jaccard 0.572 >= 0.4"
+    }
+  },
+  "part_a_operating_range": {
+    "24000/0.20": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 24000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.2,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 29.123711340206185,
+          "mbon_max_hz": 156.25,
+          "mbon_active_fraction": 0.33634020618556704,
+          "pam_hz": 33.993902439024396,
+          "ppl1_hz": 25.558035714285715,
+          "kc_fraction": 0.13425812007874016,
+          "kc_hz": 7.29115403543307,
+          "total_hz": 1.9345544506486114,
+          "mbon_sd_hz": 9.088217154958182,
+          "pam_sd_hz": 11.013050734430337,
+          "ppl1_sd_hz": 7.970790733661565,
+          "valence_mean_hz": -8.435866724738675,
+          "valence_sd_hz": 4.681989730338958,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 24000.0,
+          "max_orn_hz": 63.06409231120759
+        },
+        "strong_down": {
+          "mbon_mean_hz": 20.489690721649485,
+          "mbon_max_hz": 125.0,
+          "mbon_active_fraction": 0.26159793814432986,
+          "pam_hz": 24.23780487804878,
+          "ppl1_hz": 17.745535714285715,
+          "kc_fraction": 0.10912893700787402,
+          "kc_hz": 5.7624876968503935,
+          "total_hz": 1.6853447753782052,
+          "mbon_sd_hz": 9.499691739505048,
+          "pam_sd_hz": 11.261048322167158,
+          "ppl1_sd_hz": 8.609575773944302,
+          "valence_mean_hz": -6.492269163763067,
+          "valence_sd_hz": 5.020295180987854,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 24000.000000000004,
+          "max_orn_hz": 61.876471247617985
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 12.242268041237114,
+          "mbon_max_hz": 87.5,
+          "mbon_active_fraction": 0.17396907216494845,
+          "pam_hz": 13.719512195121952,
+          "ppl1_hz": 11.160714285714285,
+          "kc_fraction": 0.05247293307086614,
+          "kc_hz": 2.715920275590551,
+          "total_hz": 1.362363888518792,
+          "mbon_sd_hz": 7.103844083465527,
+          "pam_sd_hz": 8.161235315590043,
+          "ppl1_sd_hz": 6.43848442047141,
+          "valence_mean_hz": -2.558797909407665,
+          "valence_sd_hz": 2.5770578732555776,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 24000.0,
+          "max_orn_hz": 101.38805069402535
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 28.930412371134025,
+          "mbon_max_hz": 143.75,
+          "mbon_active_fraction": 0.3247422680412371,
+          "pam_hz": 34.603658536585364,
+          "ppl1_hz": 24.776785714285715,
+          "kc_fraction": 0.13567298228346455,
+          "kc_hz": 7.298843503937007,
+          "total_hz": 1.900942939160136,
+          "mbon_sd_hz": 11.68779623028168,
+          "pam_sd_hz": 15.479880822909884,
+          "ppl1_sd_hz": 9.21418189310281,
+          "valence_mean_hz": -9.826872822299652,
+          "valence_sd_hz": 7.491748147557149,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 23999.999999999996,
+          "max_orn_hz": 98.99823217442545
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 24.871134020618555,
+          "mbon_max_hz": 143.75,
+          "mbon_active_fraction": 0.3131443298969072,
+          "pam_hz": 27.286585365853657,
+          "ppl1_hz": 23.102678571428573,
+          "kc_fraction": 0.11709522637795276,
+          "kc_hz": 6.234621062992126,
+          "total_hz": 1.8652117828030184,
+          "mbon_sd_hz": 5.678464847942481,
+          "pam_sd_hz": 7.820582523402841,
+          "ppl1_sd_hz": 4.253640076383627,
+          "valence_mean_hz": -4.183906794425088,
+          "valence_sd_hz": 4.075192312164821,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 24000.0,
+          "max_orn_hz": 54.86968449931413
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 26.739690721649485,
+          "mbon_max_hz": 143.75,
+          "mbon_active_fraction": 0.3170103092783505,
+          "pam_hz": 32.926829268292686,
+          "ppl1_hz": 22.20982142857143,
+          "kc_fraction": 0.12429256889763779,
+          "kc_hz": 6.7344365157480315,
+          "total_hz": 1.853137377212001,
+          "mbon_sd_hz": 9.778056853057755,
+          "pam_sd_hz": 13.564258996391448,
+          "ppl1_sd_hz": 7.2604714139690145,
+          "valence_mean_hz": -10.717007839721257,
+          "valence_sd_hz": 7.18324701353941,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 24000.0,
+          "max_orn_hz": 59.08419497784343
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.6149513732085493,
+          "valence_gap_hz": 1.9435975609756078
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.3766710124866526,
+          "valence_gap_hz": 5.87706881533101
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.6572768644243677,
+          "valence_gap_hz": 1.391006097560977
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.6768079282750085,
+          "valence_gap_hz": 4.251959930313587
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.6527729243911733,
+          "valence_gap_hz": 2.2811411149825815
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.44547308680668457,
+          "valence_gap_hz": 3.9334712543554025
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.61434331650585,
+          "valence_gap_hz": 3.334603658536585
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.5878911030031557,
+          "valence_gap_hz": 2.3083623693379796
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.6531715194916616,
+          "valence_gap_hz": 4.224738675958189
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.3693871948917644,
+          "valence_gap_hz": 7.268074912891987
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.42477024723302814,
+          "valence_gap_hz": 1.625108885017423
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.3862324217314217,
+          "valence_gap_hz": 8.158209930313593
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.6840984723570169,
+          "valence_gap_hz": 5.642966027874564
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.5719805469126228,
+          "valence_gap_hz": 0.8901350174216045
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.5501331971992767,
+          "valence_gap_hz": 6.533101045296169
+        }
+      },
+      "max_kc_fraction": 0.13567298228346455,
+      "min_kc_fraction": 0.05247293307086614,
+      "max_jaccard_nominal": 0.6572768644243677,
+      "max_jaccard_all": 0.6840984723570169,
+      "silent_trials": 0,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "max nominal KC Jaccard 0.657 >= 0.4"
+    },
+    "24000/0.10": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 24000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 27.963917525773198,
+          "mbon_max_hz": 137.5,
+          "mbon_active_fraction": 0.30927835051546393,
+          "pam_hz": 33.53658536585366,
+          "ppl1_hz": 23.883928571428573,
+          "kc_fraction": 0.12330831692913387,
+          "kc_hz": 6.751353346456693,
+          "total_hz": 1.928649725657393,
+          "mbon_sd_hz": 11.96482376502734,
+          "pam_sd_hz": 15.630974255162336,
+          "ppl1_sd_hz": 9.660674204903842,
+          "valence_mean_hz": -9.652656794425088,
+          "valence_sd_hz": 7.573297657603259,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 23999.999999999996,
+          "max_orn_hz": 71.37021665958629
+        },
+        "strong_down": {
+          "mbon_mean_hz": 27.25515463917526,
+          "mbon_max_hz": 137.5,
+          "mbon_active_fraction": 0.306701030927835,
+          "pam_hz": 33.6890243902439,
+          "ppl1_hz": 22.544642857142858,
+          "kc_fraction": 0.1193097933070866,
+          "kc_hz": 6.468380905511811,
+          "total_hz": 1.8093440001937962,
+          "mbon_sd_hz": 11.83624425029832,
+          "pam_sd_hz": 15.452406803122232,
+          "ppl1_sd_hz": 9.470180105176976,
+          "valence_mean_hz": -11.144381533101043,
+          "valence_sd_hz": 7.187483422274094,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 23999.999999999996,
+          "max_orn_hz": 69.6495200433715
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 11.662371134020619,
+          "mbon_max_hz": 87.5,
+          "mbon_active_fraction": 0.18041237113402062,
+          "pam_hz": 12.957317073170731,
+          "ppl1_hz": 10.714285714285715,
+          "kc_fraction": 0.047551673228346455,
+          "kc_hz": 2.4683193897637796,
+          "total_hz": 1.2713327115708386,
+          "mbon_sd_hz": 6.926300214825906,
+          "pam_sd_hz": 8.11391394815635,
+          "ppl1_sd_hz": 6.130415735049957,
+          "valence_mean_hz": -2.2430313588850175,
+          "valence_sd_hz": 2.5207897795174814,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 23999.999999999996,
+          "max_orn_hz": 144.89765866588132
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 35.69587628865979,
+          "mbon_max_hz": 168.75,
+          "mbon_active_fraction": 0.3608247422680413,
+          "pam_hz": 43.90243902439025,
+          "ppl1_hz": 29.6875,
+          "kc_fraction": 0.16858390748031496,
+          "kc_hz": 9.330401082677165,
+          "total_hz": 2.1014764840542144,
+          "mbon_sd_hz": 9.603017090130997,
+          "pam_sd_hz": 12.453704530077712,
+          "ppl1_sd_hz": 7.794713718498759,
+          "valence_mean_hz": -14.214939024390244,
+          "valence_sd_hz": 5.872051554305211,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 24000.000000000007,
+          "max_orn_hz": 139.35703158192894
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 34.858247422680414,
+          "mbon_max_hz": 187.5,
+          "mbon_active_fraction": 0.37886597938144334,
+          "pam_hz": 41.00609756097561,
+          "ppl1_hz": 30.35714285714286,
+          "kc_fraction": 0.16246309055118113,
+          "kc_hz": 8.990526574803148,
+          "total_hz": 2.145989026295709,
+          "mbon_sd_hz": 9.861164824799655,
+          "pam_sd_hz": 14.010180651705774,
+          "ppl1_sd_hz": 6.981598052757147,
+          "valence_mean_hz": -10.648954703832754,
+          "valence_sd_hz": 7.537396311008754,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 24000.000000000004,
+          "max_orn_hz": 59.37654626422563
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 29.445876288659797,
+          "mbon_max_hz": 162.5,
+          "mbon_active_fraction": 0.3324742268041237,
+          "pam_hz": 35.51829268292683,
+          "ppl1_hz": 25.0,
+          "kc_fraction": 0.1345964566929134,
+          "kc_hz": 7.406496062992126,
+          "total_hz": 1.9588925158367752,
+          "mbon_sd_hz": 8.818748997157218,
+          "pam_sd_hz": 11.54057912028447,
+          "ppl1_sd_hz": 7.206350455013027,
+          "valence_mean_hz": -10.518292682926829,
+          "valence_sd_hz": 5.903823275657942,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 24000.0,
+          "max_orn_hz": 65.02302898943375
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.6380784101632055,
+          "valence_gap_hz": 1.4917247386759556
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.36700240761441916,
+          "valence_gap_hz": 7.40962543554007
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.6252077550090217,
+          "valence_gap_hz": 4.562282229965156
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.5979453383828338,
+          "valence_gap_hz": 0.9962979094076658
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.6467188160818986,
+          "valence_gap_hz": 0.8656358885017408
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.36904565937942935,
+          "valence_gap_hz": 8.901350174216025
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.5458894431568517,
+          "valence_gap_hz": 3.0705574912892004
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.5562471516250218,
+          "valence_gap_hz": 0.49542682926828974
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.6132157997161893,
+          "valence_gap_hz": 0.6260888501742148
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.2704365567849237,
+          "valence_gap_hz": 11.971907665505226
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.3061355074568252,
+          "valence_gap_hz": 8.405923344947736
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.35785199483885005,
+          "valence_gap_hz": 8.27526132404181
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.6601966455266639,
+          "valence_gap_hz": 3.56598432055749
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.5844685807569787,
+          "valence_gap_hz": 3.696646341463415
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.5953791320288172,
+          "valence_gap_hz": 0.13066202090592505
+        }
+      },
+      "max_kc_fraction": 0.16858390748031496,
+      "min_kc_fraction": 0.047551673228346455,
+      "max_jaccard_nominal": 0.6380784101632055,
+      "max_jaccard_all": 0.6601966455266639,
+      "silent_trials": 0,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "max nominal KC Jaccard 0.638 >= 0.4"
+    },
+    "24000/0.05": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 24000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.05,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 30.412371134020617,
+          "mbon_max_hz": 156.25,
+          "mbon_active_fraction": 0.3376288659793814,
+          "pam_hz": 36.890243902439025,
+          "ppl1_hz": 25.669642857142858,
+          "kc_fraction": 0.14388533464566927,
+          "kc_hz": 7.941683070866142,
+          "total_hz": 2.056017671782076,
+          "mbon_sd_hz": 7.928287972721514,
+          "pam_sd_hz": 9.235914469469872,
+          "ppl1_sd_hz": 7.218193273939241,
+          "valence_mean_hz": -11.220601045296167,
+          "valence_sd_hz": 3.6648411140956014,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 23999.999999999996,
+          "max_orn_hz": 76.49099329119049
+        },
+        "strong_down": {
+          "mbon_mean_hz": 23.067010309278352,
+          "mbon_max_hz": 143.75,
+          "mbon_active_fraction": 0.288659793814433,
+          "pam_hz": 27.286585365853657,
+          "ppl1_hz": 19.977678571428573,
+          "kc_fraction": 0.10857529527559055,
+          "kc_hz": 5.7440329724409445,
+          "total_hz": 1.8230459902375213,
+          "mbon_sd_hz": 7.498943439640697,
+          "pam_sd_hz": 9.007364577930398,
+          "ppl1_sd_hz": 6.419663258177683,
+          "valence_mean_hz": -7.308906794425086,
+          "valence_sd_hz": 2.754571133048993,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 24000.000000000004,
+          "max_orn_hz": 74.40012331512152
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 9.085051546391753,
+          "mbon_max_hz": 75.0,
+          "mbon_active_fraction": 0.14304123711340205,
+          "pam_hz": 10.213414634146343,
+          "ppl1_hz": 8.258928571428571,
+          "kc_fraction": 0.03933932086614174,
+          "kc_hz": 2.0623154527559056,
+          "total_hz": 1.1243580504112112,
+          "mbon_sd_hz": 6.02351230213508,
+          "pam_sd_hz": 6.9274150755871595,
+          "ppl1_sd_hz": 5.498765763979558,
+          "valence_mean_hz": -1.9544860627177703,
+          "valence_sd_hz": 2.443873563854748,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 21999.784296807593,
+          "max_orn_hz": 150.0
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 37.95103092783505,
+          "mbon_max_hz": 193.75,
+          "mbon_active_fraction": 0.3530927835051546,
+          "pam_hz": 47.103658536585364,
+          "ppl1_hz": 31.25,
+          "kc_fraction": 0.17734990157480313,
+          "kc_hz": 10.237758366141732,
+          "total_hz": 2.2925473286418527,
+          "mbon_sd_hz": 10.013949170565908,
+          "pam_sd_hz": 13.27833032647665,
+          "ppl1_sd_hz": 8.056944743547836,
+          "valence_mean_hz": -15.853658536585366,
+          "valence_sd_hz": 6.9307491621549575,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 22450.74993182438,
+          "max_orn_hz": 150.0
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 32.345360824742265,
+          "mbon_max_hz": 150.0,
+          "mbon_active_fraction": 0.34149484536082475,
+          "pam_hz": 38.5670731707317,
+          "ppl1_hz": 27.790178571428573,
+          "kc_fraction": 0.15234375,
+          "kc_hz": 8.353838582677167,
+          "total_hz": 2.070476677850317,
+          "mbon_sd_hz": 11.587706172206344,
+          "pam_sd_hz": 15.174931076813124,
+          "ppl1_sd_hz": 9.259646248729133,
+          "valence_mean_hz": -10.776894599303136,
+          "valence_sd_hz": 7.174111583280502,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 24000.0,
+          "max_orn_hz": 61.919504643962846
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 28.47938144329897,
+          "mbon_max_hz": 150.0,
+          "mbon_active_fraction": 0.3286082474226804,
+          "pam_hz": 33.84146341463415,
+          "ppl1_hz": 24.55357142857143,
+          "kc_fraction": 0.13456569881889766,
+          "kc_hz": 7.449557086614172,
+          "total_hz": 2.019718753406572,
+          "mbon_sd_hz": 11.45261598445338,
+          "pam_sd_hz": 14.469897073073653,
+          "ppl1_sd_hz": 9.291109107895059,
+          "valence_mean_hz": -9.287891986062718,
+          "valence_sd_hz": 5.4222677130415775,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 24000.0,
+          "max_orn_hz": 68.46384253316216
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.6074083998728448,
+          "valence_gap_hz": 3.911694250871081
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.2645067691346675,
+          "valence_gap_hz": 9.266114982578397
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.6964735495136514,
+          "valence_gap_hz": 4.633057491289199
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.637375480778762,
+          "valence_gap_hz": 0.44370644599303155
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.6288987410386955,
+          "valence_gap_hz": 1.9327090592334493
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.33930272614772605,
+          "valence_gap_hz": 5.354420731707316
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.5598296398896885,
+          "valence_gap_hz": 8.54475174216028
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.6132939700772203,
+          "valence_gap_hz": 3.4679878048780495
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.5655668520860255,
+          "valence_gap_hz": 1.9789851916376318
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.2106740722330453,
+          "valence_gap_hz": 13.899172473867596
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.28920229381083606,
+          "valence_gap_hz": 8.822408536585366
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.2746597697536414,
+          "valence_gap_hz": 7.333405923344948
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.642765106573579,
+          "valence_gap_hz": 5.07676393728223
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.6005558212017527,
+          "valence_gap_hz": 6.565766550522648
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.5720789466872473,
+          "valence_gap_hz": 1.4890026132404177
+        }
+      },
+      "max_kc_fraction": 0.17734990157480313,
+      "min_kc_fraction": 0.03933932086614174,
+      "max_jaccard_nominal": 0.6964735495136514,
+      "max_jaccard_all": 0.6964735495136514,
+      "silent_trials": 0,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "max nominal KC Jaccard 0.696 >= 0.4"
+    },
+    "18000/0.20": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 18000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.2,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 19.072164948453608,
+          "mbon_max_hz": 112.5,
+          "mbon_active_fraction": 0.25644329896907214,
+          "pam_hz": 21.951219512195124,
+          "ppl1_hz": 16.964285714285715,
+          "kc_fraction": 0.0897822342519685,
+          "kc_hz": 4.724409448818897,
+          "total_hz": 1.5636165986361599,
+          "mbon_sd_hz": 7.388030728238002,
+          "pam_sd_hz": 9.195570188429718,
+          "ppl1_sd_hz": 6.2042788301098515,
+          "valence_mean_hz": -4.9869337979094075,
+          "valence_sd_hz": 3.7222935699253834,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.000000000004,
+          "max_orn_hz": 47.29806923340569
+        },
+        "strong_down": {
+          "mbon_mean_hz": 14.49742268041237,
+          "mbon_max_hz": 100.0,
+          "mbon_active_fraction": 0.19716494845360824,
+          "pam_hz": 16.76829268292683,
+          "ppl1_hz": 12.83482142857143,
+          "kc_fraction": 0.06388410433070867,
+          "kc_hz": 3.3618356299212597,
+          "total_hz": 1.3799645110887706,
+          "mbon_sd_hz": 9.570104100215124,
+          "pam_sd_hz": 11.74699287438661,
+          "ppl1_sd_hz": 8.070185417629952,
+          "valence_mean_hz": -3.9334712543554007,
+          "valence_sd_hz": 4.216856603177317,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 46.40735343571349
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 6.25,
+          "mbon_max_hz": 56.25,
+          "mbon_active_fraction": 0.11469072164948453,
+          "pam_hz": 7.4695121951219505,
+          "ppl1_hz": 5.357142857142857,
+          "kc_fraction": 0.030573326771653545,
+          "kc_hz": 1.5532726377952757,
+          "total_hz": 0.9380942575792444,
+          "mbon_sd_hz": 5.506665108046778,
+          "pam_sd_hz": 6.693444634176874,
+          "ppl1_sd_hz": 4.724555912615341,
+          "valence_mean_hz": -2.112369337979094,
+          "valence_sd_hz": 2.4795200918972613,
+          "silent_trials": 1,
+          "saturated_trials": 0,
+          "total_drive_hz": 17999.999999999996,
+          "max_orn_hz": 76.04103802051901
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 17.396907216494846,
+          "mbon_max_hz": 112.5,
+          "mbon_active_fraction": 0.22938144329896906,
+          "pam_hz": 20.579268292682926,
+          "ppl1_hz": 15.066964285714286,
+          "kc_fraction": 0.0912586122047244,
+          "kc_hz": 4.801304133858268,
+          "total_hz": 1.5477192621213405,
+          "mbon_sd_hz": 9.260947514678143,
+          "pam_sd_hz": 11.410983587905275,
+          "ppl1_sd_hz": 7.775513761113869,
+          "valence_mean_hz": -5.512304006968641,
+          "valence_sd_hz": 4.136933698275115,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 74.2486741308191
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 19.13659793814433,
+          "mbon_max_hz": 125.0,
+          "mbon_active_fraction": 0.24484536082474226,
+          "pam_hz": 23.01829268292683,
+          "ppl1_hz": 16.294642857142854,
+          "kc_fraction": 0.08329232283464567,
+          "kc_hz": 4.42144438976378,
+          "total_hz": 1.5731928513462772,
+          "mbon_sd_hz": 6.095549586543118,
+          "pam_sd_hz": 7.0339384148230515,
+          "ppl1_sd_hz": 5.478015630482758,
+          "valence_mean_hz": -6.723649825783973,
+          "valence_sd_hz": 2.105245321304599,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.000000000004,
+          "max_orn_hz": 41.1522633744856
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 12.757731958762886,
+          "mbon_max_hz": 93.75,
+          "mbon_active_fraction": 0.19458762886597936,
+          "pam_hz": 15.091463414634145,
+          "ppl1_hz": 11.049107142857142,
+          "kc_fraction": 0.057609498031496065,
+          "kc_hz": 2.9819758858267713,
+          "total_hz": 1.389919271811146,
+          "mbon_sd_hz": 7.767468776945676,
+          "pam_sd_hz": 10.346620813113875,
+          "ppl1_sd_hz": 6.110645776044587,
+          "valence_mean_hz": -4.042356271777003,
+          "valence_sd_hz": 5.1501963740975665,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 44.31314623338257
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.4557351292657362,
+          "valence_gap_hz": 1.0534625435540068
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.3290253865182559,
+          "valence_gap_hz": 2.8745644599303133
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.6251493194925449,
+          "valence_gap_hz": 0.5253702090592336
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.6128485802930683,
+          "valence_gap_hz": 1.7367160278745652
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.5376196189958818,
+          "valence_gap_hz": 0.9445775261324041
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.34681099302326723,
+          "valence_gap_hz": 1.8211019163763065
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.49589433505601965,
+          "valence_gap_hz": 1.5788327526132404
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.447268833503222,
+          "valence_gap_hz": 2.790178571428572
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.5200254167672804,
+          "valence_gap_hz": 0.10888501742160273
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.3459009602937385,
+          "valence_gap_hz": 3.399934668989547
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.32782933925766305,
+          "valence_gap_hz": 4.611280487804878
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.3687732996583506,
+          "valence_gap_hz": 1.9299869337979092
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.5515861061107739,
+          "valence_gap_hz": 1.2113458188153317
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.48495699931570585,
+          "valence_gap_hz": 1.4699477351916377
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.4663777571015266,
+          "valence_gap_hz": 2.6812935540069693
+        }
+      },
+      "max_kc_fraction": 0.0912586122047244,
+      "min_kc_fraction": 0.030573326771653545,
+      "max_jaccard_nominal": 0.6251493194925449,
+      "max_jaccard_all": 0.6251493194925449,
+      "silent_trials": 1,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "1 silent MBON trials; max nominal KC Jaccard 0.625 >= 0.4"
+    },
+    "18000/0.10": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 18000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 20.2319587628866,
+          "mbon_max_hz": 137.5,
+          "mbon_active_fraction": 0.24742268041237114,
+          "pam_hz": 23.78048780487805,
+          "ppl1_hz": 17.633928571428573,
+          "kc_fraction": 0.08566067913385828,
+          "kc_hz": 4.526021161417323,
+          "total_hz": 1.5703161904531195,
+          "mbon_sd_hz": 9.914189316881702,
+          "pam_sd_hz": 12.21253112775044,
+          "ppl1_sd_hz": 8.54734605802108,
+          "valence_mean_hz": -6.146559233449477,
+          "valence_sd_hz": 5.328011840394973,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 53.527662494689714
+        },
+        "strong_down": {
+          "mbon_mean_hz": 14.11082474226804,
+          "mbon_max_hz": 100.0,
+          "mbon_active_fraction": 0.20231958762886598,
+          "pam_hz": 16.46341463414634,
+          "ppl1_hz": 12.388392857142858,
+          "kc_fraction": 0.06859005905511811,
+          "kc_hz": 3.584830216535433,
+          "total_hz": 1.4221681544554934,
+          "mbon_sd_hz": 8.580964852879635,
+          "pam_sd_hz": 10.531067079935479,
+          "ppl1_sd_hz": 7.307376696938655,
+          "valence_mean_hz": -4.075021777003485,
+          "valence_sd_hz": 4.084624146031935,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 52.23714003252862
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 5.476804123711341,
+          "mbon_max_hz": 68.75,
+          "mbon_active_fraction": 0.1018041237113402,
+          "pam_hz": 5.945121951219512,
+          "ppl1_hz": 5.133928571428571,
+          "kc_fraction": 0.01787032480314961,
+          "kc_hz": 0.8950541338582676,
+          "total_hz": 0.9723113818873317,
+          "mbon_sd_hz": 2.401001301835511,
+          "pam_sd_hz": 3.536735548895783,
+          "ppl1_sd_hz": 1.6359381809159006,
+          "valence_mean_hz": -0.811193379790941,
+          "valence_sd_hz": 2.0914266290944323,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.000000000004,
+          "max_orn_hz": 108.673243999411
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 27.641752577319586,
+          "mbon_max_hz": 137.5,
+          "mbon_active_fraction": 0.31056701030927836,
+          "pam_hz": 33.53658536585366,
+          "ppl1_hz": 23.325892857142858,
+          "kc_fraction": 0.12915231299212598,
+          "kc_hz": 7.057394192913385,
+          "total_hz": 1.779366165622994,
+          "mbon_sd_hz": 13.17047415817053,
+          "pam_sd_hz": 16.49081472641008,
+          "ppl1_sd_hz": 11.166452606443702,
+          "valence_mean_hz": -10.2106925087108,
+          "valence_sd_hz": 7.429961609831383,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 104.51777368644669
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 21.713917525773194,
+          "mbon_max_hz": 118.75,
+          "mbon_active_fraction": 0.26804123711340205,
+          "pam_hz": 25.609756097560975,
+          "ppl1_hz": 18.861607142857146,
+          "kc_fraction": 0.09777928149606299,
+          "kc_hz": 5.145792322834646,
+          "total_hz": 1.6500299778345706,
+          "mbon_sd_hz": 6.8629884422067935,
+          "pam_sd_hz": 7.346051791744953,
+          "ppl1_sd_hz": 6.739867611122039,
+          "valence_mean_hz": -6.748148954703832,
+          "valence_sd_hz": 2.8154711343405374,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 44.532409698169225
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 13.917525773195877,
+          "mbon_max_hz": 87.5,
+          "mbon_active_fraction": 0.21262886597938144,
+          "pam_hz": 16.920731707317074,
+          "ppl1_hz": 11.71875,
+          "kc_fraction": 0.06302288385826771,
+          "kc_hz": 3.2464936023622046,
+          "total_hz": 1.4117970349196352,
+          "mbon_sd_hz": 5.292701863347986,
+          "pam_sd_hz": 6.693444634176876,
+          "ppl1_sd_hz": 4.488137811288724,
+          "valence_mean_hz": -5.201981707317073,
+          "valence_sd_hz": 3.2348393881130075,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 48.767271742075316
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.5482213712102426,
+          "valence_gap_hz": 2.0715374564459923
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.2420534806953275,
+          "valence_gap_hz": 5.335365853658536
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.42832050004544403,
+          "valence_gap_hz": 4.064133275261322
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.5891038201340271,
+          "valence_gap_hz": 0.6015897212543546
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.47353452538540497,
+          "valence_gap_hz": 0.9445775261324041
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.27784439516699405,
+          "valence_gap_hz": 3.263828397212544
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.48044540417146164,
+          "valence_gap_hz": 6.1356707317073145
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.48614914924164965,
+          "valence_gap_hz": 2.673127177700347
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.5760401836520024,
+          "valence_gap_hz": 1.1269599303135882
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.15957777055576633,
+          "valence_gap_hz": 9.399499128919858
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.18079814640688446,
+          "valence_gap_hz": 5.936955574912891
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.28962000828119033,
+          "valence_gap_hz": 4.390788327526132
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.5126418596807356,
+          "valence_gap_hz": 3.4625435540069676
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.47030485346324336,
+          "valence_gap_hz": 5.008710801393726
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.495068645203495,
+          "valence_gap_hz": 1.5461672473867587
+        }
+      },
+      "max_kc_fraction": 0.12915231299212598,
+      "min_kc_fraction": 0.01787032480314961,
+      "max_jaccard_nominal": 0.5482213712102426,
+      "max_jaccard_all": 0.5891038201340271,
+      "silent_trials": 0,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "max nominal KC Jaccard 0.548 >= 0.4"
+    },
+    "18000/0.05": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 18000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.05,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 24.677835051546392,
+          "mbon_max_hz": 137.5,
+          "mbon_active_fraction": 0.30541237113402064,
+          "pam_hz": 28.353658536585364,
+          "ppl1_hz": 21.986607142857146,
+          "kc_fraction": 0.11152805118110236,
+          "kc_hz": 5.885519192913385,
+          "total_hz": 1.780766645268347,
+          "mbon_sd_hz": 4.877976741563539,
+          "pam_sd_hz": 5.82126635770161,
+          "ppl1_sd_hz": 4.44991308838376,
+          "valence_mean_hz": -6.3670513937282225,
+          "valence_sd_hz": 2.8345963022710126,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 57.36824496839287
+        },
+        "strong_down": {
+          "mbon_mean_hz": 14.948453608247423,
+          "mbon_max_hz": 93.75,
+          "mbon_active_fraction": 0.22036082474226804,
+          "pam_hz": 15.701219512195122,
+          "ppl1_hz": 14.397321428571429,
+          "kc_fraction": 0.06751353346456693,
+          "kc_hz": 3.5048597440944884,
+          "total_hz": 1.368230762708785,
+          "mbon_sd_hz": 7.709835802628195,
+          "pam_sd_hz": 8.153096054249723,
+          "ppl1_sd_hz": 7.687131856126144,
+          "valence_mean_hz": -1.3038980836236935,
+          "valence_sd_hz": 3.369327183470737,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 55.800092486341136
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 5.670103092783505,
+          "mbon_max_hz": 56.25,
+          "mbon_active_fraction": 0.10953608247422679,
+          "pam_hz": 6.707317073170732,
+          "ppl1_hz": 4.910714285714286,
+          "kc_fraction": 0.02026943897637795,
+          "kc_hz": 1.0134719488188977,
+          "total_hz": 0.9414629788883371,
+          "mbon_sd_hz": 2.1695021889037167,
+          "pam_sd_hz": 2.9871826131502175,
+          "ppl1_sd_hz": 1.5828665364784258,
+          "valence_mean_hz": -1.7966027874564463,
+          "valence_sd_hz": 1.4476618884704844,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 139.77566867989646
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 36.98453608247422,
+          "mbon_max_hz": 162.5,
+          "mbon_active_fraction": 0.3608247422680413,
+          "pam_hz": 46.951219512195124,
+          "ppl1_hz": 29.6875,
+          "kc_fraction": 0.1604638287401575,
+          "kc_hz": 9.085875984251967,
+          "total_hz": 2.075245878804763,
+          "mbon_sd_hz": 15.478024983761076,
+          "pam_sd_hz": 20.32288023890967,
+          "ppl1_sd_hz": 11.947997593800299,
+          "valence_mean_hz": -17.263719512195124,
+          "valence_sd_hz": 8.449339039550866,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 17999.999999999996,
+          "max_orn_hz": 132.5334060539951
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 25.83762886597938,
+          "mbon_max_hz": 137.5,
+          "mbon_active_fraction": 0.28865979381443296,
+          "pam_hz": 31.40243902439024,
+          "ppl1_hz": 21.763392857142858,
+          "kc_fraction": 0.11869463582677166,
+          "kc_hz": 6.460691437007874,
+          "total_hz": 1.7932952604740735,
+          "mbon_sd_hz": 13.777558054024318,
+          "pam_sd_hz": 17.62124288751575,
+          "ppl1_sd_hz": 11.19192065778721,
+          "valence_mean_hz": -9.639046167247388,
+          "valence_sd_hz": 7.5035327144447574,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 46.43962848297213
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 20.2319587628866,
+          "mbon_max_hz": 106.25,
+          "mbon_active_fraction": 0.2603092783505155,
+          "pam_hz": 23.475609756097562,
+          "ppl1_hz": 17.857142857142858,
+          "kc_fraction": 0.09181225393700787,
+          "kc_hz": 4.855130413385827,
+          "total_hz": 1.5698998316396362,
+          "mbon_sd_hz": 13.500122728946305,
+          "pam_sd_hz": 15.830189007008743,
+          "ppl1_sd_hz": 11.883484386583794,
+          "valence_mean_hz": -5.618466898954703,
+          "valence_sd_hz": 4.614317488055599,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 18000.0,
+          "max_orn_hz": 51.34788189987163
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.5206948435392269,
+          "valence_gap_hz": 5.0631533101045285
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.18430921209986822,
+          "valence_gap_hz": 4.570448606271777
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.5902553753526385,
+          "valence_gap_hz": 10.896668118466902
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.6710090002354017,
+          "valence_gap_hz": 3.2719947735191655
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.48860813084756294,
+          "valence_gap_hz": 0.7485844947735192
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.2718187468608578,
+          "valence_gap_hz": 0.4927047038327528
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.4288636437808332,
+          "valence_gap_hz": 15.95982142857143
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.45583371193410765,
+          "valence_gap_hz": 8.335148083623695
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.5419234334556062,
+          "valence_gap_hz": 4.314568815331009
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.1499247800818297,
+          "valence_gap_hz": 15.467116724738677
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.21831160567285737,
+          "valence_gap_hz": 7.842443379790941
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.23657355325194832,
+          "valence_gap_hz": 3.821864111498257
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.5950351747772209,
+          "valence_gap_hz": 7.624673344947736
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.43399411815845357,
+          "valence_gap_hz": 11.64525261324042
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.389454415422361,
+          "valence_gap_hz": 4.020579268292685
+        }
+      },
+      "max_kc_fraction": 0.1604638287401575,
+      "min_kc_fraction": 0.02026943897637795,
+      "max_jaccard_nominal": 0.5902553753526385,
+      "max_jaccard_all": 0.6710090002354017,
+      "silent_trials": 0,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "max nominal KC Jaccard 0.590 >= 0.4"
+    },
+    "12000/0.20": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 12000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.2,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 11.469072164948454,
+          "mbon_max_hz": 87.5,
+          "mbon_active_fraction": 0.18298969072164947,
+          "pam_hz": 12.804878048780488,
+          "ppl1_hz": 10.491071428571429,
+          "kc_fraction": 0.05244217519685039,
+          "kc_hz": 2.711306594488189,
+          "total_hz": 1.1823833286903016,
+          "mbon_sd_hz": 5.907790918103704,
+          "pam_sd_hz": 6.485892149472574,
+          "ppl1_sd_hz": 5.702115547769672,
+          "valence_mean_hz": -2.3138066202090593,
+          "valence_sd_hz": 2.6002130381060775,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 31.532046155603794
+        },
+        "strong_down": {
+          "mbon_mean_hz": 4.961340206185568,
+          "mbon_max_hz": 56.25,
+          "mbon_active_fraction": 0.08762886597938144,
+          "pam_hz": 5.487804878048781,
+          "ppl1_hz": 4.575892857142858,
+          "kc_fraction": 0.021161417322834646,
+          "kc_hz": 1.079601377952756,
+          "total_hz": 0.8391144123738812,
+          "mbon_sd_hz": 3.8171934047110487,
+          "pam_sd_hz": 5.569465980190167,
+          "ppl1_sd_hz": 2.6330096113957926,
+          "valence_mean_hz": -0.9119120209059235,
+          "valence_sd_hz": 3.2278997061590293,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.000000000002,
+          "max_orn_hz": 30.938235623808993
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 4.510309278350515,
+          "mbon_max_hz": 43.75,
+          "mbon_active_fraction": 0.09020618556701031,
+          "pam_hz": 5.182926829268293,
+          "ppl1_hz": 4.017857142857142,
+          "kc_fraction": 0.015348179133858268,
+          "kc_hz": 0.7674089566929133,
+          "total_hz": 0.7379013698961979,
+          "mbon_sd_hz": 3.0774040786401864,
+          "pam_sd_hz": 4.161174533970797,
+          "ppl1_sd_hz": 2.433518370961596,
+          "valence_mean_hz": -1.1650696864111498,
+          "valence_sd_hz": 2.278943236889896,
+          "silent_trials": 1,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 50.694025347012676
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 7.925257731958763,
+          "mbon_max_hz": 75.0,
+          "mbon_active_fraction": 0.12371134020618557,
+          "pam_hz": 8.841463414634147,
+          "ppl1_hz": 7.254464285714286,
+          "kc_fraction": 0.03257258858267716,
+          "kc_hz": 1.6839936023622046,
+          "total_hz": 1.0370741027846075,
+          "mbon_sd_hz": 5.4894054977865405,
+          "pam_sd_hz": 6.311575237887386,
+          "ppl1_sd_hz": 4.946817655809144,
+          "valence_mean_hz": -1.5869991289198604,
+          "valence_sd_hz": 1.8463889513547052,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 49.49911608721273
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 13.853092783505154,
+          "mbon_max_hz": 93.75,
+          "mbon_active_fraction": 0.19201030927835053,
+          "pam_hz": 16.920731707317074,
+          "ppl1_hz": 11.607142857142858,
+          "kc_fraction": 0.05843996062992126,
+          "kc_hz": 3.051181102362205,
+          "total_hz": 1.2896524993641065,
+          "mbon_sd_hz": 8.917195887212982,
+          "pam_sd_hz": 10.798759091969982,
+          "ppl1_sd_hz": 7.650935078810623,
+          "valence_mean_hz": -5.313588850174216,
+          "valence_sd_hz": 3.8239220470819175,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 27.434842249657066
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 6.378865979381444,
+          "mbon_max_hz": 62.5,
+          "mbon_active_fraction": 0.12113402061855669,
+          "pam_hz": 7.774390243902439,
+          "ppl1_hz": 5.357142857142858,
+          "kc_fraction": 0.02645177165354331,
+          "kc_hz": 1.3364296259842519,
+          "total_hz": 0.9017953392037402,
+          "mbon_sd_hz": 4.355920638366404,
+          "pam_sd_hz": 5.791536655337522,
+          "ppl1_sd_hz": 3.5714285714285716,
+          "valence_mean_hz": -2.4172473867595814,
+          "valence_sd_hz": 3.2435309689740186,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 29.542097488921716
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.2764606196181928,
+          "valence_gap_hz": 1.4018945993031358
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.2576702934501732,
+          "valence_gap_hz": 1.1487369337979094
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.38328201263329154,
+          "valence_gap_hz": 0.7268074912891989
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.5504143402120887,
+          "valence_gap_hz": 2.9997822299651564
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.28209628651463486,
+          "valence_gap_hz": 0.10344076655052215
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.20545759092973703,
+          "valence_gap_hz": 0.25315766550522634
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.34049117666999196,
+          "valence_gap_hz": 0.6750871080139369
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.2788265541559678,
+          "valence_gap_hz": 4.401676829268292
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.25749905324239003,
+          "valence_gap_hz": 1.505335365853658
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.2848302898470254,
+          "valence_gap_hz": 0.42192944250871056
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.24957889895265067,
+          "valence_gap_hz": 4.148519163763066
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.271590143256328,
+          "valence_gap_hz": 1.2521777003484316
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.38103694245465447,
+          "valence_gap_hz": 3.7265897212543555
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.31490391422730585,
+          "valence_gap_hz": 0.830248257839721
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.2775548695597592,
+          "valence_gap_hz": 2.8963414634146343
+        }
+      },
+      "max_kc_fraction": 0.05843996062992126,
+      "min_kc_fraction": 0.015348179133858268,
+      "max_jaccard_nominal": 0.38328201263329154,
+      "max_jaccard_all": 0.5504143402120887,
+      "silent_trials": 1,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "1 silent MBON trials"
+    },
+    "12000/0.10": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 12000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 11.146907216494846,
+          "mbon_max_hz": 93.75,
+          "mbon_active_fraction": 0.17396907216494845,
+          "pam_hz": 13.871951219512196,
+          "ppl1_hz": 9.151785714285715,
+          "kc_fraction": 0.04807455708661417,
+          "kc_hz": 2.482160433070866,
+          "total_hz": 1.2326113419168856,
+          "mbon_sd_hz": 6.396368113579016,
+          "pam_sd_hz": 8.29518050112163,
+          "ppl1_sd_hz": 5.067645542173198,
+          "valence_mean_hz": -4.720165505226481,
+          "valence_sd_hz": 3.5046915319306295,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 35.685108329793145
+        },
+        "strong_down": {
+          "mbon_mean_hz": 6.056701030927835,
+          "mbon_max_hz": 62.5,
+          "mbon_active_fraction": 0.09922680412371133,
+          "pam_hz": 6.097560975609756,
+          "ppl1_hz": 6.0267857142857135,
+          "kc_fraction": 0.021622785433070866,
+          "kc_hz": 1.1149729330708662,
+          "total_hz": 0.8706819805961653,
+          "mbon_sd_hz": 6.489524903100088,
+          "pam_sd_hz": 7.140732241086828,
+          "ppl1_sd_hz": 6.06974016139259,
+          "valence_mean_hz": -0.07077526132404177,
+          "valence_sd_hz": 1.7033757591526593,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 34.82476002168575
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 3.608247422680412,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.07216494845360824,
+          "pam_hz": 4.115853658536586,
+          "ppl1_hz": 3.2366071428571432,
+          "kc_fraction": 0.010211614173228346,
+          "kc_hz": 0.5105807086614174,
+          "total_hz": 0.683888276547038,
+          "mbon_sd_hz": 2.6138791383356184,
+          "pam_sd_hz": 4.320856036667564,
+          "ppl1_sd_hz": 1.5044803714394706,
+          "valence_mean_hz": -0.8792465156794427,
+          "valence_sd_hz": 3.1136423653809198,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 72.44882933294066
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 13.917525773195877,
+          "mbon_max_hz": 100.0,
+          "mbon_active_fraction": 0.1958762886597938,
+          "pam_hz": 15.54878048780488,
+          "ppl1_hz": 12.723214285714286,
+          "kc_fraction": 0.06293061023622047,
+          "kc_hz": 3.301857775590551,
+          "total_hz": 1.3094106176039535,
+          "mbon_sd_hz": 7.315749164665562,
+          "pam_sd_hz": 8.787985571527239,
+          "ppl1_sd_hz": 6.3269677679775045,
+          "valence_mean_hz": -2.8255662020905916,
+          "valence_sd_hz": 3.0252180492047875,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.000000000004,
+          "max_orn_hz": 69.67851579096447
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 20.103092783505154,
+          "mbon_max_hz": 106.25,
+          "mbon_active_fraction": 0.2603092783505154,
+          "pam_hz": 23.780487804878046,
+          "ppl1_hz": 17.410714285714285,
+          "kc_fraction": 0.08353838582677164,
+          "kc_hz": 4.381459153543307,
+          "total_hz": 1.4312901975509018,
+          "mbon_sd_hz": 10.108501452664047,
+          "pam_sd_hz": 11.787616602116564,
+          "ppl1_sd_hz": 9.130372534782287,
+          "valence_mean_hz": -6.369773519163763,
+          "valence_sd_hz": 4.377587837915717,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.000000000002,
+          "max_orn_hz": 29.688273132112815
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 9.536082474226804,
+          "mbon_max_hz": 81.25,
+          "mbon_active_fraction": 0.1404639175257732,
+          "pam_hz": 11.28048780487805,
+          "ppl1_hz": 8.258928571428571,
+          "kc_fraction": 0.03773991141732283,
+          "kc_hz": 1.963890255905512,
+          "total_hz": 1.1058111578105887,
+          "mbon_sd_hz": 7.575741472525293,
+          "pam_sd_hz": 9.143437401914724,
+          "ppl1_sd_hz": 6.504476760664854,
+          "valence_mean_hz": -3.021559233449477,
+          "valence_sd_hz": 3.1168568881845133,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 32.51151449471688
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.27948346755895814,
+          "valence_gap_hz": 4.649390243902439
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.1792887245292289,
+          "valence_gap_hz": 3.8409189895470384
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.3683881369614088,
+          "valence_gap_hz": 1.8945993031358892
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.526491720281717,
+          "valence_gap_hz": 1.6496080139372822
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.3838182844802108,
+          "valence_gap_hz": 1.6986062717770039
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.3294451488498936,
+          "valence_gap_hz": 0.8084712543554009
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.27327734948234816,
+          "valence_gap_hz": 2.75479094076655
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.2544641894064284,
+          "valence_gap_hz": 6.298998257839721
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.3530942549035812,
+          "valence_gap_hz": 2.950783972125435
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.16744999240633465,
+          "valence_gap_hz": 1.946319686411149
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.1199695562914418,
+          "valence_gap_hz": 5.4905270034843205
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.2995868794553542,
+          "valence_gap_hz": 2.142312717770034
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.42830641798568103,
+          "valence_gap_hz": 3.5442073170731714
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.36878933834306094,
+          "valence_gap_hz": 0.19599303135888535
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.33925730570948937,
+          "valence_gap_hz": 3.348214285714286
+        }
+      },
+      "max_kc_fraction": 0.08353838582677164,
+      "min_kc_fraction": 0.010211614173228346,
+      "max_jaccard_nominal": 0.3683881369614088,
+      "max_jaccard_all": 0.526491720281717,
+      "silent_trials": 0,
+      "saturated_trials": 0,
+      "passes": true,
+      "reason": "all three criteria met"
+    },
+    "12000/0.05": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 12000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.05,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 11.662371134020617,
+          "mbon_max_hz": 93.75,
+          "mbon_active_fraction": 0.17525773195876287,
+          "pam_hz": 12.652439024390244,
+          "ppl1_hz": 10.9375,
+          "kc_fraction": 0.05182701771653543,
+          "kc_hz": 2.702079232283465,
+          "total_hz": 1.2331791039352722,
+          "mbon_sd_hz": 4.501622183223657,
+          "pam_sd_hz": 4.560085810091066,
+          "ppl1_sd_hz": 4.766552791085408,
+          "valence_mean_hz": -1.7149390243902438,
+          "valence_sd_hz": 2.5936127736393186,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 38.245496645595246
+        },
+        "strong_down": {
+          "mbon_mean_hz": 5.670103092783505,
+          "mbon_max_hz": 62.5,
+          "mbon_active_fraction": 0.09536082474226804,
+          "pam_hz": 6.554878048780488,
+          "ppl1_hz": 5.022321428571429,
+          "kc_fraction": 0.025529035433070866,
+          "kc_hz": 1.3087475393700787,
+          "total_hz": 0.937526495560858,
+          "mbon_sd_hz": 5.915816721176711,
+          "pam_sd_hz": 8.061374899840054,
+          "ppl1_sd_hz": 4.44991308838376,
+          "valence_mean_hz": -1.5325566202090593,
+          "valence_sd_hz": 3.999436618227693,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.000000000002,
+          "max_orn_hz": 37.20006165756076
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 4.445876288659794,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.08891752577319587,
+          "pam_hz": 5.0304878048780495,
+          "ppl1_hz": 4.017857142857143,
+          "kc_fraction": 0.017255167322834643,
+          "kc_hz": 0.8627583661417323,
+          "total_hz": 0.8600459054517267,
+          "mbon_sd_hz": 2.96671763742818,
+          "pam_sd_hz": 4.093613288330725,
+          "ppl1_sd_hz": 2.2888212302201993,
+          "valence_mean_hz": -1.012630662020906,
+          "valence_sd_hz": 2.313551321083709,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 93.18377911993099
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 23.00257731958763,
+          "mbon_max_hz": 137.5,
+          "mbon_active_fraction": 0.2860824742268041,
+          "pam_hz": 27.896341463414636,
+          "ppl1_hz": 19.419642857142858,
+          "kc_fraction": 0.11549581692913385,
+          "kc_hz": 6.205401082677165,
+          "total_hz": 1.7102506025847555,
+          "mbon_sd_hz": 8.103200990856953,
+          "pam_sd_hz": 11.759420569289778,
+          "ppl1_sd_hz": 5.498765763979558,
+          "valence_mean_hz": -8.476698606271778,
+          "valence_sd_hz": 6.479232346980468,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 88.35560403599673
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 18.36340206185567,
+          "mbon_max_hz": 106.25,
+          "mbon_active_fraction": 0.23067010309278352,
+          "pam_hz": 20.884146341463413,
+          "ppl1_hz": 16.517857142857142,
+          "kc_fraction": 0.08046259842519685,
+          "kc_hz": 4.227669783464567,
+          "total_hz": 1.451653928610361,
+          "mbon_sd_hz": 10.801705974070039,
+          "pam_sd_hz": 13.429473895131764,
+          "ppl1_sd_hz": 8.94131743281729,
+          "valence_mean_hz": -4.366289198606272,
+          "valence_sd_hz": 4.836862477887681,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 30.959752321981423
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 12.04896907216495,
+          "mbon_max_hz": 75.0,
+          "mbon_active_fraction": 0.18685567010309276,
+          "pam_hz": 14.786585365853657,
+          "ppl1_hz": 10.044642857142858,
+          "kc_fraction": 0.05262672244094488,
+          "kc_hz": 2.717458169291339,
+          "total_hz": 1.2327627451217886,
+          "mbon_sd_hz": 6.669448060654196,
+          "pam_sd_hz": 7.8882066313102905,
+          "ppl1_sd_hz": 6.069740161392591,
+          "valence_mean_hz": -4.741942508710801,
+          "valence_sd_hz": 3.5577395435562145,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 34.23192126658108
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.3745110923139747,
+          "valence_gap_hz": 0.18238240418118457
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.30258020197084184,
+          "valence_gap_hz": 0.7023083623693378
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.4166641597364086,
+          "valence_gap_hz": 6.761759581881535
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.49526810863290116,
+          "valence_gap_hz": 2.651350174216028
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.4382907324994835,
+          "valence_gap_hz": 3.0270034843205575
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.2778617414050827,
+          "valence_gap_hz": 0.5199259581881532
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.22830185680494403,
+          "valence_gap_hz": 6.94414198606272
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.2938661261247771,
+          "valence_gap_hz": 2.8337325783972127
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.34626319763377156,
+          "valence_gap_hz": 3.209385888501742
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.15309787838950323,
+          "valence_gap_hz": 7.464067944250872
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.19899620726968353,
+          "valence_gap_hz": 3.3536585365853657
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.3014086586992554,
+          "valence_gap_hz": 3.729311846689895
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.5280365090568386,
+          "valence_gap_hz": 4.110409407665506
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.4150793094032377,
+          "valence_gap_hz": 3.734756097560977
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.4072035020821724,
+          "valence_gap_hz": 0.3756533101045294
+        }
+      },
+      "max_kc_fraction": 0.11549581692913385,
+      "min_kc_fraction": 0.017255167322834643,
+      "max_jaccard_nominal": 0.4166641597364086,
+      "max_jaccard_all": 0.5280365090568386,
+      "silent_trials": 0,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "max nominal KC Jaccard 0.417 >= 0.4"
+    },
+    "8000/0.20": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 8000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.2,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 3.286082474226804,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.06572164948453608,
+          "pam_hz": 3.048780487804878,
+          "ppl1_hz": 3.4598214285714284,
+          "kc_fraction": 0.012057086614173228,
+          "kc_hz": 0.6043922244094488,
+          "total_hz": 0.7245778878647303,
+          "mbon_sd_hz": 1.9274589506570488,
+          "pam_sd_hz": 3.3871467064849443,
+          "ppl1_sd_hz": 1.112878084605558,
+          "valence_mean_hz": 0.4110409407665505,
+          "valence_sd_hz": 2.7528366499200443,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 7999.999999999999,
+          "max_orn_hz": 21.02136410373586
+        },
+        "strong_down": {
+          "mbon_mean_hz": 1.481958762886598,
+          "mbon_max_hz": 37.5,
+          "mbon_active_fraction": 0.029639175257731958,
+          "pam_hz": 0.9146341463414633,
+          "ppl1_hz": 1.8973214285714288,
+          "kc_fraction": 0.003783218503937008,
+          "kc_hz": 0.18916092519685038,
+          "total_hz": 0.5064815712018992,
+          "mbon_sd_hz": 1.2147431285952595,
+          "pam_sd_hz": 1.4206887134407744,
+          "ppl1_sd_hz": 1.3015517622422546,
+          "valence_mean_hz": 0.9826872822299652,
+          "valence_sd_hz": 1.2070286033967312,
+          "silent_trials": 2,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.000000000001,
+          "max_orn_hz": 20.62549041587266
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 2.061855670103093,
+          "mbon_max_hz": 37.5,
+          "mbon_active_fraction": 0.041237113402061855,
+          "pam_hz": 2.1341463414634148,
+          "ppl1_hz": 2.0089285714285716,
+          "kc_fraction": 0.005075049212598425,
+          "kc_hz": 0.2537524606299213,
+          "total_hz": 0.5145437918629862,
+          "mbon_sd_hz": 1.6759656372225393,
+          "pam_sd_hz": 1.928218085468524,
+          "ppl1_sd_hz": 1.5647760390797574,
+          "valence_mean_hz": -0.12521777003484313,
+          "valence_sd_hz": 0.849881266134214,
+          "silent_trials": 2,
+          "saturated_trials": 0,
+          "total_drive_hz": 7999.999999999999,
+          "max_orn_hz": 33.79601689800845
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 3.479381443298969,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.06958762886597938,
+          "pam_hz": 3.6585365853658534,
+          "ppl1_hz": 3.3482142857142856,
+          "kc_fraction": 0.013072096456692914,
+          "kc_hz": 0.66283218503937,
+          "total_hz": 0.7086048497474595,
+          "mbon_sd_hz": 1.843150369776705,
+          "pam_sd_hz": 2.607426750365116,
+          "ppl1_sd_hz": 1.3286139448979373,
+          "valence_mean_hz": -0.310322299651568,
+          "valence_sd_hz": 1.4250572717616234,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.0,
+          "max_orn_hz": 32.999410724808484
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 5.992268041237113,
+          "mbon_max_hz": 62.5,
+          "mbon_active_fraction": 0.09793814432989689,
+          "pam_hz": 6.097560975609757,
+          "ppl1_hz": 5.915178571428571,
+          "kc_fraction": 0.022545521653543305,
+          "kc_hz": 1.1534202755905512,
+          "total_hz": 0.7930499872821307,
+          "mbon_sd_hz": 5.713035349741737,
+          "pam_sd_hz": 6.774293412969888,
+          "ppl1_sd_hz": 5.004041278614296,
+          "valence_mean_hz": -0.1823824041811848,
+          "valence_sd_hz": 2.231203668554114,
+          "silent_trials": 1,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.000000000001,
+          "max_orn_hz": 18.28989483310471
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 2.5128865979381443,
+          "mbon_max_hz": 43.75,
+          "mbon_active_fraction": 0.05025773195876289,
+          "pam_hz": 1.8292682926829267,
+          "ppl1_hz": 3.013392857142857,
+          "kc_fraction": 0.007535679133858268,
+          "kc_hz": 0.3767839566929134,
+          "total_hz": 0.6077324644808082,
+          "mbon_sd_hz": 1.8976894557955302,
+          "pam_sd_hz": 2.06135184080126,
+          "ppl1_sd_hz": 1.9052766895777622,
+          "valence_mean_hz": 1.1841245644599305,
+          "valence_sd_hz": 1.0911460054635074,
+          "silent_trials": 1,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.000000000001,
+          "max_orn_hz": 19.694731659281143
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.22155518487942585,
+          "valence_gap_hz": 0.5716463414634146
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.3053736665250665,
+          "valence_gap_hz": 0.5362587108013936
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.19936807585480476,
+          "valence_gap_hz": 0.7213632404181185
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.32497135294070906,
+          "valence_gap_hz": 0.5934233449477353
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.28744936034550417,
+          "valence_gap_hz": 0.77308362369338
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.11146878483835007,
+          "valence_gap_hz": 1.1079050522648082
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.21307903348834922,
+          "valence_gap_hz": 1.2930095818815333
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.1895652958152958,
+          "valence_gap_hz": 1.16506968641115
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.11034500489368644,
+          "valence_gap_hz": 0.20143728222996538
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.15494107341933427,
+          "valence_gap_hz": 0.18510452961672486
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.17572580519622036,
+          "valence_gap_hz": 0.05716463414634165
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.2866311677452982,
+          "valence_gap_hz": 1.3093423344947737
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.20554400539271253,
+          "valence_gap_hz": 0.1279398954703832
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.13639858333309288,
+          "valence_gap_hz": 1.4944468641114985
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.2056282812374347,
+          "valence_gap_hz": 1.3665069686411153
+        }
+      },
+      "max_kc_fraction": 0.022545521653543305,
+      "min_kc_fraction": 0.003783218503937008,
+      "max_jaccard_nominal": 0.3053736665250665,
+      "max_jaccard_all": 0.32497135294070906,
+      "silent_trials": 6,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "6 silent MBON trials"
+    },
+    "8000/0.10": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 8000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 3.6726804123711343,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.07345360824742267,
+          "pam_hz": 3.658536585365854,
+          "ppl1_hz": 3.6830357142857144,
+          "kc_fraction": 0.010549950787401575,
+          "kc_hz": 0.5290354330708662,
+          "total_hz": 0.7092104625670717,
+          "mbon_sd_hz": 2.0698941242537385,
+          "pam_sd_hz": 3.1261948510324675,
+          "ppl1_sd_hz": 1.5418644647623192,
+          "valence_mean_hz": 0.024499128919860613,
+          "valence_sd_hz": 2.23498078950816,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.0,
+          "max_orn_hz": 23.790072219862097
+        },
+        "strong_down": {
+          "mbon_mean_hz": 2.448453608247423,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.04896907216494845,
+          "pam_hz": 1.524390243902439,
+          "ppl1_hz": 3.125,
+          "kc_fraction": 0.006643700787401575,
+          "kc_hz": 0.3321850393700787,
+          "total_hz": 0.655765131236298,
+          "mbon_sd_hz": 1.193067138882154,
+          "pam_sd_hz": 1.814692217421573,
+          "ppl1_sd_hz": 0.9545044354015157,
+          "valence_mean_hz": 1.600609756097561,
+          "valence_sd_hz": 1.423547053222877,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.0,
+          "max_orn_hz": 23.216506681123832
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 1.3530927835051545,
+          "mbon_max_hz": 43.75,
+          "mbon_active_fraction": 0.027061855670103094,
+          "pam_hz": 0.9146341463414633,
+          "ppl1_hz": 1.6741071428571428,
+          "kc_fraction": 0.002614419291338583,
+          "kc_hz": 0.13072096456692914,
+          "total_hz": 0.47256725330361793,
+          "mbon_sd_hz": 0.8237060869365646,
+          "pam_sd_hz": 1.2623150475774771,
+          "ppl1_sd_hz": 0.7451097860681073,
+          "valence_mean_hz": 0.7594729965156795,
+          "valence_sd_hz": 1.1371467520733494,
+          "silent_trials": 1,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.000000000002,
+          "max_orn_hz": 48.299219555293774
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 7.603092783505155,
+          "mbon_max_hz": 62.5,
+          "mbon_active_fraction": 0.13788659793814434,
+          "pam_hz": 8.841463414634147,
+          "ppl1_hz": 6.696428571428572,
+          "kc_fraction": 0.033156988188976375,
+          "kc_hz": 1.6747662401574803,
+          "total_hz": 1.0117897675657999,
+          "mbon_sd_hz": 3.3263544857482277,
+          "pam_sd_hz": 4.77904763914467,
+          "ppl1_sd_hz": 2.3380488239570614,
+          "valence_mean_hz": -2.145034843205575,
+          "valence_sd_hz": 2.674128877906355,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.000000000001,
+          "max_orn_hz": 46.452343860642976
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 6.701030927835052,
+          "mbon_max_hz": 68.75,
+          "mbon_active_fraction": 0.11469072164948453,
+          "pam_hz": 7.77439024390244,
+          "ppl1_hz": 5.915178571428571,
+          "kc_fraction": 0.027897391732283464,
+          "kc_hz": 1.417937992125984,
+          "total_hz": 0.9542565497026441,
+          "mbon_sd_hz": 3.964143986360757,
+          "pam_sd_hz": 4.652334562099855,
+          "ppl1_sd_hz": 3.7255489303405365,
+          "valence_mean_hz": -1.8592116724738679,
+          "valence_sd_hz": 2.4352698977993397,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.000000000001,
+          "max_orn_hz": 19.79218208807521
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 2.384020618556701,
+          "mbon_max_hz": 43.75,
+          "mbon_active_fraction": 0.04768041237113402,
+          "pam_hz": 2.4390243902439024,
+          "ppl1_hz": 2.34375,
+          "kc_fraction": 0.0072896161417322835,
+          "kc_hz": 0.3644808070866142,
+          "total_hz": 0.6385051658773513,
+          "mbon_sd_hz": 1.6285839878200643,
+          "pam_sd_hz": 2.5246300951549547,
+          "ppl1_sd_hz": 1.2570410296190704,
+          "valence_mean_hz": -0.0952743902439025,
+          "valence_sd_hz": 1.977273026271229,
+          "silent_trials": 1,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.0,
+          "max_orn_hz": 21.674342996477918
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.13558088978265082,
+          "valence_gap_hz": 1.5761106271777003
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.2290967796552869,
+          "valence_gap_hz": 0.7349738675958188
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.24544623105614907,
+          "valence_gap_hz": 2.1695339721254356
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.2567421076797519,
+          "valence_gap_hz": 1.8837108013937285
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.19649890274890275,
+          "valence_gap_hz": 0.11977351916376311
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.17726273138399096,
+          "valence_gap_hz": 0.8411367595818815
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.20400572894299826,
+          "valence_gap_hz": 3.745644599303136
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.16249160458891404,
+          "valence_gap_hz": 3.459821428571429
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.15855603947414862,
+          "valence_gap_hz": 1.6958841463414633
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.08363109207185924,
+          "valence_gap_hz": 2.9045078397212545
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.11936116864178782,
+          "valence_gap_hz": 2.6186846689895473
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.19844321946435028,
+          "valence_gap_hz": 0.854747386759582
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.46131238634632754,
+          "valence_gap_hz": 0.28582317073170715
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.20688865932924203,
+          "valence_gap_hz": 2.0497604529616726
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.2124462958257612,
+          "valence_gap_hz": 1.7639372822299655
+        }
+      },
+      "max_kc_fraction": 0.033156988188976375,
+      "min_kc_fraction": 0.002614419291338583,
+      "max_jaccard_nominal": 0.24544623105614907,
+      "max_jaccard_all": 0.46131238634632754,
+      "silent_trials": 2,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "2 silent MBON trials"
+    },
+    "8000/0.05": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 8000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.05,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 3.2216494845360826,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.06443298969072164,
+          "pam_hz": 3.048780487804878,
+          "ppl1_hz": 3.3482142857142856,
+          "kc_fraction": 0.010980561023622049,
+          "kc_hz": 0.5505659448818897,
+          "total_hz": 0.6726844393842129,
+          "mbon_sd_hz": 2.3980352706824415,
+          "pam_sd_hz": 4.018314492916653,
+          "ppl1_sd_hz": 1.3286139448979375,
+          "valence_mean_hz": 0.29943379790940755,
+          "valence_sd_hz": 2.9290040773752852,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 7999.999999999997,
+          "max_orn_hz": 25.496997763730164
+        },
+        "strong_down": {
+          "mbon_mean_hz": 3.6082474226804124,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.07216494845360824,
+          "pam_hz": 3.50609756097561,
+          "ppl1_hz": 3.683035714285714,
+          "kc_fraction": 0.010672982283464567,
+          "kc_hz": 0.5336491141732284,
+          "total_hz": 0.7050090236310123,
+          "mbon_sd_hz": 1.9868538384730547,
+          "pam_sd_hz": 3.087730291771098,
+          "ppl1_sd_hz": 1.3015517622422546,
+          "valence_mean_hz": 0.17693815331010437,
+          "valence_sd_hz": 2.084472773442381,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.0,
+          "max_orn_hz": 24.800041105040506
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 1.9329896907216493,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.037371134020618556,
+          "pam_hz": 1.524390243902439,
+          "ppl1_hz": 2.232142857142857,
+          "kc_fraction": 0.0037524606299212597,
+          "kc_hz": 0.18762303149606296,
+          "total_hz": 0.514884449074018,
+          "mbon_sd_hz": 1.1930671388821539,
+          "pam_sd_hz": 1.2623150475774771,
+          "ppl1_sd_hz": 1.5092040263009225,
+          "valence_mean_hz": 0.7077526132404182,
+          "valence_sd_hz": 1.521721335679895,
+          "silent_trials": 1,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.0,
+          "max_orn_hz": 62.12251941328732
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 11.018041237113401,
+          "mbon_max_hz": 81.25,
+          "mbon_active_fraction": 0.1713917525773196,
+          "pam_hz": 13.262195121951219,
+          "ppl1_hz": 9.375,
+          "kc_fraction": 0.04936638779527559,
+          "kc_hz": 2.5605930118110236,
+          "total_hz": 1.1684542338392219,
+          "mbon_sd_hz": 5.313726920779975,
+          "pam_sd_hz": 6.788000625682323,
+          "ppl1_sd_hz": 4.34797462986207,
+          "valence_mean_hz": -3.88719512195122,
+          "valence_sd_hz": 2.9712416414048817,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.0,
+          "max_orn_hz": 58.903736023997816
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 6.8298969072164954,
+          "mbon_max_hz": 68.75,
+          "mbon_active_fraction": 0.11855670103092783,
+          "pam_hz": 7.621951219512196,
+          "ppl1_hz": 6.25,
+          "kc_fraction": 0.03497170275590551,
+          "kc_hz": 1.7947219488188977,
+          "total_hz": 1.015877654098182,
+          "mbon_sd_hz": 4.449143428255688,
+          "pam_sd_hz": 6.000977229843148,
+          "ppl1_sd_hz": 3.44151468449797,
+          "valence_mean_hz": -1.3719512195121952,
+          "valence_sd_hz": 3.0462017110634876,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 8000.000000000001,
+          "max_orn_hz": 20.639834881320947
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 3.608247422680412,
+          "mbon_max_hz": 43.75,
+          "mbon_active_fraction": 0.07216494845360824,
+          "pam_hz": 4.115853658536585,
+          "ppl1_hz": 3.2366071428571432,
+          "kc_fraction": 0.011349655511811023,
+          "kc_hz": 0.5690206692913387,
+          "total_hz": 0.7058795920592047,
+          "mbon_sd_hz": 2.9929899017528094,
+          "pam_sd_hz": 4.06758050735559,
+          "ppl1_sd_hz": 2.383276395542703,
+          "valence_mean_hz": -0.8792465156794426,
+          "valence_sd_hz": 2.3209755206041587,
+          "silent_trials": 1,
+          "saturated_trials": 0,
+          "total_drive_hz": 7999.999999999999,
+          "max_orn_hz": 22.821280844387392
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.22107041052312618,
+          "valence_gap_hz": 0.12249564459930318
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.22749396628386512,
+          "valence_gap_hz": 0.4083188153310106
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.22799354357795698,
+          "valence_gap_hz": 4.1866289198606275
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.28384626915468875,
+          "valence_gap_hz": 1.6713850174216027
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.2408118546881045,
+          "valence_gap_hz": 1.1786803135888502
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.2331458053440812,
+          "valence_gap_hz": 0.5308144599303137
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.21010186705602957,
+          "valence_gap_hz": 4.064133275261324
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.224414449774044,
+          "valence_gap_hz": 1.5488893728222997
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.21275151100125975,
+          "valence_gap_hz": 1.0561846689895469
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.0857691155450855,
+          "valence_gap_hz": 4.594947735191639
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.14009159782101968,
+          "valence_gap_hz": 2.0797038327526134
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.22073843682091104,
+          "valence_gap_hz": 1.5869991289198606
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.40727336679649767,
+          "valence_gap_hz": 2.5152439024390247
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.21923616315425137,
+          "valence_gap_hz": 3.0079486062717775
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.28979837087920696,
+          "valence_gap_hz": 0.49270470383275267
+        }
+      },
+      "max_kc_fraction": 0.04936638779527559,
+      "min_kc_fraction": 0.0037524606299212597,
+      "max_jaccard_nominal": 0.2331458053440812,
+      "max_jaccard_all": 0.40727336679649767,
+      "silent_trials": 2,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "2 silent MBON trials"
+    },
+    "5000/0.20": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 5000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.2,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 1.8041237113402062,
+          "mbon_max_hz": 37.5,
+          "mbon_active_fraction": 0.03608247422680412,
+          "pam_hz": 0.9146341463414633,
+          "ppl1_hz": 2.455357142857143,
+          "kc_fraction": 0.0033526082677165355,
+          "kc_hz": 0.16763041338582677,
+          "total_hz": 0.48002386114509277,
+          "mbon_sd_hz": 1.5340697095728764,
+          "pam_sd_hz": 1.8146922174215732,
+          "ppl1_sd_hz": 1.6359381809159006,
+          "valence_mean_hz": 1.5407229965156795,
+          "valence_sd_hz": 1.5465286946334877,
+          "silent_trials": 2,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 13.138352564834914
+        },
+        "strong_down": {
+          "mbon_mean_hz": 0.06443298969072164,
+          "mbon_max_hz": 6.25,
+          "mbon_active_fraction": 0.001288659793814433,
+          "pam_hz": 0.0,
+          "ppl1_hz": 0.11160714285714286,
+          "kc_fraction": 6.151574803149606e-05,
+          "kc_hz": 0.0030757874015748033,
+          "total_hz": 0.2097312895919381,
+          "mbon_sd_hz": 0.1822440157697287,
+          "pam_sd_hz": 0.0,
+          "ppl1_sd_hz": 0.31567267017256584,
+          "valence_mean_hz": 0.11160714285714286,
+          "valence_sd_hz": 0.31567267017256584,
+          "silent_trials": 7,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.000000000001,
+          "max_orn_hz": 12.890931509920414
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 0.0,
+          "mbon_max_hz": 0.0,
+          "mbon_active_fraction": 0.0,
+          "pam_hz": 0.0,
+          "ppl1_hz": 0.0,
+          "kc_fraction": 3.075787401574803e-05,
+          "kc_hz": 0.0015378937007874017,
+          "total_hz": 0.18811848209202892,
+          "mbon_sd_hz": 0.0,
+          "pam_sd_hz": 0.0,
+          "ppl1_sd_hz": 0.0,
+          "valence_mean_hz": 0.0,
+          "valence_sd_hz": 0.0,
+          "silent_trials": 8,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 21.122510561255282
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 1.288659793814433,
+          "mbon_max_hz": 25.0,
+          "mbon_active_fraction": 0.02577319587628866,
+          "pam_hz": 1.0670731707317074,
+          "ppl1_hz": 1.450892857142857,
+          "kc_fraction": 0.001968503937007874,
+          "kc_hz": 0.09842519685039369,
+          "total_hz": 0.36995373118058167,
+          "mbon_sd_hz": 1.4579521261578299,
+          "pam_sd_hz": 1.5200286033636887,
+          "ppl1_sd_hz": 1.5783633508628292,
+          "valence_mean_hz": 0.3838196864111498,
+          "valence_sd_hz": 1.0886596087596034,
+          "silent_trials": 4,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 20.624631703005306
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 1.481958762886598,
+          "mbon_max_hz": 31.25,
+          "mbon_active_fraction": 0.029639175257731958,
+          "pam_hz": 1.0670731707317074,
+          "ppl1_hz": 1.7857142857142856,
+          "kc_fraction": 0.003690944881889764,
+          "kc_hz": 0.1845472440944882,
+          "total_hz": 0.4532633446784801,
+          "mbon_sd_hz": 1.6858450991816032,
+          "pam_sd_hz": 1.7777292362333232,
+          "ppl1_sd_hz": 1.7857142857142858,
+          "valence_mean_hz": 0.7186411149825784,
+          "valence_sd_hz": 1.1711088553788112,
+          "silent_trials": 3,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 11.431184270690444
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 1.2242268041237112,
+          "mbon_max_hz": 37.5,
+          "mbon_active_fraction": 0.024484536082474227,
+          "pam_hz": 1.0670731707317074,
+          "ppl1_hz": 1.3392857142857144,
+          "kc_fraction": 0.0015378937007874017,
+          "kc_hz": 0.07689468503937008,
+          "total_hz": 0.387895010961592,
+          "mbon_sd_hz": 1.0648862197334,
+          "pam_sd_hz": 1.2085746450794084,
+          "ppl1_sd_hz": 1.0671684011914229,
+          "valence_mean_hz": 0.2722125435540069,
+          "valence_sd_hz": 0.7598359992039228,
+          "silent_trials": 2,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.000000000001,
+          "max_orn_hz": 12.309207287050715
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.0,
+          "valence_gap_hz": 1.4291158536585367
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.001838235294117647,
+          "valence_gap_hz": 1.5407229965156795
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.056545209176788125,
+          "valence_gap_hz": 1.1569033101045296
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.32403846153846155,
+          "valence_gap_hz": 0.822081881533101
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.11926950127877237,
+          "valence_gap_hz": 1.2685104529616726
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.0,
+          "valence_gap_hz": 0.11160714285714286
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.0,
+          "valence_gap_hz": 0.2722125435540069
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.0,
+          "valence_gap_hz": 0.6070339721254355
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.025,
+          "valence_gap_hz": 0.16060540069686408
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.0,
+          "valence_gap_hz": 0.3838196864111498
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.001838235294117647,
+          "valence_gap_hz": 0.7186411149825784
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.011363636363636364,
+          "valence_gap_hz": 0.2722125435540069
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.09182411156095366,
+          "valence_gap_hz": 0.33482142857142866
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.02277327935222672,
+          "valence_gap_hz": 0.11160714285714285
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.09627008698216127,
+          "valence_gap_hz": 0.4464285714285715
+        }
+      },
+      "max_kc_fraction": 0.003690944881889764,
+      "min_kc_fraction": 3.075787401574803e-05,
+      "max_jaccard_nominal": 0.056545209176788125,
+      "max_jaccard_all": 0.32403846153846155,
+      "silent_trials": 26,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "26 silent MBON trials"
+    },
+    "5000/0.10": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 5000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 1.4175257731958761,
+          "mbon_max_hz": 25.0,
+          "mbon_active_fraction": 0.028350515463917526,
+          "pam_hz": 1.0670731707317074,
+          "ppl1_hz": 1.6741071428571428,
+          "kc_fraction": 0.002921998031496063,
+          "kc_hz": 0.14609990157480315,
+          "total_hz": 0.3819145843679219,
+          "mbon_sd_hz": 2.0387140206048793,
+          "pam_sd_hz": 2.204538455547694,
+          "ppl1_sd_hz": 2.0492690067678097,
+          "valence_mean_hz": 0.6070339721254355,
+          "valence_sd_hz": 1.1492952300908326,
+          "silent_trials": 4,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.000000000001,
+          "max_orn_hz": 14.868795137413812
+        },
+        "strong_down": {
+          "mbon_mean_hz": 0.25773195876288657,
+          "mbon_max_hz": 6.25,
+          "mbon_active_fraction": 0.005154639175257732,
+          "pam_hz": 0.1524390243902439,
+          "ppl1_hz": 0.33482142857142855,
+          "kc_fraction": 9.227362204724409e-05,
+          "kc_hz": 0.004613681102362204,
+          "total_hz": 0.24413766790615427,
+          "mbon_sd_hz": 0.7289760630789148,
+          "pam_sd_hz": 0.4311626714552119,
+          "ppl1_sd_hz": 0.9470180105176976,
+          "valence_mean_hz": 0.18238240418118465,
+          "valence_sd_hz": 0.5158553390624857,
+          "silent_trials": 7,
+          "saturated_trials": 0,
+          "total_drive_hz": 4999.999999999998,
+          "max_orn_hz": 14.510316675702393
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 0.4510309278350515,
+          "mbon_max_hz": 18.75,
+          "mbon_active_fraction": 0.00902061855670103,
+          "pam_hz": 0.3048780487804878,
+          "ppl1_hz": 0.5580357142857143,
+          "kc_fraction": 0.0007074311023622048,
+          "kc_hz": 0.035371555118110236,
+          "total_hz": 0.2776734777921779,
+          "mbon_sd_hz": 0.7514113266553221,
+          "pam_sd_hz": 0.8623253429104238,
+          "ppl1_sd_hz": 0.8179690904579503,
+          "valence_mean_hz": 0.25315766550522656,
+          "valence_sd_hz": 0.7464270179234971,
+          "silent_trials": 5,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 30.187012222058613
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 3.5438144329896906,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.07087628865979381,
+          "pam_hz": 3.6585365853658534,
+          "ppl1_hz": 3.459821428571429,
+          "kc_fraction": 0.008950541338582677,
+          "kc_hz": 0.4475270669291339,
+          "total_hz": 0.6611777958115818,
+          "mbon_sd_hz": 1.3051231130166496,
+          "pam_sd_hz": 2.2580978043232967,
+          "ppl1_sd_hz": 0.8848492937188526,
+          "valence_mean_hz": -0.19871515679442497,
+          "valence_sd_hz": 1.9246463618162137,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 29.032714912901856
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 1.5463917525773194,
+          "mbon_max_hz": 37.5,
+          "mbon_active_fraction": 0.030927835051546393,
+          "pam_hz": 0.7621951219512195,
+          "ppl1_hz": 2.1205357142857144,
+          "kc_fraction": 0.0023375984251968506,
+          "kc_hz": 0.1168799212598425,
+          "total_hz": 0.4466016036627463,
+          "mbon_sd_hz": 1.1021082140718532,
+          "pam_sd_hz": 1.1172260747718346,
+          "ppl1_sd_hz": 1.3445898368818887,
+          "valence_mean_hz": 1.3583405923344947,
+          "valence_sd_hz": 1.2090195103860417,
+          "silent_trials": 2,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.000000000001,
+          "max_orn_hz": 12.370113805047007
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 1.1597938144329896,
+          "mbon_max_hz": 31.25,
+          "mbon_active_fraction": 0.023195876288659795,
+          "pam_hz": 1.2195121951219512,
+          "ppl1_hz": 1.1160714285714286,
+          "kc_fraction": 0.0018762303149606298,
+          "kc_hz": 0.0938115157480315,
+          "total_hz": 0.43982631024333524,
+          "mbon_sd_hz": 1.0216816587269224,
+          "pam_sd_hz": 1.303713375182558,
+          "ppl1_sd_hz": 0.9241949455477959,
+          "valence_mean_hz": -0.10344076655052256,
+          "valence_sd_hz": 0.828978023442083,
+          "silent_trials": 3,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 13.546464372798699
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.005952380952380952,
+          "valence_gap_hz": 0.42465156794425085
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.07247899159663865,
+          "valence_gap_hz": 0.35387630662020897
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.15335926364361124,
+          "valence_gap_hz": 0.8057491289198605
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.10570898399845768,
+          "valence_gap_hz": 0.7513066202090591
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.10526315789473684,
+          "valence_gap_hz": 0.7104747386759581
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.0,
+          "valence_gap_hz": 0.07077526132404191
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.004310344827586207,
+          "valence_gap_hz": 0.38109756097560965
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.019230769230769232,
+          "valence_gap_hz": 1.17595818815331
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.0,
+          "valence_gap_hz": 0.2858231707317072
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.07135627530364372,
+          "valence_gap_hz": 0.45187282229965153
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.05594758064516129,
+          "valence_gap_hz": 1.105182926829268
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.06818181818181818,
+          "valence_gap_hz": 0.35659843205574915
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.1661202745927386,
+          "valence_gap_hz": 1.5570557491289196
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.10568858225108224,
+          "valence_gap_hz": 0.09527439024390241
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.0839401866515837,
+          "valence_gap_hz": 1.4617813588850173
+        }
+      },
+      "max_kc_fraction": 0.008950541338582677,
+      "min_kc_fraction": 9.227362204724409e-05,
+      "max_jaccard_nominal": 0.15335926364361124,
+      "max_jaccard_all": 0.1661202745927386,
+      "silent_trials": 21,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "21 silent MBON trials"
+    },
+    "5000/0.05": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 5000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.05,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 2.770618556701031,
+          "mbon_max_hz": 37.5,
+          "mbon_active_fraction": 0.055412371134020616,
+          "pam_hz": 2.8963414634146343,
+          "ppl1_hz": 2.678571428571429,
+          "kc_fraction": 0.007074311023622048,
+          "kc_hz": 0.3537155511811023,
+          "total_hz": 0.5318037572219328,
+          "mbon_sd_hz": 2.2876628140689315,
+          "pam_sd_hz": 2.982734088547723,
+          "ppl1_sd_hz": 1.967761303640499,
+          "valence_mean_hz": -0.2177700348432056,
+          "valence_sd_hz": 1.767678038567354,
+          "silent_trials": 2,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 15.935623602331354
+        },
+        "strong_down": {
+          "mbon_mean_hz": 0.4510309278350515,
+          "mbon_max_hz": 12.5,
+          "mbon_active_fraction": 0.00902061855670103,
+          "pam_hz": 0.1524390243902439,
+          "ppl1_hz": 0.6696428571428571,
+          "kc_fraction": 0.0003075787401574803,
+          "kc_hz": 0.015378937007874016,
+          "total_hz": 0.2948198907474473,
+          "mbon_sd_hz": 0.8464332792763364,
+          "pam_sd_hz": 0.4311626714552119,
+          "ppl1_sd_hz": 1.2399376336239527,
+          "valence_mean_hz": 0.5172038327526132,
+          "valence_sd_hz": 1.0116182444664314,
+          "silent_trials": 6,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 15.500025690650316
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 0.9020618556701031,
+          "mbon_max_hz": 25.0,
+          "mbon_active_fraction": 0.018041237113402064,
+          "pam_hz": 0.45731707317073167,
+          "ppl1_hz": 1.2276785714285716,
+          "kc_fraction": 0.0016916830708661418,
+          "kc_hz": 0.08458415354330709,
+          "total_hz": 0.3728682428749652,
+          "mbon_sd_hz": 1.1276430656195549,
+          "pam_sd_hz": 0.9073461087107865,
+          "ppl1_sd_hz": 1.4267766148722638,
+          "valence_mean_hz": 0.7703614982578397,
+          "valence_sd_hz": 1.015507595887355,
+          "silent_trials": 4,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 38.826574633304574
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 5.09020618556701,
+          "mbon_max_hz": 62.5,
+          "mbon_active_fraction": 0.08891752577319588,
+          "pam_hz": 5.640243902439025,
+          "ppl1_hz": 4.6875,
+          "kc_fraction": 0.0211306594488189,
+          "kc_hz": 1.087290846456693,
+          "total_hz": 0.8585318734026962,
+          "mbon_sd_hz": 3.8714982698796505,
+          "pam_sd_hz": 4.41810266652117,
+          "ppl1_sd_hz": 3.7503036806094787,
+          "valence_mean_hz": -0.9527439024390246,
+          "valence_sd_hz": 2.3797435578897495,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 36.814835014998636
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 1.1597938144329896,
+          "mbon_max_hz": 37.5,
+          "mbon_active_fraction": 0.02319587628865979,
+          "pam_hz": 0.3048780487804878,
+          "ppl1_hz": 1.7857142857142858,
+          "kc_fraction": 0.005105807086614173,
+          "kc_hz": 0.2552903543307087,
+          "total_hz": 0.5161713763156938,
+          "mbon_sd_hz": 1.1608161097521683,
+          "pam_sd_hz": 0.8623253429104238,
+          "ppl1_sd_hz": 1.5092040263009225,
+          "valence_mean_hz": 1.480836236933798,
+          "valence_sd_hz": 1.0745703752534999,
+          "silent_trials": 2,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 12.899896800825593
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 1.4175257731958761,
+          "mbon_max_hz": 37.5,
+          "mbon_active_fraction": 0.028350515463917522,
+          "pam_hz": 1.2195121951219512,
+          "ppl1_hz": 1.5625,
+          "kc_fraction": 0.001999261811023622,
+          "kc_hz": 0.0999630905511811,
+          "total_hz": 0.4625367909787914,
+          "mbon_sd_hz": 0.9033758576130557,
+          "pam_sd_hz": 0.9218645683151884,
+          "ppl1_sd_hz": 1.0401470937691384,
+          "valence_mean_hz": 0.3429878048780488,
+          "valence_sd_hz": 0.8290597444619425,
+          "silent_trials": 2,
+          "saturated_trials": 0,
+          "total_drive_hz": 5000.0,
+          "max_orn_hz": 14.26330052774212
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.06277056277056277,
+          "valence_gap_hz": 0.7349738675958187
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.08970090768726899,
+          "valence_gap_hz": 0.9881315331010453
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.23535914138795266,
+          "valence_gap_hz": 0.7349738675958191
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.2771546502043113,
+          "valence_gap_hz": 1.6986062717770036
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.09282087193851901,
+          "valence_gap_hz": 0.5607578397212544
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.013157894736842105,
+          "valence_gap_hz": 0.25315766550522656
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.0331140350877193,
+          "valence_gap_hz": 1.4699477351916377
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.04791666666666666,
+          "valence_gap_hz": 0.9636324041811848
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.03125,
+          "valence_gap_hz": 0.17421602787456436
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.10714957035445757,
+          "valence_gap_hz": 1.7231054006968645
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.11218523113684403,
+          "valence_gap_hz": 0.7104747386759582
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.0992602657004831,
+          "valence_gap_hz": 0.4273736933797909
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.18553541435429932,
+          "valence_gap_hz": 2.4335801393728227
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.1106566063702617,
+          "valence_gap_hz": 1.2957317073170733
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.1520660800552105,
+          "valence_gap_hz": 1.1378484320557491
+        }
+      },
+      "max_kc_fraction": 0.0211306594488189,
+      "min_kc_fraction": 0.0003075787401574803,
+      "max_jaccard_nominal": 0.23535914138795266,
+      "max_jaccard_all": 0.2771546502043113,
+      "silent_trials": 16,
+      "saturated_trials": 0,
+      "passes": false,
+      "reason": "16 silent MBON trials"
+    }
+  },
+  "chosen_drive_budget_hz": 12000.0,
+  "chosen_carrier": 0.1,
+  "part_b_gain_table": {
+    "0.08": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 12000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.08,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 0.902061855670103,
+          "mbon_max_hz": 43.75,
+          "mbon_active_fraction": 0.01804123711340206,
+          "pam_hz": 0.1524390243902439,
+          "ppl1_hz": 1.4508928571428572,
+          "kc_fraction": 0.001076525590551181,
+          "kc_hz": 0.05382627952755906,
+          "total_hz": 0.519464396022335,
+          "mbon_sd_hz": 0.6004972912481623,
+          "pam_sd_hz": 0.4311626714552119,
+          "ppl1_sd_hz": 0.8179690904579503,
+          "valence_mean_hz": 1.2984538327526134,
+          "valence_sd_hz": 0.6536146523441702,
+          "silent_trials": 1,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 35.685108329793145
+        },
+        "strong_down": {
+          "mbon_mean_hz": 0.7087628865979381,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.014175257731958763,
+          "pam_hz": 0.0,
+          "ppl1_hz": 1.2276785714285714,
+          "kc_fraction": 0.0004921259842519685,
+          "kc_hz": 0.024606299212598423,
+          "total_hz": 0.437176754157532,
+          "mbon_sd_hz": 0.3835174273932191,
+          "pam_sd_hz": 0.0,
+          "ppl1_sd_hz": 0.6643069724489686,
+          "valence_mean_hz": 1.2276785714285714,
+          "valence_sd_hz": 0.6643069724489686,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 34.82476002168575
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 0.25773195876288657,
+          "mbon_max_hz": 25.0,
+          "mbon_active_fraction": 0.005154639175257732,
+          "pam_hz": 0.0,
+          "ppl1_hz": 0.44642857142857145,
+          "kc_fraction": 0.0002768208661417323,
+          "kc_hz": 0.013841043307086614,
+          "total_hz": 0.3079541187727862,
+          "mbon_sd_hz": 0.27552705351796325,
+          "pam_sd_hz": 0.0,
+          "ppl1_sd_hz": 0.4772522177007578,
+          "valence_mean_hz": 0.44642857142857145,
+          "valence_sd_hz": 0.4772522177007578,
+          "silent_trials": 4,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 72.44882933294066
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 0.5154639175257731,
+          "mbon_max_hz": 43.75,
+          "mbon_active_fraction": 0.010309278350515464,
+          "pam_hz": 0.0,
+          "ppl1_hz": 0.8928571428571429,
+          "kc_fraction": 0.0005228838582677165,
+          "kc_hz": 0.026144192913385825,
+          "total_hz": 0.4208630588292293,
+          "mbon_sd_hz": 0.27552705351796325,
+          "pam_sd_hz": 0.0,
+          "ppl1_sd_hz": 0.4772522177007578,
+          "valence_mean_hz": 0.8928571428571429,
+          "valence_sd_hz": 0.4772522177007578,
+          "silent_trials": 1,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.000000000004,
+          "max_orn_hz": 69.67851579096447
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 1.0309278350515463,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.020618556701030927,
+          "pam_hz": 0.0,
+          "ppl1_hz": 1.7857142857142858,
+          "kc_fraction": 0.000953494094488189,
+          "kc_hz": 0.04767470472440945,
+          "total_hz": 0.5078063492448008,
+          "mbon_sd_hz": 0.3896540958858013,
+          "pam_sd_hz": 0.0,
+          "ppl1_sd_hz": 0.6749365589450484,
+          "valence_mean_hz": 1.7857142857142858,
+          "valence_sd_hz": 0.6749365589450484,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.000000000002,
+          "max_orn_hz": 29.688273132112815
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 0.6443298969072164,
+          "mbon_max_hz": 25.0,
+          "mbon_active_fraction": 0.01288659793814433,
+          "pam_hz": 0.6097560975609756,
+          "ppl1_hz": 0.6696428571428572,
+          "kc_fraction": 0.0004921259842519685,
+          "kc_hz": 0.024606299212598427,
+          "total_hz": 0.37684257700367,
+          "mbon_sd_hz": 0.8150200155073143,
+          "pam_sd_hz": 1.129048902161648,
+          "ppl1_sd_hz": 0.7914332682392129,
+          "valence_mean_hz": 0.05988675958188157,
+          "valence_sd_hz": 0.9837773590707406,
+          "silent_trials": 4,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 32.51151449471688
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.040865384615384616,
+          "valence_gap_hz": 0.070775261324042
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.10416666666666666,
+          "valence_gap_hz": 0.852025261324042
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.035416666666666666,
+          "valence_gap_hz": 0.4055966898954705
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.26904761904761904,
+          "valence_gap_hz": 0.4872604529616724
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.08333333333333333,
+          "valence_gap_hz": 1.238567073170732
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.019230769230769232,
+          "valence_gap_hz": 0.78125
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.14583333333333331,
+          "valence_gap_hz": 0.3348214285714285
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.07142857142857142,
+          "valence_gap_hz": 0.5580357142857144
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.16346153846153846,
+          "valence_gap_hz": 1.16779181184669
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.020833333333333332,
+          "valence_gap_hz": 0.44642857142857145
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.07633928571428572,
+          "valence_gap_hz": 1.3392857142857144
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.1125,
+          "valence_gap_hz": 0.3865418118466899
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.11041666666666666,
+          "valence_gap_hz": 0.8928571428571429
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.041666666666666664,
+          "valence_gap_hz": 0.8329703832752613
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.10044642857142858,
+          "valence_gap_hz": 1.7258275261324043
+        }
+      },
+      "max_kc_fraction": 0.001076525590551181,
+      "min_kc_fraction": 0.0002768208661417323,
+      "max_jaccard_nominal": 0.14583333333333331,
+      "max_jaccard_all": 0.26904761904761904,
+      "silent_trials": 10,
+      "saturated_trials": 0
+    },
+    "0.1": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 12000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.1,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 11.146907216494846,
+          "mbon_max_hz": 93.75,
+          "mbon_active_fraction": 0.17396907216494845,
+          "pam_hz": 13.871951219512196,
+          "ppl1_hz": 9.151785714285715,
+          "kc_fraction": 0.04807455708661417,
+          "kc_hz": 2.482160433070866,
+          "total_hz": 1.2326113419168856,
+          "mbon_sd_hz": 6.396368113579016,
+          "pam_sd_hz": 8.29518050112163,
+          "ppl1_sd_hz": 5.067645542173198,
+          "valence_mean_hz": -4.720165505226481,
+          "valence_sd_hz": 3.5046915319306295,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 35.685108329793145
+        },
+        "strong_down": {
+          "mbon_mean_hz": 6.056701030927835,
+          "mbon_max_hz": 62.5,
+          "mbon_active_fraction": 0.09922680412371133,
+          "pam_hz": 6.097560975609756,
+          "ppl1_hz": 6.0267857142857135,
+          "kc_fraction": 0.021622785433070866,
+          "kc_hz": 1.1149729330708662,
+          "total_hz": 0.8706819805961653,
+          "mbon_sd_hz": 6.489524903100088,
+          "pam_sd_hz": 7.140732241086828,
+          "ppl1_sd_hz": 6.06974016139259,
+          "valence_mean_hz": -0.07077526132404177,
+          "valence_sd_hz": 1.7033757591526593,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 34.82476002168575
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 3.608247422680412,
+          "mbon_max_hz": 50.0,
+          "mbon_active_fraction": 0.07216494845360824,
+          "pam_hz": 4.115853658536586,
+          "ppl1_hz": 3.2366071428571432,
+          "kc_fraction": 0.010211614173228346,
+          "kc_hz": 0.5105807086614174,
+          "total_hz": 0.683888276547038,
+          "mbon_sd_hz": 2.6138791383356184,
+          "pam_sd_hz": 4.320856036667564,
+          "ppl1_sd_hz": 1.5044803714394706,
+          "valence_mean_hz": -0.8792465156794427,
+          "valence_sd_hz": 3.1136423653809198,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 72.44882933294066
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 13.917525773195877,
+          "mbon_max_hz": 100.0,
+          "mbon_active_fraction": 0.1958762886597938,
+          "pam_hz": 15.54878048780488,
+          "ppl1_hz": 12.723214285714286,
+          "kc_fraction": 0.06293061023622047,
+          "kc_hz": 3.301857775590551,
+          "total_hz": 1.3094106176039535,
+          "mbon_sd_hz": 7.315749164665562,
+          "pam_sd_hz": 8.787985571527239,
+          "ppl1_sd_hz": 6.3269677679775045,
+          "valence_mean_hz": -2.8255662020905916,
+          "valence_sd_hz": 3.0252180492047875,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.000000000004,
+          "max_orn_hz": 69.67851579096447
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 20.103092783505154,
+          "mbon_max_hz": 106.25,
+          "mbon_active_fraction": 0.2603092783505154,
+          "pam_hz": 23.780487804878046,
+          "ppl1_hz": 17.410714285714285,
+          "kc_fraction": 0.08353838582677164,
+          "kc_hz": 4.381459153543307,
+          "total_hz": 1.4312901975509018,
+          "mbon_sd_hz": 10.108501452664047,
+          "pam_sd_hz": 11.787616602116564,
+          "ppl1_sd_hz": 9.130372534782287,
+          "valence_mean_hz": -6.369773519163763,
+          "valence_sd_hz": 4.377587837915717,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.000000000002,
+          "max_orn_hz": 29.688273132112815
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 9.536082474226804,
+          "mbon_max_hz": 81.25,
+          "mbon_active_fraction": 0.1404639175257732,
+          "pam_hz": 11.28048780487805,
+          "ppl1_hz": 8.258928571428571,
+          "kc_fraction": 0.03773991141732283,
+          "kc_hz": 1.963890255905512,
+          "total_hz": 1.1058111578105887,
+          "mbon_sd_hz": 7.575741472525293,
+          "pam_sd_hz": 9.143437401914724,
+          "ppl1_sd_hz": 6.504476760664854,
+          "valence_mean_hz": -3.021559233449477,
+          "valence_sd_hz": 3.1168568881845133,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 32.51151449471688
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.27948346755895814,
+          "valence_gap_hz": 4.649390243902439
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.1792887245292289,
+          "valence_gap_hz": 3.8409189895470384
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.3683881369614088,
+          "valence_gap_hz": 1.8945993031358892
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.526491720281717,
+          "valence_gap_hz": 1.6496080139372822
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.3838182844802108,
+          "valence_gap_hz": 1.6986062717770039
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.3294451488498936,
+          "valence_gap_hz": 0.8084712543554009
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.27327734948234816,
+          "valence_gap_hz": 2.75479094076655
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.2544641894064284,
+          "valence_gap_hz": 6.298998257839721
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.3530942549035812,
+          "valence_gap_hz": 2.950783972125435
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.16744999240633465,
+          "valence_gap_hz": 1.946319686411149
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.1199695562914418,
+          "valence_gap_hz": 5.4905270034843205
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.2995868794553542,
+          "valence_gap_hz": 2.142312717770034
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.42830641798568103,
+          "valence_gap_hz": 3.5442073170731714
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.36878933834306094,
+          "valence_gap_hz": 0.19599303135888535
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.33925730570948937,
+          "valence_gap_hz": 3.348214285714286
+        }
+      },
+      "max_kc_fraction": 0.08353838582677164,
+      "min_kc_fraction": 0.010211614173228346,
+      "max_jaccard_nominal": 0.3683881369614088,
+      "max_jaccard_all": 0.526491720281717,
+      "silent_trials": 0,
+      "saturated_trials": 0,
+      "passes": true,
+      "reason": "all three criteria met"
+    },
+    "0.12": {
+      "encoder": {
+        "version": "flytrade-encoder-1",
+        "features": [
+          "r1",
+          "r5",
+          "r20",
+          "rv20",
+          "relvol"
+        ],
+        "coding": "normalized",
+        "drive_budget_hz": 12000.0,
+        "drive_max_hz": 150.0,
+        "carrier": 0.1,
+        "steps": 100,
+        "global_gain": 0.1,
+        "glomeruli": [
+          "VL2a",
+          "VM5d",
+          "DL1",
+          "VL1",
+          "VM4",
+          "DM3",
+          "DM6",
+          "V",
+          "DM2",
+          "DA2"
+        ],
+        "n_orns": 703
+      },
+      "gain": 0.12,
+      "patterns": {
+        "strong_up": {
+          "mbon_mean_hz": 60.824742268041234,
+          "mbon_max_hz": 206.25,
+          "mbon_active_fraction": 0.46134020618556704,
+          "pam_hz": 71.1890243902439,
+          "ppl1_hz": 53.23660714285714,
+          "kc_fraction": 0.29619832677165353,
+          "kc_hz": 17.953371062992126,
+          "total_hz": 2.892974588486089,
+          "mbon_sd_hz": 21.129530037663617,
+          "pam_sd_hz": 24.223625133681985,
+          "ppl1_sd_hz": 18.994023702383483,
+          "valence_mean_hz": -17.952417247386755,
+          "valence_sd_hz": 6.35219004523589,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 35.685108329793145
+        },
+        "strong_down": {
+          "mbon_mean_hz": 35.373711340206185,
+          "mbon_max_hz": 168.75,
+          "mbon_active_fraction": 0.37628865979381443,
+          "pam_hz": 40.853658536585364,
+          "ppl1_hz": 31.361607142857142,
+          "kc_fraction": 0.17328986220472442,
+          "kc_hz": 9.751783956692913,
+          "total_hz": 2.168510253025036,
+          "mbon_sd_hz": 11.157782626666927,
+          "pam_sd_hz": 13.343173615934917,
+          "ppl1_sd_hz": 9.820703822981182,
+          "valence_mean_hz": -9.492051393728222,
+          "valence_sd_hz": 5.1365568260589285,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 34.82476002168575
+        },
+        "flat_low_vol": {
+          "mbon_mean_hz": 16.365979381443296,
+          "mbon_max_hz": 143.75,
+          "mbon_active_fraction": 0.24097938144329897,
+          "pam_hz": 17.378048780487806,
+          "ppl1_hz": 15.625,
+          "kc_fraction": 0.06717519685039369,
+          "kc_hz": 3.437192421259842,
+          "total_hz": 1.3471100156248108,
+          "mbon_sd_hz": 5.604453256107614,
+          "pam_sd_hz": 5.673400518443826,
+          "ppl1_sd_hz": 5.6469243931578195,
+          "valence_mean_hz": -1.7530487804878048,
+          "valence_sd_hz": 1.5739817943896042,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 11999.999999999998,
+          "max_orn_hz": 72.44882933294066
+        },
+        "flat_high_vol": {
+          "mbon_mean_hz": 55.92783505154639,
+          "mbon_max_hz": 200.0,
+          "mbon_active_fraction": 0.43556701030927836,
+          "pam_hz": 65.70121951219512,
+          "ppl1_hz": 48.77232142857143,
+          "kc_fraction": 0.2556286909448819,
+          "kc_hz": 14.8560531496063,
+          "total_hz": 2.6432350019985225,
+          "mbon_sd_hz": 8.487843318656147,
+          "pam_sd_hz": 9.873800006801739,
+          "ppl1_sd_hz": 7.738810635428445,
+          "valence_mean_hz": -16.928898083623693,
+          "valence_sd_hz": 3.9147230293302724,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.000000000004,
+          "max_orn_hz": 69.67851579096447
+        },
+        "corner_plus": {
+          "mbon_mean_hz": 60.24484536082474,
+          "mbon_max_hz": 225.0,
+          "mbon_active_fraction": 0.45618556701030927,
+          "pam_hz": 70.1219512195122,
+          "ppl1_hz": 53.01339285714286,
+          "kc_fraction": 0.30594857283464566,
+          "kc_hz": 18.948388287401574,
+          "total_hz": 2.9936198689453857,
+          "mbon_sd_hz": 17.531051574535404,
+          "pam_sd_hz": 22.29692927634308,
+          "ppl1_sd_hz": 14.16512802125701,
+          "valence_mean_hz": -17.10855836236934,
+          "valence_sd_hz": 8.739654317263907,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.000000000002,
+          "max_orn_hz": 29.688273132112815
+        },
+        "corner_minus": {
+          "mbon_mean_hz": 32.860824742268036,
+          "mbon_max_hz": 187.5,
+          "mbon_active_fraction": 0.36082474226804123,
+          "pam_hz": 38.109756097560975,
+          "ppl1_hz": 29.017857142857142,
+          "kc_fraction": 0.15652682086614172,
+          "kc_hz": 8.569143700787402,
+          "total_hz": 1.9876212739671273,
+          "mbon_sd_hz": 14.440220153960022,
+          "pam_sd_hz": 18.491946067044363,
+          "ppl1_sd_hz": 11.670744116018238,
+          "valence_mean_hz": -9.091898954703833,
+          "valence_sd_hz": 7.748539905627195,
+          "silent_trials": 0,
+          "saturated_trials": 0,
+          "total_drive_hz": 12000.0,
+          "max_orn_hz": 32.51151449471688
+        }
+      },
+      "pairs": {
+        "strong_up|strong_down": {
+          "kc_jaccard": 0.5521093931041421,
+          "valence_gap_hz": 8.460365853658534
+        },
+        "strong_up|flat_low_vol": {
+          "kc_jaccard": 0.24980720496558342,
+          "valence_gap_hz": 16.19936846689895
+        },
+        "strong_up|flat_high_vol": {
+          "kc_jaccard": 0.6869816594398392,
+          "valence_gap_hz": 1.023519163763062
+        },
+        "strong_up|corner_plus": {
+          "kc_jaccard": 0.7368194866880857,
+          "valence_gap_hz": 0.8438588850174149
+        },
+        "strong_up|corner_minus": {
+          "kc_jaccard": 0.47362836710150147,
+          "valence_gap_hz": 8.860518292682922
+        },
+        "strong_down|flat_low_vol": {
+          "kc_jaccard": 0.3432218259724102,
+          "valence_gap_hz": 7.739002613240417
+        },
+        "strong_down|flat_high_vol": {
+          "kc_jaccard": 0.6010032326096698,
+          "valence_gap_hz": 7.4368466898954715
+        },
+        "strong_down|corner_plus": {
+          "kc_jaccard": 0.5059371804380465,
+          "valence_gap_hz": 7.616506968641119
+        },
+        "strong_down|corner_minus": {
+          "kc_jaccard": 0.61920925547689,
+          "valence_gap_hz": 0.4001524390243887
+        },
+        "flat_low_vol|flat_high_vol": {
+          "kc_jaccard": 0.2604735512780229,
+          "valence_gap_hz": 15.175849303135887
+        },
+        "flat_low_vol|corner_plus": {
+          "kc_jaccard": 0.23531872632928802,
+          "valence_gap_hz": 15.355509581881535
+        },
+        "flat_low_vol|corner_minus": {
+          "kc_jaccard": 0.4278667374465851,
+          "valence_gap_hz": 7.338850174216028
+        },
+        "flat_high_vol|corner_plus": {
+          "kc_jaccard": 0.672846882174562,
+          "valence_gap_hz": 0.17966027874564716
+        },
+        "flat_high_vol|corner_minus": {
+          "kc_jaccard": 0.5610933393873425,
+          "valence_gap_hz": 7.83699912891986
+        },
+        "corner_plus|corner_minus": {
+          "kc_jaccard": 0.46999132510365416,
+          "valence_gap_hz": 8.016659407665507
+        }
+      },
+      "max_kc_fraction": 0.30594857283464566,
+      "min_kc_fraction": 0.06717519685039369,
+      "max_jaccard_nominal": 0.6869816594398392,
+      "max_jaccard_all": 0.7368194866880857,
+      "silent_trials": 0,
+      "saturated_trials": 0
+    }
+  },
+  "neutral_reference": {
+    "normalized": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "orn_hz": 17.069701280227594,
+    "total_drive_hz": 12000.0,
+    "n_pam": 41,
+    "n_ppl1": 56,
+    "n_pam_attributed": 29,
+    "n_ppl1_attributed": 16,
+    "pam_hz_mean": 6.554878048780488,
+    "pam_hz_sd": 4.560085810091066,
+    "ppl1_hz_mean": 4.129464285714286,
+    "ppl1_hz_sd": 3.372572958448536,
+    "diff_hz_mean": -2.425413763066202,
+    "diff_hz_sd": 1.873109412137335,
+    "attributed_pam_hz_mean": 5.818965517241379,
+    "attributed_pam_hz_sd": 3.792823545427215,
+    "attributed_ppl1_hz_mean": 3.515625,
+    "attributed_ppl1_hz_sd": 5.131501755612789,
+    "attributed_diff_hz_mean": -2.303340517241379,
+    "attributed_diff_hz_sd": 3.241438214716715,
+    "attributed_diff_per_seed": [
+      0.0,
+      -5.495689655172415,
+      -2.0474137931034484,
+      -2.0474137931034484,
+      -3.7715517241379306,
+      -6.896551724137931,
+      3.556034482758621,
+      -1.7241379310344827
+    ],
+    "kc_fraction": 0.025006151574803147,
+    "silent_trials": 0
+  },
+  "synthetic_observation_range": {
+    "n_observations": 1360,
+    "min": [
+      -0.967103418001797,
+      -0.989395664394287,
+      -0.9535335988098345,
+      -0.9388772218967246,
+      -0.8979842723951733
+    ],
+    "max": [
+      0.9614263283137038,
+      0.958406413725539,
+      0.9500904422524864,
+      0.9849822367675052,
+      0.9352017257987626
+    ],
+    "p01": [
+      -0.8750499074630312,
+      -0.89544320578378,
+      -0.8854292398791139,
+      -0.8883474345990094,
+      -0.8464051069382912
+    ],
+    "p99": [
+      0.8530709192521674,
+      0.8741680174439794,
+      0.8689940420376252,
+      0.9321205525409199,
+      0.8192721640561229
+    ],
+    "abs_mean": [
+      0.35003207665529673,
+      0.35833433802420245,
+      0.4248922369781837,
+      0.4666015272885448,
+      0.343875964933846
+    ]
+  },
+  "channel_table": [
+    {
+      "feature": "r1",
+      "positive": "VL2a",
+      "pos_orns": 98,
+      "pos_upns": 8,
+      "negative": "VM5d",
+      "neg_orns": 84,
+      "neg_upns": 12
+    },
+    {
+      "feature": "r5",
+      "positive": "DL1",
+      "pos_orns": 83,
+      "pos_upns": 4,
+      "negative": "VL1",
+      "neg_orns": 82,
+      "neg_upns": 4
+    },
+    {
+      "feature": "r20",
+      "positive": "VM4",
+      "pos_orns": 78,
+      "pos_upns": 8,
+      "negative": "DM3",
+      "neg_orns": 63,
+      "neg_upns": 4
+    },
+    {
+      "feature": "rv20",
+      "positive": "DM6",
+      "pos_orns": 58,
+      "pos_upns": 7,
+      "negative": "V",
+      "neg_orns": 55,
+      "neg_upns": 4
+    },
+    {
+      "feature": "relvol",
+      "positive": "DM2",
+      "pos_orns": 54,
+      "pos_upns": 4,
+      "negative": "DA2",
+      "neg_orns": 48,
+      "neg_upns": 10
+    }
+  ],
+  "elapsed_s": 36.955954790115356
+}

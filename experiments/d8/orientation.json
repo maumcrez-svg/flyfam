@@ -1,0 +1,147 @@
+{
+ "artifact": "flytrade-d8-orientation-1",
+ "label": "RETROSPECTIVE DIAGNOSTIC \u2014 D7 RESULTS PREVIOUSLY OBSERVED",
+ "written_utc": "2026-09-11T22:12:29Z",
+ "rule": "raw AUC on the fitting rows; sign = +1 if that AUC >= 0.5, else -1",
+ "fitting_rows": 2789,
+ "fitting_sessions": [
+  "2026-07-06",
+  "2026-07-07",
+  "2026-07-08",
+  "2026-07-09",
+  "2026-07-10",
+  "2026-07-13",
+  "2026-07-14",
+  "2026-07-15",
+  "2026-07-16",
+  "2026-07-17"
+ ],
+ "fitting_class_counts": {
+  "Y=1": 1020,
+  "Y=0": 1769
+ },
+ "written_before_any_evaluation_auc": true,
+ "never_max_auc_or_one_minus_auc": true,
+ "columns": {
+  "r1": {
+   "representation": "X_FEATURES",
+   "column": 0,
+   "fitting_auc_raw": 0.49979328079451113,
+   "sign": -1
+  },
+  "r5": {
+   "representation": "X_FEATURES",
+   "column": 1,
+   "fitting_auc_raw": 0.4956079096420931,
+   "sign": -1
+  },
+  "r20": {
+   "representation": "X_FEATURES",
+   "column": 2,
+   "fitting_auc_raw": 0.49572928097185737,
+   "sign": -1
+  },
+  "rv20": {
+   "representation": "X_FEATURES",
+   "column": 3,
+   "fitting_auc_raw": 0.4962003569092985,
+   "sign": -1
+  },
+  "relvol": {
+   "representation": "X_FEATURES",
+   "column": 4,
+   "fitting_auc_raw": 0.4848025360511644,
+   "sign": -1
+  },
+  "PC1": {
+   "representation": "X_SENSORY",
+   "column": "PC1",
+   "fitting_auc_raw": 0.5043483080060741,
+   "sign": 1,
+   "degenerate": false
+  }
+ },
+ "pca": {
+  "degenerate": false,
+  "rank": 10,
+  "n_fitting_rows": 2789,
+  "mean": [
+   15.547568160631055,
+   15.751808748655446,
+   16.38276167084977,
+   16.133851237002464,
+   17.911792147723222,
+   18.46029225528864,
+   14.663905987809203,
+   24.187285012549353,
+   15.642719254212961,
+   18.433525672283984
+  ],
+  "loadings": [
+   -0.21681453273672135,
+   0.24568058632505604,
+   -0.3569907136518598,
+   0.4194233906747497,
+   -0.46849559931049206,
+   0.5581987709522555,
+   0.09507821041242509,
+   -0.18522475801405142,
+   -0.059438419232888534,
+   0.10639154287330758
+  ],
+  "loading_names": [
+   "VL2a",
+   "VM5d",
+   "DL1",
+   "VL1",
+   "VM4",
+   "DM3",
+   "DM6",
+   "V",
+   "DM2",
+   "DA2"
+  ],
+  "singular_values": [
+   1117.0757436134377,
+   1074.516229053551,
+   886.4232559424528,
+   796.0965184528349,
+   612.0178155737931,
+   517.9704368008139,
+   494.7423154592782,
+   483.57960643388094,
+   430.53288812013477,
+   0.0026055136964827134
+  ],
+  "explained_variance": [
+   447.5818568757226,
+   414.1266594330929,
+   281.8314880472092,
+   227.320540420633,
+   134.34928499989866,
+   96.23148256801504,
+   87.79410283572737,
+   83.87705730227661,
+   66.48442171917664,
+   2.434971887574969e-09
+  ],
+  "explained_variance_ratio": [
+   0.24330431209460557,
+   0.22511815536209898,
+   0.15320285054576047,
+   0.12357084377388682,
+   0.07303191553713641,
+   0.052311179080156554,
+   0.04772464180187,
+   0.04559534622315286,
+   0.0361407555800087,
+   1.3236442697020003e-12
+  ],
+  "explained_variance_ratio_pc1": 0.24330431209460557,
+  "sign_convention": "the component is signed so that its largest-magnitude loading is positive",
+  "largest_loading_channel": "DM3",
+  "whitening": false,
+  "fitted_on": "fitting rows only, centred on the fitting mean",
+  "method": "numpy.linalg.svd"
+ }
+}

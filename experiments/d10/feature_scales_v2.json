@@ -1,0 +1,122 @@
+{
+ "version": "d10-feature-scales-2",
+ "supersedes": "experiments/d10/feature_scales.json, which was computed on the donor replay dataset with the windows zeroed at the launch; reviewer decision 3 clips them to the launch instead and moves the statistics to this window",
+ "dataset": "d10-backfill-v1",
+ "dataset_sha256": {
+  "cursor.json": "32d55a0df694105ccacc7e3aae82c28020c6ef8a88c768f61bde0954dd36e14b",
+  "discovery.json": "70b131a5232c122efc04737f3dbff6bb956624ac1d88a03618817828db030052",
+  "events.jsonl": "3dfa76fbac31d557a6bda8633c8ee630b641fe1d103f730c24f462de828368f9",
+  "headers.jsonl": "4febc4a292bf8e74a4bae408559df15c18ec77974381ce8ec55d09d590089036",
+  "initial_states.json": "bd7e98de09f6e0890966ff33ea6db9ab3602cb13b2d2754d296933679195f2c1",
+  "raw.jsonl": "c0d0b49224422e50989c6bcd43ff5d93d2e77195abba8b5f5667e89e6d5b88f8"
+ },
+ "window": {
+  "rule": "the N minutes of blocks ending at the safe block recorded by verification.json, block count from the measured interval",
+  "safe_block": 60801426,
+  "first_block": 60721229,
+  "last_block": 60801426,
+  "blocks": 80198,
+  "minutes": 135,
+  "median_block_interval_s": 0.101,
+  "admission_minutes": 120,
+  "admission_blocks": 71287,
+  "admission_last_block": 60792515,
+  "settlement_tail_minutes": 15
+ },
+ "scale_window_minutes": 60,
+ "scale_window_first_launch_ts": 1789177056,
+ "scale_window_last_launch_ts_exclusive": 1789180656,
+ "grid_seconds": 30,
+ "min_age_seconds": 60,
+ "min_trades": 3,
+ "tokens_in_the_first_hour": 275,
+ "tokens_with_a_grid_point": 182,
+ "grid_points": 5612,
+ "skipped": {
+  "launched_after_the_first_hour": 342,
+  "too_few_trades": 44,
+  "no_grid_point": 49
+ },
+ "features": {
+  "age": {
+   "n": 5612,
+   "median_abs": 870.0,
+   "p90_abs": 2220.0,
+   "max_abs": 3540.0,
+   "scale": 600.0,
+   "rule": "declared constant, 600 s (the horizon as a token age)"
+  },
+  "ret_30s": {
+   "n": 5612,
+   "median_abs": 0.0,
+   "p90_abs": 0.00509908469970584,
+   "max_abs": 1.6152322296842123,
+   "scale": 0.0051,
+   "rule": "p90(|x|) rounded to two significant figures"
+  },
+  "ret_2m": {
+   "n": 5612,
+   "median_abs": 0.0,
+   "p90_abs": 0.1115214849089408,
+   "max_abs": 2.1848702695861024,
+   "scale": 0.11,
+   "rule": "p90(|x|) rounded to two significant figures"
+  },
+  "ret_5m": {
+   "n": 5612,
+   "median_abs": 0.0,
+   "p90_abs": 0.3566783892166435,
+   "max_abs": 2.479677941972521,
+   "scale": 0.36,
+   "rule": "p90(|x|) rounded to two significant figures"
+  },
+  "flow_imb_2m": {
+   "n": 5612,
+   "median_abs": 0.0,
+   "p90_abs": 1.0,
+   "max_abs": 1.0,
+   "scale": 1.0,
+   "rule": "p90(|x|) rounded to two significant figures"
+  },
+  "trade_rate_2m": {
+   "n": 5612,
+   "median_abs": 0.0,
+   "p90_abs": 6.0,
+   "max_abs": 274.5,
+   "scale": 6.0,
+   "rule": "p90(|x|) rounded to two significant figures"
+  },
+  "rv_2m": {
+   "n": 5612,
+   "median_abs": 0.0,
+   "p90_abs": 0.02887531817614259,
+   "max_abs": 0.6614126839069915,
+   "scale": 0.029,
+   "rule": "p90(|x|) rounded to two significant figures"
+  },
+  "drawdown_5m": {
+   "n": 5612,
+   "median_abs": 0.0,
+   "p90_abs": 0.5109879001659773,
+   "max_abs": 2.3403859761422083,
+   "scale": 0.51,
+   "rule": "p90(|x|) rounded to two significant figures"
+  }
+ },
+ "scales": {
+  "age": 600.0,
+  "ret_30s": 0.0051,
+  "ret_2m": 0.11,
+  "ret_5m": 0.36,
+  "flow_imb_2m": 1.0,
+  "trade_rate_2m": 6.0,
+  "rv_2m": 0.029,
+  "drawdown_5m": 0.51
+ },
+ "computed_before": [
+  "experiments/d10/PLAN.md",
+  "experiments/d10/config.json"
+ ],
+ "no_outcome_computed": true,
+ "note": "median and p90 of |x| over the grid points of the tokens launched in the first hour of the window; no outcome, no PnL and no post-cutoff return enters this file"
+}

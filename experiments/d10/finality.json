@@ -1,0 +1,14 @@
+{
+ "measured_at": "2026-09-12T04:03:48.413790Z",
+ "head": {
+  "number": 60807542,
+  "hash": "0xec65d83c9f02ffffa1d4bfe4cf7ea2389120e6cbf0d47d770805c90e591fbde9",
+  "timestamp": 1789185825
+ },
+ "median_block_interval_s": 0.101,
+ "confirm_seconds": 60,
+ "confirm_depth_blocks": 594,
+ "safe_tag_supported": true,
+ "headers_sampled": 3,
+ "rule": "a block is confirmed when it is at least confirm_depth behind head, and \u2014 when the endpoint answers the safe tag \u2014 also at or below safe"
+}

@@ -1,0 +1,443 @@
+{
+  "provenance": "rpc-observed",
+  "exportedAt": "2026-09-09T06:44:39.423Z",
+  "dataset": {
+    "id": "pons-sample-20260909",
+    "manifest_hash": "44e19d7fb1633acfc804738a3164aa98f4f21379803ba461eb4ee0582bb77a47",
+    "chain_id": 4663,
+    "start_block": "58338912",
+    "checkpoint": "58338986",
+    "created_at": "2026-09-09T06:40:51.045Z"
+  },
+  "events": [
+    {
+      "raw": {
+        "data": "0x000000000000000000000000d4364ee041f44e503f315c8372a31ba107f5e358",
+        "topics": [
+          "0x908408e307fc569b417f6cbec5d5a06f44a0a505ac0479b47d421a4b2fd6a1e6"
+        ],
+        "address": "0xb0c754a2c894b1d0f5092713b149686381377cff",
+        "removed": false,
+        "logIndex": "0x1d",
+        "blockHash": "0x136e9a70d921b603a793f79c9acb58766e856c6b32ea62d36efdcd0a1b0f3780",
+        "blockNumber": "0x37a2e74",
+        "transactionHash": "0x76f032a57137aa9c1a5b5eea09aea6f3ab9cd303402a3bbdd0b72d194358b0f4",
+        "transactionIndex": "0x5"
+      },
+      "decoded": {
+        "args": {},
+        "error": null,
+        "event": "unmapped",
+        "token": "0xd4364ee041f44e503f315c8372a31ba107f5e358",
+        "market": null
+      },
+      "event_time": "2026-09-09T06:38:54.000Z",
+      "received_at": "2026-09-09T06:42:44.280Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x",
+        "topics": [
+          "0xe4b7e48fbd47c2f602bacadee76ad33b16542ddb4997cfc0de04c311adcfa8c7",
+          "0x000000000000000000000000cf96dc0ef8c7cfc1e57c9f0150d01951d2fa5f0b"
+        ],
+        "address": "0xb0c754a2c894b1d0f5092713b149686381377cff",
+        "removed": false,
+        "logIndex": "0x1e",
+        "blockHash": "0x136e9a70d921b603a793f79c9acb58766e856c6b32ea62d36efdcd0a1b0f3780",
+        "blockNumber": "0x37a2e74",
+        "transactionHash": "0x76f032a57137aa9c1a5b5eea09aea6f3ab9cd303402a3bbdd0b72d194358b0f4",
+        "transactionIndex": "0x5"
+      },
+      "decoded": {
+        "args": {},
+        "error": null,
+        "event": "unmapped",
+        "token": "0xd4364ee041f44e503f315c8372a31ba107f5e358",
+        "market": null
+      },
+      "event_time": "2026-09-09T06:38:54.000Z",
+      "received_at": "2026-09-09T06:42:44.280Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x0000000000000000000000005fc5360d0400a0fd4f2af552add042d716f1d168000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001e2339a80",
+        "topics": [
+          "0x8d4aad4953d0ca700d468f3753aa14432d1b35b43ec6409f051fb6aa43a89607",
+          "0x000000000000000000000000d4364ee041f44e503f315c8372a31ba107f5e358",
+          "0x000000000000000000000000b0c754a2c894b1d0f5092713b149686381377cff",
+          "0x000000000000000000000000cf96dc0ef8c7cfc1e57c9f0150d01951d2fa5f0b"
+        ],
+        "address": "0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e",
+        "removed": false,
+        "logIndex": "0x20",
+        "blockHash": "0x136e9a70d921b603a793f79c9acb58766e856c6b32ea62d36efdcd0a1b0f3780",
+        "blockNumber": "0x37a2e74",
+        "transactionHash": "0x76f032a57137aa9c1a5b5eea09aea6f3ab9cd303402a3bbdd0b72d194358b0f4",
+        "transactionIndex": "0x5"
+      },
+      "decoded": {
+        "args": {
+          "curve": "0xb0C754a2C894B1D0f5092713B149686381377cfF",
+          "token": "0xD4364eE041f44E503f315C8372a31bA107F5e358",
+          "deployer": "0xcf96dC0Ef8C7cfc1e57C9F0150D01951D2Fa5f0B",
+          "pairToken": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "launchConfigId": "0",
+          "graduationThreshold": "8090000000"
+        },
+        "error": null,
+        "event": "TokenLaunched",
+        "token": "0xd4364ee041f44e503f315c8372a31ba107f5e358",
+        "market": {
+          "kind": "curve",
+          "quote": "0x5fc5360d0400a0fd4f2af552add042d716f1d168",
+          "token": "0xd4364ee041f44e503f315c8372a31ba107f5e358",
+          "address": "0xb0c754a2c894b1d0f5092713b149686381377cff",
+          "deployment": "pons-v2"
+        }
+      },
+      "event_time": "2026-09-09T06:38:54.000Z",
+      "received_at": "2026-09-09T06:42:44.141Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x000000000000000000000000cf63eeb5b406a5d2e1d706126a685fccffeb0c39",
+        "topics": [
+          "0x908408e307fc569b417f6cbec5d5a06f44a0a505ac0479b47d421a4b2fd6a1e6"
+        ],
+        "address": "0x34212ad78762169ba59ad1355008e6c6d290b6e7",
+        "removed": false,
+        "logIndex": "0x24",
+        "blockHash": "0xf50f6978fe0ecb367718f111890a1e9a53b1f121bc256f25adb64622fe836ba9",
+        "blockNumber": "0x37a2e8c",
+        "transactionHash": "0x00bd32918c1ce50c7f436bcb1c4bf58c07d9113af3f8c4bc9dbf1252f17a3185",
+        "transactionIndex": "0x5"
+      },
+      "decoded": {
+        "args": {},
+        "error": null,
+        "event": "unmapped",
+        "token": "0xcf63eeb5b406a5d2e1d706126a685fccffeb0c39",
+        "market": null
+      },
+      "event_time": "2026-09-09T06:38:56.000Z",
+      "received_at": "2026-09-09T06:43:48.716Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x",
+        "topics": [
+          "0xe4b7e48fbd47c2f602bacadee76ad33b16542ddb4997cfc0de04c311adcfa8c7",
+          "0x000000000000000000000000aec88074650d0f72d41be7c62909597dfb499145"
+        ],
+        "address": "0x34212ad78762169ba59ad1355008e6c6d290b6e7",
+        "removed": false,
+        "logIndex": "0x25",
+        "blockHash": "0xf50f6978fe0ecb367718f111890a1e9a53b1f121bc256f25adb64622fe836ba9",
+        "blockNumber": "0x37a2e8c",
+        "transactionHash": "0x00bd32918c1ce50c7f436bcb1c4bf58c07d9113af3f8c4bc9dbf1252f17a3185",
+        "transactionIndex": "0x5"
+      },
+      "decoded": {
+        "args": {},
+        "error": null,
+        "event": "unmapped",
+        "token": "0xcf63eeb5b406a5d2e1d706126a685fccffeb0c39",
+        "market": null
+      },
+      "event_time": "2026-09-09T06:38:56.000Z",
+      "received_at": "2026-09-09T06:43:48.716Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003a4965bf58a40000",
+        "topics": [
+          "0x8d4aad4953d0ca700d468f3753aa14432d1b35b43ec6409f051fb6aa43a89607",
+          "0x000000000000000000000000cf63eeb5b406a5d2e1d706126a685fccffeb0c39",
+          "0x00000000000000000000000034212ad78762169ba59ad1355008e6c6d290b6e7",
+          "0x000000000000000000000000aec88074650d0f72d41be7c62909597dfb499145"
+        ],
+        "address": "0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e",
+        "removed": false,
+        "logIndex": "0x27",
+        "blockHash": "0xf50f6978fe0ecb367718f111890a1e9a53b1f121bc256f25adb64622fe836ba9",
+        "blockNumber": "0x37a2e8c",
+        "transactionHash": "0x00bd32918c1ce50c7f436bcb1c4bf58c07d9113af3f8c4bc9dbf1252f17a3185",
+        "transactionIndex": "0x5"
+      },
+      "decoded": {
+        "args": {
+          "curve": "0x34212AD78762169bA59AD1355008E6c6D290B6E7",
+          "token": "0xcF63EEB5b406a5D2e1D706126a685FCcfFEb0c39",
+          "deployer": "0xAeC88074650D0F72d41BE7c62909597dFB499145",
+          "pairToken": "0x0000000000000000000000000000000000000000",
+          "launchConfigId": "0",
+          "graduationThreshold": "4200000000000000000"
+        },
+        "error": null,
+        "event": "TokenLaunched",
+        "token": "0xcf63eeb5b406a5d2e1d706126a685fccffeb0c39",
+        "market": {
+          "kind": "curve",
+          "quote": "0x0000000000000000000000000000000000000000",
+          "token": "0xcf63eeb5b406a5d2e1d706126a685fccffeb0c39",
+          "address": "0x34212ad78762169ba59ad1355008e6c6d290b6e7",
+          "deployment": "pons-v2"
+        }
+      },
+      "event_time": "2026-09-09T06:38:56.000Z",
+      "received_at": "2026-09-09T06:43:48.578Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x",
+        "topics": [
+          "0xe4b7e48fbd47c2f602bacadee76ad33b16542ddb4997cfc0de04c311adcfa8c7",
+          "0x000000000000000000000000aec88074650d0f72d41be7c62909597dfb499145"
+        ],
+        "address": "0x34212ad78762169ba59ad1355008e6c6d290b6e7",
+        "removed": false,
+        "logIndex": "0x28",
+        "blockHash": "0xf50f6978fe0ecb367718f111890a1e9a53b1f121bc256f25adb64622fe836ba9",
+        "blockNumber": "0x37a2e8c",
+        "transactionHash": "0x00bd32918c1ce50c7f436bcb1c4bf58c07d9113af3f8c4bc9dbf1252f17a3185",
+        "transactionIndex": "0x5"
+      },
+      "decoded": {
+        "args": {},
+        "error": null,
+        "event": "unmapped",
+        "token": "0xcf63eeb5b406a5d2e1d706126a685fccffeb0c39",
+        "market": null
+      },
+      "event_time": "2026-09-09T06:38:56.000Z",
+      "received_at": "2026-09-09T06:43:48.716Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x00000000000000000000000000000000000000000000000000470de4df8200000000000000000000000000000000000000000000000958bf99ab93873259ac1c0000000000000000000000000000000000000000000000000000b5e620f48000000000000000000000000000000000000000000000000000000221b262dd8000",
+        "topics": [
+          "0xec36bf571f136799e8dc0b0b8bea4b04d8bd3d43de838aab0d5fc21d4cbfc455",
+          "0x000000000000000000000000e33e9e479df8802cb0866d5d05258bec4cf62948",
+          "0x000000000000000000000000aec88074650d0f72d41be7c62909597dfb499145"
+        ],
+        "address": "0x34212ad78762169ba59ad1355008e6c6d290b6e7",
+        "removed": false,
+        "logIndex": "0x2a",
+        "blockHash": "0xf50f6978fe0ecb367718f111890a1e9a53b1f121bc256f25adb64622fe836ba9",
+        "blockNumber": "0x37a2e8c",
+        "transactionHash": "0x00bd32918c1ce50c7f436bcb1c4bf58c07d9113af3f8c4bc9dbf1252f17a3185",
+        "transactionIndex": "0x5"
+      },
+      "decoded": {
+        "args": {
+          "fee": "200000000000000",
+          "tax": "600000000000000",
+          "buyer": "0xe33E9E479dF8802cb0866d5d05258bEc4cF62948",
+          "quoteIn": "20000000000000000",
+          "recipient": "0xAeC88074650D0F72d41BE7c62909597dFB499145",
+          "tokensOut": "11299435028248587570621468",
+          "attribution": "unresolved"
+        },
+        "error": null,
+        "event": "CurveBuy",
+        "token": "0xcf63eeb5b406a5d2e1d706126a685fccffeb0c39",
+        "market": null
+      },
+      "event_time": "2026-09-09T06:38:56.000Z",
+      "received_at": "2026-09-09T06:43:48.716Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x000000000000000000000000215078d5374c8be9877b74b4538816e6c0c89c25",
+        "topics": [
+          "0x908408e307fc569b417f6cbec5d5a06f44a0a505ac0479b47d421a4b2fd6a1e6"
+        ],
+        "address": "0x37da98f8879c69bb004da834b37532c57f4fe005",
+        "removed": false,
+        "logIndex": "0x1",
+        "blockHash": "0x6ba3db6c3d8366db1b2a33e20617d7c3cd4a96b91f8b4b3e185af047248bbc96",
+        "blockNumber": "0x37a2ea1",
+        "transactionHash": "0x3009e7dab567267550ae4a531b67a41ba4b5025298347be5b0a77a274d63556c",
+        "transactionIndex": "0x1"
+      },
+      "decoded": {
+        "args": {},
+        "error": null,
+        "event": "unmapped",
+        "token": "0x215078d5374c8be9877b74b4538816e6c0c89c25",
+        "market": null
+      },
+      "event_time": "2026-09-09T06:38:59.000Z",
+      "received_at": "2026-09-09T06:43:49.659Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x",
+        "topics": [
+          "0xe4b7e48fbd47c2f602bacadee76ad33b16542ddb4997cfc0de04c311adcfa8c7",
+          "0x000000000000000000000000a66256d906453a2834f652ea5ae50309ae918cec"
+        ],
+        "address": "0x37da98f8879c69bb004da834b37532c57f4fe005",
+        "removed": false,
+        "logIndex": "0x2",
+        "blockHash": "0x6ba3db6c3d8366db1b2a33e20617d7c3cd4a96b91f8b4b3e185af047248bbc96",
+        "blockNumber": "0x37a2ea1",
+        "transactionHash": "0x3009e7dab567267550ae4a531b67a41ba4b5025298347be5b0a77a274d63556c",
+        "transactionIndex": "0x1"
+      },
+      "decoded": {
+        "args": {},
+        "error": null,
+        "event": "unmapped",
+        "token": "0x215078d5374c8be9877b74b4538816e6c0c89c25",
+        "market": null
+      },
+      "event_time": "2026-09-09T06:38:59.000Z",
+      "received_at": "2026-09-09T06:43:49.659Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003a4965bf58a40000",
+        "topics": [
+          "0x8d4aad4953d0ca700d468f3753aa14432d1b35b43ec6409f051fb6aa43a89607",
+          "0x000000000000000000000000215078d5374c8be9877b74b4538816e6c0c89c25",
+          "0x00000000000000000000000037da98f8879c69bb004da834b37532c57f4fe005",
+          "0x000000000000000000000000a66256d906453a2834f652ea5ae50309ae918cec"
+        ],
+        "address": "0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e",
+        "removed": false,
+        "logIndex": "0x4",
+        "blockHash": "0x6ba3db6c3d8366db1b2a33e20617d7c3cd4a96b91f8b4b3e185af047248bbc96",
+        "blockNumber": "0x37a2ea1",
+        "transactionHash": "0x3009e7dab567267550ae4a531b67a41ba4b5025298347be5b0a77a274d63556c",
+        "transactionIndex": "0x1"
+      },
+      "decoded": {
+        "args": {
+          "curve": "0x37da98F8879c69bb004dA834B37532c57F4fE005",
+          "token": "0x215078D5374C8BE9877b74B4538816e6c0c89c25",
+          "deployer": "0xa66256D906453A2834f652EA5Ae50309ae918CeC",
+          "pairToken": "0x0000000000000000000000000000000000000000",
+          "launchConfigId": "0",
+          "graduationThreshold": "4200000000000000000"
+        },
+        "error": null,
+        "event": "TokenLaunched",
+        "token": "0x215078d5374c8be9877b74b4538816e6c0c89c25",
+        "market": {
+          "kind": "curve",
+          "quote": "0x0000000000000000000000000000000000000000",
+          "token": "0x215078d5374c8be9877b74b4538816e6c0c89c25",
+          "address": "0x37da98f8879c69bb004da834b37532c57f4fe005",
+          "deployment": "pons-v2"
+        }
+      },
+      "event_time": "2026-09-09T06:38:59.000Z",
+      "received_at": "2026-09-09T06:43:49.524Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x000000000000000000000000ef2955e53bdbcba32cc1db8d9e9b2533e4cdb63e",
+        "topics": [
+          "0x908408e307fc569b417f6cbec5d5a06f44a0a505ac0479b47d421a4b2fd6a1e6"
+        ],
+        "address": "0xd4d3320cb0f0a2be0a3c4ac09c5941fc60a24107",
+        "removed": false,
+        "logIndex": "0x8",
+        "blockHash": "0xb5120d018d559ec395af6788313a848fa098c07331e09d1f1f68213d62b79c97",
+        "blockNumber": "0x37a2ea6",
+        "transactionHash": "0x213594eae0d7d1d1f417435d1174bbca4877e0dc9c05be06d25afa854730cc03",
+        "transactionIndex": "0x4"
+      },
+      "decoded": {
+        "args": {},
+        "error": null,
+        "event": "unmapped",
+        "token": "0xef2955e53bdbcba32cc1db8d9e9b2533e4cdb63e",
+        "market": null
+      },
+      "event_time": "2026-09-09T06:38:59.000Z",
+      "received_at": "2026-09-09T06:43:49.659Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x",
+        "topics": [
+          "0xe4b7e48fbd47c2f602bacadee76ad33b16542ddb4997cfc0de04c311adcfa8c7",
+          "0x000000000000000000000000d22e3060d021230c659cfeeda4977ca8377987ce"
+        ],
+        "address": "0xd4d3320cb0f0a2be0a3c4ac09c5941fc60a24107",
+        "removed": false,
+        "logIndex": "0x9",
+        "blockHash": "0xb5120d018d559ec395af6788313a848fa098c07331e09d1f1f68213d62b79c97",
+        "blockNumber": "0x37a2ea6",
+        "transactionHash": "0x213594eae0d7d1d1f417435d1174bbca4877e0dc9c05be06d25afa854730cc03",
+        "transactionIndex": "0x4"
+      },
+      "decoded": {
+        "args": {},
+        "error": null,
+        "event": "unmapped",
+        "token": "0xef2955e53bdbcba32cc1db8d9e9b2533e4cdb63e",
+        "market": null
+      },
+      "event_time": "2026-09-09T06:38:59.000Z",
+      "received_at": "2026-09-09T06:43:49.659Z",
+      "canonical": true
+    },
+    {
+      "raw": {
+        "data": "0x000000000000000000000000d0601ce157db5bdc3162bbac2a2c8af5320d9eec00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000024150e39800400000",
+        "topics": [
+          "0x8d4aad4953d0ca700d468f3753aa14432d1b35b43ec6409f051fb6aa43a89607",
+          "0x000000000000000000000000ef2955e53bdbcba32cc1db8d9e9b2533e4cdb63e",
+          "0x000000000000000000000000d4d3320cb0f0a2be0a3c4ac09c5941fc60a24107",
+          "0x000000000000000000000000d22e3060d021230c659cfeeda4977ca8377987ce"
+        ],
+        "address": "0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e",
+        "removed": false,
+        "logIndex": "0xb",
+        "blockHash": "0xb5120d018d559ec395af6788313a848fa098c07331e09d1f1f68213d62b79c97",
+        "blockNumber": "0x37a2ea6",
+        "transactionHash": "0x213594eae0d7d1d1f417435d1174bbca4877e0dc9c05be06d25afa854730cc03",
+        "transactionIndex": "0x4"
+      },
+      "decoded": {
+        "args": {
+          "curve": "0xd4d3320cb0F0A2Be0A3c4AC09C5941FC60A24107",
+          "token": "0xeF2955E53BDBCba32cc1DB8D9E9b2533E4cDB63e",
+          "deployer": "0xd22E3060d021230c659cfEeDA4977cA8377987ce",
+          "pairToken": "0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC",
+          "launchConfigId": "0",
+          "graduationThreshold": "41600000000000000000"
+        },
+        "error": null,
+        "event": "TokenLaunched",
+        "token": "0xef2955e53bdbcba32cc1db8d9e9b2533e4cdb63e",
+        "market": {
+          "kind": "curve",
+          "quote": "0xd0601ce157db5bdc3162bbac2a2c8af5320d9eec",
+          "token": "0xef2955e53bdbcba32cc1db8d9e9b2533e4cdb63e",
+          "address": "0xd4d3320cb0f0a2be0a3c4ac09c5941fc60a24107",
+          "deployment": "pons-v2"
+        }
+      },
+      "event_time": "2026-09-09T06:38:59.000Z",
+      "received_at": "2026-09-09T06:43:49.524Z",
+      "canonical": true
+    }
+  ]
+}

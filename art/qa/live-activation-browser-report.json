@@ -1,0 +1,46 @@
+{
+  "source": "ACTUAL_LIVE_WORKER",
+  "engines": {
+    "chromium": {
+      "observed": {
+        "connection": "LIVE \u00b7 MARKET 30s AGO",
+        "act-title": "WAITING FOR AN EXIT ROUTE.",
+        "position-return": "\u2014",
+        "position-pnl": "\u2014",
+        "position-exit": "unavailable",
+        "holding-note": "CURVE COMPLETED \u00b7 EXIT ROUTE UNAVAILABLE \u00b7 POSITION RETAINED",
+        "countdown": "00:00",
+        "episode-count": "19",
+        "token-full-name": "Slip"
+      },
+      "page_errors": [],
+      "api_requests": 98,
+      "reconnect": "PASS",
+      "mobile_widths": [
+        390,
+        430
+      ]
+    },
+    "webkit": {
+      "observed": {
+        "connection": "LIVE \u00b7 MARKET 8s AGO",
+        "act-title": "WAITING FOR AN EXIT ROUTE.",
+        "position-return": "\u2014",
+        "position-pnl": "\u2014",
+        "position-exit": "unavailable",
+        "holding-note": "CURVE COMPLETED \u00b7 EXIT ROUTE UNAVAILABLE \u00b7 POSITION RETAINED",
+        "countdown": "00:00",
+        "episode-count": "19",
+        "token-full-name": "Slip"
+      },
+      "page_errors": [],
+      "api_requests": 33,
+      "reconnect": "PASS",
+      "mobile_widths": [
+        390,
+        430
+      ]
+    }
+  },
+  "replay_url": "http://localhost:8797/episode/pons-live%3A922003757"
+}

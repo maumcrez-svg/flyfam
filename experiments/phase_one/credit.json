@@ -1,0 +1,124 @@
+{
+  "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+  "runner_version": "flytrade-runner-1",
+  "mushroom_version": "flytrade-mb-1",
+  "decoder": {
+    "version": "flytrade-action-1",
+    "baseline_hz": -2.303340517241379,
+    "theta_hz": 3.241438214716715,
+    "theta_sd": 1.0,
+    "baseline_sd_hz": 3.241438214716715,
+    "max_kc_fraction": 0.25,
+    "saturated_hz": 431.81818181818176
+  },
+  "round": {
+    "index": 11,
+    "seed": 555,
+    "cutoff": 300
+  },
+  "candidates": {
+    "AAA": {
+      "stable_id": 0,
+      "episode_id": 11000000,
+      "seed": 1453158519,
+      "eligible": 1161,
+      "kc_active": 98,
+      "valence_hz": -1.4682112068965516,
+      "action": "WAIT"
+    },
+    "BBB": {
+      "stable_id": 1,
+      "episode_id": 11000001,
+      "seed": 903030395,
+      "eligible": 4126,
+      "kc_active": 365,
+      "valence_hz": 7.691271551724137,
+      "action": "BUY"
+    }
+  },
+  "selected": "AAA",
+  "trace_overlap": {
+    "a_only": 65,
+    "b_only": 3030,
+    "shared": 1096
+  },
+  "offers": [
+    {
+      "offer": "B's trace, offered against A's episode",
+      "episode_id": 11000000,
+      "accepted": false,
+      "reason": "EPISODE_MISMATCH",
+      "synapses_depressed": 0,
+      "weights_moved": 0
+    },
+    {
+      "offer": "B's own episode, never opened",
+      "episode_id": 11000001,
+      "accepted": false,
+      "reason": "UNKNOWN_EPISODE",
+      "synapses_depressed": 0,
+      "weights_moved": 0
+    },
+    {
+      "offer": "A's trace, decayed below the eligibility threshold",
+      "episode_id": 11000000,
+      "accepted": false,
+      "reason": "TRACE_EXPIRED",
+      "synapses_depressed": 0,
+      "weights_moved": 0
+    },
+    {
+      "offer": "A's trace, captured against a different synapse set",
+      "episode_id": 11000000,
+      "accepted": false,
+      "reason": "SHAPE_MISMATCH",
+      "synapses_depressed": 0,
+      "weights_moved": 0
+    },
+    {
+      "offer": "A's own stored trace",
+      "episode_id": 11000000,
+      "accepted": true,
+      "reason": "",
+      "synapses_depressed": 525,
+      "weights_moved": 525
+    },
+    {
+      "offer": "A again, already settled",
+      "episode_id": 11000000,
+      "accepted": false,
+      "reason": "ALREADY_SETTLED",
+      "synapses_depressed": 0,
+      "weights_moved": 0
+    }
+  ],
+  "accepted_event": {
+    "episode_id": 11000000,
+    "valence": -1,
+    "amount": 1.0,
+    "accepted": true,
+    "synapses_depressed": 525,
+    "reason": "",
+    "trace_eligible": 1161,
+    "trace_max": 1.0,
+    "eligibility_source": "replayed_from_decision"
+  },
+  "weights_moved": 525,
+  "moved_equals_a_eligible_on_addressed_side": true,
+  "moved_intersect_b_only": 0,
+  "moved_on_unaddressed_side": 0,
+  "stats": {
+    "accepted": 1,
+    "open": [],
+    "settled": 1,
+    "rejections": {
+      "EPISODE_MISMATCH": 1,
+      "ALREADY_SETTLED": 1,
+      "UNKNOWN_EPISODE": 1,
+      "TRACE_EXPIRED": 1,
+      "SHAPE_MISMATCH": 1
+    },
+    "rejections_total": 5
+  },
+  "elapsed_s": 1.1403450965881348
+}

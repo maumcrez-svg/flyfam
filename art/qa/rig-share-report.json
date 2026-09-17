@@ -1,0 +1,14 @@
+{
+  "pons-live:666003138.16x9.mp4": {
+    "width": 1280,
+    "height": 720,
+    "duration_s": 12.0,
+    "bytes": 394122
+  },
+  "pons-live:666003138.9x16.mp4": {
+    "width": 720,
+    "height": 1280,
+    "duration_s": 12.0,
+    "bytes": 359639
+  }
+}

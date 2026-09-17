@@ -1,0 +1,11 @@
+{
+  "source": "downloads/Meshy_AI_Character_output (5).glb",
+  "sha256": "876a1dd39ab2ac46dccbf47434b3d9c8d588895f850b9725caddc335a6448c33",
+  "bytes": 60520972,
+  "bones": 38,
+  "skins": 1,
+  "animation_clips": 0,
+  "vertices": 74062,
+  "triangles": 93660,
+  "finding": "Two lower forward legs have no dedicated joint chains. Their weights include the upper arm end bones Bone_020 and Bone_016. Upper arms, rear leg pair, wings and antennae have joints. Original unchanged."
+}

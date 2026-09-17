@@ -1,0 +1,125 @@
+{
+ "run": "d10-backfill",
+ "started_utc": "2026-09-12T05:04:14.959999Z",
+ "elapsed_s": 324.5,
+ "window": {
+  "rule": "the N minutes of blocks ending at the safe block recorded by verification.json, block count from the measured interval",
+  "safe_block": 60801426,
+  "first_block": 60721229,
+  "last_block": 60801426,
+  "blocks": 80198,
+  "minutes": 135,
+  "median_block_interval_s": 0.101,
+  "admission_minutes": 120,
+  "admission_blocks": 71287,
+  "admission_last_block": 60792515,
+  "settlement_tail_minutes": 15
+ },
+ "collection": {
+  "first_block": 60768229,
+  "last_block": 60801426,
+  "segments": 34,
+  "events": 29137,
+  "launches": 991,
+  "stopped": null,
+  "reached": 60801426,
+  "complete": true
+ },
+ "blocks": 80198,
+ "raw_logs": 62338,
+ "events": 62338,
+ "events_by_kind": {
+  "BuybackLocked": 1,
+  "CreatorFeeRecipientUpdated": 145,
+  "CurveBuy": 27165,
+  "CurveBuyRefunded": 7,
+  "CurveCompleted": 7,
+  "CurveSell": 24906,
+  "FeesSwept": 2029,
+  "GraduationTokensPermanentlyLocked": 23,
+  "Initialized": 672,
+  "LaunchSwept": 23,
+  "PoolGraduated": 23,
+  "SnipeTaxCharged": 1527,
+  "SnipeTaxExempted": 4819,
+  "TokenLaunched": 991
+ },
+ "headers_fetched": 804,
+ "grid_anchors_expected": 803,
+ "launches_total": 991,
+ "launches_native": 672,
+ "launches_quote_unsupported": 319,
+ "curve_completed": 7,
+ "initial_states_derived": 614,
+ "initial_states_read": 3,
+ "initial_states_unavailable": 55,
+ "request_units": {
+  "eth_blockNumber": {
+   "attempts": 0,
+   "units": 0,
+   "errors": 0
+  },
+  "eth_call": {
+   "attempts": 0,
+   "units": 0,
+   "errors": 0
+  },
+  "eth_chainId": {
+   "attempts": 0,
+   "units": 0,
+   "errors": 0
+  },
+  "eth_getBlockByNumber": {
+   "attempts": 331,
+   "units": 661,
+   "errors": 0
+  },
+  "eth_getCode": {
+   "attempts": 0,
+   "units": 0,
+   "errors": 0
+  },
+  "eth_getLogs": {
+   "attempts": 168,
+   "units": 336,
+   "errors": 0
+  }
+ },
+ "request_attempts": 499,
+ "request_units_total": 997,
+ "range_retreats": [],
+ "errors": 0,
+ "wss_equivalent": {
+  "subscriptions": 2,
+  "log_pushes": 62338,
+  "header_pushes": 80198,
+  "total": 142538,
+  "rule": "docs.chainstack.com/docs/request-units: one request to open a subscription, then one per delivered push. A logs subscription would have pushed every log and a newHeads subscription every block header of this window."
+ },
+ "files": {
+  "cursor.json": {
+   "sha256": "32d55a0df694105ccacc7e3aae82c28020c6ef8a88c768f61bde0954dd36e14b",
+   "bytes": 258
+  },
+  "discovery.json": {
+   "sha256": "70b131a5232c122efc04737f3dbff6bb956624ac1d88a03618817828db030052",
+   "bytes": 470884
+  },
+  "events.jsonl": {
+   "sha256": "3dfa76fbac31d557a6bda8633c8ee630b641fe1d103f730c24f462de828368f9",
+   "bytes": 66385619
+  },
+  "headers.jsonl": {
+   "sha256": "4febc4a292bf8e74a4bae408559df15c18ec77974381ce8ec55d09d590089036",
+   "bytes": 167232
+  },
+  "initial_states.json": {
+   "sha256": "bd7e98de09f6e0890966ff33ea6db9ab3602cb13b2d2754d296933679195f2c1",
+   "bytes": 436978
+  },
+  "raw.jsonl": {
+   "sha256": "c0d0b49224422e50989c6bcd43ff5d93d2e77195abba8b5f5667e89e6d5b88f8",
+   "bytes": 62910647
+  }
+ }
+}

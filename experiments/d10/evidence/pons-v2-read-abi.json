@@ -1,0 +1,124 @@
+[
+  {
+    "name": "getLaunchedToken",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "components": [
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "curve",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "deployer",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "creatorFeeRecipient",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "pairToken",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "graduationThreshold",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "poolFee",
+            "type": "uint24",
+            "internalType": "uint24"
+          },
+          {
+            "name": "tickSpacing",
+            "type": "int24",
+            "internalType": "int24"
+          },
+          {
+            "name": "creatorTaxBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "buybackEnabled",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "phase",
+            "type": "uint8",
+            "internalType": "enum GraduationPhase"
+          },
+          {
+            "name": "sweptQuote",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "sweptTokens",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "sweptAt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "exists",
+            "type": "bool",
+            "internalType": "bool"
+          }
+        ],
+        "internalType": "struct IPonsV2LaunchFactory.LaunchedToken"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "name": "memeHook",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract PonsV2MemeHook"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "name": "poolManager",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IPoolManager"
+      }
+    ],
+    "stateMutability": "view"
+  }
+]

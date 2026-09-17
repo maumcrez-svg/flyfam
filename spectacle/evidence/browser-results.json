@@ -1,0 +1,34 @@
+[
+  {
+    "engine": "chromium",
+    "desktop": [
+      1440,
+      1000
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "errors": [],
+    "real_reward_replay": true,
+    "real_punishment_replay": true,
+    "stale_and_offline": true,
+    "overflow": false
+  },
+  {
+    "engine": "webkit",
+    "desktop": [
+      1440,
+      1000
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "errors": [],
+    "real_reward_replay": true,
+    "real_punishment_replay": true,
+    "stale_and_offline": true,
+    "overflow": false
+  }
+]

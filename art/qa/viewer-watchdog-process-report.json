@@ -1,0 +1,7 @@
+{
+  "actual_process_exit_code": 70,
+  "elapsed_s": 0.413,
+  "local_stack_dump": true,
+  "fixture_database_only": true,
+  "live_worker_untouched": true
+}

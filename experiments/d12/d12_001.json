@@ -1,0 +1,217 @@
+{
+ "config_version": "flytrade-d12-001-config-1",
+ "run_id": "d12-001",
+ "wave": "D12",
+ "venue": "PONS",
+ "chain_id": 4663,
+ "network": "Robinhood Chain",
+ "native_asset": "ETH",
+ "plan": "experiments/d12/PLAN.md, the single section",
+ "spec": "docs/SPEC.md, the D12 owner spec (2026-09-13, Portuguese, verbatim) and the fourteen Fable addenda beneath it",
+ "base_config": "experiments/d11/config.json — admission_v2 constants, pons_context_v2 features and scales, pons_encoder_v2 input_schema_sha256, reinforcement.new_full_scale and the clean reference checkpoint are read from there and are NOT restated here. D12 changes the teacher and nothing in that file.",
+ "registration": {
+  "step": "(ii)",
+  "rule": "Fable addendum 4. This file and experiments/d12/PLAN.md are committed ALONE, before any D12 number exists. Step (iii) writes the lesson ceiling, the cohort-size distribution, the primary and secondary FROZEN row counts and class balances and the mirror diagnostic — numbers only, no brain — and the brain runs only after step (iii).",
+  "nothing_is_re_chosen_after_a_result": "no threshold, cutoff, n_min, rule, learning rate or horizon moves after a result is observed. If something cannot be done as specified the deviation is declared in PLAN.md, in the report and in the session log; nothing is absorbed silently."
+ },
+ "what_changes": "one thing: the teacher. absolute profit reinforcement -> relative cohort reinforcement, in school mode. Everything else is the same object as d11-001.",
+ "data": {
+  "store": "data/pons/d11-backfill-v1",
+  "read_only": "the store, everything under experiments/d11/ and every D10 artifact are read-only in this wave",
+  "no_collection": true,
+  "no_rpc": "zero requests; no socket is opened to anything; no live hour; no signing, no funds, no real money",
+  "reused_from_d11_001": {
+   "directory": "experiments/d11/runs/d11-001/grid/",
+   "files": ["rows.jsonl", "labels.jsonl", "scores_reference.jsonl"],
+   "verification": "the sha256 of every reused file is recorded in the d12-001 summary, and at least 200 rows are re-scored under the clean reference and compared with the reused REFERENCE valences at 1e-9 Hz. Seeds and weights are the same, so they must agree exactly; a single disagreement stops the wave."
+  }
+ },
+ "fixed_for_the_whole_wave": {
+  "max_open_positions_in_the_school": 0,
+  "max_open_positions_in_a_frozen_loop_branch": 1,
+  "horizon_seconds": 900,
+  "cadence_seconds": 30,
+  "readout_k": 8,
+  "readout_namespace": "comparison_v1",
+  "keyed_to_learned_state": false,
+  "decoder": "the stored k = 8 decoder, baseline -0.844389816810345 Hz, theta 0.9117185769796697 Hz",
+  "paper_size_wei": "10000000000000000",
+  "latency_seconds": 2,
+  "gas_wei": {
+   "buy": "26513686360000",
+   "sell": "21543833760000",
+   "approval": "16104600000000"
+  },
+  "initial_cash_eth": 10.0,
+  "max_candidates_per_round": 6,
+  "admission": "admission_v2",
+  "context": "pons_context_v2",
+  "encoder": "pons_encoder_v2",
+  "reinforce_cap": 1.0,
+  "reinforce_cap_is_not_consulted_by_relative_cohort_v1": true,
+  "from_clean_reference": true,
+  "clean_reference_state_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+  "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+  "forgetting": "never called; a frozen branch's end digest must equal its start digest and a test asserts it",
+  "same_split_as_d11_001": "t0 = timestamp(start_block), T = t0 + floor(0.7 * (t1 - t0)) snapped down to the 30-second grid anchored at t0 — computed by experiments/d11/common.py split() from the store's own MANIFEST and asserted equal to the recorded d11-001 split"
+ },
+ "reinforcement": {
+  "rule": "relative_cohort_v1",
+  "selector": "flytrade.pons.reinforcement.rule_from_config reads reinforcement.rule. A configuration without the key — every D5-D11 configuration — selects absolute_profit_v1, which is the existing path, byte-identical.",
+  "absolute_profit_v1": "valence = sign(net return on notional), amount = min(|r| / reinforce_full_scale, reinforce_cap). Unchanged, untouched, and still what a D10 or D11 configuration takes.",
+  "relative_cohort_v1": {
+   "cohort": "the admission_v2-eligible candidates of ONE tick that have a settled evaluator label. A member whose label is UNRESOLVED leaves the cohort and is counted.",
+   "n_min": 3,
+   "n_below_min": "no lesson at all for that cohort, counted as COHORT_TOO_SMALL",
+   "rank": "ascending by the label's integer net_wei, average ranks for ties; rank 1 is the worst net",
+   "signal": "s_i = 2 * (rank_i - 1) / (n - 1) - 1, in [-1, +1]; worst -1, best +1, mean exactly 0 per cohort",
+   "valence_and_amount": "s > 0 -> reward of amount |s|; s < 0 -> punishment of amount |s|; s == 0 -> neutral, no update (the existing neutral treatment)",
+   "no_clipping": "no clipping can occur. REINFORCE_CAP and reinforce_full_scale are not consulted by this rule and appear nowhere in its arithmetic.",
+   "why_rank_and_not_z_score": "scale-free, immune to the tail that saturated two calibrations, and zero-mean by construction",
+   "known_answer": {
+    "owner_example_1_percent": [14, 3, -2, -7, -18, -61],
+    "owner_example_2_percent": [-3, -8, -15, -28, -50, -82],
+    "s_for_both": [1.0, 0.6, 0.2, -0.2, -0.6, -1.0],
+    "tested_before_the_rule_runs_on_the_store": true
+   },
+   "the_two_columns_are_never_merged": "the financial net (wei) and the pedagogical signal s are two columns on every LESSON record. A cohort in which every member lost money still teaches which member lost least. This is relative/cohort reinforcement and is never called a profit reward; no profit is falsified and the net is reported as it is."
+  },
+  "the_plasticity_rule_does_not_change": "the same CreditAssigner.settle -> MushroomBody.proposed_gain_delta path, the same learning rate, the same floor, the same mean-of-k-deltas normalisation. Only where sign and amount come from, and what triggers an update, are new."
+ },
+ "school_mode": {
+  "no_position": "the LEARNING branch opens no paper position and holds none. There is no bankroll, no entry, no exit and no PnL in the school.",
+  "presentation": "at every LEARNING tick every admission_v2-eligible candidate is presented — no cap of six, no rotation, no hold mode — through the standard readout (k = 8, comparison_v1, seeds from (observation_id, stable_id, replicate), not from the learned state) and decoded once by the stored k = 8 decoder",
+  "trace": "each presented candidate's eligibility trace set — the k traces BrainRunner.evaluate_round already builds for every candidate, the same object the D11 learning path stores for the one it bought — is kept as a pending lesson keyed (cutoff_ts, stable_id)",
+  "maturity_rule": "a lesson matures at the first tick whose cutoff >= lesson cutoff + 902 s (latency 2 + horizon 900). 902 is not a multiple of the 30 s cadence, so that tick is always lesson cutoff + 930 s — 28 s after the outcome the lesson is computed from.",
+  "application_order": "matured lessons of one cohort are applied together, in stable_id order, BEFORE that tick's presentations",
+  "boundary": "a lesson whose cutoff + 902 > T is discarded, counted as BOUNDARY and never applied. No lesson is ever applied at a FROZEN tick; the school replay does not run one.",
+  "presentations_without_a_matured_lesson_change_no_weight": true,
+  "queue": "bounded by construction at 31 ticks of lessons; its size, the lessons applied and the lessons discarded by reason are recorded per tick"
+ },
+ "records": {
+  "LESSON": ["cutoff_ts", "stable_id", "token", "n", "net_wei", "rank", "s", "valence_at_presentation_hz", "applied_at_tick", "checkpoint_digest_after"],
+  "ROUND": "for every presented candidate, as today",
+  "per_tick": ["pending_lessons", "lessons_applied", "lessons_discarded_by_reason"],
+  "discard_reasons": ["UNRESOLVED", "COHORT_TOO_SMALL", "BOUNDARY"],
+  "checkpoint_cadence": "the durable checkpoint file is written every 500 applied lessons and at the end of the partition. The digest recorded on every LESSON record is the in-memory digest of the weights immediately after that lesson, so the weight history is auditable without a file write per lesson. Declared here, before the run.",
+  "final_checkpoint": "SCHOOL; its digest is recorded in the run summary and in the scoring manifest"
+ },
+ "mirror_diagnostic": {
+  "when": "step (iii), before any new run",
+  "input": ["experiments/d11/runs/d11-001/grid/scores_trained.jsonl", "experiments/d11/runs/d11-001/grid/scores_reference.jsonl"],
+  "rows": "rows VALID in both",
+  "quantities": [
+   "Pearson r, Spearman rho and Kendall tau between trained and reference valence",
+   "OLS trained = a + b * reference with R^2",
+   "the fraction of row pairs whose order is reversed",
+   "the same per temporal block and within tick (cohort-wise tau, the quantity that matters for ranking)",
+   "AUC(-reference) beside AUC(trained), and the residual of AUC(trained) from 1 - AUC(reference)"
+  ],
+  "output": "experiments/d12/mirror_diagnostic.md",
+  "wording": "numbers. The mechanistic reading — fifteen punishments depressed the approach pathway in proportion to the prior valence, so the trained valence is a decreasing affine function of the untrained one — is a HYPOTHESIS that the slope b and tau test. It is not a finding until stated as one by the owner."
+ },
+ "grids": {
+  "machinery": "the same grid as d11-001: rows keyed (cutoff_ts, stable_id), built once from the store alone, identical across branches by construction",
+  "primary": {
+   "definition": "FROZEN rows on tokens that were NEVER a lesson — tokens whose first admission_v2 eligibility is at a tick >= T",
+   "why": "the owner's 'tokens posteriores que ela nunca recebeu como aula'",
+   "enforced_by": "token address, asserted disjoint from the set of tokens that appear on any LESSON record by a test"
+  },
+  "secondary": {
+   "definition": "all FROZEN rows",
+   "why": "comparability with d11-001's 5,013 labelled rows",
+   "reported_regardless_of_the_verdict": true
+  },
+  "branches": {
+   "SCHOOL": "the final LEARNING checkpoint",
+   "REFERENCE": "the clean brain; its scores are reused from d11-001 with the 200-row recomputation check"
+  },
+  "read_only": "both brains are loaded read-only and their digests are verified before and after every scoring pass. No execution, no bankroll, no reinforcement and no checkpoint write happens in a scoring pass."
+ },
+ "statistics": {
+  "primary": "dAUC = AUC(SCHOOL) - AUC(REFERENCE), over rows VALID in both branches that carry a settled label",
+  "auc": "Mann-Whitney U / (n_pos * n_neg), ties counted one half",
+  "uncertainty": {
+   "method": "paired cluster bootstrap by stable_id — a token's rows move together",
+   "resamples": 10000,
+   "seed": 20260913,
+   "interval": "percentile 95 %",
+   "reported": "overall and per temporal block, on the primary and on the secondary grid"
+  },
+  "preregistered_readings": {
+   "entirely_above_zero": "the school-trained ranking of later tokens is higher than the untrained one, not compatible with sampling variation",
+   "includes_zero": "compatible with sampling variation",
+   "entirely_below_zero": "the inversion persists"
+  },
+  "wording_rule": "never 'significant', never 'proves', no rate asserted as measured. An AUC near 0.5 is not evidence that no signal exists. A lower BUY rate alone is not learning success. Profit is not learning.",
+  "secondary_descriptive": [
+   "Spearman(score, net) per branch",
+   "the distribution of the per-row score difference SCHOOL - REFERENCE",
+   "the suppression check: BUY-crossing rate (valence > theta) per branch, overall, per block and by later outcome class"
+  ],
+  "known_answer_tests": [
+   "AUC 1, 0 and 0.5 on perfect, reversed and constant toy data",
+   "identical branches -> dAUC exactly 0",
+   "an exact negative in the mirror diagnostic -> tau = -1 and b = -1"
+  ]
+ },
+ "learning_curve_and_weights": {
+  "per_lesson": ["the valence at presentation", "the s that arrives 902 s later"],
+  "every_500_applied_lessons": [
+   "Spearman between valence-at-presentation and s",
+   "the mean within-cohort Kendall tau between valence and s",
+   "the plastic KC->MBON weights: mean, L2 norm, fraction at the floor (gain <= 0.25 + 1e-9), fraction at the ceiling (gain >= 1.0 - 1e-9), and the checkpoint digest"
+  ],
+  "prospective_by_construction": "the brain has not yet been taught those lessons when it scores them",
+  "a_property_of_the_operator_registered_before_the_run": "the plasticity rule only depresses, the clean reference starts with every gain exactly at 1.0, and the ceiling is 1.0. A synapse 'at the ceiling' is therefore a synapse no lesson has ever depressed. The floor fraction and the ceiling fraction are reported separately as well as summed; the split is additive and loosens nothing."
+ },
+ "inconclusive_conditions": {
+  "verbatim_from_addendum_9": [
+   "fewer than 2,000 lessons applied",
+   "fewer than 100 paired labels on the primary grid",
+   "either outcome class under 20 on the primary grid",
+   "paired coverage under 95 %",
+   "encoder saturation over 5 % of (row, channel) pairs or INVALID_STATE over 5 %",
+   "more than 25 % of plastic synapses at floor or ceiling at the end of LEARNING"
+  ],
+  "operationalised": {
+   "lessons_applied": "LESSON records whose update was accepted by the CreditAssigner, plus the neutral s == 0 lessons, which are applied lessons that move nothing; both counts are reported and the condition reads the total",
+   "paired_labels": "grid rows VALID in both branches with a settled (non-UNRESOLVED) label",
+   "class_counts": "positive = net > 0, negative = net <= 0, over the paired labelled rows of the primary grid",
+   "paired_coverage": "rows VALID in both branches / all grid rows",
+   "saturation": "the (row, channel) saturated fraction, |tanh(raw/scale)| >= 1 - 1e-12, over all grid rows",
+   "weight_saturation": "the fraction of the 44,042 plastic KC->MBON gains at the floor or at the ceiling at the final SCHOOL checkpoint"
+  },
+  "do_not_loosen": "these thresholds are not loosened after the run. Three are pre-computable and are checked in step (iii): a lesson ceiling under 2,000, a primary grid under 100 labelled rows, or a class under 20 ends the wave with the numbers and no neural run.",
+  "the_secondary_grid_is_reported_regardless_of_the_verdict": true
+ },
+ "determinism": {
+  "rule": "the first 100 LEARNING ticks of the school replay, run twice from the clean reference, give an identical checkpoint digest and an identical sha256 of the LESSON log",
+  "tested": true,
+  "the_full_run_is_not_repeated": true
+ },
+ "frozen_loop_branches": {
+  "what_they_are": "two FROZEN replays over the FROZEN partition with paper trading as in d11-001 — one position at a time, SETTLED_FROZEN settlements, no LEARNING record, end digest equal to start digest",
+  "branches": ["frozen_school", "frozen_reference"],
+  "they_are_descriptive": "their PnL and action frequencies are the paper results of this wave. They are NOT the primary comparison and they do not decide which observations the grid contains.",
+  "the_learning_branch_has_no_paper_results_by_design": true
+ },
+ "layout": {
+  "runs": "experiments/d12/runs/d12-001/{school,frozen_school,frozen_reference,grid}/",
+  "report": "experiments/d12/runs/d12-001/report.md",
+  "mirror": "experiments/d12/mirror_diagnostic.md",
+  "entry_points": ["experiments/d12/ceiling.py", "experiments/d12/mirror.py", "experiments/d12/school.py", "experiments/d12/frozen.py", "experiments/d12/score.py", "experiments/d12/evaluate.py"],
+  "no_entry_point_opens_a_socket": "a test parses every D12 script for flytrade.pons.rpc and for network verbs, and none is allowed to name one",
+  "untouched": "experiments/d10, experiments/d11, data/pons, upstream, tests/upstream_audit, experiments/d7, d8, d9b and experiments/historical/runs do not change in this wave; the close asserts the diff against a661cbb is empty"
+ },
+ "success_is_not": [
+  "a profit, a win rate or a BUY frequency",
+  "a smaller loss than d11-001",
+  "any claim that the fly learned because it made money"
+ ],
+ "do_not_declare_predictive_learning_from_pnl_alone": true,
+ "do_not_declare_failure_because_the_fly_loses_money": true,
+ "no_parameter_changes_after_observing_results": true,
+ "what_it_cannot_say": "a difference between SCHOOL and REFERENCE here is a difference between one brain that saw 8.4 hours of school on this window and one that saw none. It cannot be compared with d10-001. It is compared with d11-001 only on the secondary grid — the same rows, the same labels, the same reference scores — and that comparison is descriptive.",
+ "stop_after_d12_001": true
+}

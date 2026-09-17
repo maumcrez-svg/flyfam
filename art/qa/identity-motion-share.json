@@ -1,0 +1,25 @@
+{
+  "pons-live:666003138.16x9.mp4": {
+    "duration": "12.000000",
+    "dimensions": [
+      1280,
+      720
+    ],
+    "bytes": 718057
+  },
+  "pons-live:666003138.9x16.mp4": {
+    "duration": "12.000000",
+    "dimensions": [
+      720,
+      1280
+    ],
+    "bytes": 603338
+  },
+  "card": {
+    "file": "pons-live:666003138.png",
+    "token": "DASP",
+    "name": "dasp",
+    "identity": "local-node block-pinned metadata",
+    "source": "captured PAPER episode"
+  }
+}

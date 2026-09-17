@@ -1,0 +1,26 @@
+{
+  "chromium": {
+    "hipRollRange": [
+      -0.17733509359329439,
+      0.1803954180837996
+    ],
+    "maxFootContactError": 8.41846670933294e-08,
+    "returnToSniffing": "PASS",
+    "reducedMotion": "PASS",
+    "mobileOverflow": false,
+    "pageErrors": [],
+    "characterDemoVideo": "/tmp/flytrade-strong-v1/art/qa/motion-video/cb01c86d38bdcf051b09a1262f900d17.webm"
+  },
+  "webkit": {
+    "hipRollRange": [
+      -0.18053675422805365,
+      0.18074736625057572
+    ],
+    "maxFootContactError": 8.408855386315159e-08,
+    "returnToSniffing": "PASS",
+    "reducedMotion": "PASS",
+    "mobileOverflow": false,
+    "pageErrors": [],
+    "characterDemoVideo": null
+  }
+}

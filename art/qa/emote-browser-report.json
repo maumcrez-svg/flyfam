@@ -1,0 +1,24 @@
+{
+  "chromium": {
+    "laughMotion": "PASS",
+    "soundOptInAndStop": "PASS",
+    "samePoseReplay": "PASS",
+    "smokingPropAndRemoval": "PASS",
+    "reducedMotion": "PASS",
+    "mobileOverflow": false,
+    "canonicalRewardOnly": "PASS",
+    "noDuplicateOnPoll": "PASS",
+    "pageErrors": []
+  },
+  "webkit": {
+    "laughMotion": "PASS",
+    "soundOptInAndStop": "PASS",
+    "samePoseReplay": "PASS",
+    "smokingPropAndRemoval": "PASS",
+    "reducedMotion": "PASS",
+    "mobileOverflow": false,
+    "canonicalRewardOnly": "PASS",
+    "noDuplicateOnPoll": "PASS",
+    "pageErrors": []
+  }
+}

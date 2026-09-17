@@ -1,0 +1,2225 @@
+{
+ "version": "d12-001-evaluation-1",
+ "run_id": "d12-001",
+ "reinforcement_rule": "relative_cohort_v1",
+ "meta": {
+  "rows": 5177,
+  "missing_joins": {},
+  "theta_hz": 0.9117185769796697,
+  "lesson_tokens": 3532,
+  "school_digest": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+  "reference_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5"
+ },
+ "split": {
+  "rule": "t0 = timestamp(start_block), t1 = timestamp(end_block), T = t0 + floor(0.7 * (t1 - t0)) snapped down to the 30-second tick grid anchored at t0",
+  "t0": 1789229564,
+  "t1": 1789272764,
+  "T": 1789259804,
+  "span_s": 43200,
+  "learning_share": 0.7,
+  "cadence_s": 30,
+  "latency_s": 2,
+  "horizon_s": 900,
+  "settle_s": 902,
+  "slot_s": 932,
+  "learning_ticks": 1009,
+  "learning_first_tick": 1789229564,
+  "learning_last_tick": 1789259804,
+  "learning_last_entry_tick": 1789258874,
+  "learning_entry_rule": "an entry is allowed only if cutoff + 902 <= T",
+  "frozen_ticks": 402,
+  "frozen_first_tick": 1789259804,
+  "frozen_last_tick": 1789271834,
+  "frozen_tick_rule": "T <= cutoff and cutoff + 902 <= t1",
+  "temporal_blocks": [
+   {
+    "block": 1,
+    "from_ts": 1789259804,
+    "to_ts": 1789263814,
+    "ticks": 134,
+    "first_tick": 1789259804,
+    "last_tick": 1789263794
+   },
+   {
+    "block": 2,
+    "from_ts": 1789263814,
+    "to_ts": 1789267824,
+    "ticks": 134,
+    "first_tick": 1789263824,
+    "last_tick": 1789267814
+   },
+   {
+    "block": 3,
+    "from_ts": 1789267824,
+    "to_ts": 1789271834,
+    "ticks": 134,
+    "first_tick": 1789267844,
+    "last_tick": 1789271834
+   }
+  ]
+ },
+ "reuse": {
+  "version": "d12-001-reuse-1",
+  "files": {
+   "rows.jsonl": {
+    "source": "./experiments/d11/runs/d11-001/grid/rows.jsonl",
+    "source_sha256": "f972f5ece3ea47a4a82f2c0b99c8c1028e7e257912857c9d8fa245e333b8d934",
+    "copy_sha256": "f972f5ece3ea47a4a82f2c0b99c8c1028e7e257912857c9d8fa245e333b8d934",
+    "lines": 5177
+   },
+   "labels.jsonl": {
+    "source": "./experiments/d11/runs/d11-001/grid/labels.jsonl",
+    "source_sha256": "2546d458a3e6aeb2366463bb34b64738a5d13a7bf0d0bcba8a76b58b0f3ef640",
+    "copy_sha256": "2546d458a3e6aeb2366463bb34b64738a5d13a7bf0d0bcba8a76b58b0f3ef640",
+    "lines": 5177
+   },
+   "scores_reference.jsonl": {
+    "source": "./experiments/d11/runs/d11-001/grid/scores_reference.jsonl",
+    "source_sha256": "cde2a79cf6e22f0a2f5fcb6e82a7c36f9011c3b0162de60e8877086dea4a78e2",
+    "copy_sha256": "cde2a79cf6e22f0a2f5fcb6e82a7c36f9011c3b0162de60e8877086dea4a78e2",
+    "lines": 5177
+   }
+  },
+  "rule": "the same store, the same cutoff T, the same admission_v2 and comparison_v1 seeds that are not keyed to the learned state; reuse is checked by --verify-reference, never assumed"
+ },
+ "reference_verification": {
+  "version": "d12-001-reference-verification-1",
+  "rows_recomputed": 200,
+  "rows_in_the_grid": 5177,
+  "compared": 200,
+  "mismatched": 0,
+  "max_abs_difference_hz": 0.0,
+  "tolerance_hz": 1e-09,
+  "start_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+  "digest_unchanged": true,
+  "examples": [],
+  "rule": "identical seeds and identical weights must give identical valences; a single disagreement stops the wave",
+  "verdict": "REUSE_VERIFIED"
+ },
+ "saturation": {
+  "rows": 5177,
+  "channels_per_row": 10,
+  "row_channel_pairs": 51770,
+  "saturated_row_channel_pairs": 1460,
+  "saturated_row_channel_fraction": 0.02820166119374155,
+  "rows_with_at_least_one": 1424,
+  "rows_with_at_least_one_fraction": 0.2750627776704655
+ },
+ "readout_status": {
+  "school": {
+   "NO_RESPONSE": 1161,
+   "VALID": 4016
+  },
+  "reference": {
+   "VALID": 5168,
+   "NO_RESPONSE": 9
+  }
+ },
+ "no_response_rate": {
+  "school": 0.22426115510913658,
+  "reference": 0.0017384585667374927
+ },
+ "invalid_state": {
+  "counts": {
+   "school": 0,
+   "reference": 0
+  },
+  "rates": {
+   "school": 0.0,
+   "reference": 0.0
+  }
+ },
+ "primary": {
+  "name": "primary",
+  "rows": 5044,
+  "tokens": 1045,
+  "rows_valid_in_both": 3896,
+  "paired_neural_coverage": 0.7724028548770817,
+  "paired_labelled_rows": 3788,
+  "class_balance": {
+   "positive": 416,
+   "negative": 3372
+  },
+  "overall": {
+   "n": 3788,
+   "positive": 416,
+   "negative": 3372,
+   "clusters": 833,
+   "tokens": 833,
+   "auc_school": 0.4336800090108587,
+   "auc_reference": 0.5666112042613377,
+   "delta_auc": -0.13293119525047903,
+   "spearman_school": 0.0010317773223540425,
+   "spearman_reference": -0.03239878529383884,
+   "interval": {
+    "point": -0.13293119525047903,
+    "resamples": 10000,
+    "kept": 10000,
+    "lo": -0.19411511811012028,
+    "hi": -0.06551608509978683,
+    "level": 0.95,
+    "seed": 20260913,
+    "clusters": 833,
+    "degenerate": false
+   },
+   "wording": "delta AUC (SCHOOL - REFERENCE) is -0.1329, 95 % interval [-0.1941, -0.0655] \u2014 an interval that excludes 0",
+   "preregistered_reading": "the inversion persists"
+  },
+  "per_block": [
+   {
+    "block": 1,
+    "from_ts": 1789259804,
+    "to_ts": 1789263814,
+    "n": 1271,
+    "positive": 174,
+    "negative": 1097,
+    "clusters": 308,
+    "auc_school": 0.4413892643468603,
+    "auc_reference": 0.5496128417104119,
+    "delta_auc": -0.10822357736355159,
+    "interval": {
+     "point": -0.10822357736355159,
+     "resamples": 10000,
+     "kept": 10000,
+     "lo": -0.2264394602123837,
+     "hi": -0.010274825606578872,
+     "level": 0.95,
+     "seed": 20260913,
+     "clusters": 308,
+     "degenerate": false
+    },
+    "wording": "block 1 delta AUC is -0.1082, 95 % interval [-0.2264, -0.0103] \u2014 an interval that excludes 0",
+    "preregistered_reading": "the inversion persists"
+   },
+   {
+    "block": 2,
+    "from_ts": 1789263814,
+    "to_ts": 1789267824,
+    "n": 1409,
+    "positive": 144,
+    "negative": 1265,
+    "clusters": 324,
+    "auc_school": 0.41589811155028544,
+    "auc_reference": 0.5587834870443567,
+    "delta_auc": -0.1428853754940712,
+    "interval": {
+     "point": -0.1428853754940712,
+     "resamples": 10000,
+     "kept": 10000,
+     "lo": -0.22422454638731124,
+     "hi": 0.04560782575692161,
+     "level": 0.95,
+     "seed": 20260913,
+     "clusters": 324,
+     "degenerate": false
+    },
+    "wording": "block 2 delta AUC is -0.1429, 95 % interval [-0.2242, +0.0456] \u2014 an interval that includes 0, compatible with sampling variation",
+    "preregistered_reading": "compatible with sampling variation"
+   },
+   {
+    "block": 3,
+    "from_ts": 1789267824,
+    "to_ts": 1789271834,
+    "n": 1108,
+    "positive": 98,
+    "negative": 1010,
+    "clusters": 242,
+    "auc_school": 0.44342796524550415,
+    "auc_reference": 0.6077237825823398,
+    "delta_auc": -0.16429581733683568,
+    "interval": {
+     "point": -0.16429581733683568,
+     "resamples": 10000,
+     "kept": 10000,
+     "lo": -0.28075040903221926,
+     "hi": -0.003433837229391144,
+     "level": 0.95,
+     "seed": 20260913,
+     "clusters": 242,
+     "degenerate": false
+    },
+    "wording": "block 3 delta AUC is -0.1643, 95 % interval [-0.2808, -0.0034] \u2014 an interval that excludes 0",
+    "preregistered_reading": "the inversion persists"
+   }
+  ],
+  "suppression": {
+   "rows_valid_in_both": 3896,
+   "buy_rate_school": 0.000513347022587269,
+   "buy_rate_reference": 0.4358316221765914,
+   "per_block": [
+    {
+     "block": 1,
+     "n": 1316,
+     "buy_rate_school": 0.0,
+     "buy_rate_reference": 0.44148936170212766
+    },
+    {
+     "block": 2,
+     "n": 1444,
+     "buy_rate_school": 0.0,
+     "buy_rate_reference": 0.4245152354570637
+    },
+    {
+     "block": 3,
+     "n": 1136,
+     "buy_rate_school": 0.0017605633802816902,
+     "buy_rate_reference": 0.44366197183098594
+    }
+   ],
+   "by_outcome_class": {
+    "positive": {
+     "n": 416,
+     "buy_rate_school": 0.0,
+     "buy_rate_reference": 0.53125
+    },
+    "negative": {
+     "n": 3372,
+     "buy_rate_school": 0.0005931198102016608,
+     "buy_rate_reference": 0.4223013048635824
+    }
+   },
+   "score": {
+    "school": {
+     "mean": -0.27793101512161,
+     "sd": 0.7784637547237849,
+     "min": -4.112506734913793,
+     "median": -0.017679148706896353,
+     "max": 1.6391096443965518
+    },
+    "reference": {
+     "mean": 0.8752777633337465,
+     "sd": 1.5669000923843703,
+     "min": -3.223498114224138,
+     "median": 0.6827518857758619,
+     "max": 8.360553609913794
+    }
+   },
+   "score_difference": {
+    "mean": -1.1532087784553564,
+    "sd": 2.163232981283491,
+    "median": -0.7543103448275861,
+    "min": -11.07219827586207,
+    "max": 3.8523706896551726
+   },
+   "a_lower_buy_rate_alone_is_not_learning_success": true,
+   "class_contrast": {
+    "point": 0.10954181494661924,
+    "resamples": 10000,
+    "kept": 10000,
+    "lo": 0.04371145988927923,
+    "hi": 0.1706696013975604,
+    "level": 0.95,
+    "seed": 20260913,
+    "clusters": 833,
+    "degenerate": false
+   },
+   "class_contrast_wording": "the between-class difference of the school-minus-reference change in the BUY-crossing rate is +0.1095, 95 % interval [+0.0437, +0.1707] \u2014 an interval that excludes 0",
+   "reading": "contextual"
+  }
+ },
+ "secondary": {
+  "name": "secondary",
+  "rows": 5177,
+  "tokens": 1050,
+  "rows_valid_in_both": 4016,
+  "paired_neural_coverage": 0.7757388448908634,
+  "paired_labelled_rows": 3890,
+  "class_balance": {
+   "positive": 432,
+   "negative": 3458
+  },
+  "overall": {
+   "n": 3890,
+   "positive": 432,
+   "negative": 3458,
+   "clusters": 837,
+   "tokens": 837,
+   "auc_school": 0.43259223111196793,
+   "auc_reference": 0.564461032388664,
+   "delta_auc": -0.13186880127669603,
+   "spearman_school": 0.004530403352901307,
+   "spearman_reference": -0.03494985980896727,
+   "interval": {
+    "point": -0.13186880127669603,
+    "resamples": 10000,
+    "kept": 10000,
+    "lo": -0.1904739941148838,
+    "hi": -0.06833100243140869,
+    "level": 0.95,
+    "seed": 20260913,
+    "clusters": 837,
+    "degenerate": false
+   },
+   "wording": "delta AUC (SCHOOL - REFERENCE) is -0.1319, 95 % interval [-0.1905, -0.0683] \u2014 an interval that excludes 0",
+   "preregistered_reading": "the inversion persists"
+  },
+  "per_block": [
+   {
+    "block": 1,
+    "from_ts": 1789259804,
+    "to_ts": 1789263814,
+    "n": 1373,
+    "positive": 190,
+    "negative": 1183,
+    "clusters": 312,
+    "auc_school": 0.43944476576055524,
+    "auc_reference": 0.5452729456778039,
+    "delta_auc": -0.10582817991724869,
+    "interval": {
+     "point": -0.10582817991724869,
+     "resamples": 10000,
+     "kept": 10000,
+     "lo": -0.21474539569720272,
+     "hi": -0.019701719827716794,
+     "level": 0.95,
+     "seed": 20260913,
+     "clusters": 312,
+     "degenerate": false
+    },
+    "wording": "block 1 delta AUC is -0.1058, 95 % interval [-0.2147, -0.0197] \u2014 an interval that excludes 0",
+    "preregistered_reading": "the inversion persists"
+   },
+   {
+    "block": 2,
+    "from_ts": 1789263814,
+    "to_ts": 1789267824,
+    "n": 1409,
+    "positive": 144,
+    "negative": 1265,
+    "clusters": 324,
+    "auc_school": 0.41589811155028544,
+    "auc_reference": 0.5587834870443567,
+    "delta_auc": -0.1428853754940712,
+    "interval": {
+     "point": -0.1428853754940712,
+     "resamples": 10000,
+     "kept": 10000,
+     "lo": -0.22422454638731124,
+     "hi": 0.04560782575692161,
+     "level": 0.95,
+     "seed": 20260913,
+     "clusters": 324,
+     "degenerate": false
+    },
+    "wording": "block 2 delta AUC is -0.1429, 95 % interval [-0.2242, +0.0456] \u2014 an interval that includes 0, compatible with sampling variation",
+    "preregistered_reading": "compatible with sampling variation"
+   },
+   {
+    "block": 3,
+    "from_ts": 1789267824,
+    "to_ts": 1789271834,
+    "n": 1108,
+    "positive": 98,
+    "negative": 1010,
+    "clusters": 242,
+    "auc_school": 0.44342796524550415,
+    "auc_reference": 0.6077237825823398,
+    "delta_auc": -0.16429581733683568,
+    "interval": {
+     "point": -0.16429581733683568,
+     "resamples": 10000,
+     "kept": 10000,
+     "lo": -0.28075040903221926,
+     "hi": -0.003433837229391144,
+     "level": 0.95,
+     "seed": 20260913,
+     "clusters": 242,
+     "degenerate": false
+    },
+    "wording": "block 3 delta AUC is -0.1643, 95 % interval [-0.2808, -0.0034] \u2014 an interval that excludes 0",
+    "preregistered_reading": "the inversion persists"
+   }
+  ],
+  "suppression": {
+   "rows_valid_in_both": 4016,
+   "buy_rate_school": 0.00049800796812749,
+   "buy_rate_reference": 0.438496015936255,
+   "per_block": [
+    {
+     "block": 1,
+     "n": 1436,
+     "buy_rate_school": 0.0,
+     "buy_rate_reference": 0.44846796657381616
+    },
+    {
+     "block": 2,
+     "n": 1444,
+     "buy_rate_school": 0.0,
+     "buy_rate_reference": 0.4245152354570637
+    },
+    {
+     "block": 3,
+     "n": 1136,
+     "buy_rate_school": 0.0017605633802816902,
+     "buy_rate_reference": 0.44366197183098594
+    }
+   ],
+   "by_outcome_class": {
+    "positive": {
+     "n": 432,
+     "buy_rate_school": 0.0,
+     "buy_rate_reference": 0.5324074074074074
+    },
+    "negative": {
+     "n": 3458,
+     "buy_rate_school": 0.000578368999421631,
+     "buy_rate_reference": 0.424812030075188
+    }
+   },
+   "score": {
+    "school": {
+     "mean": -0.2859420346630717,
+     "sd": 0.784777254115684,
+     "min": -4.112506734913793,
+     "median": -0.058088631465517127,
+     "max": 1.6391096443965518
+    },
+    "reference": {
+     "mean": 0.883578428741929,
+     "sd": 1.5748731471630435,
+     "min": -3.223498114224138,
+     "median": 0.6962217133620692,
+     "max": 8.872407058189655
+    }
+   },
+   "score_difference": {
+    "mean": -1.1695204634050005,
+    "sd": 2.176386391233591,
+    "median": -0.7677801724137936,
+    "min": -12.594288793103448,
+    "max": 3.8523706896551726
+   },
+   "a_lower_buy_rate_alone_is_not_learning_success": true,
+   "class_contrast": {
+    "point": 0.10817374633164112,
+    "resamples": 10000,
+    "kept": 10000,
+    "lo": 0.047041387077310114,
+    "hi": 0.16806964591533505,
+    "level": 0.95,
+    "seed": 20260913,
+    "clusters": 837,
+    "degenerate": false
+   },
+   "class_contrast_wording": "the between-class difference of the school-minus-reference change in the BUY-crossing rate is +0.1082, 95 % interval [+0.0470, +0.1681] \u2014 an interval that excludes 0",
+   "reading": "contextual"
+  }
+ },
+ "conditions": [
+  {
+   "condition": "fewer than 2,000 lessons applied",
+   "measured": 19665,
+   "threshold": 2000,
+   "detail": "19,665 lessons applied (19,180 accepted, 485 neutral)",
+   "fails": false
+  },
+  {
+   "condition": "fewer than 100 paired labels on the primary grid",
+   "measured": 3788,
+   "threshold": 100,
+   "detail": "3,788 primary rows valid in both branches with a settled label",
+   "fails": false
+  },
+  {
+   "condition": "either outcome class under 20 on the primary grid",
+   "measured": 416,
+   "threshold": 20,
+   "detail": "416 positive / 3,372 negative",
+   "fails": false
+  },
+  {
+   "condition": "paired coverage under 95 %",
+   "measured": 0.7757388448908634,
+   "threshold": 0.95,
+   "detail": "77.57 % of 5,177 rows valid in both branches",
+   "fails": true
+  },
+  {
+   "condition": "encoder saturation over 5 % of (row, channel) pairs or INVALID_STATE over 5 %",
+   "measured": 0.02820166119374155,
+   "threshold": 0.05,
+   "detail": "saturation 2.820 % of (row, channel) pairs; INVALID_STATE school 0.000 %, reference 0.000 %",
+   "fails": false
+  },
+  {
+   "condition": "more than 25 % of plastic synapses at floor or ceiling at the end of LEARNING",
+   "measured": 0.8423550247491032,
+   "threshold": 0.25,
+   "detail": "84.24 % of 44,042 plastic synapses (15.04 % at the floor, 69.20 % at the ceiling, which is where the clean reference starts)",
+   "fails": true
+  }
+ ],
+ "verdict": "INCONCLUSIVE",
+ "conditions_failed": 2,
+ "school": {
+  "ticks": 1009,
+  "start_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+  "end_digest": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+  "learned_digest": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+  "reinforcement_rule": "relative_cohort_v1",
+  "n_min": 3,
+  "cohorts": {
+   "formed": 975,
+   "too_small": 0,
+   "boundary": 31,
+   "queued_lessons": 20152
+  },
+  "lessons": {
+   "applied": 19665,
+   "accepted": 19180,
+   "neutral": 485,
+   "rejected_by_credit": {},
+   "rejected_by_credit_total": 0,
+   "discarded": {
+    "UNRESOLVED": 487,
+    "BOUNDARY": 336
+   },
+   "discarded_total": 823,
+   "reward": 9629,
+   "punishment": 9551,
+   "amount": {
+    "min": 0.0,
+    "median": 0.5263157894736842,
+    "max": 1.0
+   },
+   "clipped": 0,
+   "clipping_is_impossible_under_this_rule": true
+  },
+  "cohort_size": {
+   "min": 3,
+   "median": 22.0,
+   "max": 44
+  },
+  "learning_curve": [
+   {
+    "lessons": 500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.020771049607499707,
+     "cohorts_with_a_tau": 37,
+     "mean_within_cohort_kendall_tau": -0.04443506493351325
+    },
+    "cumulative": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.020771049607499707,
+     "cohorts_with_a_tau": 37,
+     "mean_within_cohort_kendall_tau": -0.04443506493351325
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 1000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.030024084406783367,
+     "cohorts_with_a_tau": 26,
+     "mean_within_cohort_kendall_tau": 0.008694618739097552
+    },
+    "cumulative": {
+     "n": 1000,
+     "spearman_valence_vs_s": 0.0028998543744483242,
+     "cohorts_with_a_tau": 62,
+     "mean_within_cohort_kendall_tau": -0.012202668610509554
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 1500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.02530907430617269,
+     "cohorts_with_a_tau": 25,
+     "mean_within_cohort_kendall_tau": 0.041989442026478294
+    },
+    "cumulative": {
+     "n": 1500,
+     "spearman_valence_vs_s": 0.009242067047396144,
+     "cohorts_with_a_tau": 86,
+     "mean_within_cohort_kendall_tau": -0.0020941910933665593
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 2000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.006977880197976129,
+     "cohorts_with_a_tau": 22,
+     "mean_within_cohort_kendall_tau": -0.010070556555215347
+    },
+    "cumulative": {
+     "n": 2000,
+     "spearman_valence_vs_s": 0.005063800302847613,
+     "cohorts_with_a_tau": 108,
+     "mean_within_cohort_kendall_tau": -0.0037190062800394586
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 2500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.11821178463959571,
+     "cohorts_with_a_tau": 27,
+     "mean_within_cohort_kendall_tau": 0.0984476183730302
+    },
+    "cumulative": {
+     "n": 2500,
+     "spearman_valence_vs_s": 0.02593495232026985,
+     "cohorts_with_a_tau": 134,
+     "mean_within_cohort_kendall_tau": 0.015646438121191635
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 3000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.03542959237080497,
+     "cohorts_with_a_tau": 22,
+     "mean_within_cohort_kendall_tau": 0.008534448171471969
+    },
+    "cumulative": {
+     "n": 3000,
+     "spearman_valence_vs_s": 0.016562062452525596,
+     "cohorts_with_a_tau": 155,
+     "mean_within_cohort_kendall_tau": 0.01148592359168085
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 3500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.0192456206319254,
+     "cohorts_with_a_tau": 22,
+     "mean_within_cohort_kendall_tau": -0.020151974749693213
+    },
+    "cumulative": {
+     "n": 3500,
+     "spearman_valence_vs_s": 0.016610509382762293,
+     "cohorts_with_a_tau": 176,
+     "mean_within_cohort_kendall_tau": 0.011708853781283406
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 4000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.06080985647788646,
+     "cohorts_with_a_tau": 19,
+     "mean_within_cohort_kendall_tau": -0.0348204738589173
+    },
+    "cumulative": {
+     "n": 4000,
+     "spearman_valence_vs_s": 0.007632755028386607,
+     "cohorts_with_a_tau": 195,
+     "mean_within_cohort_kendall_tau": 0.007007944473152721
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 4500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.03462956158797339,
+     "cohorts_with_a_tau": 22,
+     "mean_within_cohort_kendall_tau": -0.0174133092546477
+    },
+    "cumulative": {
+     "n": 4500,
+     "spearman_valence_vs_s": 0.003252498724993823,
+     "cohorts_with_a_tau": 216,
+     "mean_within_cohort_kendall_tau": 0.005683854021330619
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 5000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.11958601160326687,
+     "cohorts_with_a_tau": 24,
+     "mean_within_cohort_kendall_tau": -0.07316647137662233
+    },
+    "cumulative": {
+     "n": 5000,
+     "spearman_valence_vs_s": -0.008871633132452494,
+     "cohorts_with_a_tau": 239,
+     "mean_within_cohort_kendall_tau": -0.0020195684208600163
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 5500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.0523018007405194,
+     "cohorts_with_a_tau": 21,
+     "mean_within_cohort_kendall_tau": -0.049157852272098165
+    },
+    "cumulative": {
+     "n": 5500,
+     "spearman_valence_vs_s": -0.012482540060796979,
+     "cohorts_with_a_tau": 259,
+     "mean_within_cohort_kendall_tau": -0.007007010700526754
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 6000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.11209674613212618,
+     "cohorts_with_a_tau": 21,
+     "mean_within_cohort_kendall_tau": 0.07180009949081245
+    },
+    "cumulative": {
+     "n": 6000,
+     "spearman_valence_vs_s": -0.0023910659355349632,
+     "cohorts_with_a_tau": 279,
+     "mean_within_cohort_kendall_tau": -0.0016696306163846751
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 6500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.016238069365873225,
+     "cohorts_with_a_tau": 20,
+     "mean_within_cohort_kendall_tau": 0.010312903703991044
+    },
+    "cumulative": {
+     "n": 6500,
+     "spearman_valence_vs_s": -0.0031060120600235634,
+     "cohorts_with_a_tau": 298,
+     "mean_within_cohort_kendall_tau": -1.782094824453272e-05
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 7000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.08657470972325124,
+     "cohorts_with_a_tau": 21,
+     "mean_within_cohort_kendall_tau": -0.08638412100585742
+    },
+    "cumulative": {
+     "n": 7000,
+     "spearman_valence_vs_s": -0.009040940097878388,
+     "cohorts_with_a_tau": 318,
+     "mean_within_cohort_kendall_tau": -0.003896105764182332
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 7500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.056271904430046156,
+     "cohorts_with_a_tau": 24,
+     "mean_within_cohort_kendall_tau": -0.024139521586350604
+    },
+    "cumulative": {
+     "n": 7500,
+     "spearman_valence_vs_s": -0.012043548403550389,
+     "cohorts_with_a_tau": 341,
+     "mean_within_cohort_kendall_tau": -0.00571741475565579
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 8000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.04099541137912788,
+     "cohorts_with_a_tau": 26,
+     "mean_within_cohort_kendall_tau": 0.054115647987322046
+    },
+    "cumulative": {
+     "n": 8000,
+     "spearman_valence_vs_s": -0.008882331598690925,
+     "cohorts_with_a_tau": 366,
+     "mean_within_cohort_kendall_tau": -0.0015926441450770255
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 8500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.17584989912015436,
+     "cohorts_with_a_tau": 27,
+     "mean_within_cohort_kendall_tau": -0.12723494660620704
+    },
+    "cumulative": {
+     "n": 8500,
+     "spearman_valence_vs_s": -0.0188801900788892,
+     "cohorts_with_a_tau": 392,
+     "mean_within_cohort_kendall_tau": -0.009957143731727708
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 9000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.010871644722605977,
+     "cohorts_with_a_tau": 26,
+     "mean_within_cohort_kendall_tau": 0.017847271641319606
+    },
+    "cumulative": {
+     "n": 9000,
+     "spearman_valence_vs_s": -0.017040032918643356,
+     "cohorts_with_a_tau": 417,
+     "mean_within_cohort_kendall_tau": -0.009091708968333877
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 9500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.06754939141879573,
+     "cohorts_with_a_tau": 28,
+     "mean_within_cohort_kendall_tau": -0.04464694400749719
+    },
+    "cumulative": {
+     "n": 9500,
+     "spearman_valence_vs_s": -0.01979553474068253,
+     "cohorts_with_a_tau": 445,
+     "mean_within_cohort_kendall_tau": -0.011354385180953832
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 10000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.01696417144731529,
+     "cohorts_with_a_tau": 28,
+     "mean_within_cohort_kendall_tau": 0.014447042019730199
+    },
+    "cumulative": {
+     "n": 10000,
+     "spearman_valence_vs_s": -0.01804864025334171,
+     "cohorts_with_a_tau": 472,
+     "mean_within_cohort_kendall_tau": -0.009951762049706221
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 10500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.017850779551557477,
+     "cohorts_with_a_tau": 27,
+     "mean_within_cohort_kendall_tau": -0.000600314794174582
+    },
+    "cumulative": {
+     "n": 10500,
+     "spearman_valence_vs_s": -0.016476210655018822,
+     "cohorts_with_a_tau": 498,
+     "mean_within_cohort_kendall_tau": -0.0077319854726380435
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 11000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.07075056508346088,
+     "cohorts_with_a_tau": 27,
+     "mean_within_cohort_kendall_tau": 0.01618009512095359
+    },
+    "cumulative": {
+     "n": 11000,
+     "spearman_valence_vs_s": -0.019150411530211887,
+     "cohorts_with_a_tau": 524,
+     "mean_within_cohort_kendall_tau": -0.008506395976904231
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 11500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.03461811978010635,
+     "cohorts_with_a_tau": 21,
+     "mean_within_cohort_kendall_tau": -0.013484039738983298
+    },
+    "cumulative": {
+     "n": 11500,
+     "spearman_valence_vs_s": -0.02001132517829982,
+     "cohorts_with_a_tau": 544,
+     "mean_within_cohort_kendall_tau": -0.009304470006240429
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 12000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.026608482374765697,
+     "cohorts_with_a_tau": 15,
+     "mean_within_cohort_kendall_tau": 0.007983617825588709
+    },
+    "cumulative": {
+     "n": 12000,
+     "spearman_valence_vs_s": -0.018139406984807746,
+     "cohorts_with_a_tau": 559,
+     "mean_within_cohort_kendall_tau": -0.008842254776702389
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 12500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.08950677674317105,
+     "cohorts_with_a_tau": 20,
+     "mean_within_cohort_kendall_tau": -0.08306635053366715
+    },
+    "cumulative": {
+     "n": 12500,
+     "spearman_valence_vs_s": -0.02093026401341107,
+     "cohorts_with_a_tau": 578,
+     "mean_within_cohort_kendall_tau": -0.010780647748863812
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 13000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.056735245415545164,
+     "cohorts_with_a_tau": 21,
+     "mean_within_cohort_kendall_tau": 0.04547125440525485
+    },
+    "cumulative": {
+     "n": 13000,
+     "spearman_valence_vs_s": -0.017926485998158825,
+     "cohorts_with_a_tau": 598,
+     "mean_within_cohort_kendall_tau": -0.008974840411009991
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 13500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.01631610769578304,
+     "cohorts_with_a_tau": 23,
+     "mean_within_cohort_kendall_tau": 0.02364705604656557
+    },
+    "cumulative": {
+     "n": 13500,
+     "spearman_valence_vs_s": -0.016734322523646213,
+     "cohorts_with_a_tau": 621,
+     "mean_within_cohort_kendall_tau": -0.007708354393006377
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 14000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.025516690135493812,
+     "cohorts_with_a_tau": 21,
+     "mean_within_cohort_kendall_tau": 0.01482089506615165
+    },
+    "cumulative": {
+     "n": 14000,
+     "spearman_valence_vs_s": -0.01513212314146899,
+     "cohorts_with_a_tau": 641,
+     "mean_within_cohort_kendall_tau": -0.007390105043514675
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 14500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.09658409483802519,
+     "cohorts_with_a_tau": 20,
+     "mean_within_cohort_kendall_tau": -0.056717172531145554
+    },
+    "cumulative": {
+     "n": 14500,
+     "spearman_valence_vs_s": -0.017768973522354053,
+     "cohorts_with_a_tau": 660,
+     "mean_within_cohort_kendall_tau": -0.00889347049792536
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 15000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.028701317805806512,
+     "cohorts_with_a_tau": 21,
+     "mean_within_cohort_kendall_tau": -0.03157781146378435
+    },
+    "cumulative": {
+     "n": 15000,
+     "spearman_valence_vs_s": -0.018118500321838354,
+     "cohorts_with_a_tau": 680,
+     "mean_within_cohort_kendall_tau": -0.00923360452063819
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 15500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.00021703513982535493,
+     "cohorts_with_a_tau": 24,
+     "mean_within_cohort_kendall_tau": 0.01476555745766425
+    },
+    "cumulative": {
+     "n": 15500,
+     "spearman_valence_vs_s": -0.01742058455643894,
+     "cohorts_with_a_tau": 703,
+     "mean_within_cohort_kendall_tau": -0.008206286924229622
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 16000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.014698113402716598,
+     "cohorts_with_a_tau": 21,
+     "mean_within_cohort_kendall_tau": 0.00612413005382096
+    },
+    "cumulative": {
+     "n": 16000,
+     "spearman_valence_vs_s": -0.017216692098249366,
+     "cohorts_with_a_tau": 724,
+     "mean_within_cohort_kendall_tau": -0.00788166072661638
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 16500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.17537630649078148,
+     "cohorts_with_a_tau": 26,
+     "mean_within_cohort_kendall_tau": 0.0872270620531693
+    },
+    "cumulative": {
+     "n": 16500,
+     "spearman_valence_vs_s": -0.011420787484210678,
+     "cohorts_with_a_tau": 750,
+     "mean_within_cohort_kendall_tau": -0.004558288972047298
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 17000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.00435685678361218,
+     "cohorts_with_a_tau": 32,
+     "mean_within_cohort_kendall_tau": -0.00774504408747638
+    },
+    "cumulative": {
+     "n": 17000,
+     "spearman_valence_vs_s": -0.011086339729240736,
+     "cohorts_with_a_tau": 781,
+     "mean_within_cohort_kendall_tau": -0.0035080199035844493
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 17500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.10215943678774533,
+     "cohorts_with_a_tau": 34,
+     "mean_within_cohort_kendall_tau": -0.08157931224882699
+    },
+    "cumulative": {
+     "n": 17500,
+     "spearman_valence_vs_s": -0.01354439782959663,
+     "cohorts_with_a_tau": 814,
+     "mean_within_cohort_kendall_tau": -0.006660431875439416
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 18000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.035269726216309666,
+     "cohorts_with_a_tau": 36,
+     "mean_within_cohort_kendall_tau": -0.017748725403016054
+    },
+    "cumulative": {
+     "n": 18000,
+     "spearman_valence_vs_s": -0.014245001522771797,
+     "cohorts_with_a_tau": 849,
+     "mean_within_cohort_kendall_tau": -0.0074101140339241315
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 18500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": 0.08431766501683613,
+     "cohorts_with_a_tau": 30,
+     "mean_within_cohort_kendall_tau": 0.0550811564469332
+    },
+    "cumulative": {
+     "n": 18500,
+     "spearman_valence_vs_s": -0.011385712919346428,
+     "cohorts_with_a_tau": 878,
+     "mean_within_cohort_kendall_tau": -0.005759486565089935
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 19000,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.05015343128221747,
+     "cohorts_with_a_tau": 45,
+     "mean_within_cohort_kendall_tau": -0.06732693834851865
+    },
+    "cumulative": {
+     "n": 19000,
+     "spearman_valence_vs_s": -0.012378638405659104,
+     "cohorts_with_a_tau": 922,
+     "mean_within_cohort_kendall_tau": -0.008612191999426538
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 19500,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.025178179614322775,
+     "cohorts_with_a_tau": 38,
+     "mean_within_cohort_kendall_tau": -0.03646433166934289
+    },
+    "cumulative": {
+     "n": 19500,
+     "spearman_valence_vs_s": -0.012573140845531641,
+     "cohorts_with_a_tau": 959,
+     "mean_within_cohort_kendall_tau": -0.008631930497492838
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   },
+   {
+    "lessons": 19665,
+    "window": {
+     "n": 500,
+     "spearman_valence_vs_s": -0.06085380124203499,
+     "cohorts_with_a_tau": 40,
+     "mean_within_cohort_kendall_tau": -0.07381464478295263
+    },
+    "cumulative": {
+     "n": 19665,
+     "spearman_valence_vs_s": -0.014156105299003775,
+     "cohorts_with_a_tau": 975,
+     "mean_within_cohort_kendall_tau": -0.010979650529473564
+    },
+    "window_size": 500,
+    "prospective": "the brain had not been taught these lessons when it scored them"
+   }
+  ],
+  "weights": [
+   {
+    "lessons": 500,
+    "synapses": 44042,
+    "mean": 0.9193028347301719,
+    "l2_norm": 197.9057269657492,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 2398,
+    "at_ceiling": 33774,
+    "at_floor_fraction": 0.05444802688342945,
+    "at_ceiling_fraction": 0.7668589074065665,
+    "saturated_fraction": 0.8213069342899959,
+    "digest": "d8ebc400e69b0b2c2863874323d1eea3794e8730f0a186c4f44153e65efff0a1",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 1000,
+    "synapses": 44042,
+    "mean": 0.8996921670762478,
+    "l2_norm": 195.1415288777549,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 3687,
+    "at_ceiling": 32527,
+    "at_floor_fraction": 0.08371554425321284,
+    "at_ceiling_fraction": 0.7385450252032151,
+    "saturated_fraction": 0.822260569456428,
+    "digest": "7a0effd2b905770f80b40683d7b5cec7602126a1f33c55f9e118b65b91914bb7",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 1500,
+    "synapses": 44042,
+    "mean": 0.8888316123826395,
+    "l2_norm": 193.62078269914602,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 4199,
+    "at_ceiling": 32277,
+    "at_floor_fraction": 0.09534081104400345,
+    "at_ceiling_fraction": 0.7328686254030243,
+    "saturated_fraction": 0.8282094364470278,
+    "digest": "4a709303d4d5c88c85a2a7ba97fb171534f4d20a2c23de566c28fcbdea258e43",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 2000,
+    "synapses": 44042,
+    "mean": 0.8830523846270814,
+    "l2_norm": 192.83470320395986,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 4406,
+    "at_ceiling": 32078,
+    "at_floor_fraction": 0.10004087007856137,
+    "at_ceiling_fraction": 0.7283502111620725,
+    "saturated_fraction": 0.828391081240634,
+    "digest": "d95af7019ebe472f02d53709a7deea65eec8c1af06e6d06242529d95334acb99",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 2500,
+    "synapses": 44042,
+    "mean": 0.8783265501166022,
+    "l2_norm": 192.197174991477,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 4648,
+    "at_ceiling": 31922,
+    "at_floor_fraction": 0.105535625085146,
+    "at_ceiling_fraction": 0.7248081376867536,
+    "saturated_fraction": 0.8303437627718996,
+    "digest": "61dc748343a219ecea5250cf2d64d7f7ee6062dff7c802298330dfdaf5e1354e",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 3000,
+    "synapses": 44042,
+    "mean": 0.8740221796067814,
+    "l2_norm": 191.61507969033119,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 4909,
+    "at_ceiling": 31612,
+    "at_floor_fraction": 0.11146178647654512,
+    "at_ceiling_fraction": 0.7177694019345171,
+    "saturated_fraction": 0.8292311884110621,
+    "digest": "e8eae15f8a342049027400a53fc06213efb9fc7195fdb41785da5ed2a1acc17e",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 3500,
+    "synapses": 44042,
+    "mean": 0.871161703953983,
+    "l2_norm": 191.2310680454513,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5009,
+    "at_ceiling": 31494,
+    "at_floor_fraction": 0.1137323463966214,
+    "at_ceiling_fraction": 0.7150901412288271,
+    "saturated_fraction": 0.8288224876254484,
+    "digest": "a5abc78e0953c6c27a8f7b81e23ae3f693cf10861466f57c537e28ea60f03a14",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 4000,
+    "synapses": 44042,
+    "mean": 0.8681008904863782,
+    "l2_norm": 190.78036176752258,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5339,
+    "at_ceiling": 31427,
+    "at_floor_fraction": 0.12122519413287317,
+    "at_ceiling_fraction": 0.7135688660823759,
+    "saturated_fraction": 0.834794060215249,
+    "digest": "192c7cbe8e299472ca3c2b7c147382b3ebd31c7868c6757d8bca9d600170baab",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 4500,
+    "synapses": 44042,
+    "mean": 0.865625562959252,
+    "l2_norm": 190.44293109536244,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5457,
+    "at_ceiling": 31414,
+    "at_floor_fraction": 0.12390445483856319,
+    "at_ceiling_fraction": 0.713273693292766,
+    "saturated_fraction": 0.8371781481313292,
+    "digest": "6d52a791fd337f2110079bafb6f5bec641d3cec3a33425803b7305a25c2e8f95",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 5000,
+    "synapses": 44042,
+    "mean": 0.8635169264277788,
+    "l2_norm": 190.15356085325885,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5529,
+    "at_ceiling": 31390,
+    "at_floor_fraction": 0.12553925798101812,
+    "at_ceiling_fraction": 0.7127287589119476,
+    "saturated_fraction": 0.8382680168929658,
+    "digest": "d0f9a0887dd75e8336cd2670fabf6bc02c84a3db68d504591f8a66c8e9aa73e8",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 5500,
+    "synapses": 44042,
+    "mean": 0.8615875990308439,
+    "l2_norm": 189.8900563908622,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5600,
+    "at_ceiling": 31376,
+    "at_floor_fraction": 0.12715135552427229,
+    "at_ceiling_fraction": 0.7124108805231371,
+    "saturated_fraction": 0.8395622360474093,
+    "digest": "4db3e8f3159873ff895ce7b5a4bc6438439647ceb314534bfe68fa36130fd875",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 6000,
+    "synapses": 44042,
+    "mean": 0.8601209142224502,
+    "l2_norm": 189.69326321481014,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5605,
+    "at_ceiling": 31351,
+    "at_floor_fraction": 0.1272648835202761,
+    "at_ceiling_fraction": 0.711843240543118,
+    "saturated_fraction": 0.8391081240633941,
+    "digest": "99f3a8280a1aa8ef1eb5439dc81fbedcf851a4fe273e0219f20a0fde981b5bf2",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 6500,
+    "synapses": 44042,
+    "mean": 0.8584262610718781,
+    "l2_norm": 189.45367171192106,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5622,
+    "at_ceiling": 31315,
+    "at_floor_fraction": 0.12765087870668906,
+    "at_ceiling_fraction": 0.7110258389718904,
+    "saturated_fraction": 0.8386767176785795,
+    "digest": "a83ccdc2f9b0644e06db85400d204349b14456c02ea469206146073813cf83c5",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 7000,
+    "synapses": 44042,
+    "mean": 0.8566208262402346,
+    "l2_norm": 189.19357645056067,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5652,
+    "at_ceiling": 31204,
+    "at_floor_fraction": 0.12833204668271195,
+    "at_ceiling_fraction": 0.7085055174606057,
+    "saturated_fraction": 0.8368375641433178,
+    "digest": "cfc9e2ba7e2ab902a7df43738f7c8ac9715291dad2900c7a6f3f67d83f0ff570",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 7500,
+    "synapses": 44042,
+    "mean": 0.8554502470513292,
+    "l2_norm": 189.0333183224046,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5688,
+    "at_ceiling": 31157,
+    "at_floor_fraction": 0.12914944825393943,
+    "at_ceiling_fraction": 0.7074383542981699,
+    "saturated_fraction": 0.8365878025521094,
+    "digest": "d312b67439887b3af716fbd67907a96bfe45e9bc5d597b6c7e666f9a31534fab",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 8000,
+    "synapses": 44042,
+    "mean": 0.8546109215310861,
+    "l2_norm": 188.9144669184991,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5688,
+    "at_ceiling": 31124,
+    "at_floor_fraction": 0.12914944825393943,
+    "at_ceiling_fraction": 0.7066890695245448,
+    "saturated_fraction": 0.8358385177784842,
+    "digest": "d1553b63f78e4d06f43379dbc6f680090ecb13f5ea86618c9b163c0e7a4ee1b7",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 8500,
+    "synapses": 44042,
+    "mean": 0.8532096895180207,
+    "l2_norm": 188.71302113440194,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5754,
+    "at_ceiling": 30999,
+    "at_floor_fraction": 0.1306480178011898,
+    "at_ceiling_fraction": 0.7038508696244494,
+    "saturated_fraction": 0.8344988874256392,
+    "digest": "0c0afaf9572b873910ace37f28e6b3df41e4f6d56657e51f22b501df11029a0b",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 9000,
+    "synapses": 44042,
+    "mean": 0.8518608130640146,
+    "l2_norm": 188.5215808931397,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5887,
+    "at_ceiling": 30989,
+    "at_floor_fraction": 0.13366786249489124,
+    "at_ceiling_fraction": 0.7036238136324418,
+    "saturated_fraction": 0.837291676127333,
+    "digest": "71f57e09f796645cbf4adbadac840f1b23bb32fb74384e40baaa02005f6ada7b",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 9500,
+    "synapses": 44042,
+    "mean": 0.8510182917708137,
+    "l2_norm": 188.4043001146257,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5901,
+    "at_ceiling": 30977,
+    "at_floor_fraction": 0.1339857408837019,
+    "at_ceiling_fraction": 0.7033513464420326,
+    "saturated_fraction": 0.8373370873257345,
+    "digest": "6ee3f0e2204018c2a7e1766c22b2060d7618cb6281d70400aef2bb346d2a0aad",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 10000,
+    "synapses": 44042,
+    "mean": 0.8499984886135404,
+    "l2_norm": 188.2565336719582,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5939,
+    "at_ceiling": 30959,
+    "at_floor_fraction": 0.1348485536533309,
+    "at_ceiling_fraction": 0.7029426456564188,
+    "saturated_fraction": 0.8377911993097498,
+    "digest": "1edb634f1cf66f10970f234d1b7065f946a78b8e157f9bbdc319438aec25ce11",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 10500,
+    "synapses": 44042,
+    "mean": 0.8488649265541811,
+    "l2_norm": 188.0869758081459,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 5951,
+    "at_ceiling": 30917,
+    "at_floor_fraction": 0.13512102084374006,
+    "at_ceiling_fraction": 0.7019890104899869,
+    "saturated_fraction": 0.8371100313337269,
+    "digest": "4f776d181cb827179a5edf017e15b95cc207202b0a0dc328b6e28434f4034017",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 11000,
+    "synapses": 44042,
+    "mean": 0.8478100756296187,
+    "l2_norm": 187.9314359436319,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6009,
+    "at_ceiling": 30862,
+    "at_floor_fraction": 0.1364379455973843,
+    "at_ceiling_fraction": 0.7007402025339449,
+    "saturated_fraction": 0.8371781481313292,
+    "digest": "08ec3acd74a8c8f8a002da9d5e8f8080d8c92a3b31f68aaa44384d98c84a62c8",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 11500,
+    "synapses": 44042,
+    "mean": 0.8472360352283548,
+    "l2_norm": 187.85223456084148,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6019,
+    "at_ceiling": 30862,
+    "at_floor_fraction": 0.13666500158939193,
+    "at_ceiling_fraction": 0.7007402025339449,
+    "saturated_fraction": 0.8374052041233369,
+    "digest": "43f07b505e22e22720cc5f552ad7283792146d3cea9af011321f0d7e0946db4a",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 12000,
+    "synapses": 44042,
+    "mean": 0.8465706320170523,
+    "l2_norm": 187.757126542154,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6154,
+    "at_ceiling": 30862,
+    "at_floor_fraction": 0.13973025748149492,
+    "at_ceiling_fraction": 0.7007402025339449,
+    "saturated_fraction": 0.8404704600154398,
+    "digest": "9c2196a1c2bcc1aa4b6fde1f16212e95a89483a84f5161492625e6c03c1524f2",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 12500,
+    "synapses": 44042,
+    "mean": 0.84573326541384,
+    "l2_norm": 187.63458549594571,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6177,
+    "at_ceiling": 30850,
+    "at_floor_fraction": 0.14025248626311249,
+    "at_ceiling_fraction": 0.7004677353435357,
+    "saturated_fraction": 0.8407202216066482,
+    "digest": "9a0f06f8ea86091d8206b671c55ce328df1bb76686ac56d56ac0bdcf96cd0009",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 13000,
+    "synapses": 44042,
+    "mean": 0.845099931697252,
+    "l2_norm": 187.54186968214302,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6325,
+    "at_ceiling": 30818,
+    "at_floor_fraction": 0.1436129149448254,
+    "at_ceiling_fraction": 0.6997411561691113,
+    "saturated_fraction": 0.8433540711139367,
+    "digest": "ac6b35fb213b34ec06e7ea901743b8dbcdcdc7a21c79b21fa541055e865b2b1f",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 13500,
+    "synapses": 44042,
+    "mean": 0.8442994205966361,
+    "l2_norm": 187.42901847374313,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6359,
+    "at_ceiling": 30803,
+    "at_floor_fraction": 0.14438490531765133,
+    "at_ceiling_fraction": 0.6994005721810999,
+    "saturated_fraction": 0.8437854774987512,
+    "digest": "283946527eb5ad1654273c3a5742722d8e367afe18e4780b4857a7a4469eb00b",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 14000,
+    "synapses": 44042,
+    "mean": 0.8437654079590174,
+    "l2_norm": 187.35299491359132,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6359,
+    "at_ceiling": 30803,
+    "at_floor_fraction": 0.14438490531765133,
+    "at_ceiling_fraction": 0.6994005721810999,
+    "saturated_fraction": 0.8437854774987512,
+    "digest": "687a6a0a80163af8449adf626f0aa32bae28e7a3b51a7fa6f48358e13d8f4e9e",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 14500,
+    "synapses": 44042,
+    "mean": 0.8433427016375679,
+    "l2_norm": 187.2936124478918,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6368,
+    "at_ceiling": 30789,
+    "at_floor_fraction": 0.1445892557104582,
+    "at_ceiling_fraction": 0.6990826937922892,
+    "saturated_fraction": 0.8436719495027474,
+    "digest": "c0f0fa2d822ef531879d159a91d8bfa536f44de93315724b2f94369296959176",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 15000,
+    "synapses": 44042,
+    "mean": 0.8425410682219022,
+    "l2_norm": 187.17613784004186,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6481,
+    "at_ceiling": 30743,
+    "at_floor_fraction": 0.1471549884201444,
+    "at_ceiling_fraction": 0.698038236229054,
+    "saturated_fraction": 0.8451932246491984,
+    "digest": "05f5e1b2542edb5946751dadb28f9e82c28c0c66c425d5bdd671cc2591ea6511",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 15500,
+    "synapses": 44042,
+    "mean": 0.8419075028643579,
+    "l2_norm": 187.08620704174646,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6506,
+    "at_ceiling": 30656,
+    "at_floor_fraction": 0.14772262840016348,
+    "at_ceiling_fraction": 0.6960628490985877,
+    "saturated_fraction": 0.8437854774987512,
+    "digest": "8130e9e50de95cffb44c08cecca2b474411b67c79a6091eb6cc65c0d2eb4b5d2",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 16000,
+    "synapses": 44042,
+    "mean": 0.8413975061956606,
+    "l2_norm": 187.01498403502507,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6512,
+    "at_ceiling": 30645,
+    "at_floor_fraction": 0.14785886199536805,
+    "at_ceiling_fraction": 0.6958130875073794,
+    "saturated_fraction": 0.8436719495027474,
+    "digest": "6d47549a281d7ad290493c17fa9362d53dd782b70420e3219a473be9e10ce2e5",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 16500,
+    "synapses": 44042,
+    "mean": 0.8407404309287609,
+    "l2_norm": 186.911523831436,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6568,
+    "at_ceiling": 30586,
+    "at_floor_fraction": 0.1491303755506108,
+    "at_ceiling_fraction": 0.6944734571545343,
+    "saturated_fraction": 0.843603832705145,
+    "digest": "052e8541bf4fdfb8c8626a934ac3604dc57b2d4fd6af47b688b2217337d6a4e6",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 17000,
+    "synapses": 44042,
+    "mean": 0.8401306797624051,
+    "l2_norm": 186.82084557539946,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6587,
+    "at_ceiling": 30573,
+    "at_floor_fraction": 0.14956178193542527,
+    "at_ceiling_fraction": 0.6941782843649243,
+    "saturated_fraction": 0.8437400663003497,
+    "digest": "3fcc336b921bd8c78752a76856c0834d98bf7e66d114ac4bb85f125b0155c783",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 17500,
+    "synapses": 44042,
+    "mean": 0.8396911002026662,
+    "l2_norm": 186.756494429285,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6599,
+    "at_ceiling": 30566,
+    "at_floor_fraction": 0.14983424912583443,
+    "at_ceiling_fraction": 0.694019345170519,
+    "saturated_fraction": 0.8438535942963534,
+    "digest": "fd97d15341d9bf509df669f4f33332f6d26eea3f68e098a1fc294956c1202399",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 18000,
+    "synapses": 44042,
+    "mean": 0.8393744835039233,
+    "l2_norm": 186.71240279216354,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6605,
+    "at_ceiling": 30553,
+    "at_floor_fraction": 0.149970482721039,
+    "at_ceiling_fraction": 0.6937241723809091,
+    "saturated_fraction": 0.8436946551019482,
+    "digest": "7676bca681e15c33c0c52d4b80fc9bf0cb6143944de30a2b229deef2864952e4",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 18500,
+    "synapses": 44042,
+    "mean": 0.8390009234505471,
+    "l2_norm": 186.65706048390683,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6623,
+    "at_ceiling": 30544,
+    "at_floor_fraction": 0.15037918350665275,
+    "at_ceiling_fraction": 0.6935198219881022,
+    "saturated_fraction": 0.843899005494755,
+    "digest": "c32104b832542f4426fc8571d23f050810c96265b1e0356a5467b2c216b64735",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 19000,
+    "synapses": 44042,
+    "mean": 0.8385866128625848,
+    "l2_norm": 186.59461782458303,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6623,
+    "at_ceiling": 30499,
+    "at_floor_fraction": 0.15037918350665275,
+    "at_ceiling_fraction": 0.6924980700240679,
+    "saturated_fraction": 0.8428772535307206,
+    "digest": "bb224527728987fdef16457d911daa4c2254070b180d9c0d608ffdca0e104618",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 19500,
+    "synapses": 44042,
+    "mean": 0.8382731209050667,
+    "l2_norm": 186.54864121350732,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6623,
+    "at_ceiling": 30476,
+    "at_floor_fraction": 0.15037918350665275,
+    "at_ceiling_fraction": 0.6919758412424504,
+    "saturated_fraction": 0.8423550247491032,
+    "digest": "62677ab813b3ba594348ac8693ff38c0e91e6fe73f8a9b644193eb75d5e9030a",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   },
+   {
+    "lessons": 19665,
+    "synapses": 44042,
+    "mean": 0.8382243697116336,
+    "l2_norm": 186.5424385820803,
+    "min": 0.25,
+    "max": 1.0,
+    "floor": 0.25,
+    "ceiling": 1.0,
+    "at_floor": 6623,
+    "at_ceiling": 30476,
+    "at_floor_fraction": 0.15037918350665275,
+    "at_ceiling_fraction": 0.6919758412424504,
+    "saturated_fraction": 0.8423550247491032,
+    "digest": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+    "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+   }
+  ],
+  "final_weights": {
+   "synapses": 44042,
+   "mean": 0.8382243697116336,
+   "l2_norm": 186.5424385820803,
+   "min": 0.25,
+   "max": 1.0,
+   "floor": 0.25,
+   "ceiling": 1.0,
+   "at_floor": 6623,
+   "at_ceiling": 30476,
+   "at_floor_fraction": 0.15037918350665275,
+   "at_ceiling_fraction": 0.6919758412424504,
+   "saturated_fraction": 0.8423550247491032,
+   "digest": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+   "note": "the operator only depresses and the clean reference starts with every gain at 1.0, so a synapse at the ceiling is one no lesson has depressed"
+  },
+  "presentations": 163904,
+  "candidate_evaluations": 20488,
+  "readout_status_at_presentation": {
+   "VALID": 16333,
+   "NO_RESPONSE": 4154,
+   "INVALID_STATE": 1
+  },
+  "decoded_action_at_presentation": {
+   "WAIT": 13208,
+   "BUY": 356,
+   "SELL": 2769,
+   "NO_RESPONSE": 4155
+  },
+  "lesson_log_sha256": "e634f8e31f6a3c73a7dce6154625d8d9c8721322702077798161d79867c567c7",
+  "log_normalised_sha256": "b6c29af8c7afdb7300f07f57c1d9c9fad68f800c0c4c49602613f5d9b8aec883",
+  "checkpoints_written": 40,
+  "wall_s": 4912.93
+ },
+ "ceiling": {
+  "lesson_ceiling": 20152,
+  "lesson_ceiling_after_unresolved_drop": 19665,
+  "cohort_size_distribution": {
+   "ticks": 978,
+   "min": 0,
+   "p25": 17.0,
+   "median": 21.0,
+   "p75": 25.0,
+   "p90": 28.0,
+   "max": 44,
+   "mean": 20.605316973415132,
+   "sum": 20152,
+   "ticks_below_n_min": 3,
+   "ticks_at_zero": 3,
+   "histogram": {
+    "0": 3,
+    "3": 1,
+    "5": 3,
+    "6": 1,
+    "7": 2,
+    "8": 10,
+    "9": 11,
+    "10": 19,
+    "11": 26,
+    "12": 26,
+    "13": 32,
+    "14": 36,
+    "15": 38,
+    "16": 36,
+    "17": 42,
+    "18": 59,
+    "19": 58,
+    "20": 58,
+    "21": 70,
+    "22": 57,
+    "23": 67,
+    "24": 62,
+    "25": 52,
+    "26": 50,
+    "27": 47,
+    "28": 35,
+    "29": 21,
+    "30": 13,
+    "31": 11,
+    "32": 11,
+    "33": 3,
+    "34": 4,
+    "35": 6,
+    "36": 3,
+    "37": 2,
+    "38": 1,
+    "40": 1,
+    "44": 1
+   }
+  },
+  "tokens_that_become_lessons": 3532,
+  "first_eligible_learning_tick": 1789229654
+ },
+ "mirror": {
+  "overall": {
+   "n": 5168,
+   "pearson_r": 0.004588131931616053,
+   "spearman_rho": 0.01351035315152993,
+   "kendall_tau": 0.011722110869940688,
+   "ols_trained_on_reference": {
+    "a": -3.486474928978849,
+    "b": 0.004549035439084839,
+    "r2": 2.105095462179296e-05,
+    "n": 5168
+   },
+   "reversed_pairs": {
+    "pairs": 13351528,
+    "discordant": 6570606,
+    "fraction": 0.49212389772915877,
+    "tied_in_x": 26245,
+    "tied_in_y": 29733
+   }
+  },
+  "auc": {
+   "labelled_rows": 5013,
+   "positive": 488,
+   "negative": 4525,
+   "auc_trained": 0.41157911421066934,
+   "auc_reference": 0.5884543972466262,
+   "auc_minus_reference": 0.41154560275337376,
+   "one_minus_auc_reference": 0.4115456027533738,
+   "residual_of_auc_trained_from_one_minus_auc_reference": 3.351145729552085e-05,
+   "residual_of_auc_trained_from_auc_minus_reference": 3.3511457295576363e-05
+  },
+  "within_tick": {
+   "ticks_with_a_tau": 402,
+   "ticks_without_one": 0,
+   "mean_tau": 0.0030493369506785026,
+   "median_tau": 0.024550768538475935,
+   "min_tau": -0.6060606060606061,
+   "max_tau": 0.7142857142857143,
+   "sd_tau": 0.2166973431735187,
+   "ticks_with_tau_at_minus_one": 0,
+   "ticks_with_a_negative_tau": 177,
+   "size_weighted_mean_tau": 0.007866488982909352,
+   "cohort_size": {
+    "min": 4,
+    "median": 12.5,
+    "max": 23
+   }
+  }
+ },
+ "frozen": {
+  "frozen_reference": {
+   "episodes": 6,
+   "settled_frozen": 6,
+   "gross_pnl_eth": 0.007795982765947364,
+   "fees_eth": 0.002682360910407868,
+   "slippage_eth": 0.0006260240919073482,
+   "net_pnl_eth": 0.005113621855539496,
+   "realized_pnl_eth": 0.00511362,
+   "trades": 6,
+   "wins": 3,
+   "holding_seconds": {
+    "min": 900,
+    "max": 900,
+    "median": 900.0
+   },
+   "unresolved_count": 2,
+   "marks": 394,
+   "per_round_action": {
+    "BUY": 144,
+    "SELL": 8,
+    "WAIT": 41
+   },
+   "per_candidate_action": {
+    "SELL": 14,
+    "BUY": 163,
+    "WAIT": 62
+   },
+   "after_execution": {
+    "BUY": 7,
+    "blocked_by_fixed_hold": 8,
+    "HOLD:WAIT": 40,
+    "HOLD:BUY": 137,
+    "POLICY_CLOSE_FIXED_HOLD": 6,
+    "SETTLED_FROZEN": 6,
+    "NO_ORDER:WAIT": 1,
+    "UNRESOLVED:ROUTE_TRANSITION": 1,
+    "UNRESOLVED:END_OF_DATA": 1
+   }
+  },
+  "frozen_school": {
+   "episodes": 0,
+   "settled_frozen": 0,
+   "gross_pnl_eth": 0,
+   "fees_eth": 0,
+   "slippage_eth": 0,
+   "net_pnl_eth": 0,
+   "realized_pnl_eth": 0.0,
+   "trades": 0,
+   "wins": 0,
+   "holding_seconds": {
+    "min": null,
+    "max": null,
+    "median": null
+   },
+   "unresolved_count": 0,
+   "marks": 0,
+   "per_round_action": {
+    "WAIT": 401,
+    "SELL": 1
+   },
+   "per_candidate_action": {
+    "NO_RESPONSE": 619,
+    "SELL": 302,
+    "WAIT": 1487
+   },
+   "after_execution": {
+    "NO_ORDER:WAIT": 401,
+    "NO_ORDER:SELL": 1
+   }
+  }
+ },
+ "frozen_digests": {
+  "frozen_reference": {
+   "start": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "end": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "unchanged": true
+  },
+  "frozen_school": {
+   "start": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+   "end": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+   "unchanged": true
+  }
+ },
+ "d11_001_secondary": {
+  "rows": 5177,
+  "rows_valid_in_both": 5168,
+  "paired_labelled_rows": 5013,
+  "class_balance": {
+   "positive": 488,
+   "negative": 4525
+  },
+  "auc_trained": 0.41157911421066934,
+  "auc_reference": 0.5884543972466262,
+  "delta_auc": -0.17687528303595684,
+  "interval": {
+   "lo": -0.21803023379939399,
+   "hi": -0.12458117966781102,
+   "point": -0.17687528303595684,
+   "clusters": 1042,
+   "kept": 10000
+  },
+  "per_block": [
+   {
+    "block": 1,
+    "delta_auc": -0.20809561282707062,
+    "lo": -0.26957065001992137,
+    "hi": -0.11388880600530288
+   },
+   {
+    "block": 2,
+    "delta_auc": -0.14036144578313248,
+    "lo": -0.19600978460335955,
+    "hi": -0.02466063038292105
+   },
+   {
+    "block": 3,
+    "delta_auc": -0.17534672325635797,
+    "lo": -0.29935913133729836,
+    "hi": -0.0421288076593832
+   }
+  ],
+  "buy_rate_trained": 0.0,
+  "buy_rate_reference": 0.35294117647058826
+ },
+ "wording_rule": "an interval that includes 0 is reported as compatible with sampling variation; never 'significant', never 'proves'; an AUC near 0.5 is not evidence that no signal exists; a lower BUY rate alone is not learning success; profit is not learning"
+}

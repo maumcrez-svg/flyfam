@@ -1,0 +1,44 @@
+{
+  "chromium": {
+    "joints": 46,
+    "triangles": 93660,
+    "portrait_nontransparent_pixels": 48188,
+    "independent_pose_captures": {
+      "FrontLeg_Upper_L": 48064,
+      "FrontLeg_Lower_L": 48151,
+      "FrontLeg_Foot_L": 48272,
+      "FrontLeg_Upper_R": 48496,
+      "FrontLeg_Lower_R": 48293,
+      "FrontLeg_Foot_R": 48307,
+      "Bone_023": 47830,
+      "Bone_019": 48199,
+      "Bone_009": 47898,
+      "Bone_013": 48748
+    },
+    "context_restore": "PASS",
+    "reduced_motion_and_stale_idle": "PASS",
+    "observed_presentation_fps": 7.1,
+    "page_errors": []
+  },
+  "webkit": {
+    "joints": 46,
+    "triangles": 93660,
+    "portrait_nontransparent_pixels": 48174,
+    "independent_pose_captures": {
+      "FrontLeg_Upper_L": 48064,
+      "FrontLeg_Lower_L": 48151,
+      "FrontLeg_Foot_L": 48271,
+      "FrontLeg_Upper_R": 48494,
+      "FrontLeg_Lower_R": 48290,
+      "FrontLeg_Foot_R": 48307,
+      "Bone_023": 47825,
+      "Bone_019": 48199,
+      "Bone_009": 47898,
+      "Bone_013": 48747
+    },
+    "context_restore": "PASS",
+    "reduced_motion_and_stale_idle": "PASS",
+    "observed_presentation_fps": 10.0,
+    "page_errors": []
+  }
+}

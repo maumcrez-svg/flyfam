@@ -1,0 +1,10 @@
+{
+  "application": "Blender",
+  "version": "4.5.11 LTS",
+  "master_import": "PASS",
+  "bones": 46,
+  "vertices": 74062,
+  "polygons": 93660,
+  "new_front_chains": "L and R Upper/Lower/Foot/Toe",
+  "skinned": true
+}

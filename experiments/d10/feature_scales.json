@@ -1,0 +1,74 @@
+{
+ "window": "2026-09-08",
+ "grid_seconds": 30,
+ "min_age_seconds": 60,
+ "min_trades": 3,
+ "tokens_considered": 269,
+ "tokens_with_a_grid_point": 40,
+ "grid_points": 40,
+ "skipped": {
+  "wrong_window": 277,
+  "too_few_trades": 96,
+  "no_grid_point": 133,
+  "completed": 0
+ },
+ "features": {
+  "age": {
+   "n": 40,
+   "median_abs": 60.0,
+   "p90_abs": 60.0,
+   "max_abs": 60.0,
+   "all_zero": false
+  },
+  "ret_30s": {
+   "n": 40,
+   "median_abs": 0.09094043545038644,
+   "p90_abs": 0.5824027626911172,
+   "max_abs": 2.03208616977671,
+   "all_zero": false
+  },
+  "ret_2m": {
+   "n": 40,
+   "median_abs": 0.0,
+   "p90_abs": 0.0,
+   "max_abs": 0.0,
+   "all_zero": true
+  },
+  "ret_5m": {
+   "n": 40,
+   "median_abs": 0.0,
+   "p90_abs": 0.0,
+   "max_abs": 0.0,
+   "all_zero": true
+  },
+  "flow_imb_2m": {
+   "n": 40,
+   "median_abs": 0.24421965305375465,
+   "p90_abs": 0.7653836691187929,
+   "max_abs": 1.0,
+   "all_zero": false
+  },
+  "trade_rate_2m": {
+   "n": 40,
+   "median_abs": 40.75,
+   "p90_abs": 92.75,
+   "max_abs": 151.5,
+   "all_zero": false
+  },
+  "rv_2m": {
+   "n": 40,
+   "median_abs": 0.047179772388987525,
+   "p90_abs": 0.06708448047853006,
+   "max_abs": 0.08376099509834099,
+   "all_zero": false
+  },
+  "drawdown_5m": {
+   "n": 40,
+   "median_abs": 0.17905826223643717,
+   "p90_abs": 0.6081403192520001,
+   "max_abs": 2.070040930240489,
+   "all_zero": false
+  }
+ },
+ "note": "features whose window predates the launch are zero by rule; with this dataset's per-token coverage that makes ret_2m, ret_5m and drawdown_5m unestimable here, which is reported rather than papered over"
+}

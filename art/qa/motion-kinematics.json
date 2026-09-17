@@ -1,0 +1,24 @@
+{
+  "simulatedSeconds": 660,
+  "shippedRig": true,
+  "states": [
+    "sniffing",
+    "picked",
+    "holding",
+    "drawdown",
+    "reward",
+    "punishment",
+    "sniffing",
+    "confused",
+    "dance",
+    "smoking",
+    "sniffing"
+  ],
+  "worstFootContactError": 8.680663595198939e-8,
+  "unreachableTargets": 0,
+  "largestHeadStepRadians": 0.1061617482333035,
+  "headPitchRange": 0.4944978599493065,
+  "maxArmGesture": 0.6312148217918724,
+  "frameRateIndependence": "PASS",
+  "pausedMotion": "PASS"
+}

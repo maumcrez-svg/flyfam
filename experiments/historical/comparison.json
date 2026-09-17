@@ -1,0 +1,178 @@
+{
+ "run_id": "hist-003",
+ "partition": "FROZEN",
+ "window": {
+  "first": "2026-08-31",
+  "last": "2026-09-04",
+  "neural": true,
+  "learning": false,
+  "forgetting": false,
+  "note": "transient simulation on; eligibility accumulates and is never applied; OUTCOME settled for accounting as SETTLED_FROZEN; no LEARNING event; end checkpoint hash must equal start hash"
+ },
+ "seed_pairing": {
+  "schedule": "comparison_v1",
+  "shared_observation_instrument_pairs": 1001,
+  "identical_seed": 1001,
+  "differing_seed": 0,
+  "learned_only": 842,
+  "reference_only": 747,
+  "paired": true
+ },
+ "learned": {
+  "run_id": "hist-003",
+  "branch": "learned",
+  "partition": "FROZEN",
+  "rounds": 1949,
+  "candidate_evaluations": 3401,
+  "presentations": 27208,
+  "silent_presentations": 6617,
+  "readout_status_per_round": {
+   "VALID": 1842,
+   "NO_RESPONSE": 1
+  },
+  "action_per_round": {
+   "WAIT": 382,
+   "SELL": 1457,
+   "BUY": 3,
+   "NO_RESPONSE": 1
+  },
+  "per_instrument": {
+   "OIH": {
+    "VALID": 782,
+    "action:WAIT": 174,
+    "action:SELL": 606,
+    "action:BUY": 2,
+    "trades": 2,
+    "net_pnl": -5.08852117
+   },
+   "IBM": {
+    "VALID": 1060,
+    "action:SELL": 851,
+    "action:WAIT": 208,
+    "action:BUY": 1,
+    "NO_RESPONSE": 1,
+    "action:NO_RESPONSE": 1,
+    "trades": 1,
+    "net_pnl": -1.71779964
+   }
+  },
+  "trades": 3,
+  "rounds_while_holding": 4,
+  "exposure_market_minutes": 4,
+  "close_reasons": {
+   "NEURAL_SELL": 3
+  },
+  "fill_flags": {},
+  "settlement": {
+   "SETTLED_FROZEN": 3
+  },
+  "learning_events": 0,
+  "learning_accepted": 0,
+  "synapses_depressed_total": 0,
+  "money": {
+   "gross_reference_pnl": -0.810129,
+   "slippage": 2.998096,
+   "fees": 2.998096,
+   "net_pnl": -6.806321
+  },
+  "reconciliation_residual": -0.0,
+  "final_account": {
+   "cash": 9993.1936792,
+   "equity": 9993.1936792,
+   "fees_paid": 2.99809589,
+   "initial_cash": 10000.0,
+   "position": null,
+   "realized_pnl": -6.8063208,
+   "slippage_paid": 2.99809569,
+   "trades": 3
+  }
+ },
+ "reference": {
+  "run_id": "hist-003",
+  "branch": "reference",
+  "partition": "FROZEN",
+  "rounds": 1949,
+  "candidate_evaluations": 2113,
+  "presentations": 16904,
+  "silent_presentations": 4223,
+  "readout_status_per_round": {
+   "VALID": 1698,
+   "NO_RESPONSE": 32,
+   "POLICY_REJECT": 18
+  },
+  "action_per_round": {
+   "BUY": 819,
+   "WAIT": 730,
+   "SELL": 167,
+   "NO_RESPONSE": 32
+  },
+  "per_instrument": {
+   "OIH": {
+    "VALID": 672,
+    "action:BUY": 327,
+    "action:WAIT": 284,
+    "action:SELL": 68,
+    "trades": 104,
+    "net_pnl": -193.73477807,
+    "NO_RESPONSE": 12,
+    "action:NO_RESPONSE": 12,
+    "POLICY_REJECT": 7
+   },
+   "IBM": {
+    "VALID": 1026,
+    "action:BUY": 492,
+    "action:WAIT": 446,
+    "NO_RESPONSE": 20,
+    "action:NO_RESPONSE": 20,
+    "action:SELL": 99,
+    "trades": 138,
+    "net_pnl": -272.39297533,
+    "POLICY_REJECT": 11
+   }
+  },
+  "trades": 242,
+  "rounds_while_holding": 1426,
+  "exposure_market_minutes": 1315,
+  "close_reasons": {
+   "NEURAL_SELL": 144,
+   "POLICY_CLOSE": 98
+  },
+  "fill_flags": {
+   "DELAYED_FILL": 26
+  },
+  "settlement": {
+   "SETTLED_FROZEN": 242
+  },
+  "learning_events": 0,
+  "learning_accepted": 0,
+  "synapses_depressed_total": 0,
+  "money": {
+   "gross_reference_pnl": 17.648011,
+   "slippage": 241.887885,
+   "fees": 241.88788,
+   "net_pnl": -466.127753
+  },
+  "reconciliation_residual": 5e-08,
+  "final_account": {
+   "cash": 9533.87224668,
+   "equity": 9533.87224668,
+   "fees_paid": 241.88788006,
+   "initial_cash": 10000.0,
+   "position": null,
+   "realized_pnl": -466.12775332,
+   "slippage_paid": 241.88788448,
+   "trades": 242
+  }
+ },
+ "learned_start_digest": "dcb0f822c1e1d293f890a4588ac3057bad1ea6ec2b0d486c70e720b859bdd083",
+ "learned_end_digest": "dcb0f822c1e1d293f890a4588ac3057bad1ea6ec2b0d486c70e720b859bdd083",
+ "reference_start_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+ "reference_end_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+ "clean_reference_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+ "caveats": [
+  "The untrained reference is not a full test against chance.",
+  "One five-session window establishes no trading skill.",
+  "No profitability requirement is part of the engineering gate; net PnL is not a gate metric in either direction.",
+  "Both branches ran the same observations, the same baseline artifact, the same paper policy and the same comparison_v1 seeds; the only difference is the learned weights."
+ ]
+}

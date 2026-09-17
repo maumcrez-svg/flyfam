@@ -1,0 +1,160 @@
+{
+  "episode_id": "pons-live:974003809",
+  "execution": "PAPER",
+  "quote": {
+    "amount_in_wei": "1024530544238803180803785",
+    "amount_out_wei": "1053440280559114",
+    "block_hash": "0x95ae714c7554151759b96c837a61852f35f9d6a0b3e27e55f387e7c0ea637099",
+    "block_number": 63067548,
+    "block_timestamp": 1789415321,
+    "cost_classification": "V4_SWAP_FEES_EMBEDDED_IN_EXECUTION_DRAG",
+    "curve": "0x17481622a879f51b77c30c10d11cd391a5e44ef3",
+    "evidence_id": "v4-quote:4143f41ffda5447d0858eba3ebd455d4ff95c953a26953c433248f0514cb4338",
+    "execution_delay_s": 49059,
+    "full_input_consumed": true,
+    "modeled_gas_wei": "37648433760000",
+    "own_curve_delta_carried_to_v4": false,
+    "pool_id": "0x5944e5bba50f26953f4ba1397703cec6cbbe61b78c95ace662850bf6dc81f59e",
+    "pool_key": {
+      "currency0": "0x0000000000000000000000000000000000000000",
+      "currency1": "0x5772150c3edd095fec75a0fe3185f87de2fae80c",
+      "fee": 0,
+      "hooks": "0xe5e702641ea86f4ae6cc3cdaed2b886f976be044",
+      "tickSpacing": 200
+    },
+    "reference_price": 1.0612265008663466e-09,
+    "requested_exit_ts": 1789366262,
+    "route": "PONS_V4",
+    "swap_and_hook_fees": "INCLUDED_IN_OUTPUT_NOT_SEPARATELY_DECOMPOSED",
+    "timing_rule": "FIRST_OBSERVED_EXECUTABLE_QUOTE_AFTER_HORIZON",
+    "token": "0x5772150c3edd095fec75a0fe3185f87de2fae80c",
+    "version": "pons-v4-paper-exit-1"
+  },
+  "confirmation": {
+    "entry": {
+      "anchor": 62576039,
+      "anchor_hash_matches": true,
+      "block_number": 62576060,
+      "confirm_depth": 594,
+      "confirmed": true,
+      "head": 63074800,
+      "safe_block": 63070353
+    },
+    "exit": {
+      "anchor": 63067548,
+      "anchor_hash_matches": true,
+      "block_number": 63067548,
+      "confirm_depth": 594,
+      "confirmed": true,
+      "head": 63074800,
+      "safe_block": 63070353
+    }
+  },
+  "close_public_seq": 6888,
+  "close_canonical_seq": 51886,
+  "close_recorded_ts": 1789416064,
+  "credit_public_seq": 6889,
+  "credit_canonical_seq": 51887,
+  "credit_label": "PUNISHMENT",
+  "credit_applied": false,
+  "one_shot_evidence_counts": {
+    "CLOSE": 1,
+    "CREDIT": 1,
+    "OUTCOME": 1
+  },
+  "net_return": -0.9010721839560887,
+  "net_pnl_eth": -0.009010721839560887,
+  "gross_reference_pnl_eth": -0.008589177672317344,
+  "slippage_eth": 5.7382047123543126e-05,
+  "fees_eth": 0.00036416212012,
+  "brain_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+  "same_pending_quote_after_process_restart": true,
+  "account_closed_positions_after_exit": 20,
+  "tests": {
+    "regression_before_final_recovery_fix": 181,
+    "final_recovery_and_history_gate": 8
+  },
+  "proof_directory": "data/runtime/v4-exit-20260914",
+  "viewer": "http://localhost:8797/",
+  "resumed_hunt": {
+    "sniff_seq": 67822,
+    "round_id": "pons-live:2600:1789416989",
+    "considered": 763,
+    "admitted": 22,
+    "presented": 6,
+    "watchlist_seq": 67824,
+    "candidates": [
+      {
+        "token": "0xa4334247ed88347d185bc9ad6cc1e6db71b3eaf8",
+        "score": 2.5415880926724146,
+        "unit": "Hz",
+        "selected": true,
+        "neural_presented": true
+      },
+      {
+        "token": "0xb5cbd42d0c8993521d1e564421c00df32ef0d912",
+        "score": 1.6929889547413788,
+        "unit": "Hz",
+        "selected": false,
+        "neural_presented": true
+      },
+      {
+        "token": "0x213c6b0aeea51b69ef8e5cccd83d351e95452ddb",
+        "score": 1.2754242995689642,
+        "unit": "Hz",
+        "selected": false,
+        "neural_presented": true
+      },
+      {
+        "token": "0x75fded9142a88103abced07039b8cd002065405d",
+        "score": 0.17089843749999978,
+        "unit": "Hz",
+        "selected": false,
+        "neural_presented": true
+      },
+      {
+        "token": "0xc161e1a903baef21a267b4a44c7572e49199b8d6",
+        "score": -0.5025929418103454,
+        "unit": "Hz",
+        "selected": false,
+        "neural_presented": true
+      },
+      {
+        "token": "0x6a14bbeba8abc6d5e00a331fd06200ae62ed7ab9",
+        "score": -1.3107825969827582,
+        "unit": "Hz",
+        "selected": false,
+        "neural_presented": true
+      }
+    ],
+    "open_seq": 67828,
+    "episode_id": 2600011439,
+    "token": "0xa4334247ed88347d185bc9ad6cc1e6db71b3eaf8",
+    "identity": {
+      "address": "0xa4334247ed88347d185bc9ad6cc1e6db71b3eaf8",
+      "chain_id": 4663,
+      "icon_status": "READY",
+      "icon_url": "/api/token-icon/4663/0xa4334247ed88347d185bc9ad6cc1e6db71b3eaf8",
+      "name": "Social Mind",
+      "observed_at": 1789417075,
+      "observed_block": 63084748,
+      "source": "ERC20 name()/symbol() and PONS logo()",
+      "status": "READY",
+      "symbol": "MIND"
+    },
+    "open_ts": 1789416991,
+    "paper_size_eth": 0.01,
+    "forced": false
+  },
+  "final_health": {
+    "status": "LIVE",
+    "worker_running": true,
+    "market_age_s": 9,
+    "errors": 0,
+    "throttled": false,
+    "canonical_seq": 67896,
+    "projected_seq": 67896,
+    "brain_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5"
+  },
+  "checked_epoch": 1789417118
+}

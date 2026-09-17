@@ -1,0 +1,94 @@
+{
+  "fixture": {
+    "instruments": 6,
+    "series_seed0": 700,
+    "first_bar": 120,
+    "rounds": 24,
+    "warmup_rounds": 2,
+    "label": "SYNTHETIC (flytrade.market.synthetic_series)"
+  },
+  "k1": {
+    "k": 1,
+    "rounds": 24,
+    "candidates_per_round": 6,
+    "presentations_per_round": 6,
+    "round_latency_ms": {
+      "median": 161.78949949971866,
+      "p95": 167.14149914987502,
+      "min": 152.09326602052897,
+      "max": 172.24866800825112,
+      "mean": 161.79625449998034
+    },
+    "neural_ms": {
+      "median": 151.8522385013057,
+      "p95": 157.02858858639956,
+      "mean": 151.7116423334907
+    },
+    "journal_ms": {
+      "median": 8.539716502127703,
+      "p95": 9.057849997770973,
+      "mean": 8.488850957898345
+    },
+    "neural_share": 0.9376709170576575,
+    "journal_share": 0.052466300806112774,
+    "per_presentation_ms": 25.285273722248448,
+    "peak_rss_mb": 561.9453125
+  },
+  "k8": {
+    "k": 8,
+    "rounds": 24,
+    "candidates_per_round": 6,
+    "presentations_per_round": 48,
+    "round_latency_ms": {
+      "median": 1194.388465002703,
+      "p95": 1257.6556031977814,
+      "min": 1127.8166060074,
+      "max": 1260.358174011344,
+      "mean": 1197.2327455005143
+    },
+    "neural_ms": {
+      "median": 1182.5816915225005,
+      "p95": 1245.8032417423965,
+      "mean": 1185.5578164195322
+    },
+    "journal_ms": {
+      "median": 9.737593005411327,
+      "p95": 10.620580155227799,
+      "mean": 9.795986542182314
+    },
+    "neural_share": 0.9902484048111286,
+    "journal_share": 0.008182190621663135,
+    "per_presentation_ms": 24.69912117540692,
+    "peak_rss_mb": 562.3203125
+  },
+  "ratios": {
+    "presentations": 8.0,
+    "median_round_latency": 7.3823608373594105,
+    "p95_round_latency": 7.524496367416493,
+    "median_neural": 7.787713261219604,
+    "median_journal": 1.1402712259809993
+  },
+  "memory_mb": {
+    "at_start": 109.640625,
+    "after_brain_loaded": 559.62890625,
+    "after_k1_arm": 561.9453125,
+    "peak": 562.3203125,
+    "increment_over_loaded_brain": 2.69140625,
+    "note": "ru_maxrss high-water mark of the whole process; the connectome dominates it and k does not move it"
+  },
+  "hardware": {
+    "cpu": "AMD Ryzen 5 7600X 6-Core Processor",
+    "logical_cores": 12,
+    "total_ram_gb": 62.0,
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "python": "3.13.9",
+    "numpy": "2.4.2",
+    "process": "one process, one thread of control, no parallelism and no distributed infrastructure",
+    "threads_env": {
+      "OMP_NUM_THREADS": null,
+      "MKL_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": null
+    }
+  },
+  "elapsed_s": 36.527841329574585
+}

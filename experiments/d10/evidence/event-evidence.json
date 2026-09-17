@@ -1,0 +1,136 @@
+{
+  "reviewedAt": "2026-09-09",
+  "sourceCommit": "8b9bf371030279133017b5c1b713823f5889c5d2",
+  "sourceFile": "contractsV2/src/v2/PonsV2BondingCurve.sol",
+  "sourceGitBlob": "0c0cf7b4ed2cd451b763786ae17f82cc1fba1e30",
+  "sourceSha256": "f3449b3432aec9c85c4fc282ea467dd37506c1466318a1bc83235b4048e016cf",
+  "sourceUrl": "https://github.com/ponsdotdev/ponsfamily/blob/8b9bf371030279133017b5c1b713823f5889c5d2/contractsV2/src/v2/PonsV2BondingCurve.sol",
+  "mapped": [
+    {
+      "topic0": "0x908408e307fc569b417f6cbec5d5a06f44a0a505ac0479b47d421a4b2fd6a1e6",
+      "declaration": "event Initialized(address token);",
+      "countInSample": 4,
+      "status": "source-signature-and-log-layout-match"
+    },
+    {
+      "topic0": "0xe4b7e48fbd47c2f602bacadee76ad33b16542ddb4997cfc0de04c311adcfa8c7",
+      "declaration": "event SnipeTaxExempted(address indexed account);",
+      "countInSample": 5,
+      "status": "verified-factory-source-signature-and-log-layout-match",
+      "source": "sourcify-factory-43289536",
+      "meaning": "Records the account exempted from the opening snipe tax; does not record a trade or an independent buyer."
+    },
+    {
+      "topic0": "0x9f4cd7c4ed99d08a797804560c9c5d71d2cf7e101f2e3b5e7d1ca8a24c370e4f",
+      "declaration": "event FeesSwept(uint256 protocolAmount, uint256 buybackAmount, uint256 creatorAmount);",
+      "countInSample": 82,
+      "dataset": "pons-v4-integrated-20260909",
+      "status": "source-signature-and-log-layout-match",
+      "source": "sourcify-factory-43289536",
+      "localSnapshot": "docs/evidence/PonsV2BondingCurve.sourcify.sol",
+      "sourceSha256": "9e19cebed3b4ac659b9e3406fe3f8139ff8d59eb1da6e76bd9cbab915cd12684",
+      "accounting": "Administrative or fee event; not a trade and not added to quote flow."
+    },
+    {
+      "topic0": "0x2cc664e1ac1e2d05c0d4637bb63ec8189113b6ac39276be8977e26216a8cdd19",
+      "declaration": "event CreatorFeeRecipientUpdated(address indexed previousRecipient, address indexed newRecipient);",
+      "countInSample": 7,
+      "dataset": "pons-v4-integrated-20260909",
+      "status": "source-signature-and-log-layout-match",
+      "source": "sourcify-factory-43289536",
+      "localSnapshot": "docs/evidence/PonsV2BondingCurve.sourcify.sol",
+      "sourceSha256": "9e19cebed3b4ac659b9e3406fe3f8139ff8d59eb1da6e76bd9cbab915cd12684",
+      "accounting": "Administrative or fee event; not a trade and not added to quote flow."
+    },
+    {
+      "topic0": "0x3bc39a5562b28f5fe8f36cecabfbaa12bb969acf05717994709225fc412a9934",
+      "declaration": "event SnipeTaxCharged(address indexed recipient, uint256 amount);",
+      "countInSample": 129,
+      "dataset": "pons-v4-integrated-20260909",
+      "status": "source-signature-and-log-layout-match",
+      "source": "sourcify-factory-43289536",
+      "localSnapshot": "docs/evidence/PonsV2BondingCurve.sourcify.sol",
+      "sourceSha256": "9e19cebed3b4ac659b9e3406fe3f8139ff8d59eb1da6e76bd9cbab915cd12684",
+      "accounting": "Administrative or fee event; not a trade and not added to quote flow."
+    },
+    {
+      "topic0": "0x308c390ed1ab5873392818e036cabdf408bc8ad042fbaead3108954ff75ba980",
+      "declaration": "event CreatorFeeRecipientUpdated( address indexed token, address indexed previousRecipient, address indexed newRecipient );",
+      "countInSample": 7,
+      "dataset": "pons-v4-integrated-20260909",
+      "status": "source-signature-and-log-layout-match",
+      "source": "sourcify-factory-43289536",
+      "localSnapshot": "docs/evidence/PonsV2LaunchFactory.sol",
+      "sourceSha256": "3813f2ad7dcc9d10c5f2e448c898e4dc7d6f1d4858785fdf15e1b98a91c73259",
+      "accounting": "Administrative or fee event; not a trade and not added to quote flow."
+    },
+    {
+      "topic0": "0xa0a18f5bf205becee8b268d7cf69addab8548ae8ef361791464cf0e0e17c1361",
+      "declaration": "event GraduationTokensPermanentlyLocked(address indexed token, uint256 amount);",
+      "countInSample": 1,
+      "dataset": "pons-v4-integrated-20260909",
+      "status": "source-signature-and-log-layout-match",
+      "source": "sourcify-factory-43289536",
+      "localSnapshot": "docs/evidence/PonsV2LaunchFactory.sol",
+      "sourceSha256": "3813f2ad7dcc9d10c5f2e448c898e4dc7d6f1d4858785fdf15e1b98a91c73259",
+      "accounting": "Administrative or fee event; not a trade and not added to quote flow."
+    },
+    {
+      "topic0": "0x5feba9b0d52c92ada4b9c571c2bee52390c54f2947208ab250221e6ee32f12ff",
+      "declaration": "event BuybackLocked(uint256 quoteSpent, uint256 tokensLocked);",
+      "status": "source-signature-and-log-layout-match",
+      "source": "sourcify-factory-43289536",
+      "localSnapshot": "docs/evidence/PonsV2BondingCurve.sourcify.sol",
+      "sourceSha256": "9e19cebed3b4ac659b9e3406fe3f8139ff8d59eb1da6e76bd9cbab915cd12684",
+      "fixture": "test/fixtures/curve-buyback-locked.json",
+      "accounting": "Protocol fee-funded internal buyback, not an external CurveBuy or independent buyer. Excluded from trade-only net flow; reserve effects are separate."
+    },
+    {
+      "declaration": "event AutoGraduationFailed(address indexed token, uint256 gasRemaining);",
+      "status": "source-signature-and-log-layout-match",
+      "source": "sourcify-factory-43289536",
+      "localSnapshot": "docs/evidence/PonsV2BondingCurve.sourcify.sol",
+      "sourceSha256": "9e19cebed3b4ac659b9e3406fe3f8139ff8d59eb1da6e76bd9cbab915cd12684",
+      "fixture": "test/fixtures/curve-auto-graduation-failed.json",
+      "accounting": "Not an external buy/sell; does not enter trade-only net flow or independent buyer counts."
+    },
+    {
+      "declaration": "event BuybackEnabledUpdated(bool enabled);",
+      "status": "source-declared-unobserved-synthetic-layout-test",
+      "source": "sourcify-factory-43289536",
+      "localSnapshot": "docs/evidence/PonsV2BondingCurve.sourcify.sol",
+      "sourceSha256": "9e19cebed3b4ac659b9e3406fe3f8139ff8d59eb1da6e76bd9cbab915cd12684",
+      "fixture": null,
+      "accounting": "Not an external buy/sell; does not enter trade-only net flow or independent buyer counts."
+    },
+    {
+      "declaration": "event FeesRescued(address indexed protocolRecipient, address indexed creatorRecipient, uint256 protocolAmount, uint256 creatorAmount);",
+      "status": "source-declared-unobserved-synthetic-layout-test",
+      "source": "sourcify-factory-43289536",
+      "localSnapshot": "docs/evidence/PonsV2BondingCurve.sourcify.sol",
+      "sourceSha256": "9e19cebed3b4ac659b9e3406fe3f8139ff8d59eb1da6e76bd9cbab915cd12684",
+      "fixture": null,
+      "accounting": "Not an external buy/sell; does not enter trade-only net flow or independent buyer counts."
+    }
+  ],
+  "unresolved": [],
+  "limits": "The Sourcify exact-match record is for the factory. Its bundled curve source and the observed log signature/layout establish this decoder mapping; individual curve runtime equivalence and whole-protocol safety were not independently certified.",
+  "additionalSources": [
+    {
+      "id": "sourcify-factory-43289536",
+      "url": "https://sourcify.dev/server/v2/contract/4663/0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e?fields=abi,sources",
+      "chainId": 4663,
+      "factory": "0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e",
+      "matchId": "43289536",
+      "verifiedAt": "2026-08-04T17:40:43Z",
+      "creationMatch": "exact_match",
+      "runtimeMatch": "exact_match",
+      "sourceFile": "contracts/src/v2/PonsV2BondingCurve.sol",
+      "localSnapshot": "docs/evidence/PonsV2BondingCurve.sourcify.sol",
+      "sourceSha256": "9e19cebed3b4ac659b9e3406fe3f8139ff8d59eb1da6e76bd9cbab915cd12684",
+      "declaration": "event SnipeTaxExempted(address indexed account);",
+      "emitterFunction": "exemptFromSnipeTax(address account) external onlyFactory",
+      "effect": "snipeTaxExempt[account] = true; emit SnipeTaxExempted(account);"
+    }
+  ]
+}

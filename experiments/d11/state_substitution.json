@@ -1,0 +1,69 @@
+{
+ "version": "d11-001-state-substitution-1",
+ "amendment": "docs/SPEC.md, the owner's amendment after dispatch (2026-09-13): the node is pruned and the archive-state hard stop is withdrawn",
+ "substitutions": [
+  {
+   "call": "eth_call creatorTaxBps() at the launch block",
+   "made_by": "experiments/d10/backfill.py::read_creator_tax, the declared fallback when a launch's first trade does not pin the tax",
+   "d10_usage": {
+    "launches": 991,
+    "used_the_call": 3,
+    "share": 0.0030272451
+   },
+   "class": "(a) immutable per curve \u2014 it is a launch parameter of the curve",
+   "substitution": "read at `latest` instead of at the launch block; and, before that, avoid the read entirely by pinning the tax from ANY recorded trade of the launch rather than only the first (class (b), reconstruct from events)",
+   "state_source": "latest_block_immutable"
+  }
+ ],
+ "at": "2026-09-13T04:52:31.365383Z",
+ "verification_b": {
+  "class": "(b) reconstruct from events",
+  "store": "./data/pons/d10-backfill-v1",
+  "recorded_initial_states": 617,
+  "checked": 617,
+  "matched_exactly": 615,
+  "mismatches": [
+   {
+    "token": "0x8250fea0f335f549cbc4f481c90776e8d61c33c6",
+    "why": "CREATOR_TAX_UNREADABLE"
+   },
+   {
+    "token": "0xb4bc560fc37a2632c4143931daa9dcf6f14a8eb5",
+    "why": "CREATOR_TAX_UNREADABLE"
+   }
+  ],
+  "mismatch_count": 2,
+  "sources": {
+   "derived": 614,
+   "unavailable": 2,
+   "derived_later_trade": 1
+  },
+  "opened_no_socket": true,
+  "rule": "this wave's derive_initial_state pins the creator tax from any recorded trade of the launch, in chain order, and rebuilds the pinned seed state from it. Every field of CurveState is compared."
+ },
+ "verification_a": {
+  "probed": 617,
+  "answered": 617,
+  "matched_exactly": 617,
+  "differed": [],
+  "differ_count": 0,
+  "unanswered": [],
+  "unanswered_count": 0,
+  "elapsed_s": 6.0,
+  "class": "(a) immutable per curve, read at latest",
+  "population": "every d10-backfill-v1 curve with a recorded initial state"
+ },
+ "rescue": {
+  "probed": 17,
+  "answered": 17,
+  "matched_exactly": 0,
+  "differed": [],
+  "differ_count": 0,
+  "unanswered": [],
+  "unanswered_count": 0,
+  "elapsed_s": 0.1,
+  "class": "(a) immutable per curve, read at latest",
+  "rescued": 17,
+  "still_class_c": 0
+ }
+}

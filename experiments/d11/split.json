@@ -1,0 +1,305 @@
+{
+ "version": "d11-001-step-iii-1",
+ "step": "(iii) \u2014 numbers only, computed after the collection and before the brain",
+ "rule": "register-then-compute, Fable addendum 2: nothing below is chosen. The window comes from the registered window rule, the cutoff from the registered split rule, the grid from admission_v2 on the store and the labels from the registered evaluator-only label. No neural number exists yet and no brain has been run on this dataset.",
+ "dataset": "d11-backfill-v1",
+ "window": {
+  "first_block": 61237774,
+  "last_block": 61663368,
+  "blocks": 425595,
+  "first_ts": 1789229564,
+  "last_ts": 1789272764,
+  "first_ts_utc": "2026-09-12T16:12:44Z",
+  "last_ts_utc": "2026-09-13T04:12:44Z",
+  "seconds": 43200,
+  "minutes": 720.0,
+  "median_block_interval_s": 0.10149559411114202,
+  "head_block_at_resolution": 61671056,
+  "safe_block_at_resolution": 61663368,
+  "confirm_depth_blocks": 591,
+  "admission_minutes": 705,
+  "admission_last_block": 61654540,
+  "settlement_tail_minutes": 15,
+  "overlaps_d10_backfill_v1": false,
+  "d10_backfill_v1": {
+   "first_block": 60721229,
+   "last_block": 60801426,
+   "first_ts": 1789181856,
+   "last_ts": 1789190005,
+   "label": "d10-backfill-v1"
+  },
+  "earliest_block_the_node_served": 61237774,
+  "twelve_hour_target_met": true,
+  "headers_and_logs_contiguous": true
+ },
+ "collection": {
+  "elapsed_s": 225.4,
+  "events": 462056,
+  "raw_logs": 462056,
+  "events_by_kind": {
+   "BuybackLocked": 13,
+   "CreatorFeeRecipientUpdated": 1658,
+   "CurveBuy": 206879,
+   "CurveBuyRefunded": 79,
+   "CurveCompleted": 79,
+   "CurveSell": 171470,
+   "FeesSwept": 18499,
+   "GraduationTokensPermanentlyLocked": 153,
+   "Initialized": 6599,
+   "LaunchSwept": 153,
+   "PoolGraduated": 153,
+   "SnipeTaxCharged": 12319,
+   "SnipeTaxExempted": 34527,
+   "TokenLaunched": 9474,
+   "unmapped": 1
+  },
+  "headers_fetched": 4258,
+  "launches_total": 9474,
+  "launches_native": 6599,
+  "launches_quote_unsupported": 2875,
+  "curve_completed": 79,
+  "initial_states": {
+   "derived_from_the_first_trade": 6110,
+   "derived_from_a_later_trade": 4,
+   "unavailable": 468,
+   "from_eth_call": 0,
+   "rule": "pinned offline from any recorded trade of the launch; the local node is pruned and no historical eth_call is made. PLAN.md 7.12.",
+   "from_latest_block_immutable": 17,
+   "still_unsupported_class_c": 0,
+   "state_source": "latest_block_immutable"
+  },
+  "initial_states_reasons": {
+   "NO_TRADE_TO_PIN_THE_CREATOR_TAX": 468,
+   "LAUNCH_CONFIG_NOT_PINNED": 0,
+   "CREATOR_TAX_UNREADABLE": 17
+  },
+  "request_attempts": 6935,
+  "request_units_total": 13866,
+  "loopback_attempts": 6935,
+  "remote_attempts": 0,
+  "request_units": {
+   "eth_blockNumber": {
+    "attempts": 1,
+    "units": 1,
+    "errors": 0
+   },
+   "eth_call": {
+    "attempts": 0,
+    "units": 0,
+    "errors": 0
+   },
+   "eth_chainId": {
+    "attempts": 1,
+    "units": 1,
+    "errors": 0
+   },
+   "eth_getBlockByNumber": {
+    "attempts": 4283,
+    "units": 8564,
+    "errors": 0
+   },
+   "eth_getLogs": {
+    "attempts": 2650,
+    "units": 5300,
+    "errors": 0
+   }
+  },
+  "errors": 0
+ },
+ "split": {
+  "rule": "t0 = timestamp(start_block), t1 = timestamp(end_block), T = t0 + floor(0.7 * (t1 - t0)) snapped down to the 30-second tick grid anchored at t0",
+  "t0": 1789229564,
+  "t1": 1789272764,
+  "T": 1789259804,
+  "span_s": 43200,
+  "learning_share": 0.7,
+  "cadence_s": 30,
+  "latency_s": 2,
+  "horizon_s": 900,
+  "settle_s": 902,
+  "slot_s": 932,
+  "learning_ticks": 1009,
+  "learning_first_tick": 1789229564,
+  "learning_last_tick": 1789259804,
+  "learning_last_entry_tick": 1789258874,
+  "learning_entry_rule": "an entry is allowed only if cutoff + 902 <= T",
+  "frozen_ticks": 402,
+  "frozen_first_tick": 1789259804,
+  "frozen_last_tick": 1789271834,
+  "frozen_tick_rule": "T <= cutoff and cutoff + 902 <= t1",
+  "temporal_blocks": [
+   {
+    "block": 1,
+    "from_ts": 1789259804,
+    "to_ts": 1789263814,
+    "ticks": 134,
+    "first_tick": 1789259804,
+    "last_tick": 1789263794
+   },
+   {
+    "block": 2,
+    "from_ts": 1789263814,
+    "to_ts": 1789267824,
+    "ticks": 134,
+    "first_tick": 1789263824,
+    "last_tick": 1789267814
+   },
+   {
+    "block": 3,
+    "from_ts": 1789267824,
+    "to_ts": 1789271834,
+    "ticks": 134,
+    "first_tick": 1789267844,
+    "last_tick": 1789271834
+   }
+  ]
+ },
+ "geometric_ceiling": {
+  "ceiling": 32,
+  "first_eligible_tick": 1789229654,
+  "last_entry_tick": 1789258902,
+  "span_s": 29248,
+  "slot_s": 932,
+  "rule": "the number of non-overlapping 932-second slots (902 s plus one tick) between the first LEARNING tick with at least one v2-eligible candidate and T - 902"
+ },
+ "grid": {
+  "frozen_ticks": 402,
+  "rows": 5177,
+  "tokens_with_at_least_one_row": 1050,
+  "zero_eligible_ticks": 0,
+  "empty_round_status": {},
+  "eligible_per_tick": {
+   "min": 4,
+   "max": 23,
+   "median": 13.0,
+   "mean": 12.878109452736318
+  },
+  "admission_reasons": {
+   "ADMITTED": 5177,
+   "COVERAGE": 1892,
+   "INACTIVE": 166236,
+   "ROUTE_COMPLETED": 1892,
+   "STATE_INVALID": 1944
+  },
+  "tapes_reconstructed": 6131,
+  "unreconstructible_launches": 468,
+  "stable_id_rule": "assigned once over the reconstructible native launches in launch order (launch_block, launched_at, curve); never from the address spelling's sort position"
+ },
+ "label_class_balance": {
+  "rows": 5177,
+  "settled": 5021,
+  "unresolved": 156,
+  "unresolved_reasons": {
+   "ROUTE_TRANSITION:SELL": 156
+  },
+  "positive": 488,
+  "negative": 4533,
+  "positive_share": 0.09719179446325434,
+  "net_eth": {
+   "min": -0.009194190143402593,
+   "max": 0.03321692451636823,
+   "median": -0.0006656518616560818,
+   "mean": -0.0013935387838404896
+  },
+  "note": "computed with the evaluator-only label on the FROZEN grid, market-only. It creates no trade, alters no bankroll and produces no reinforcement; its known-answer test against the sixteen settled D10 entries was written and run first."
+ },
+ "pre_computable_inconclusive_conditions": {
+  "fewer_than_100_paired_FROZEN_candidate_labels": {
+   "value": 5021,
+   "threshold": 100,
+   "fails": false
+  },
+  "either_class_fewer_than_20": {
+   "positive": 488,
+   "negative": 4533,
+   "threshold": 20,
+   "fails": false
+  },
+  "geometric_ceiling_under_20": {
+   "value": 32,
+   "threshold": 20,
+   "fails": false
+  }
+ },
+ "stop": null,
+ "correction": {
+  "what": "the first write of this file put T at t0 + 30,210 s. The registered rule is T = t0 + floor(0.7 * (t1 - t0)) snapped down to the 30-second grid, and 0.7 * 43200 is 30239.999999999996 in float64, whose floor is 30239 and whose snapped value is 30,210 \u2014 one tick early.",
+  "fix": "the floor is computed in integer arithmetic, (7 * span) // 10, which is the rule as registered. T moves from t0 + 30,210 to t0 + 30,240, one 30-second tick later.",
+  "when": "before any neural number existed. The correction is arithmetic and is not informed by any result: no brain had been run, no score, AUC or interval existed, and the only numbers observed were the row count and the class balance, which moved from 5,182 / 489 / 4,536 to 5,175 / 488 / 4,531 \u2014 the one tick's worth of rows.",
+  "declared_in": "PLAN.md 7.13, the report and HANDOFF",
+  "previous": {
+   "T": 1789259774,
+   "frozen_ticks": 403,
+   "grid_rows": 5182,
+   "settled": 5025,
+   "positive": 489,
+   "negative": 4536,
+   "geometric_ceiling": 32
+  },
+  "second": {
+   "what": "the owner's amendment after dispatch (2026-09-13) withdrew the archive-state hard stop and prescribed class (a): an immutable per-curve value is read at `latest`. The store's 17 curves whose creator tax no recorded trade pins were class (c) \u2014 unavailable and untracked \u2014 under the collection's own class (b) rule.",
+   "fix": "all 17 were read at `latest` and written with source `latest_block_immutable`; class (c) residue is now 0. The grid and the labels were rebuilt on the completed store.",
+   "when": "before any neural number existed. The in-flight LEARNING replay was stopped at 74 % and deleted BEFORE it produced a final episode count, so there is exactly one replay on exactly one store and nothing was selected.",
+   "previous": {
+    "grid_rows": 5175,
+    "settled": 5019,
+    "positive": 488,
+    "negative": 4531,
+    "tapes": 6114
+   }
+  }
+ },
+ "state_substitution": {
+  "amendment": "docs/SPEC.md, the owner's amendment after dispatch (2026-09-13): the node is pruned and the archive-state hard stop is withdrawn",
+  "substitutions": [
+   {
+    "call": "eth_call creatorTaxBps() at the launch block",
+    "made_by": "experiments/d10/backfill.py::read_creator_tax, the declared fallback when a launch's first trade does not pin the tax",
+    "d10_usage": {
+     "launches": 991,
+     "used_the_call": 3,
+     "share": 0.0030272451
+    },
+    "class": "(a) immutable per curve \u2014 it is a launch parameter of the curve",
+    "substitution": "read at `latest` instead of at the launch block; and, before that, avoid the read entirely by pinning the tax from ANY recorded trade of the launch rather than only the first (class (b), reconstruct from events)",
+    "state_source": "latest_block_immutable"
+   }
+  ],
+  "verification_b": {
+   "class": "(b) reconstruct from events",
+   "store": "./data/pons/d10-backfill-v1",
+   "recorded_initial_states": 617,
+   "checked": 617,
+   "matched_exactly": 615,
+   "mismatch_count": 2,
+   "sources": {
+    "derived": 614,
+    "unavailable": 2,
+    "derived_later_trade": 1
+   },
+   "opened_no_socket": true,
+   "rule": "this wave's derive_initial_state pins the creator tax from any recorded trade of the launch, in chain order, and rebuilds the pinned seed state from it. Every field of CurveState is compared."
+  },
+  "verification_a": {
+   "probed": 617,
+   "answered": 617,
+   "matched_exactly": 617,
+   "differ_count": 0,
+   "unanswered_count": 0,
+   "elapsed_s": 6.0,
+   "class": "(a) immutable per curve, read at latest",
+   "population": "every d10-backfill-v1 curve with a recorded initial state"
+  },
+  "rescue": {
+   "probed": 17,
+   "answered": 17,
+   "matched_exactly": 0,
+   "differ_count": 0,
+   "unanswered_count": 0,
+   "elapsed_s": 0.1,
+   "class": "(a) immutable per curve, read at latest",
+   "rescued": 17,
+   "still_class_c": 0
+  }
+ }
+}

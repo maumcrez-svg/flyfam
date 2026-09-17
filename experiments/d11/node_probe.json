@@ -1,0 +1,326 @@
+{
+ "version": "d11-001-node-probe-1",
+ "at": "2026-09-13T04:22:14.160770Z",
+ "host": "127.0.0.1",
+ "chain_id_expected": 4663,
+ "fresh_window_s": 300,
+ "probe_cap_requests": 40,
+ "discovery_order": [
+  {
+   "port": 8547,
+   "source": "addendum 3"
+  },
+  {
+   "port": 8545,
+   "source": "addendum 3"
+  },
+  {
+   "port": 8645,
+   "source": "container",
+   "image": "offchainlabs/nitro-node:v3.11.1-8512b8c",
+   "container": "nitro-robinhood",
+   "container_port": 8547
+  },
+  {
+   "port": 8646,
+   "source": "container",
+   "image": "offchainlabs/nitro-node:v3.11.1-8512b8c",
+   "container": "nitro-robinhood",
+   "container_port": 8548
+  },
+  {
+   "port": 8558,
+   "source": "process",
+   "process": "anvil"
+  },
+  {
+   "port": 8559,
+   "source": "process",
+   "process": "anvil"
+  }
+ ],
+ "ports": [
+  {
+   "port": 8547,
+   "url": "http://127.0.0.1:8547",
+   "chain_id": null,
+   "latest_block": null,
+   "latest_ts": null,
+   "age_s": null,
+   "verified": false,
+   "error": "RPC_TRANSPORT_FAILED: URLError(ConnectionRefusedError(111, 'Connection refused'))",
+   "endpoint_class": "loopback",
+   "source": "addendum 3"
+  },
+  {
+   "port": 8545,
+   "url": "http://127.0.0.1:8545",
+   "chain_id": null,
+   "latest_block": null,
+   "latest_ts": null,
+   "age_s": null,
+   "verified": false,
+   "error": "RPC_TRANSPORT_FAILED: URLError(ConnectionRefusedError(111, 'Connection refused'))",
+   "endpoint_class": "loopback",
+   "source": "addendum 3"
+  },
+  {
+   "port": 8645,
+   "url": "http://127.0.0.1:8645",
+   "chain_id": 4663,
+   "latest_block": 61669015,
+   "latest_ts": 1789273333,
+   "age_s": 1,
+   "verified": true,
+   "error": null,
+   "endpoint_class": "loopback",
+   "source": "container",
+   "image": "offchainlabs/nitro-node:v3.11.1-8512b8c",
+   "container": "nitro-robinhood",
+   "container_port": 8547
+  }
+ ],
+ "verified": {
+  "port": 8645,
+  "url": "http://127.0.0.1:8645",
+  "chain_id": 4663,
+  "latest_block": 61669015,
+  "latest_ts": 1789273333,
+  "age_s": 1,
+  "verified": true,
+  "error": null,
+  "endpoint_class": "loopback",
+  "source": "container",
+  "image": "offchainlabs/nitro-node:v3.11.1-8512b8c",
+  "container": "nitro-robinhood",
+  "container_port": 8547
+ },
+ "capability": {
+  "checks": [
+   {
+    "method": "eth_blockNumber",
+    "block": 61669015,
+    "purpose": "the head at probe time",
+    "ok": true,
+    "detail": "",
+    "needed": true,
+    "declared_outcome_on_failure": ""
+   },
+   {
+    "method": "eth_getBlockByNumber(safe)",
+    "block": 61663368,
+    "purpose": "the confirmation rule's safe bound",
+    "ok": true,
+    "detail": "",
+    "needed": true,
+    "declared_outcome_on_failure": ""
+   },
+   {
+    "method": "eth_getBlockByNumber",
+    "block": 61241292,
+    "purpose": "the block about twelve hours back",
+    "ok": true,
+    "detail": "timestamp 1789229921, 43412 s before head",
+    "needed": true,
+    "declared_outcome_on_failure": ""
+   },
+   {
+    "method": "eth_getLogs",
+    "block": "61241292-61242291",
+    "purpose": "one collector-sized factory chunk at the old end of the window",
+    "ok": true,
+    "detail": "26 logs",
+    "needed": true,
+    "declared_outcome_on_failure": ""
+   },
+   {
+    "method": "eth_call creatorTaxBps()",
+    "block": 61241376,
+    "purpose": "the only historical eth_call the D10 backfill and the live driver make (the creator-tax fallback)",
+    "ok": false,
+    "detail": "RPC_ERROR_-32000: missing trie node <rpc-endpoint> (path ) state <rpc-endpoint> is not available, not found",
+    "needed": false,
+    "declared_outcome_on_failure": "CREATOR_TAX_UNREADABLE -> the launch is recorded unavailable and never tracked"
+   }
+  ],
+  "failures": [
+   {
+    "method": "eth_call creatorTaxBps()",
+    "block": 61241376,
+    "purpose": "the only historical eth_call the D10 backfill and the live driver make (the creator-tax fallback)",
+    "ok": false,
+    "detail": "RPC_ERROR_-32000: missing trie node <rpc-endpoint> (path ) state <rpc-endpoint> is not available, not found",
+    "needed": false,
+    "declared_outcome_on_failure": "CREATOR_TAX_UNREADABLE -> the launch is recorded unavailable and never tracked",
+    "count": 1
+   }
+  ],
+  "head_block": 61669015,
+  "head_ts": 1789273333,
+  "safe_block": 61663368,
+  "safe_tag_supported": true,
+  "finality": {
+   "median_block_interval_s": 0.10149559411114202,
+   "confirm_seconds": 60,
+   "confirm_depth_blocks": 591,
+   "safe_tag_supported": true,
+   "headers_sampled": 2,
+   "rule": "a block is confirmed when it is at least confirm_depth behind head, and \u2014 when the endpoint answers the safe tag \u2014 also at or below safe"
+  },
+  "twelve_hours_back": {
+   "block": 61241292,
+   "timestamp": 1789229921,
+   "seconds_before_head": 43412
+  },
+  "old_end_factory_logs": 26,
+  "eth_call_curve_source": "a launch inside the probe chunk",
+  "eth_call_curve": "0x32f983ed5fc5da9a14b8fac40aca44f6f64c694f",
+  "eth_call_block": 61241376,
+  "fallback_failures": [
+   {
+    "method": "eth_call creatorTaxBps()",
+    "block": 61241376,
+    "purpose": "the only historical eth_call the D10 backfill and the live driver make (the creator-tax fallback)",
+    "ok": false,
+    "detail": "RPC_ERROR_-32000: missing trie node <rpc-endpoint> (path ) state <rpc-endpoint> is not available, not found",
+    "needed": false,
+    "declared_outcome_on_failure": "CREATOR_TAX_UNREADABLE -> the launch is recorded unavailable and never tracked",
+    "count": 1
+   }
+  ]
+ },
+ "stop": null,
+ "requests": {
+  "by_method": {
+   "eth_chainId": {
+    "attempts": 3,
+    "units": 3,
+    "errors": 2
+   },
+   "eth_getBlockByNumber": {
+    "attempts": 4,
+    "units": 5,
+    "errors": 0
+   },
+   "eth_blockNumber": {
+    "attempts": 1,
+    "units": 1,
+    "errors": 0
+   },
+   "eth_getLogs": {
+    "attempts": 1,
+    "units": 2,
+    "errors": 0
+   },
+   "eth_call": {
+    "attempts": 25,
+    "units": 49,
+    "errors": 11
+   }
+  },
+  "attempts": 34,
+  "units": 60,
+  "errors": 13,
+  "cap": 40,
+  "endpoint_class": "loopback",
+  "loopback_attempts": 34,
+  "remote_attempts": 0
+ },
+ "state_depth": {
+  "curve": "0x32f983ed5fc5da9a14b8fac40aca44f6f64c694f",
+  "head": 61669015,
+  "probes": [
+   {
+    "back": 0,
+    "block": 61669015,
+    "ok": true
+   },
+   {
+    "back": 128,
+    "block": 61668887,
+    "ok": true
+   },
+   {
+    "back": 1024,
+    "block": 61667991,
+    "ok": true
+   },
+   {
+    "back": 8192,
+    "block": 61660823,
+    "ok": true
+   },
+   {
+    "back": 65536,
+    "block": 61603479,
+    "ok": true
+   },
+   {
+    "back": 262144,
+    "block": 61406871,
+    "ok": false
+   }
+  ],
+  "budget": 29,
+  "oldest_block_with_state": 61557072,
+  "retained_blocks": 111943,
+  "retained_seconds_approx": 11362.2,
+  "requests": 24
+ },
+ "calls_a_chainstack_fallback_would_involve": {
+  "list": [
+   {
+    "method": "eth_call creatorTaxBps()",
+    "block": 61241376,
+    "purpose": "the only historical eth_call the D10 backfill and the live driver make (the creator-tax fallback)",
+    "ok": false,
+    "detail": "RPC_ERROR_-32000: missing trie node <rpc-endpoint> (path ) state <rpc-endpoint> is not available, not found",
+    "needed": false,
+    "declared_outcome_on_failure": "CREATOR_TAX_UNREADABLE -> the launch is recorded unavailable and never tracked",
+    "count": 1
+   }
+  ],
+  "needed_by_the_collection": [],
+  "declared_fallbacks": [
+   {
+    "method": "eth_call creatorTaxBps()",
+    "block": 61241376,
+    "purpose": "the only historical eth_call the D10 backfill and the live driver make (the creator-tax fallback)",
+    "ok": false,
+    "detail": "RPC_ERROR_-32000: missing trie node <rpc-endpoint> (path ) state <rpc-endpoint> is not available, not found",
+    "needed": false,
+    "declared_outcome_on_failure": "CREATOR_TAX_UNREADABLE -> the launch is recorded unavailable and never tracked",
+    "count": 1
+   }
+  ],
+  "chainstack_cost_units": 2,
+  "rule": "Chainstack is used only after the owner authorises this exact list. There is no automatic fallback, --allow-remote is never passed, and this wave makes zero remote requests either way."
+ },
+ "verdict": "PROCEED_WITH_A_DECLARED_DEGRADATION",
+ "declared_degradation": {
+  "what_failed": [
+   {
+    "method": "eth_call creatorTaxBps()",
+    "block": 61241376,
+    "purpose": "the only historical eth_call the D10 backfill and the live driver make (the creator-tax fallback)",
+    "ok": false,
+    "detail": "RPC_ERROR_-32000: missing trie node <rpc-endpoint> (path ) state <rpc-endpoint> is not available, not found",
+    "needed": false,
+    "declared_outcome_on_failure": "CREATOR_TAX_UNREADABLE -> the launch is recorded unavailable and never tracked",
+    "count": 1
+   }
+  ],
+  "why_it_is_not_a_needed_call": "flytrade/pons/collector.py's backfill path reads logs and headers only; the single historical eth_call is the creator-tax fallback of experiments/d10/backfill.py, whose own code returns None on an RpcError and records the launch CREATOR_TAX_UNREADABLE -> unavailable. That is a declared D10 outcome class, not an error: 55 of D10's 991 launches were already unavailable (all NO_TRADE_TO_PIN_THE_CREATOR_TAX).",
+  "measured_size_on_d10": {
+   "launches": 991,
+   "native": 672,
+   "initial_states_derived_offline": 614,
+   "initial_states_from_eth_call": 3,
+   "initial_states_unavailable": 55,
+   "share_of_launches_that_used_the_eth_call": 0.0030272451059535823
+  },
+  "mitigation_declared": "experiments/d11/backfill.py pins the creator tax from ANY trade of the launch rather than only the first, the same arithmetic on the same recorded data with no request, which is what experiments/d11/retrospective.py's offline tracker already does. The residual is reported in the MANIFEST as initial_states_unavailable and in the wave report.",
+  "the_live_hour_is_unaffected": "the live driver's creator-tax read happens at a launch block seconds old, far inside the node's measured retained-state window, and a state read at the head answered.",
+  "no_chainstack": "zero remote requests. --allow-remote is never passed."
+ }
+}

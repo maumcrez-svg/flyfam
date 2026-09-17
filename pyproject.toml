@@ -1,0 +1,38 @@
+[project]
+name = "flytrade"
+version = "0.0.0"
+description = "A simulated Drosophila nervous system interacting with real market data"
+requires-python = ">=3.13"
+# Phase Zero: nothing beyond what upstream itself requires to run the audited
+# modules (build_graph.py / flysim.py / mushroom.py), plus pytest.
+# Versions are upstream's own pins from upstream/requirements.txt.
+dependencies = [
+    "numpy==2.4.2",
+    "scipy==1.17.1",
+    "pandas==3.0.1",
+    "pyarrow==23.0.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1"]
+# D8 (evaluator-only): the two external diagnostic model families of
+# docs/SPEC.md D8 section 6. Nothing in flytrade/ imports it, no runtime
+# path reaches the decoder, orders, reward or plasticity, and the main
+# dependencies above are untouched. Pinned to the newest release that
+# installs against numpy==2.4.2 / scipy==1.17.1 on Python 3.13.9 without
+# moving them.
+diagnostics = ["scikit-learn==1.9.1"]
+# D10 (chain access only): keccak-256, for recomputing an event's topic0 and
+# for hashing contract code returned by eth_getCode. Nothing else uses it, and
+# `flytrade/pons/` imports it *inside* the two functions that need it, so the
+# package imports and every test that does not hash anything runs without this
+# group installed. That is why it is optional and not a main dependency.
+# Pinned to the newest release that installs against numpy==2.4.2 /
+# scipy==1.17.1 / pandas==3.0.1 / pyarrow==23.0.1 on Python 3.13.9 without
+# moving any of them.
+chain = ["pycryptodome==3.23.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+xfail_strict = true

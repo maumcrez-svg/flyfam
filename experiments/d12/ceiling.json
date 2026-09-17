@@ -1,0 +1,7285 @@
+{
+ "version": "d12-001-ceiling-1",
+ "run_id": "d12-001",
+ "dataset": "d11-backfill-v1",
+ "split": {
+  "rule": "t0 = timestamp(start_block), t1 = timestamp(end_block), T = t0 + floor(0.7 * (t1 - t0)) snapped down to the 30-second tick grid anchored at t0",
+  "t0": 1789229564,
+  "t1": 1789272764,
+  "T": 1789259804,
+  "span_s": 43200,
+  "learning_share": 0.7,
+  "cadence_s": 30,
+  "latency_s": 2,
+  "horizon_s": 900,
+  "settle_s": 902,
+  "slot_s": 932,
+  "learning_ticks": 1009,
+  "learning_first_tick": 1789229564,
+  "learning_last_tick": 1789259804,
+  "learning_last_entry_tick": 1789258874,
+  "learning_entry_rule": "an entry is allowed only if cutoff + 902 <= T",
+  "frozen_ticks": 402,
+  "frozen_first_tick": 1789259804,
+  "frozen_last_tick": 1789271834,
+  "frozen_tick_rule": "T <= cutoff and cutoff + 902 <= t1",
+  "temporal_blocks": [
+   {
+    "block": 1,
+    "from_ts": 1789259804,
+    "to_ts": 1789263814,
+    "ticks": 134,
+    "first_tick": 1789259804,
+    "last_tick": 1789263794
+   },
+   {
+    "block": 2,
+    "from_ts": 1789263814,
+    "to_ts": 1789267824,
+    "ticks": 134,
+    "first_tick": 1789263824,
+    "last_tick": 1789267814
+   },
+   {
+    "block": 3,
+    "from_ts": 1789267824,
+    "to_ts": 1789271834,
+    "ticks": 134,
+    "first_tick": 1789267844,
+    "last_tick": 1789271834
+   }
+  ]
+ },
+ "no_brain_ran": true,
+ "no_socket_was_opened": true,
+ "creates_no_trade": true,
+ "produces_no_reinforcement": true,
+ "learning": {
+  "tapes": 6131,
+  "unreconstructible_launches": 468,
+  "learning_ticks": 1009,
+  "ticks_inside_the_boundary": 978,
+  "ticks_discarded_at_the_boundary": 31,
+  "first_eligible_learning_tick": 1789229654,
+  "n_min": 3,
+  "lesson_ceiling": 20152,
+  "lesson_ceiling_rule": "eligible candidate-ticks in LEARNING whose cutoff + 902 <= T, in cohorts of n >= 3, from the market-only tracker; no brain",
+  "lesson_ceiling_after_unresolved_drop": 19665,
+  "eligible_candidate_ticks_inside_the_boundary": 20152,
+  "eligible_candidate_ticks_at_the_boundary": 336,
+  "cohort_size_distribution": {
+   "ticks": 978,
+   "min": 0,
+   "p25": 17.0,
+   "median": 21.0,
+   "p75": 25.0,
+   "p90": 28.0,
+   "max": 44,
+   "mean": 20.605316973415132,
+   "sum": 20152,
+   "ticks_below_n_min": 3,
+   "ticks_at_zero": 3,
+   "histogram": {
+    "0": 3,
+    "3": 1,
+    "5": 3,
+    "6": 1,
+    "7": 2,
+    "8": 10,
+    "9": 11,
+    "10": 19,
+    "11": 26,
+    "12": 26,
+    "13": 32,
+    "14": 36,
+    "15": 38,
+    "16": 36,
+    "17": 42,
+    "18": 59,
+    "19": 58,
+    "20": 58,
+    "21": 70,
+    "22": 57,
+    "23": 67,
+    "24": 62,
+    "25": 52,
+    "26": 50,
+    "27": 47,
+    "28": 35,
+    "29": 21,
+    "30": 13,
+    "31": 11,
+    "32": 11,
+    "33": 3,
+    "34": 4,
+    "35": 6,
+    "36": 3,
+    "37": 2,
+    "38": 1,
+    "40": 1,
+    "44": 1
+   }
+  },
+  "cohort_size_distribution_after_unresolved_drop": {
+   "ticks": 978,
+   "min": 0,
+   "p25": 16.0,
+   "median": 20.0,
+   "p75": 24.0,
+   "p90": 27.0,
+   "max": 44,
+   "mean": 20.107361963190183,
+   "sum": 19665,
+   "ticks_below_n_min": 3,
+   "ticks_at_zero": 3,
+   "histogram": {
+    "0": 3,
+    "3": 1,
+    "5": 3,
+    "6": 1,
+    "7": 2,
+    "8": 10,
+    "9": 11,
+    "10": 19,
+    "11": 29,
+    "12": 27,
+    "13": 33,
+    "14": 39,
+    "15": 38,
+    "16": 44,
+    "17": 52,
+    "18": 63,
+    "19": 66,
+    "20": 67,
+    "21": 59,
+    "22": 66,
+    "23": 67,
+    "24": 59,
+    "25": 36,
+    "26": 51,
+    "27": 47,
+    "28": 23,
+    "29": 14,
+    "30": 13,
+    "31": 8,
+    "32": 9,
+    "33": 5,
+    "34": 3,
+    "35": 5,
+    "36": 2,
+    "37": 1,
+    "40": 1,
+    "44": 1
+   }
+  },
+  "unresolved_reasons": {
+   "ROUTE_TRANSITION:BUY": 2,
+   "ROUTE_TRANSITION:SELL": 484,
+   "WOULD_EXHAUST_CURVE:BUY": 1
+  },
+  "tokens_eligible_at_least_once_in_learning": 3633,
+  "tokens_that_become_lessons": 3532,
+  "per_tick": [
+   {
+    "tick": 1,
+    "cutoff_ts": 1789229564,
+    "eligible": 0,
+    "beyond_boundary": false,
+    "settled": 0
+   },
+   {
+    "tick": 2,
+    "cutoff_ts": 1789229594,
+    "eligible": 0,
+    "beyond_boundary": false,
+    "settled": 0
+   },
+   {
+    "tick": 3,
+    "cutoff_ts": 1789229624,
+    "eligible": 0,
+    "beyond_boundary": false,
+    "settled": 0
+   },
+   {
+    "tick": 4,
+    "cutoff_ts": 1789229654,
+    "eligible": 3,
+    "beyond_boundary": false,
+    "settled": 3
+   },
+   {
+    "tick": 5,
+    "cutoff_ts": 1789229684,
+    "eligible": 6,
+    "beyond_boundary": false,
+    "settled": 6
+   },
+   {
+    "tick": 6,
+    "cutoff_ts": 1789229714,
+    "eligible": 9,
+    "beyond_boundary": false,
+    "settled": 9
+   },
+   {
+    "tick": 7,
+    "cutoff_ts": 1789229744,
+    "eligible": 8,
+    "beyond_boundary": false,
+    "settled": 8
+   },
+   {
+    "tick": 8,
+    "cutoff_ts": 1789229774,
+    "eligible": 9,
+    "beyond_boundary": false,
+    "settled": 9
+   },
+   {
+    "tick": 9,
+    "cutoff_ts": 1789229804,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 10,
+    "cutoff_ts": 1789229834,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 11,
+    "cutoff_ts": 1789229864,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 12,
+    "cutoff_ts": 1789229894,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 13,
+    "cutoff_ts": 1789229924,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 14,
+    "cutoff_ts": 1789229954,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 15,
+    "cutoff_ts": 1789229984,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 16,
+    "cutoff_ts": 1789230014,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 17,
+    "cutoff_ts": 1789230044,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 18,
+    "cutoff_ts": 1789230074,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 19,
+    "cutoff_ts": 1789230104,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 20,
+    "cutoff_ts": 1789230134,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 21,
+    "cutoff_ts": 1789230164,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 22,
+    "cutoff_ts": 1789230194,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 23,
+    "cutoff_ts": 1789230224,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 24,
+    "cutoff_ts": 1789230254,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 25,
+    "cutoff_ts": 1789230284,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 26,
+    "cutoff_ts": 1789230314,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 27,
+    "cutoff_ts": 1789230344,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 28,
+    "cutoff_ts": 1789230374,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 29,
+    "cutoff_ts": 1789230404,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 30,
+    "cutoff_ts": 1789230434,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 31,
+    "cutoff_ts": 1789230464,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 32,
+    "cutoff_ts": 1789230494,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 33,
+    "cutoff_ts": 1789230524,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 34,
+    "cutoff_ts": 1789230554,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 35,
+    "cutoff_ts": 1789230584,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 36,
+    "cutoff_ts": 1789230614,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 37,
+    "cutoff_ts": 1789230644,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 38,
+    "cutoff_ts": 1789230674,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 39,
+    "cutoff_ts": 1789230704,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 40,
+    "cutoff_ts": 1789230734,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 41,
+    "cutoff_ts": 1789230764,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 42,
+    "cutoff_ts": 1789230794,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 43,
+    "cutoff_ts": 1789230824,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 44,
+    "cutoff_ts": 1789230854,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 45,
+    "cutoff_ts": 1789230884,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 46,
+    "cutoff_ts": 1789230914,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 47,
+    "cutoff_ts": 1789230944,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 48,
+    "cutoff_ts": 1789230974,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 49,
+    "cutoff_ts": 1789231004,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 50,
+    "cutoff_ts": 1789231034,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 51,
+    "cutoff_ts": 1789231064,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 52,
+    "cutoff_ts": 1789231094,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 53,
+    "cutoff_ts": 1789231124,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 54,
+    "cutoff_ts": 1789231154,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 55,
+    "cutoff_ts": 1789231184,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 56,
+    "cutoff_ts": 1789231214,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 57,
+    "cutoff_ts": 1789231244,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 58,
+    "cutoff_ts": 1789231274,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 59,
+    "cutoff_ts": 1789231304,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 60,
+    "cutoff_ts": 1789231334,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 61,
+    "cutoff_ts": 1789231364,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 62,
+    "cutoff_ts": 1789231394,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 63,
+    "cutoff_ts": 1789231424,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 64,
+    "cutoff_ts": 1789231454,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 65,
+    "cutoff_ts": 1789231484,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 66,
+    "cutoff_ts": 1789231514,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 67,
+    "cutoff_ts": 1789231544,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 68,
+    "cutoff_ts": 1789231574,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 69,
+    "cutoff_ts": 1789231604,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 70,
+    "cutoff_ts": 1789231634,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 71,
+    "cutoff_ts": 1789231664,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 72,
+    "cutoff_ts": 1789231694,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 73,
+    "cutoff_ts": 1789231724,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 74,
+    "cutoff_ts": 1789231754,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 75,
+    "cutoff_ts": 1789231784,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 76,
+    "cutoff_ts": 1789231814,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 77,
+    "cutoff_ts": 1789231844,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 78,
+    "cutoff_ts": 1789231874,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 79,
+    "cutoff_ts": 1789231904,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 80,
+    "cutoff_ts": 1789231934,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 81,
+    "cutoff_ts": 1789231964,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 82,
+    "cutoff_ts": 1789231994,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 83,
+    "cutoff_ts": 1789232024,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 84,
+    "cutoff_ts": 1789232054,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 85,
+    "cutoff_ts": 1789232084,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 86,
+    "cutoff_ts": 1789232114,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 87,
+    "cutoff_ts": 1789232144,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 88,
+    "cutoff_ts": 1789232174,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 89,
+    "cutoff_ts": 1789232204,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 90,
+    "cutoff_ts": 1789232234,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 91,
+    "cutoff_ts": 1789232264,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 92,
+    "cutoff_ts": 1789232294,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 93,
+    "cutoff_ts": 1789232324,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 94,
+    "cutoff_ts": 1789232354,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 95,
+    "cutoff_ts": 1789232384,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 96,
+    "cutoff_ts": 1789232414,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 97,
+    "cutoff_ts": 1789232444,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 98,
+    "cutoff_ts": 1789232474,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 99,
+    "cutoff_ts": 1789232504,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 100,
+    "cutoff_ts": 1789232534,
+    "eligible": 35,
+    "beyond_boundary": false,
+    "settled": 33
+   },
+   {
+    "tick": 101,
+    "cutoff_ts": 1789232564,
+    "eligible": 31,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 102,
+    "cutoff_ts": 1789232594,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 103,
+    "cutoff_ts": 1789232624,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 104,
+    "cutoff_ts": 1789232654,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 105,
+    "cutoff_ts": 1789232684,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 106,
+    "cutoff_ts": 1789232714,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 107,
+    "cutoff_ts": 1789232744,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 108,
+    "cutoff_ts": 1789232774,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 109,
+    "cutoff_ts": 1789232804,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 110,
+    "cutoff_ts": 1789232834,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 111,
+    "cutoff_ts": 1789232864,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 112,
+    "cutoff_ts": 1789232894,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 113,
+    "cutoff_ts": 1789232924,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 114,
+    "cutoff_ts": 1789232954,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 115,
+    "cutoff_ts": 1789232984,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 116,
+    "cutoff_ts": 1789233014,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 117,
+    "cutoff_ts": 1789233044,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 118,
+    "cutoff_ts": 1789233074,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 119,
+    "cutoff_ts": 1789233104,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 120,
+    "cutoff_ts": 1789233134,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 121,
+    "cutoff_ts": 1789233164,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 122,
+    "cutoff_ts": 1789233194,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 123,
+    "cutoff_ts": 1789233224,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 124,
+    "cutoff_ts": 1789233254,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 125,
+    "cutoff_ts": 1789233284,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 126,
+    "cutoff_ts": 1789233314,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 127,
+    "cutoff_ts": 1789233344,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 128,
+    "cutoff_ts": 1789233374,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 129,
+    "cutoff_ts": 1789233404,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 130,
+    "cutoff_ts": 1789233434,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 131,
+    "cutoff_ts": 1789233464,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 132,
+    "cutoff_ts": 1789233494,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 133,
+    "cutoff_ts": 1789233524,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 134,
+    "cutoff_ts": 1789233554,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 135,
+    "cutoff_ts": 1789233584,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 136,
+    "cutoff_ts": 1789233614,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 137,
+    "cutoff_ts": 1789233644,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 138,
+    "cutoff_ts": 1789233674,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 139,
+    "cutoff_ts": 1789233704,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 140,
+    "cutoff_ts": 1789233734,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 141,
+    "cutoff_ts": 1789233764,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 142,
+    "cutoff_ts": 1789233794,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 143,
+    "cutoff_ts": 1789233824,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 144,
+    "cutoff_ts": 1789233854,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 145,
+    "cutoff_ts": 1789233884,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 146,
+    "cutoff_ts": 1789233914,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 147,
+    "cutoff_ts": 1789233944,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 148,
+    "cutoff_ts": 1789233974,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 149,
+    "cutoff_ts": 1789234004,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 150,
+    "cutoff_ts": 1789234034,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 151,
+    "cutoff_ts": 1789234064,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 152,
+    "cutoff_ts": 1789234094,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 153,
+    "cutoff_ts": 1789234124,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 154,
+    "cutoff_ts": 1789234154,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 155,
+    "cutoff_ts": 1789234184,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 156,
+    "cutoff_ts": 1789234214,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 157,
+    "cutoff_ts": 1789234244,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 158,
+    "cutoff_ts": 1789234274,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 159,
+    "cutoff_ts": 1789234304,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 160,
+    "cutoff_ts": 1789234334,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 161,
+    "cutoff_ts": 1789234364,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 162,
+    "cutoff_ts": 1789234394,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 163,
+    "cutoff_ts": 1789234424,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 164,
+    "cutoff_ts": 1789234454,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 165,
+    "cutoff_ts": 1789234484,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 166,
+    "cutoff_ts": 1789234514,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 167,
+    "cutoff_ts": 1789234544,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 168,
+    "cutoff_ts": 1789234574,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 169,
+    "cutoff_ts": 1789234604,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 170,
+    "cutoff_ts": 1789234634,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 171,
+    "cutoff_ts": 1789234664,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 172,
+    "cutoff_ts": 1789234694,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 173,
+    "cutoff_ts": 1789234724,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 174,
+    "cutoff_ts": 1789234754,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 175,
+    "cutoff_ts": 1789234784,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 176,
+    "cutoff_ts": 1789234814,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 177,
+    "cutoff_ts": 1789234844,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 178,
+    "cutoff_ts": 1789234874,
+    "eligible": 37,
+    "beyond_boundary": false,
+    "settled": 35
+   },
+   {
+    "tick": 179,
+    "cutoff_ts": 1789234904,
+    "eligible": 35,
+    "beyond_boundary": false,
+    "settled": 33
+   },
+   {
+    "tick": 180,
+    "cutoff_ts": 1789234934,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 181,
+    "cutoff_ts": 1789234964,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 182,
+    "cutoff_ts": 1789234994,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 183,
+    "cutoff_ts": 1789235024,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 184,
+    "cutoff_ts": 1789235054,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 185,
+    "cutoff_ts": 1789235084,
+    "eligible": 34,
+    "beyond_boundary": false,
+    "settled": 32
+   },
+   {
+    "tick": 186,
+    "cutoff_ts": 1789235114,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 187,
+    "cutoff_ts": 1789235144,
+    "eligible": 34,
+    "beyond_boundary": false,
+    "settled": 32
+   },
+   {
+    "tick": 188,
+    "cutoff_ts": 1789235174,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 189,
+    "cutoff_ts": 1789235204,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 190,
+    "cutoff_ts": 1789235234,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 191,
+    "cutoff_ts": 1789235264,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 192,
+    "cutoff_ts": 1789235294,
+    "eligible": 32,
+    "beyond_boundary": false,
+    "settled": 31
+   },
+   {
+    "tick": 193,
+    "cutoff_ts": 1789235324,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 194,
+    "cutoff_ts": 1789235354,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 195,
+    "cutoff_ts": 1789235384,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 196,
+    "cutoff_ts": 1789235414,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 197,
+    "cutoff_ts": 1789235444,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 198,
+    "cutoff_ts": 1789235474,
+    "eligible": 34,
+    "beyond_boundary": false,
+    "settled": 34
+   },
+   {
+    "tick": 199,
+    "cutoff_ts": 1789235504,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 200,
+    "cutoff_ts": 1789235534,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 201,
+    "cutoff_ts": 1789235564,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 202,
+    "cutoff_ts": 1789235594,
+    "eligible": 32,
+    "beyond_boundary": false,
+    "settled": 32
+   },
+   {
+    "tick": 203,
+    "cutoff_ts": 1789235624,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 204,
+    "cutoff_ts": 1789235654,
+    "eligible": 31,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 205,
+    "cutoff_ts": 1789235684,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 206,
+    "cutoff_ts": 1789235714,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 207,
+    "cutoff_ts": 1789235744,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 208,
+    "cutoff_ts": 1789235774,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 209,
+    "cutoff_ts": 1789235804,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 210,
+    "cutoff_ts": 1789235834,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 211,
+    "cutoff_ts": 1789235864,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 212,
+    "cutoff_ts": 1789235894,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 213,
+    "cutoff_ts": 1789235924,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 214,
+    "cutoff_ts": 1789235954,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 215,
+    "cutoff_ts": 1789235984,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 216,
+    "cutoff_ts": 1789236014,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 217,
+    "cutoff_ts": 1789236044,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 218,
+    "cutoff_ts": 1789236074,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 219,
+    "cutoff_ts": 1789236104,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 220,
+    "cutoff_ts": 1789236134,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 221,
+    "cutoff_ts": 1789236164,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 222,
+    "cutoff_ts": 1789236194,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 223,
+    "cutoff_ts": 1789236224,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 224,
+    "cutoff_ts": 1789236254,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 225,
+    "cutoff_ts": 1789236284,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 226,
+    "cutoff_ts": 1789236314,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 227,
+    "cutoff_ts": 1789236344,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 228,
+    "cutoff_ts": 1789236374,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 229,
+    "cutoff_ts": 1789236404,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 230,
+    "cutoff_ts": 1789236434,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 231,
+    "cutoff_ts": 1789236464,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 232,
+    "cutoff_ts": 1789236494,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 233,
+    "cutoff_ts": 1789236524,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 234,
+    "cutoff_ts": 1789236554,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 235,
+    "cutoff_ts": 1789236584,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 236,
+    "cutoff_ts": 1789236614,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 237,
+    "cutoff_ts": 1789236644,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 238,
+    "cutoff_ts": 1789236674,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 239,
+    "cutoff_ts": 1789236704,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 240,
+    "cutoff_ts": 1789236734,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 241,
+    "cutoff_ts": 1789236764,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 242,
+    "cutoff_ts": 1789236794,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 243,
+    "cutoff_ts": 1789236824,
+    "eligible": 31,
+    "beyond_boundary": false,
+    "settled": 31
+   },
+   {
+    "tick": 244,
+    "cutoff_ts": 1789236854,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 245,
+    "cutoff_ts": 1789236884,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 246,
+    "cutoff_ts": 1789236914,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 247,
+    "cutoff_ts": 1789236944,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 248,
+    "cutoff_ts": 1789236974,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 249,
+    "cutoff_ts": 1789237004,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 250,
+    "cutoff_ts": 1789237034,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 251,
+    "cutoff_ts": 1789237064,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 252,
+    "cutoff_ts": 1789237094,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 253,
+    "cutoff_ts": 1789237124,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 254,
+    "cutoff_ts": 1789237154,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 255,
+    "cutoff_ts": 1789237184,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 256,
+    "cutoff_ts": 1789237214,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 257,
+    "cutoff_ts": 1789237244,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 258,
+    "cutoff_ts": 1789237274,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 259,
+    "cutoff_ts": 1789237304,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 260,
+    "cutoff_ts": 1789237334,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 261,
+    "cutoff_ts": 1789237364,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 262,
+    "cutoff_ts": 1789237394,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 263,
+    "cutoff_ts": 1789237424,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 264,
+    "cutoff_ts": 1789237454,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 265,
+    "cutoff_ts": 1789237484,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 266,
+    "cutoff_ts": 1789237514,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 267,
+    "cutoff_ts": 1789237544,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 268,
+    "cutoff_ts": 1789237574,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 269,
+    "cutoff_ts": 1789237604,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 270,
+    "cutoff_ts": 1789237634,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 271,
+    "cutoff_ts": 1789237664,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 272,
+    "cutoff_ts": 1789237694,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 273,
+    "cutoff_ts": 1789237724,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 274,
+    "cutoff_ts": 1789237754,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 275,
+    "cutoff_ts": 1789237784,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 276,
+    "cutoff_ts": 1789237814,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 277,
+    "cutoff_ts": 1789237844,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 278,
+    "cutoff_ts": 1789237874,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 279,
+    "cutoff_ts": 1789237904,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 280,
+    "cutoff_ts": 1789237934,
+    "eligible": 32,
+    "beyond_boundary": false,
+    "settled": 32
+   },
+   {
+    "tick": 281,
+    "cutoff_ts": 1789237964,
+    "eligible": 31,
+    "beyond_boundary": false,
+    "settled": 31
+   },
+   {
+    "tick": 282,
+    "cutoff_ts": 1789237994,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 283,
+    "cutoff_ts": 1789238024,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 284,
+    "cutoff_ts": 1789238054,
+    "eligible": 32,
+    "beyond_boundary": false,
+    "settled": 32
+   },
+   {
+    "tick": 285,
+    "cutoff_ts": 1789238084,
+    "eligible": 32,
+    "beyond_boundary": false,
+    "settled": 32
+   },
+   {
+    "tick": 286,
+    "cutoff_ts": 1789238114,
+    "eligible": 32,
+    "beyond_boundary": false,
+    "settled": 32
+   },
+   {
+    "tick": 287,
+    "cutoff_ts": 1789238144,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 288,
+    "cutoff_ts": 1789238174,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 289,
+    "cutoff_ts": 1789238204,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 290,
+    "cutoff_ts": 1789238234,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 291,
+    "cutoff_ts": 1789238264,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 292,
+    "cutoff_ts": 1789238294,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 293,
+    "cutoff_ts": 1789238324,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 294,
+    "cutoff_ts": 1789238354,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 295,
+    "cutoff_ts": 1789238384,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 296,
+    "cutoff_ts": 1789238414,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 297,
+    "cutoff_ts": 1789238444,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 298,
+    "cutoff_ts": 1789238474,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 299,
+    "cutoff_ts": 1789238504,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 300,
+    "cutoff_ts": 1789238534,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 301,
+    "cutoff_ts": 1789238564,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 302,
+    "cutoff_ts": 1789238594,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 303,
+    "cutoff_ts": 1789238624,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 304,
+    "cutoff_ts": 1789238654,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 305,
+    "cutoff_ts": 1789238684,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 306,
+    "cutoff_ts": 1789238714,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 307,
+    "cutoff_ts": 1789238744,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 308,
+    "cutoff_ts": 1789238774,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 309,
+    "cutoff_ts": 1789238804,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 310,
+    "cutoff_ts": 1789238834,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 311,
+    "cutoff_ts": 1789238864,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 312,
+    "cutoff_ts": 1789238894,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 313,
+    "cutoff_ts": 1789238924,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 314,
+    "cutoff_ts": 1789238954,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 315,
+    "cutoff_ts": 1789238984,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 316,
+    "cutoff_ts": 1789239014,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 317,
+    "cutoff_ts": 1789239044,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 318,
+    "cutoff_ts": 1789239074,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 319,
+    "cutoff_ts": 1789239104,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 320,
+    "cutoff_ts": 1789239134,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 321,
+    "cutoff_ts": 1789239164,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 322,
+    "cutoff_ts": 1789239194,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 323,
+    "cutoff_ts": 1789239224,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 324,
+    "cutoff_ts": 1789239254,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 325,
+    "cutoff_ts": 1789239284,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 326,
+    "cutoff_ts": 1789239314,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 327,
+    "cutoff_ts": 1789239344,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 328,
+    "cutoff_ts": 1789239374,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 329,
+    "cutoff_ts": 1789239404,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 330,
+    "cutoff_ts": 1789239434,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 331,
+    "cutoff_ts": 1789239464,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 332,
+    "cutoff_ts": 1789239494,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 333,
+    "cutoff_ts": 1789239524,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 334,
+    "cutoff_ts": 1789239554,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 335,
+    "cutoff_ts": 1789239584,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 336,
+    "cutoff_ts": 1789239614,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 337,
+    "cutoff_ts": 1789239644,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 338,
+    "cutoff_ts": 1789239674,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 339,
+    "cutoff_ts": 1789239704,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 340,
+    "cutoff_ts": 1789239734,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 341,
+    "cutoff_ts": 1789239764,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 342,
+    "cutoff_ts": 1789239794,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 343,
+    "cutoff_ts": 1789239824,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 344,
+    "cutoff_ts": 1789239854,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 345,
+    "cutoff_ts": 1789239884,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 346,
+    "cutoff_ts": 1789239914,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 347,
+    "cutoff_ts": 1789239944,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 348,
+    "cutoff_ts": 1789239974,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 349,
+    "cutoff_ts": 1789240004,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 350,
+    "cutoff_ts": 1789240034,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 351,
+    "cutoff_ts": 1789240064,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 352,
+    "cutoff_ts": 1789240094,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 353,
+    "cutoff_ts": 1789240124,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 354,
+    "cutoff_ts": 1789240154,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 355,
+    "cutoff_ts": 1789240184,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 356,
+    "cutoff_ts": 1789240214,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 357,
+    "cutoff_ts": 1789240244,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 358,
+    "cutoff_ts": 1789240274,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 359,
+    "cutoff_ts": 1789240304,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 360,
+    "cutoff_ts": 1789240334,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 361,
+    "cutoff_ts": 1789240364,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 362,
+    "cutoff_ts": 1789240394,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 363,
+    "cutoff_ts": 1789240424,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 364,
+    "cutoff_ts": 1789240454,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 365,
+    "cutoff_ts": 1789240484,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 366,
+    "cutoff_ts": 1789240514,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 367,
+    "cutoff_ts": 1789240544,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 368,
+    "cutoff_ts": 1789240574,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 369,
+    "cutoff_ts": 1789240604,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 370,
+    "cutoff_ts": 1789240634,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 371,
+    "cutoff_ts": 1789240664,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 372,
+    "cutoff_ts": 1789240694,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 373,
+    "cutoff_ts": 1789240724,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 374,
+    "cutoff_ts": 1789240754,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 375,
+    "cutoff_ts": 1789240784,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 376,
+    "cutoff_ts": 1789240814,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 377,
+    "cutoff_ts": 1789240844,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 378,
+    "cutoff_ts": 1789240874,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 379,
+    "cutoff_ts": 1789240904,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 380,
+    "cutoff_ts": 1789240934,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 381,
+    "cutoff_ts": 1789240964,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 382,
+    "cutoff_ts": 1789240994,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 383,
+    "cutoff_ts": 1789241024,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 384,
+    "cutoff_ts": 1789241054,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 385,
+    "cutoff_ts": 1789241084,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 386,
+    "cutoff_ts": 1789241114,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 387,
+    "cutoff_ts": 1789241144,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 388,
+    "cutoff_ts": 1789241174,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 389,
+    "cutoff_ts": 1789241204,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 390,
+    "cutoff_ts": 1789241234,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 391,
+    "cutoff_ts": 1789241264,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 392,
+    "cutoff_ts": 1789241294,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 393,
+    "cutoff_ts": 1789241324,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 394,
+    "cutoff_ts": 1789241354,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 395,
+    "cutoff_ts": 1789241384,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 396,
+    "cutoff_ts": 1789241414,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 397,
+    "cutoff_ts": 1789241444,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 398,
+    "cutoff_ts": 1789241474,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 399,
+    "cutoff_ts": 1789241504,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 400,
+    "cutoff_ts": 1789241534,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 401,
+    "cutoff_ts": 1789241564,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 402,
+    "cutoff_ts": 1789241594,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 403,
+    "cutoff_ts": 1789241624,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 404,
+    "cutoff_ts": 1789241654,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 405,
+    "cutoff_ts": 1789241684,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 406,
+    "cutoff_ts": 1789241714,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 407,
+    "cutoff_ts": 1789241744,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 408,
+    "cutoff_ts": 1789241774,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 409,
+    "cutoff_ts": 1789241804,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 410,
+    "cutoff_ts": 1789241834,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 411,
+    "cutoff_ts": 1789241864,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 412,
+    "cutoff_ts": 1789241894,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 413,
+    "cutoff_ts": 1789241924,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 414,
+    "cutoff_ts": 1789241954,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 415,
+    "cutoff_ts": 1789241984,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 416,
+    "cutoff_ts": 1789242014,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 417,
+    "cutoff_ts": 1789242044,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 418,
+    "cutoff_ts": 1789242074,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 419,
+    "cutoff_ts": 1789242104,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 420,
+    "cutoff_ts": 1789242134,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 421,
+    "cutoff_ts": 1789242164,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 422,
+    "cutoff_ts": 1789242194,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 423,
+    "cutoff_ts": 1789242224,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 424,
+    "cutoff_ts": 1789242254,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 425,
+    "cutoff_ts": 1789242284,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 426,
+    "cutoff_ts": 1789242314,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 427,
+    "cutoff_ts": 1789242344,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 428,
+    "cutoff_ts": 1789242374,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 429,
+    "cutoff_ts": 1789242404,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 430,
+    "cutoff_ts": 1789242434,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 431,
+    "cutoff_ts": 1789242464,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 432,
+    "cutoff_ts": 1789242494,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 433,
+    "cutoff_ts": 1789242524,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 434,
+    "cutoff_ts": 1789242554,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 435,
+    "cutoff_ts": 1789242584,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 436,
+    "cutoff_ts": 1789242614,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 437,
+    "cutoff_ts": 1789242644,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 438,
+    "cutoff_ts": 1789242674,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 439,
+    "cutoff_ts": 1789242704,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 440,
+    "cutoff_ts": 1789242734,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 441,
+    "cutoff_ts": 1789242764,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 442,
+    "cutoff_ts": 1789242794,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 443,
+    "cutoff_ts": 1789242824,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 444,
+    "cutoff_ts": 1789242854,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 445,
+    "cutoff_ts": 1789242884,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 446,
+    "cutoff_ts": 1789242914,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 447,
+    "cutoff_ts": 1789242944,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 448,
+    "cutoff_ts": 1789242974,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 449,
+    "cutoff_ts": 1789243004,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 450,
+    "cutoff_ts": 1789243034,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 451,
+    "cutoff_ts": 1789243064,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 452,
+    "cutoff_ts": 1789243094,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 453,
+    "cutoff_ts": 1789243124,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 454,
+    "cutoff_ts": 1789243154,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 455,
+    "cutoff_ts": 1789243184,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 456,
+    "cutoff_ts": 1789243214,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 457,
+    "cutoff_ts": 1789243244,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 458,
+    "cutoff_ts": 1789243274,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 459,
+    "cutoff_ts": 1789243304,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 460,
+    "cutoff_ts": 1789243334,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 461,
+    "cutoff_ts": 1789243364,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 462,
+    "cutoff_ts": 1789243394,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 463,
+    "cutoff_ts": 1789243424,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 464,
+    "cutoff_ts": 1789243454,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 465,
+    "cutoff_ts": 1789243484,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 466,
+    "cutoff_ts": 1789243514,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 467,
+    "cutoff_ts": 1789243544,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 468,
+    "cutoff_ts": 1789243574,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 469,
+    "cutoff_ts": 1789243604,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 470,
+    "cutoff_ts": 1789243634,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 471,
+    "cutoff_ts": 1789243664,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 472,
+    "cutoff_ts": 1789243694,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 473,
+    "cutoff_ts": 1789243724,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 474,
+    "cutoff_ts": 1789243754,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 475,
+    "cutoff_ts": 1789243784,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 476,
+    "cutoff_ts": 1789243814,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 477,
+    "cutoff_ts": 1789243844,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 478,
+    "cutoff_ts": 1789243874,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 479,
+    "cutoff_ts": 1789243904,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 480,
+    "cutoff_ts": 1789243934,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 481,
+    "cutoff_ts": 1789243964,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 482,
+    "cutoff_ts": 1789243994,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 483,
+    "cutoff_ts": 1789244024,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 484,
+    "cutoff_ts": 1789244054,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 485,
+    "cutoff_ts": 1789244084,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 486,
+    "cutoff_ts": 1789244114,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 487,
+    "cutoff_ts": 1789244144,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 488,
+    "cutoff_ts": 1789244174,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 489,
+    "cutoff_ts": 1789244204,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 490,
+    "cutoff_ts": 1789244234,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 491,
+    "cutoff_ts": 1789244264,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 492,
+    "cutoff_ts": 1789244294,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 493,
+    "cutoff_ts": 1789244324,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 494,
+    "cutoff_ts": 1789244354,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 495,
+    "cutoff_ts": 1789244384,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 496,
+    "cutoff_ts": 1789244414,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 497,
+    "cutoff_ts": 1789244444,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 498,
+    "cutoff_ts": 1789244474,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 499,
+    "cutoff_ts": 1789244504,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 500,
+    "cutoff_ts": 1789244534,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 501,
+    "cutoff_ts": 1789244564,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 502,
+    "cutoff_ts": 1789244594,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 503,
+    "cutoff_ts": 1789244624,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 504,
+    "cutoff_ts": 1789244654,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 505,
+    "cutoff_ts": 1789244684,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 506,
+    "cutoff_ts": 1789244714,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 507,
+    "cutoff_ts": 1789244744,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 508,
+    "cutoff_ts": 1789244774,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 509,
+    "cutoff_ts": 1789244804,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 510,
+    "cutoff_ts": 1789244834,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 511,
+    "cutoff_ts": 1789244864,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 512,
+    "cutoff_ts": 1789244894,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 513,
+    "cutoff_ts": 1789244924,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 514,
+    "cutoff_ts": 1789244954,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 515,
+    "cutoff_ts": 1789244984,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 516,
+    "cutoff_ts": 1789245014,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 517,
+    "cutoff_ts": 1789245044,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 518,
+    "cutoff_ts": 1789245074,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 519,
+    "cutoff_ts": 1789245104,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 520,
+    "cutoff_ts": 1789245134,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 521,
+    "cutoff_ts": 1789245164,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 522,
+    "cutoff_ts": 1789245194,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 523,
+    "cutoff_ts": 1789245224,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 524,
+    "cutoff_ts": 1789245254,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 525,
+    "cutoff_ts": 1789245284,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 526,
+    "cutoff_ts": 1789245314,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 527,
+    "cutoff_ts": 1789245344,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 528,
+    "cutoff_ts": 1789245374,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 529,
+    "cutoff_ts": 1789245404,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 530,
+    "cutoff_ts": 1789245434,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 531,
+    "cutoff_ts": 1789245464,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 532,
+    "cutoff_ts": 1789245494,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 533,
+    "cutoff_ts": 1789245524,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 534,
+    "cutoff_ts": 1789245554,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 535,
+    "cutoff_ts": 1789245584,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 536,
+    "cutoff_ts": 1789245614,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 537,
+    "cutoff_ts": 1789245644,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 538,
+    "cutoff_ts": 1789245674,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 539,
+    "cutoff_ts": 1789245704,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 540,
+    "cutoff_ts": 1789245734,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 541,
+    "cutoff_ts": 1789245764,
+    "eligible": 35,
+    "beyond_boundary": false,
+    "settled": 34
+   },
+   {
+    "tick": 542,
+    "cutoff_ts": 1789245794,
+    "eligible": 32,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 543,
+    "cutoff_ts": 1789245824,
+    "eligible": 35,
+    "beyond_boundary": false,
+    "settled": 33
+   },
+   {
+    "tick": 544,
+    "cutoff_ts": 1789245854,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 545,
+    "cutoff_ts": 1789245884,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 546,
+    "cutoff_ts": 1789245914,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 547,
+    "cutoff_ts": 1789245944,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 548,
+    "cutoff_ts": 1789245974,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 549,
+    "cutoff_ts": 1789246004,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 550,
+    "cutoff_ts": 1789246034,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 551,
+    "cutoff_ts": 1789246064,
+    "eligible": 33,
+    "beyond_boundary": false,
+    "settled": 32
+   },
+   {
+    "tick": 552,
+    "cutoff_ts": 1789246094,
+    "eligible": 38,
+    "beyond_boundary": false,
+    "settled": 37
+   },
+   {
+    "tick": 553,
+    "cutoff_ts": 1789246124,
+    "eligible": 37,
+    "beyond_boundary": false,
+    "settled": 36
+   },
+   {
+    "tick": 554,
+    "cutoff_ts": 1789246154,
+    "eligible": 36,
+    "beyond_boundary": false,
+    "settled": 35
+   },
+   {
+    "tick": 555,
+    "cutoff_ts": 1789246184,
+    "eligible": 35,
+    "beyond_boundary": false,
+    "settled": 35
+   },
+   {
+    "tick": 556,
+    "cutoff_ts": 1789246214,
+    "eligible": 35,
+    "beyond_boundary": false,
+    "settled": 35
+   },
+   {
+    "tick": 557,
+    "cutoff_ts": 1789246244,
+    "eligible": 33,
+    "beyond_boundary": false,
+    "settled": 33
+   },
+   {
+    "tick": 558,
+    "cutoff_ts": 1789246274,
+    "eligible": 33,
+    "beyond_boundary": false,
+    "settled": 33
+   },
+   {
+    "tick": 559,
+    "cutoff_ts": 1789246304,
+    "eligible": 44,
+    "beyond_boundary": false,
+    "settled": 44
+   },
+   {
+    "tick": 560,
+    "cutoff_ts": 1789246334,
+    "eligible": 40,
+    "beyond_boundary": false,
+    "settled": 40
+   },
+   {
+    "tick": 561,
+    "cutoff_ts": 1789246364,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 562,
+    "cutoff_ts": 1789246394,
+    "eligible": 36,
+    "beyond_boundary": false,
+    "settled": 36
+   },
+   {
+    "tick": 563,
+    "cutoff_ts": 1789246424,
+    "eligible": 34,
+    "beyond_boundary": false,
+    "settled": 34
+   },
+   {
+    "tick": 564,
+    "cutoff_ts": 1789246454,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 565,
+    "cutoff_ts": 1789246484,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 566,
+    "cutoff_ts": 1789246514,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 567,
+    "cutoff_ts": 1789246544,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 568,
+    "cutoff_ts": 1789246574,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 569,
+    "cutoff_ts": 1789246604,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 570,
+    "cutoff_ts": 1789246634,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 571,
+    "cutoff_ts": 1789246664,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 572,
+    "cutoff_ts": 1789246694,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 573,
+    "cutoff_ts": 1789246724,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 574,
+    "cutoff_ts": 1789246754,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 575,
+    "cutoff_ts": 1789246784,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 576,
+    "cutoff_ts": 1789246814,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 577,
+    "cutoff_ts": 1789246844,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 578,
+    "cutoff_ts": 1789246874,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 579,
+    "cutoff_ts": 1789246904,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 580,
+    "cutoff_ts": 1789246934,
+    "eligible": 31,
+    "beyond_boundary": false,
+    "settled": 31
+   },
+   {
+    "tick": 581,
+    "cutoff_ts": 1789246964,
+    "eligible": 31,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 582,
+    "cutoff_ts": 1789246994,
+    "eligible": 36,
+    "beyond_boundary": false,
+    "settled": 35
+   },
+   {
+    "tick": 583,
+    "cutoff_ts": 1789247024,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 584,
+    "cutoff_ts": 1789247054,
+    "eligible": 31,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 585,
+    "cutoff_ts": 1789247084,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 586,
+    "cutoff_ts": 1789247114,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 587,
+    "cutoff_ts": 1789247144,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 588,
+    "cutoff_ts": 1789247174,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 589,
+    "cutoff_ts": 1789247204,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 590,
+    "cutoff_ts": 1789247234,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 591,
+    "cutoff_ts": 1789247264,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 592,
+    "cutoff_ts": 1789247294,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 593,
+    "cutoff_ts": 1789247324,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 594,
+    "cutoff_ts": 1789247354,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 595,
+    "cutoff_ts": 1789247384,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 596,
+    "cutoff_ts": 1789247414,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 597,
+    "cutoff_ts": 1789247444,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 598,
+    "cutoff_ts": 1789247474,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 599,
+    "cutoff_ts": 1789247504,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 600,
+    "cutoff_ts": 1789247534,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 601,
+    "cutoff_ts": 1789247564,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 602,
+    "cutoff_ts": 1789247594,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 603,
+    "cutoff_ts": 1789247624,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 604,
+    "cutoff_ts": 1789247654,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 605,
+    "cutoff_ts": 1789247684,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 606,
+    "cutoff_ts": 1789247714,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 607,
+    "cutoff_ts": 1789247744,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 608,
+    "cutoff_ts": 1789247774,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 609,
+    "cutoff_ts": 1789247804,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 610,
+    "cutoff_ts": 1789247834,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 611,
+    "cutoff_ts": 1789247864,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 612,
+    "cutoff_ts": 1789247894,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 613,
+    "cutoff_ts": 1789247924,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 614,
+    "cutoff_ts": 1789247954,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 615,
+    "cutoff_ts": 1789247984,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 616,
+    "cutoff_ts": 1789248014,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 617,
+    "cutoff_ts": 1789248044,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 618,
+    "cutoff_ts": 1789248074,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 619,
+    "cutoff_ts": 1789248104,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 620,
+    "cutoff_ts": 1789248134,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 621,
+    "cutoff_ts": 1789248164,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 622,
+    "cutoff_ts": 1789248194,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 623,
+    "cutoff_ts": 1789248224,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 624,
+    "cutoff_ts": 1789248254,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 625,
+    "cutoff_ts": 1789248284,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 626,
+    "cutoff_ts": 1789248314,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 627,
+    "cutoff_ts": 1789248344,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 628,
+    "cutoff_ts": 1789248374,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 629,
+    "cutoff_ts": 1789248404,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 630,
+    "cutoff_ts": 1789248434,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 631,
+    "cutoff_ts": 1789248464,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 632,
+    "cutoff_ts": 1789248494,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 633,
+    "cutoff_ts": 1789248524,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 634,
+    "cutoff_ts": 1789248554,
+    "eligible": 31,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 635,
+    "cutoff_ts": 1789248584,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 636,
+    "cutoff_ts": 1789248614,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 637,
+    "cutoff_ts": 1789248644,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 638,
+    "cutoff_ts": 1789248674,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 639,
+    "cutoff_ts": 1789248704,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 640,
+    "cutoff_ts": 1789248734,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 641,
+    "cutoff_ts": 1789248764,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 642,
+    "cutoff_ts": 1789248794,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 643,
+    "cutoff_ts": 1789248824,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 644,
+    "cutoff_ts": 1789248854,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 645,
+    "cutoff_ts": 1789248884,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 646,
+    "cutoff_ts": 1789248914,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 647,
+    "cutoff_ts": 1789248944,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 648,
+    "cutoff_ts": 1789248974,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 649,
+    "cutoff_ts": 1789249004,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 650,
+    "cutoff_ts": 1789249034,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 651,
+    "cutoff_ts": 1789249064,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 652,
+    "cutoff_ts": 1789249094,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 653,
+    "cutoff_ts": 1789249124,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 654,
+    "cutoff_ts": 1789249154,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 655,
+    "cutoff_ts": 1789249184,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 656,
+    "cutoff_ts": 1789249214,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 657,
+    "cutoff_ts": 1789249244,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 658,
+    "cutoff_ts": 1789249274,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 659,
+    "cutoff_ts": 1789249304,
+    "eligible": 32,
+    "beyond_boundary": false,
+    "settled": 31
+   },
+   {
+    "tick": 660,
+    "cutoff_ts": 1789249334,
+    "eligible": 32,
+    "beyond_boundary": false,
+    "settled": 31
+   },
+   {
+    "tick": 661,
+    "cutoff_ts": 1789249364,
+    "eligible": 32,
+    "beyond_boundary": false,
+    "settled": 31
+   },
+   {
+    "tick": 662,
+    "cutoff_ts": 1789249394,
+    "eligible": 31,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 663,
+    "cutoff_ts": 1789249424,
+    "eligible": 31,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 664,
+    "cutoff_ts": 1789249454,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 665,
+    "cutoff_ts": 1789249484,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 666,
+    "cutoff_ts": 1789249514,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 667,
+    "cutoff_ts": 1789249544,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 668,
+    "cutoff_ts": 1789249574,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 669,
+    "cutoff_ts": 1789249604,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 670,
+    "cutoff_ts": 1789249634,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 671,
+    "cutoff_ts": 1789249664,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 672,
+    "cutoff_ts": 1789249694,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 673,
+    "cutoff_ts": 1789249724,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 674,
+    "cutoff_ts": 1789249754,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 675,
+    "cutoff_ts": 1789249784,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 676,
+    "cutoff_ts": 1789249814,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 677,
+    "cutoff_ts": 1789249844,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 678,
+    "cutoff_ts": 1789249874,
+    "eligible": 31,
+    "beyond_boundary": false,
+    "settled": 31
+   },
+   {
+    "tick": 679,
+    "cutoff_ts": 1789249904,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 680,
+    "cutoff_ts": 1789249934,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 681,
+    "cutoff_ts": 1789249964,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 682,
+    "cutoff_ts": 1789249994,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 683,
+    "cutoff_ts": 1789250024,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 684,
+    "cutoff_ts": 1789250054,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 685,
+    "cutoff_ts": 1789250084,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 686,
+    "cutoff_ts": 1789250114,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 687,
+    "cutoff_ts": 1789250144,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 688,
+    "cutoff_ts": 1789250174,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 689,
+    "cutoff_ts": 1789250204,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 690,
+    "cutoff_ts": 1789250234,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 691,
+    "cutoff_ts": 1789250264,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 692,
+    "cutoff_ts": 1789250294,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 693,
+    "cutoff_ts": 1789250324,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 694,
+    "cutoff_ts": 1789250354,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 695,
+    "cutoff_ts": 1789250384,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 696,
+    "cutoff_ts": 1789250414,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 697,
+    "cutoff_ts": 1789250444,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 698,
+    "cutoff_ts": 1789250474,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 699,
+    "cutoff_ts": 1789250504,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 700,
+    "cutoff_ts": 1789250534,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 701,
+    "cutoff_ts": 1789250564,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 702,
+    "cutoff_ts": 1789250594,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 703,
+    "cutoff_ts": 1789250624,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 704,
+    "cutoff_ts": 1789250654,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 705,
+    "cutoff_ts": 1789250684,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 706,
+    "cutoff_ts": 1789250714,
+    "eligible": 30,
+    "beyond_boundary": false,
+    "settled": 30
+   },
+   {
+    "tick": 707,
+    "cutoff_ts": 1789250744,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 708,
+    "cutoff_ts": 1789250774,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 709,
+    "cutoff_ts": 1789250804,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 710,
+    "cutoff_ts": 1789250834,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 711,
+    "cutoff_ts": 1789250864,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 712,
+    "cutoff_ts": 1789250894,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 27
+   },
+   {
+    "tick": 713,
+    "cutoff_ts": 1789250924,
+    "eligible": 29,
+    "beyond_boundary": false,
+    "settled": 29
+   },
+   {
+    "tick": 714,
+    "cutoff_ts": 1789250954,
+    "eligible": 32,
+    "beyond_boundary": false,
+    "settled": 32
+   },
+   {
+    "tick": 715,
+    "cutoff_ts": 1789250984,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 716,
+    "cutoff_ts": 1789251014,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 717,
+    "cutoff_ts": 1789251044,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 718,
+    "cutoff_ts": 1789251074,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 719,
+    "cutoff_ts": 1789251104,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 720,
+    "cutoff_ts": 1789251134,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 721,
+    "cutoff_ts": 1789251164,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 722,
+    "cutoff_ts": 1789251194,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 723,
+    "cutoff_ts": 1789251224,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 724,
+    "cutoff_ts": 1789251254,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 725,
+    "cutoff_ts": 1789251284,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 726,
+    "cutoff_ts": 1789251314,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 727,
+    "cutoff_ts": 1789251344,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 728,
+    "cutoff_ts": 1789251374,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 729,
+    "cutoff_ts": 1789251404,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 730,
+    "cutoff_ts": 1789251434,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 731,
+    "cutoff_ts": 1789251464,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 732,
+    "cutoff_ts": 1789251494,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 733,
+    "cutoff_ts": 1789251524,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 734,
+    "cutoff_ts": 1789251554,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 735,
+    "cutoff_ts": 1789251584,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 736,
+    "cutoff_ts": 1789251614,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 737,
+    "cutoff_ts": 1789251644,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 738,
+    "cutoff_ts": 1789251674,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 739,
+    "cutoff_ts": 1789251704,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 740,
+    "cutoff_ts": 1789251734,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 741,
+    "cutoff_ts": 1789251764,
+    "eligible": 27,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 742,
+    "cutoff_ts": 1789251794,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 743,
+    "cutoff_ts": 1789251824,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 744,
+    "cutoff_ts": 1789251854,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 745,
+    "cutoff_ts": 1789251884,
+    "eligible": 26,
+    "beyond_boundary": false,
+    "settled": 26
+   },
+   {
+    "tick": 746,
+    "cutoff_ts": 1789251914,
+    "eligible": 25,
+    "beyond_boundary": false,
+    "settled": 25
+   },
+   {
+    "tick": 747,
+    "cutoff_ts": 1789251944,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 748,
+    "cutoff_ts": 1789251974,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 749,
+    "cutoff_ts": 1789252004,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 750,
+    "cutoff_ts": 1789252034,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 751,
+    "cutoff_ts": 1789252064,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 752,
+    "cutoff_ts": 1789252094,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 753,
+    "cutoff_ts": 1789252124,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 754,
+    "cutoff_ts": 1789252154,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 755,
+    "cutoff_ts": 1789252184,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 756,
+    "cutoff_ts": 1789252214,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 757,
+    "cutoff_ts": 1789252244,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 758,
+    "cutoff_ts": 1789252274,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 759,
+    "cutoff_ts": 1789252304,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 760,
+    "cutoff_ts": 1789252334,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 761,
+    "cutoff_ts": 1789252364,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 762,
+    "cutoff_ts": 1789252394,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 763,
+    "cutoff_ts": 1789252424,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 764,
+    "cutoff_ts": 1789252454,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 765,
+    "cutoff_ts": 1789252484,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 766,
+    "cutoff_ts": 1789252514,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 767,
+    "cutoff_ts": 1789252544,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 768,
+    "cutoff_ts": 1789252574,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 769,
+    "cutoff_ts": 1789252604,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 770,
+    "cutoff_ts": 1789252634,
+    "eligible": 9,
+    "beyond_boundary": false,
+    "settled": 9
+   },
+   {
+    "tick": 771,
+    "cutoff_ts": 1789252664,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 772,
+    "cutoff_ts": 1789252694,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 773,
+    "cutoff_ts": 1789252724,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 774,
+    "cutoff_ts": 1789252754,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 775,
+    "cutoff_ts": 1789252784,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 776,
+    "cutoff_ts": 1789252814,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 777,
+    "cutoff_ts": 1789252844,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 778,
+    "cutoff_ts": 1789252874,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 779,
+    "cutoff_ts": 1789252904,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 780,
+    "cutoff_ts": 1789252934,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 781,
+    "cutoff_ts": 1789252964,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 782,
+    "cutoff_ts": 1789252994,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 783,
+    "cutoff_ts": 1789253024,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 784,
+    "cutoff_ts": 1789253054,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 785,
+    "cutoff_ts": 1789253084,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 786,
+    "cutoff_ts": 1789253114,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 787,
+    "cutoff_ts": 1789253144,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 788,
+    "cutoff_ts": 1789253174,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 789,
+    "cutoff_ts": 1789253204,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 790,
+    "cutoff_ts": 1789253234,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 791,
+    "cutoff_ts": 1789253264,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 792,
+    "cutoff_ts": 1789253294,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 793,
+    "cutoff_ts": 1789253324,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 794,
+    "cutoff_ts": 1789253354,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 795,
+    "cutoff_ts": 1789253384,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 796,
+    "cutoff_ts": 1789253414,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 797,
+    "cutoff_ts": 1789253444,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 798,
+    "cutoff_ts": 1789253474,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 799,
+    "cutoff_ts": 1789253504,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 800,
+    "cutoff_ts": 1789253534,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 801,
+    "cutoff_ts": 1789253564,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 802,
+    "cutoff_ts": 1789253594,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 803,
+    "cutoff_ts": 1789253624,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 804,
+    "cutoff_ts": 1789253654,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 805,
+    "cutoff_ts": 1789253684,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 806,
+    "cutoff_ts": 1789253714,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 807,
+    "cutoff_ts": 1789253744,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 808,
+    "cutoff_ts": 1789253774,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 809,
+    "cutoff_ts": 1789253804,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 810,
+    "cutoff_ts": 1789253834,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 811,
+    "cutoff_ts": 1789253864,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 20
+   },
+   {
+    "tick": 812,
+    "cutoff_ts": 1789253894,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 813,
+    "cutoff_ts": 1789253924,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 814,
+    "cutoff_ts": 1789253954,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 815,
+    "cutoff_ts": 1789253984,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 816,
+    "cutoff_ts": 1789254014,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 817,
+    "cutoff_ts": 1789254044,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 818,
+    "cutoff_ts": 1789254074,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 819,
+    "cutoff_ts": 1789254104,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 820,
+    "cutoff_ts": 1789254134,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 821,
+    "cutoff_ts": 1789254164,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 822,
+    "cutoff_ts": 1789254194,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 823,
+    "cutoff_ts": 1789254224,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 824,
+    "cutoff_ts": 1789254254,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 825,
+    "cutoff_ts": 1789254284,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 826,
+    "cutoff_ts": 1789254314,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 827,
+    "cutoff_ts": 1789254344,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 828,
+    "cutoff_ts": 1789254374,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 829,
+    "cutoff_ts": 1789254404,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 830,
+    "cutoff_ts": 1789254434,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 831,
+    "cutoff_ts": 1789254464,
+    "eligible": 7,
+    "beyond_boundary": false,
+    "settled": 7
+   },
+   {
+    "tick": 832,
+    "cutoff_ts": 1789254494,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 833,
+    "cutoff_ts": 1789254524,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 834,
+    "cutoff_ts": 1789254554,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 835,
+    "cutoff_ts": 1789254584,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 836,
+    "cutoff_ts": 1789254614,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 837,
+    "cutoff_ts": 1789254644,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 838,
+    "cutoff_ts": 1789254674,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 839,
+    "cutoff_ts": 1789254704,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 840,
+    "cutoff_ts": 1789254734,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 841,
+    "cutoff_ts": 1789254764,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 842,
+    "cutoff_ts": 1789254794,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 843,
+    "cutoff_ts": 1789254824,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 844,
+    "cutoff_ts": 1789254854,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 845,
+    "cutoff_ts": 1789254884,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 846,
+    "cutoff_ts": 1789254914,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 847,
+    "cutoff_ts": 1789254944,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 848,
+    "cutoff_ts": 1789254974,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 849,
+    "cutoff_ts": 1789255004,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 850,
+    "cutoff_ts": 1789255034,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 851,
+    "cutoff_ts": 1789255064,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 852,
+    "cutoff_ts": 1789255094,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 853,
+    "cutoff_ts": 1789255124,
+    "eligible": 21,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 854,
+    "cutoff_ts": 1789255154,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 855,
+    "cutoff_ts": 1789255184,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 23
+   },
+   {
+    "tick": 856,
+    "cutoff_ts": 1789255214,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 857,
+    "cutoff_ts": 1789255244,
+    "eligible": 28,
+    "beyond_boundary": false,
+    "settled": 28
+   },
+   {
+    "tick": 858,
+    "cutoff_ts": 1789255274,
+    "eligible": 24,
+    "beyond_boundary": false,
+    "settled": 24
+   },
+   {
+    "tick": 859,
+    "cutoff_ts": 1789255304,
+    "eligible": 22,
+    "beyond_boundary": false,
+    "settled": 21
+   },
+   {
+    "tick": 860,
+    "cutoff_ts": 1789255334,
+    "eligible": 23,
+    "beyond_boundary": false,
+    "settled": 22
+   },
+   {
+    "tick": 861,
+    "cutoff_ts": 1789255364,
+    "eligible": 20,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 862,
+    "cutoff_ts": 1789255394,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 863,
+    "cutoff_ts": 1789255424,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 864,
+    "cutoff_ts": 1789255454,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 865,
+    "cutoff_ts": 1789255484,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 866,
+    "cutoff_ts": 1789255514,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 867,
+    "cutoff_ts": 1789255544,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 868,
+    "cutoff_ts": 1789255574,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 869,
+    "cutoff_ts": 1789255604,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 870,
+    "cutoff_ts": 1789255634,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 871,
+    "cutoff_ts": 1789255664,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 872,
+    "cutoff_ts": 1789255694,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 873,
+    "cutoff_ts": 1789255724,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 874,
+    "cutoff_ts": 1789255754,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 875,
+    "cutoff_ts": 1789255784,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 876,
+    "cutoff_ts": 1789255814,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 877,
+    "cutoff_ts": 1789255844,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 878,
+    "cutoff_ts": 1789255874,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 879,
+    "cutoff_ts": 1789255904,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 880,
+    "cutoff_ts": 1789255934,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 881,
+    "cutoff_ts": 1789255964,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 882,
+    "cutoff_ts": 1789255994,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 883,
+    "cutoff_ts": 1789256024,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 884,
+    "cutoff_ts": 1789256054,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 885,
+    "cutoff_ts": 1789256084,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 886,
+    "cutoff_ts": 1789256114,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 887,
+    "cutoff_ts": 1789256144,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 888,
+    "cutoff_ts": 1789256174,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 889,
+    "cutoff_ts": 1789256204,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 890,
+    "cutoff_ts": 1789256234,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 891,
+    "cutoff_ts": 1789256264,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 892,
+    "cutoff_ts": 1789256294,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 893,
+    "cutoff_ts": 1789256324,
+    "eligible": 8,
+    "beyond_boundary": false,
+    "settled": 8
+   },
+   {
+    "tick": 894,
+    "cutoff_ts": 1789256354,
+    "eligible": 8,
+    "beyond_boundary": false,
+    "settled": 8
+   },
+   {
+    "tick": 895,
+    "cutoff_ts": 1789256384,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 896,
+    "cutoff_ts": 1789256414,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 897,
+    "cutoff_ts": 1789256444,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 898,
+    "cutoff_ts": 1789256474,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 899,
+    "cutoff_ts": 1789256504,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 900,
+    "cutoff_ts": 1789256534,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 901,
+    "cutoff_ts": 1789256564,
+    "eligible": 5,
+    "beyond_boundary": false,
+    "settled": 5
+   },
+   {
+    "tick": 902,
+    "cutoff_ts": 1789256594,
+    "eligible": 5,
+    "beyond_boundary": false,
+    "settled": 5
+   },
+   {
+    "tick": 903,
+    "cutoff_ts": 1789256624,
+    "eligible": 5,
+    "beyond_boundary": false,
+    "settled": 5
+   },
+   {
+    "tick": 904,
+    "cutoff_ts": 1789256654,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 905,
+    "cutoff_ts": 1789256684,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 906,
+    "cutoff_ts": 1789256714,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 907,
+    "cutoff_ts": 1789256744,
+    "eligible": 9,
+    "beyond_boundary": false,
+    "settled": 9
+   },
+   {
+    "tick": 908,
+    "cutoff_ts": 1789256774,
+    "eligible": 8,
+    "beyond_boundary": false,
+    "settled": 8
+   },
+   {
+    "tick": 909,
+    "cutoff_ts": 1789256804,
+    "eligible": 9,
+    "beyond_boundary": false,
+    "settled": 9
+   },
+   {
+    "tick": 910,
+    "cutoff_ts": 1789256834,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 911,
+    "cutoff_ts": 1789256864,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 912,
+    "cutoff_ts": 1789256894,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 913,
+    "cutoff_ts": 1789256924,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 914,
+    "cutoff_ts": 1789256954,
+    "eligible": 9,
+    "beyond_boundary": false,
+    "settled": 9
+   },
+   {
+    "tick": 915,
+    "cutoff_ts": 1789256984,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 916,
+    "cutoff_ts": 1789257014,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 917,
+    "cutoff_ts": 1789257044,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 918,
+    "cutoff_ts": 1789257074,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 919,
+    "cutoff_ts": 1789257104,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 920,
+    "cutoff_ts": 1789257134,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 921,
+    "cutoff_ts": 1789257164,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 922,
+    "cutoff_ts": 1789257194,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 923,
+    "cutoff_ts": 1789257224,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 924,
+    "cutoff_ts": 1789257254,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 925,
+    "cutoff_ts": 1789257284,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 926,
+    "cutoff_ts": 1789257314,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 927,
+    "cutoff_ts": 1789257344,
+    "eligible": 8,
+    "beyond_boundary": false,
+    "settled": 8
+   },
+   {
+    "tick": 928,
+    "cutoff_ts": 1789257374,
+    "eligible": 9,
+    "beyond_boundary": false,
+    "settled": 9
+   },
+   {
+    "tick": 929,
+    "cutoff_ts": 1789257404,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 930,
+    "cutoff_ts": 1789257434,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 931,
+    "cutoff_ts": 1789257464,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 932,
+    "cutoff_ts": 1789257494,
+    "eligible": 8,
+    "beyond_boundary": false,
+    "settled": 8
+   },
+   {
+    "tick": 933,
+    "cutoff_ts": 1789257524,
+    "eligible": 9,
+    "beyond_boundary": false,
+    "settled": 9
+   },
+   {
+    "tick": 934,
+    "cutoff_ts": 1789257554,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 935,
+    "cutoff_ts": 1789257584,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 936,
+    "cutoff_ts": 1789257614,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 937,
+    "cutoff_ts": 1789257644,
+    "eligible": 7,
+    "beyond_boundary": false,
+    "settled": 7
+   },
+   {
+    "tick": 938,
+    "cutoff_ts": 1789257674,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 939,
+    "cutoff_ts": 1789257704,
+    "eligible": 19,
+    "beyond_boundary": false,
+    "settled": 19
+   },
+   {
+    "tick": 940,
+    "cutoff_ts": 1789257734,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 941,
+    "cutoff_ts": 1789257764,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 942,
+    "cutoff_ts": 1789257794,
+    "eligible": 18,
+    "beyond_boundary": false,
+    "settled": 18
+   },
+   {
+    "tick": 943,
+    "cutoff_ts": 1789257824,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 944,
+    "cutoff_ts": 1789257854,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 945,
+    "cutoff_ts": 1789257884,
+    "eligible": 15,
+    "beyond_boundary": false,
+    "settled": 15
+   },
+   {
+    "tick": 946,
+    "cutoff_ts": 1789257914,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 947,
+    "cutoff_ts": 1789257944,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 948,
+    "cutoff_ts": 1789257974,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 949,
+    "cutoff_ts": 1789258004,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 950,
+    "cutoff_ts": 1789258034,
+    "eligible": 14,
+    "beyond_boundary": false,
+    "settled": 14
+   },
+   {
+    "tick": 951,
+    "cutoff_ts": 1789258064,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 952,
+    "cutoff_ts": 1789258094,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 953,
+    "cutoff_ts": 1789258124,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 954,
+    "cutoff_ts": 1789258154,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 955,
+    "cutoff_ts": 1789258184,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 956,
+    "cutoff_ts": 1789258214,
+    "eligible": 16,
+    "beyond_boundary": false,
+    "settled": 16
+   },
+   {
+    "tick": 957,
+    "cutoff_ts": 1789258244,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 958,
+    "cutoff_ts": 1789258274,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 959,
+    "cutoff_ts": 1789258304,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 960,
+    "cutoff_ts": 1789258334,
+    "eligible": 17,
+    "beyond_boundary": false,
+    "settled": 17
+   },
+   {
+    "tick": 961,
+    "cutoff_ts": 1789258364,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 962,
+    "cutoff_ts": 1789258394,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 963,
+    "cutoff_ts": 1789258424,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 964,
+    "cutoff_ts": 1789258454,
+    "eligible": 9,
+    "beyond_boundary": false,
+    "settled": 9
+   },
+   {
+    "tick": 965,
+    "cutoff_ts": 1789258484,
+    "eligible": 8,
+    "beyond_boundary": false,
+    "settled": 8
+   },
+   {
+    "tick": 966,
+    "cutoff_ts": 1789258514,
+    "eligible": 8,
+    "beyond_boundary": false,
+    "settled": 8
+   },
+   {
+    "tick": 967,
+    "cutoff_ts": 1789258544,
+    "eligible": 8,
+    "beyond_boundary": false,
+    "settled": 8
+   },
+   {
+    "tick": 968,
+    "cutoff_ts": 1789258574,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 969,
+    "cutoff_ts": 1789258604,
+    "eligible": 8,
+    "beyond_boundary": false,
+    "settled": 8
+   },
+   {
+    "tick": 970,
+    "cutoff_ts": 1789258634,
+    "eligible": 10,
+    "beyond_boundary": false,
+    "settled": 10
+   },
+   {
+    "tick": 971,
+    "cutoff_ts": 1789258664,
+    "eligible": 13,
+    "beyond_boundary": false,
+    "settled": 13
+   },
+   {
+    "tick": 972,
+    "cutoff_ts": 1789258694,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 973,
+    "cutoff_ts": 1789258724,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 974,
+    "cutoff_ts": 1789258754,
+    "eligible": 12,
+    "beyond_boundary": false,
+    "settled": 12
+   },
+   {
+    "tick": 975,
+    "cutoff_ts": 1789258784,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 976,
+    "cutoff_ts": 1789258814,
+    "eligible": 9,
+    "beyond_boundary": false,
+    "settled": 9
+   },
+   {
+    "tick": 977,
+    "cutoff_ts": 1789258844,
+    "eligible": 11,
+    "beyond_boundary": false,
+    "settled": 11
+   },
+   {
+    "tick": 978,
+    "cutoff_ts": 1789258874,
+    "eligible": 9,
+    "beyond_boundary": false,
+    "settled": 9
+   },
+   {
+    "tick": 979,
+    "cutoff_ts": 1789258904,
+    "eligible": 8,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 980,
+    "cutoff_ts": 1789258934,
+    "eligible": 13,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 981,
+    "cutoff_ts": 1789258964,
+    "eligible": 15,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 982,
+    "cutoff_ts": 1789258994,
+    "eligible": 12,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 983,
+    "cutoff_ts": 1789259024,
+    "eligible": 12,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 984,
+    "cutoff_ts": 1789259054,
+    "eligible": 17,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 985,
+    "cutoff_ts": 1789259084,
+    "eligible": 13,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 986,
+    "cutoff_ts": 1789259114,
+    "eligible": 8,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 987,
+    "cutoff_ts": 1789259144,
+    "eligible": 11,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 988,
+    "cutoff_ts": 1789259174,
+    "eligible": 10,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 989,
+    "cutoff_ts": 1789259204,
+    "eligible": 9,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 990,
+    "cutoff_ts": 1789259234,
+    "eligible": 9,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 991,
+    "cutoff_ts": 1789259264,
+    "eligible": 11,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 992,
+    "cutoff_ts": 1789259294,
+    "eligible": 12,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 993,
+    "cutoff_ts": 1789259324,
+    "eligible": 10,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 994,
+    "cutoff_ts": 1789259354,
+    "eligible": 8,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 995,
+    "cutoff_ts": 1789259384,
+    "eligible": 9,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 996,
+    "cutoff_ts": 1789259414,
+    "eligible": 14,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 997,
+    "cutoff_ts": 1789259444,
+    "eligible": 13,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 998,
+    "cutoff_ts": 1789259474,
+    "eligible": 10,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 999,
+    "cutoff_ts": 1789259504,
+    "eligible": 7,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 1000,
+    "cutoff_ts": 1789259534,
+    "eligible": 11,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 1001,
+    "cutoff_ts": 1789259564,
+    "eligible": 12,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 1002,
+    "cutoff_ts": 1789259594,
+    "eligible": 13,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 1003,
+    "cutoff_ts": 1789259624,
+    "eligible": 10,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 1004,
+    "cutoff_ts": 1789259654,
+    "eligible": 9,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 1005,
+    "cutoff_ts": 1789259684,
+    "eligible": 9,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 1006,
+    "cutoff_ts": 1789259714,
+    "eligible": 13,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 1007,
+    "cutoff_ts": 1789259744,
+    "eligible": 9,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 1008,
+    "cutoff_ts": 1789259774,
+    "eligible": 7,
+    "beyond_boundary": true,
+    "settled": 0
+   },
+   {
+    "tick": 1009,
+    "cutoff_ts": 1789259804,
+    "eligible": 12,
+    "beyond_boundary": true,
+    "settled": 0
+   }
+  ]
+ },
+ "frozen_grids": {
+  "secondary": {
+   "rows": 5177,
+   "tokens": 1050,
+   "settled_labels": 5021,
+   "unresolved_labels": 156,
+   "positive": 488,
+   "negative": 4533,
+   "positive_share": 0.09719179446325434,
+   "definition": "all FROZEN rows"
+  },
+  "primary": {
+   "rows": 5044,
+   "tokens": 1045,
+   "settled_labels": 4909,
+   "unresolved_labels": 135,
+   "positive": 471,
+   "negative": 4438,
+   "positive_share": 0.095946221226319,
+   "definition": "FROZEN rows on tokens that were never eligible at a LEARNING tick inside the boundary \u2014 the tokens no lesson could ever have used"
+  }
+ },
+ "reused_d11_001_files": {
+  "rows.jsonl": "f972f5ece3ea47a4a82f2c0b99c8c1028e7e257912857c9d8fa245e333b8d934",
+  "labels.jsonl": "2546d458a3e6aeb2366463bb34b64738a5d13a7bf0d0bcba8a76b58b0f3ef640",
+  "scores_reference.jsonl": "cde2a79cf6e22f0a2f5fcb6e82a7c36f9011c3b0162de60e8877086dea4a78e2"
+ },
+ "preregistered_hard_stop": {
+  "conditions": [
+   "a lesson ceiling under 2,000",
+   "a primary grid under 100 labelled rows",
+   "either primary-grid class under 20"
+  ],
+  "triggered": [],
+  "verdict": "PROCEED"
+ },
+ "elapsed_s": 83.2
+}

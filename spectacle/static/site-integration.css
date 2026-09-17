@@ -1,0 +1,88 @@
+/* Spectator integration. Existing stage and canonical state machine remain intact. */
+:root{--muted:#a0a897}
+.topbar nav{gap:24px}
+.token-contract,.candidate-id,.race-label,.race-foot,.panel-heading,.arena-bottom,.chart-label,.position-note,.brain-footer,.brain-explainer{font-size:11px;line-height:1.6}
+.token-contract,#token-subtitle,#inspector-address{color:#a9b39d}
+.position-details{font-size:11px;line-height:1.5}
+.position-details strong{margin-top:5px}
+.bag-fine{font:12px/1.65 var(--mono);color:#b2baa4}
+#bag-room{margin:18px 0 22px;padding:14px 0 12px}
+.bag-kicker{font:11px/1.5 var(--mono)}
+.bag-round{margin:13px 0 15px;gap:10px;align-items:center}
+.bag-round>span{font:700 13px/1.5 var(--mono);max-width:70%}
+.bag-round strong{font:700 38px/1 var(--mono);letter-spacing:-2px}
+.bag-moment{font:12px/1.5 var(--mono);color:#cbd4b4;min-height:0;margin-top:8px}
+.bag-buttons button{min-height:55px;padding:12px 15px;font:700 19px var(--mono)}
+.bag-buttons strong{font-size:24px}
+.bag-vote-bar{margin:12px 0 8px}
+.bag-counts{font:11px/1.7 var(--mono);color:#b6bea8}
+#bag-connect{min-height:40px;margin-top:8px;font-size:11px}
+#bag-eligibility{margin:0 0 10px;font-size:11px}
+#bag-message:empty{display:none}
+#bag-room .crew-chat{margin:12px 0 5px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#bag-room summary{cursor:pointer;min-height:40px;padding:12px 0;font:11px/1.5 var(--mono);color:#c2c9b6}
+#bag-room .crew-chat summary{display:flex;justify-content:space-between;gap:12px}
+#bag-room .crew-chat[open] summary{color:var(--acid)}
+#bag-chat{height:112px}
+#bag-chat p{font-size:13px}
+#bag-chat b{font-size:11px}
+#bag-chat i{font-size:10px}
+#bag-chat-input{font-size:13px;min-height:42px}
+#bag-chat-send{font-size:11px;padding:10px}
+#bag-chat-form{margin-bottom:12px}
+#bag-room .bag-proof-details summary{min-height:32px;padding:8px 0;font-size:10px;color:#a9b399}
+.bag-fixture{font:10px/1.5 var(--mono);padding:6px 8px;margin:10px 0;color:#e8c879;background:#302819;border-left:2px solid var(--amber)}
+#bag-community{max-width:none;margin:0;padding:38px 0;border-top:1px solid #445037}
+.bag-access{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;padding:14px 0 32px}
+.bag-access .eyebrow{color:var(--amber);font-size:11px}
+.bag-access h2{font:700 clamp(36px,4vw,58px)/1 var(--display);margin:15px 0}
+.bag-access p{font:12px/1.8 var(--mono);color:#adb8a0;max-width:550px}
+.bag-access-rules{display:flex;flex-direction:column;gap:20px;justify-content:center;font:12px/1.6 var(--mono)}
+.bag-access-rules b{color:var(--amber);margin-right:14px}
+.bag-access-rules a{display:block;text-align:center;text-decoration:none;padding:16px;font-size:12px}
+.bag-community-heading{gap:25px;flex-wrap:wrap}
+.bag-community-heading h2{font-size:32px;margin:12px 0}
+.bag-community-heading .eyebrow{font-size:10px;color:#a0ac94}
+#bag-my-claims{border:1px solid #697353;padding:16px 20px;min-height:48px;font-size:12px;color:var(--acid)}
+.bag-community-grid h3{font:700 22px var(--display)}
+.bag-vault{font:11px/1.6 var(--mono)}
+.bag-vault small{font-size:11px}
+.bag-receipt span,.bag-receipt small,.crew-row small{font-size:11px}
+.bag-receipt strong{color:var(--ink)}
+#bag-receipt-dialog{padding:30px;max-width:660px;border-color:#68784a}
+#bag-receipt-dialog h2{font:700 46px/1 var(--display);margin:25px 0}
+#bag-receipt-dialog .bag-receipt{margin:14px 0;padding:20px}
+#bag-receipt-close{min-height:40px;font-size:12px}
+.claim-rule{display:grid;grid-template-columns:130px 1fr;gap:20px;border-top:1px solid var(--line);padding:17px 0;font:12px/1.7 var(--mono)}
+.claim-rule b{font-weight:400;color:var(--amber)}
+.fixture-banner{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;border:1px solid #786233;background:#2b2415;color:#e8c878;font:11px/1.6 var(--mono);padding:12px 16px}
+.fixture-banner strong{font-size:12px}.fixture-banner>a{margin-left:auto;text-decoration:none;white-space:nowrap;color:#f0d799;min-height:32px;display:flex;align-items:center}
+.fixture-wallets{display:flex;gap:8px;flex-basis:100%}.fixture-wallets button{border:1px solid #75613b;padding:10px;font:11px var(--mono)}.fixture-wallets button[aria-pressed=true]{color:#17170e;background:#d9bd75;border-color:#d9bd75}
+.fee-flow>div{min-width:0;font-size:10px;line-height:1.5}.fee-flow small{display:block;font:9px/1.6 var(--mono);color:#a7b198;margin-top:8px}.planned-reward span{font-size:11px;line-height:1.7}
+@media(min-width:1000px){.in-bag .chamber{height:clamp(400px,35vw,530px);min-height:400px}.in-bag .chart-wrap{height:150px}.in-bag .position-panel{padding:24px}.in-bag .pnl-line{font-size:80px}.in-bag .position-details{gap:18px}.in-bag .countdown-row{padding-top:18px}.in-bag .countdown-row strong{font-size:26px}}
+@media(max-width:1000px){.topbar nav{gap:16px;font-size:10px}}
+@media(max-width:780px){
+ .topbar{flex-wrap:wrap;height:auto;min-height:70px;padding:16px 16px 0;gap:10px}
+ .topbar nav{display:flex;order:3;flex-basis:100%;justify-content:space-between;gap:8px;padding:12px 0;border-top:1px solid var(--line);font-size:10px}
+ .brand small{display:none}.header-right{gap:8px}.brand{font-size:26px}.brand img{width:30px;height:30px}.paper-tag{padding:6px;font-size:9px}.icon-button{font-size:9px}
+ .intro h1{font-size:40px}.intro{margin-bottom:20px}
+ .chamber{height:170px;min-height:170px}.trade .chamber,.trade .habitat{height:170px;min-height:170px}
+ .fly-model{inset:-8px -25px -5px}.fly-label{font-size:9px;bottom:0}
+ .token-contract,.candidate-id,.race-label,.race-foot{font-size:10px}.candidate-score{font-size:14px}.candidate-score small{font-size:11px}
+ .panel-heading,.arena-bottom,.chart-label{font-size:10px}.position-note{font-size:11px}.position-details{font-size:11px}.brain-footer,.brain-explainer{font-size:11px}
+ .trade .position-panel{padding:20px}.pnl-line{font-size:68px}.countdown-row strong{font-size:34px}
+ .in-bag #bag-room{order:5;margin:18px 0 15px}.in-bag .position-panel>.position-details{order:6}.in-bag .position-panel>.countdown-row{order:7;padding-top:16px}.in-bag .position-panel>.timer-track{display:none}.in-bag .countdown-row strong{font-size:24px}.in-bag .chart-label{margin-top:18px}
+ .bag-round>span{font-size:12px}.bag-round strong{font-size:34px}.bag-buttons button{min-height:52px}.bag-counts{font-size:11px}
+ #bag-community{padding:28px 0}.bag-access{grid-template-columns:1fr;gap:12px;padding-bottom:25px}.bag-access h2{font-size:40px}.bag-access p{font-size:12px}.bag-access-rules{gap:14px;font-size:11px}.bag-access-rules a{margin-top:6px}
+ .bag-community-heading{display:flex;gap:16px}.bag-community-heading h2{font-size:29px}.bag-community-heading>div{width:100%}#bag-my-claims{width:100%;text-align:center}.bag-vault{margin:0}
+ .bag-community-grid{grid-template-columns:1fr;gap:20px}.bag-receipt{padding:12px}.bag-receipt strong{font-size:18px}#bag-history{grid-template-columns:1fr}
+ .fixture-banner{font-size:10px;padding:12px;gap:6px}.fixture-banner strong{font-size:11px;flex-basis:100%}.fixture-banner>a{margin-left:0}.fixture-wallets{gap:6px;flex-wrap:wrap}.fixture-wallets button{padding:10px;font-size:10px;flex:1}
+ .fee-flow{display:grid;grid-template-columns:1fr 1fr;gap:24px 0}.fee-flow>div{font-size:11px}.fee-flow>div:nth-child(3){border-left:0}.fee-flow small{font-size:10px}.economics p{font-size:12px}
+ #bag-receipt-dialog{padding:22px}#bag-receipt-dialog h2{font-size:38px}.claim-rule{grid-template-columns:1fr;gap:7px}
+}
+@media(prefers-reduced-motion:reduce){.bag-vote-bar i{transition:none}}
+
+@media(min-width:1000px){.in-bag .intro h1{font-size:62px}.fixture-banner{padding:10px 14px;gap:6px 18px}.fixture-wallets{flex-basis:auto;margin-left:auto}.fixture-banner>span{display:none}.fixture-banner>a{order:3;margin-left:0}.in-bag .intro{margin-bottom:20px}.in-bag .token-title{margin-top:16px}.in-bag .pnl-line{font-size:76px}.in-bag #pnl-caption{font-size:11px}}
+
+.fixture-banner{position:relative;top:auto}
+@media(max-width:780px){#bag-chat-input{font-size:16px}}

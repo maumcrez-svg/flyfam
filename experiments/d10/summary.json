@@ -1,0 +1,2279 @@
+{
+ "run_id": "d10-001",
+ "started_utc": "2026-09-12T05:40:39Z",
+ "elapsed_s": 182.7,
+ "peak_rss_mib": 814.3,
+ "python": "3.13.9",
+ "numpy": "2.4.2",
+ "machine": "x86_64",
+ "config": {
+  "config_version": "flytrade-d10-config-1",
+  "plan": "experiments/d10/PLAN.md",
+  "committed_alone_before_any_run": true,
+  "amendment": "docs/SPEC.md, D10 canonical amendment (owner, 2026-09-12), the nineteen Fable addenda, and the reviewer decisions after dispatch 1",
+  "wave": "D10",
+  "venue": "PONS",
+  "chain_id": 4663,
+  "network": "Robinhood Chain",
+  "native_asset": "ETH",
+  "label": "PONS MEMECOIN REPLAY ON A BOUNDED GENUINE COLLECTION",
+  "not_a_prediction_test": "no predictive evaluation is designed for D10. There is no probe grid, no label, no AUC and no holdout in this wave, and conclusion 4 of amendment section 13 therefore reads 'not tested'.",
+  "modes": {
+   "REPLAY_PAPER": "chronological recorded Pons events on a virtual 30-second clock",
+   "LIVE_PAPER": "newly received Pons events on the wall clock \u2014 dispatch 3"
+  },
+  "learning_modes": {
+   "LEARN": "the normalised update is applied",
+   "FROZEN": "weights do not move; settlements are counted SETTLED_FROZEN"
+  },
+  "cadence_seconds": 30,
+  "max_candidates_per_round": 6,
+  "max_open_positions": 1,
+  "long_only": true,
+  "horizon_seconds": 900,
+  "horizon_rounds": 30,
+  "horizon_note": "fifteen minutes is a product-test setting, not a scientifically optimal memecoin horizon, and IBM's 90 minutes is not carried over. No other horizon is tried.",
+  "paper_size_wei": "10000000000000000",
+  "paper_size_eth": 0.01,
+  "latency_seconds": 2,
+  "latency_rule": "a decision at cutoff t fills at the reconstructed state of the first block whose timestamp is at or after t + 2 s; the exit uses the same rule at entry_fill_time + 900 s",
+  "initial_cash_eth": 10.0,
+  "exit_policy": "fixed_hold",
+  "exit_policy_rule": "a decoded SELL while holding is refused by the execution policy with RejectReason.FIXED_HOLD and closes nothing; the position closes only at the declared horizon, labelled CloseReason.POLICY_CLOSE_FIXED_HOLD",
+  "gas": {
+   "buy_wei": "26513686360000",
+   "sell_wei": "21543833760000",
+   "approval_wei": "16104600000000",
+   "source": "donor calibration medians over 40 buy and 40 sell receipts, ~/Documentos/PONS/artifacts/curve-simulation/gas.json sha256 23e3df06cc2a986734b7ca661107d0397a15b5f77ff6db0e30ac7d2d1b726daf, recorded in experiments/d10/REUSE.md by dispatch 1",
+   "approval_is_an_assumption": "the approval leg is a 60,000-gas assumption at the same gas price, not a receipt, and is charged once per episode on the exit",
+   "charged": "into Fill.fee on each leg, so net = quote_out - spent - gas"
+  },
+  "cost_model": {
+   "fee_bps_of_flytrade_execution": "NOT USED on this route",
+   "slippage_bps_of_flytrade_execution": "NOT USED on this route",
+   "curve_costs": [
+    "base fee (feeBps)",
+    "creator tax (creatorTaxBps)",
+    "snipe tax, capped and decaying over the first 5 s"
+   ],
+   "into_fees": "the three curve costs plus the gas of that leg",
+   "into_slippage": "the price impact of our own size: the gap between the pre-trade marginal price and the price actually achieved",
+   "identity": "gross_reference_pnl - slippage - fees = net_pnl and net_pnl = gross_pnl - fees both hold, so flytrade.execution.Account's existing invariant tests still bite",
+   "own_impact_carried": true,
+   "changes_the_public_market": false
+  },
+  "features": {
+   "version": "pons_context_v1",
+   "order": [
+    "age",
+    "ret_30s",
+    "ret_2m",
+    "ret_5m",
+    "flow_imb_2m",
+    "trade_rate_2m",
+    "rv_2m",
+    "drawdown_5m"
+   ],
+   "marginal_price": "quote_reserve / token_reserve, phantom reserve included",
+   "windows_clipped_to_launch": "ret_w = log(p(cutoff) / p(max(cutoff - w, launch))) and drawdown_5m maxes since max(cutoff - 5 min, launch): a token younger than the window measures since its launch, it is not zeroed",
+   "three_prices_are_separate": [
+    "last trade price",
+    "marginal curve price",
+    "executable amount-out for 0.01 ETH"
+   ],
+   "only_the_marginal_price_enters_a_feature": true,
+   "single_signed": [
+    "age",
+    "trade_rate_2m",
+    "drawdown_5m"
+   ],
+   "single_signed_note": "three of the eight features never change sign, so one glomerulus of each of those pairs only ever receives the carrier. Declared, not hidden.",
+   "normalisation": "tanh(raw / scale), fixed declared scales, never refitted",
+   "scales": {
+    "age": 600.0,
+    "ret_30s": 0.0051,
+    "ret_2m": 0.11,
+    "ret_5m": 0.36,
+    "flow_imb_2m": 1.0,
+    "trade_rate_2m": 6.0,
+    "rv_2m": 0.029,
+    "drawdown_5m": 0.51
+   },
+   "scale_rule": "p90(|x|) rounded to two significant figures over the tokens launched in the first 60 minutes of the backfill window, at 30-second grid points, age >= 60 s and >= 3 trades; age is the declared constant 600 s",
+   "scale_artifact": "experiments/d10/feature_scales_v2.json",
+   "scale_statistics": {
+    "age": {
+     "median_abs": 870.0,
+     "p90_abs": 2220.0,
+     "scale": 600.0,
+     "n": 5612
+    },
+    "ret_30s": {
+     "median_abs": 0.0,
+     "p90_abs": 0.00509908469970584,
+     "scale": 0.0051,
+     "n": 5612
+    },
+    "ret_2m": {
+     "median_abs": 0.0,
+     "p90_abs": 0.1115214849089408,
+     "scale": 0.11,
+     "n": 5612
+    },
+    "ret_5m": {
+     "median_abs": 0.0,
+     "p90_abs": 0.3566783892166435,
+     "scale": 0.36,
+     "n": 5612
+    },
+    "flow_imb_2m": {
+     "median_abs": 0.0,
+     "p90_abs": 1.0,
+     "scale": 1.0,
+     "n": 5612
+    },
+    "trade_rate_2m": {
+     "median_abs": 0.0,
+     "p90_abs": 6.0,
+     "scale": 6.0,
+     "n": 5612
+    },
+    "rv_2m": {
+     "median_abs": 0.0,
+     "p90_abs": 0.02887531817614259,
+     "scale": 0.029,
+     "n": 5612
+    },
+    "drawdown_5m": {
+     "median_abs": 0.0,
+     "p90_abs": 0.5109879001659773,
+     "scale": 0.51,
+     "n": 5612
+    }
+   },
+   "supersedes": "experiments/d10/feature_scales.json, dispatch 1, which zeroed windows predating the launch on a dataset whose tokens live ~62 s"
+  },
+  "encoder": {
+   "version": "pons_encoder_v1",
+   "interface": "flytrade.pons.encoder.SensoryEncoder",
+   "modalities_returned": [
+    "olfactory"
+   ],
+   "extension_points_named_and_unimplemented": [
+    "visual",
+    "taste",
+    "mechanosensory"
+   ],
+   "olfactory": "flytrade.encoder.MarketToSensoryEncoder, unchanged",
+   "channels_needed": 16,
+   "channels_available": 16,
+   "features_dropped_for_want_of_channels": [],
+   "channel_map": [
+    {
+     "feature": "age",
+     "positive": "VL2a",
+     "pos_orns": 98,
+     "pos_upns": 8,
+     "negative": "VM5d",
+     "neg_orns": 84,
+     "neg_upns": 12
+    },
+    {
+     "feature": "ret_30s",
+     "positive": "DL1",
+     "pos_orns": 83,
+     "pos_upns": 4,
+     "negative": "VL1",
+     "neg_orns": 82,
+     "neg_upns": 4
+    },
+    {
+     "feature": "ret_2m",
+     "positive": "VM4",
+     "pos_orns": 78,
+     "pos_upns": 8,
+     "negative": "DM3",
+     "neg_orns": 63,
+     "neg_upns": 4
+    },
+    {
+     "feature": "ret_5m",
+     "positive": "DM6",
+     "pos_orns": 58,
+     "pos_upns": 7,
+     "negative": "V",
+     "neg_orns": 55,
+     "neg_upns": 4
+    },
+    {
+     "feature": "flow_imb_2m",
+     "positive": "DM2",
+     "pos_orns": 54,
+     "pos_upns": 4,
+     "negative": "DA2",
+     "neg_orns": 48,
+     "neg_upns": 10
+    },
+    {
+     "feature": "trade_rate_2m",
+     "positive": "VL2p",
+     "pos_orns": 45,
+     "pos_upns": 6,
+     "negative": "VM3",
+     "neg_orns": 43,
+     "neg_upns": 4
+    },
+    {
+     "feature": "rv_2m",
+     "positive": "VC4",
+     "pos_orns": 38,
+     "pos_upns": 6,
+     "negative": "VM7d",
+     "neg_orns": 36,
+     "neg_upns": 7
+    },
+    {
+     "feature": "drawdown_5m",
+     "positive": "DC3",
+     "pos_orns": 35,
+     "pos_upns": 6,
+     "negative": "DM5",
+     "neg_orns": 35,
+     "neg_upns": 7
+    }
+   ],
+   "coding": "normalized",
+   "carrier": 0.1,
+   "drive_budget_hz": 12000.0,
+   "drive_max_hz": 150.0,
+   "steps": 100,
+   "window_ms": 20,
+   "global_gain": 0.1
+  },
+  "admission": {
+   "version": "admission_v1",
+   "rules": [
+    "deployment pons-v2",
+    "quote asset native ETH",
+    "observation usable: age >= 60 s, >= 3 trades, consistent state",
+    "curve not completed at the cutoff",
+    "sellableTokens > 0 and realQuoteReserve > 0",
+    "the paper buy of 0.01 ETH would not exhaust the curve",
+    "cutoff + 2 s + 900 s lies inside the token's coverage"
+   ],
+   "track_seconds": 3600,
+   "launch_admission_window": "launches in the first 120 minutes of the window only",
+   "rotation": "round-robin: rounds since last presentation descending, then launch block, then launch log index, then curve address. Blind to price, volume, flow, outcome and ticker.",
+   "omitted_are_recorded": "ROTATED",
+   "every_launch_gets_a_DISCOVERY_record": true,
+   "three_vocabularies_stay_distinct": [
+    "NOT_ADMITTED(*)",
+    "readout status",
+    "RejectReason.*"
+   ],
+   "while_holding": "only the held token is presented, as D5-D9(b) do; the ROUND record still carries the tick's full admitted / rotated tallies"
+  },
+  "brain": {
+   "clean_reference_checkpoint": {
+    "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+    "plastic_synapses": 44042,
+    "gain": 1.0,
+    "state_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+    "note": "amendment section 3: the Pons experiment starts from the declared clean reference checkpoint, never from the IBM-trained checkpoint"
+   },
+   "gain": 0.1,
+   "steps": 100,
+   "window_ms": 20
+  },
+  "readout": {
+   "k": 8,
+   "policy": "flytrade.readout.ComparisonReadoutPolicy",
+   "namespace": "comparison_v1",
+   "seed_rule": "sha256(comparison_v1:observation_id:stable_id:replicate_index)[:8]",
+   "keyed_to_learned_state": false,
+   "why": "the seed schedule must not change because the weights differ, so the LEARN branch and the FROZEN branch draw the same Poisson stream for the same observation; order and metadata invariance then hold by construction, because observation_id is a content hash and stable_id is assigned at registration and never from the address spelling",
+   "baseline_artifact": "experiments/k8_readout/baseline_k8.json",
+   "aggregation": "mean of per-neuron rates over the k replicates, decoder applied once",
+   "decoder": "flytrade.decoder.ActionDecoder at the stored k=8 baseline and margin"
+  },
+  "reinforcement": {
+   "updates_per_settled_episode": 1,
+   "attributed_to": "the entry decision's stored k=8 eligibility trace set, by episode id",
+   "mapping": "valence is the sign of the settled net outcome and amount is min(|net_pnl / notional| / reinforce_full_scale, reinforce_cap) with reinforce_full_scale = 0.01 and reinforce_cap = 1.0 \u2014 flytrade.execution.ExecutionPolicy.reinforcement, unchanged, with no new constant added by this wave",
+   "consequence_declared_before_the_run": "a memecoin's fifteen-minute return on a 0.01 ETH notional will usually exceed 1 %, so amount will usually saturate at the cap. That is a consequence of reusing the existing rule and is recorded here rather than fixed by inventing a Pons scale.",
+   "no_interim_reward": true,
+   "no_reward_from_a_blocked_sell": true,
+   "no_reward_from_a_mark": true,
+   "no_reset_on_a_new_token_or_after_a_loss": true,
+   "no_counterfactual_reward_for_skipped_entries": true
+  },
+  "settlement": {
+   "confirm_seconds": 60,
+   "confirm_depth_blocks": 594,
+   "safe_tag_supported": true,
+   "rule": "a block is confirmed when it is at least confirm_depth behind head and, since the endpoint answers the safe tag, also at or below safe",
+   "outcome_requires": "the entry-fill block and the exit block both confirmed",
+   "until_then": "PENDING_CONFIRMATION, retried on later ticks, never a loss",
+   "unresolved_reasons": {
+    "ROUTE_TRANSITION": "the curve completed onto the unsupported Uniswap V4 route before the horizon: the exposure is retained, nothing settles and nothing is taught. It is neither a loss nor a win.",
+    "COVERAGE": "the data does not reach the horizon block",
+    "PENDING_CONFIRMATION": "the blocks are not confirmed yet",
+    "END_OF_DATA": "the window ended with the position still open"
+   },
+   "replay_confirmation": "evaluated against the head the collection recorded. The window ends at the safe block, so every block in it satisfies both rules and the check is exercised rather than skipped."
+  },
+  "budgets": {
+   "wave_cap_requests": 10000,
+   "day_cap_requests": 10000,
+   "backfill_cap_requests": 3000,
+   "backfill_spent_attempts": 1158,
+   "backfill_spent_units": 2314,
+   "replay_run_cost_requests": 0,
+   "replay_run_cost_note": "the replay run opens no socket, by construction",
+   "live_cap": "60 minutes wall clock or 3000 requests, whichever first (dispatch 3)",
+   "ledger": "experiments/d10/rpc_ledger.json",
+   "header_grid_blocks": 100,
+   "header_precision_seconds": 10.1,
+   "header_grid_rule": "one header per 100 blocks plus each tick's latest; timestamps between anchors are linearly interpolated and carry block_timestamp_interpolated with that precision"
+  },
+  "dataset": {
+   "label": "d10-backfill-v1",
+   "directory": "data/pons/d10-backfill-v1",
+   "manifest": "data/MANIFEST.md",
+   "gitignored": true,
+   "collected_by": "flytrade/pons/collector.py through experiments/d10/backfill.py",
+   "window": {
+    "rule": "the N minutes of blocks ending at the safe block recorded by verification.json, block count from the measured interval",
+    "safe_block": 60801426,
+    "first_block": 60721229,
+    "last_block": 60801426,
+    "blocks": 80198,
+    "minutes": 135,
+    "median_block_interval_s": 0.101,
+    "admission_minutes": 120,
+    "admission_blocks": 71287,
+    "admission_last_block": 60792515,
+    "settlement_tail_minutes": 15
+   },
+   "sha256": {
+    "cursor.json": "32d55a0df694105ccacc7e3aae82c28020c6ef8a88c768f61bde0954dd36e14b",
+    "discovery.json": "70b131a5232c122efc04737f3dbff6bb956624ac1d88a03618817828db030052",
+    "events.jsonl": "3dfa76fbac31d557a6bda8633c8ee630b641fe1d103f730c24f462de828368f9",
+    "headers.jsonl": "4febc4a292bf8e74a4bae408559df15c18ec77974381ce8ec55d09d590089036",
+    "initial_states.json": "bd7e98de09f6e0890966ff33ea6db9ab3602cb13b2d2754d296933679195f2c1",
+    "raw.jsonl": "c0d0b49224422e50989c6bcd43ff5d93d2e77195abba8b5f5667e89e6d5b88f8"
+   },
+   "bytes": {
+    "cursor.json": 258,
+    "discovery.json": 470884,
+    "events.jsonl": 66385619,
+    "headers.jsonl": 167232,
+    "initial_states.json": 436978,
+    "raw.jsonl": 62910647
+   },
+   "launches_total": 991,
+   "launches_native": 672,
+   "launches_quote_unsupported": 319,
+   "curve_completed": 7,
+   "events": 62338,
+   "validation_dataset_not_used_for_the_run": {
+    "label": "d10-replay-v1",
+    "why": "it covers ~62 s per token, so a 15-minute horizon admits nothing on it. Reviewer decision 1 keeps it as validation evidence and probe material."
+   }
+  },
+  "expected_activity_before_the_run": {
+   "ticks": 270,
+   "max_episodes": 9,
+   "arithmetic": "135 minutes at a 30-second cadence is 270 ticks; one position at a time, each locking 900 s = 30 ticks, gives at most 9 episodes in the window, and admission is closed after minute 120.",
+   "expected_fewer_because": "an entry also needs a decoded BUY, and a curve that completes before the horizon settles nothing",
+   "zero_is_admissible": "zero episodes is an admissible result to be reported as such. Nothing \u2014 gain, thresholds, scales, admission \u2014 is touched to produce activity."
+  },
+  "runs": {
+   "id": "d10-001",
+   "directory": "experiments/d10/runs/<run_id>/",
+   "gitignored": true,
+   "branches": {
+    "learning": "LEARN, from the clean reference checkpoint, strict chronological order over the window, one brain carried through",
+    "frozen_reference": "FROZEN, the same data and the same seeds from the same clean checkpoint: the mechanical control, not a scientific comparison. Its end digest must equal its start digest and its settlements must all count SETTLED_FROZEN with credit accepted 0."
+   },
+   "determinism": "the learning branch is executed a second time and must reproduce the first bit for bit, after removing the two fields a second process cannot reproduce by construction: the wall-clock 't' stamped on every event line and the absolute checkpoint path. Every other byte, and the final state digest, must be identical.",
+   "restart_after_settled_episodes": 1,
+   "restart_rule": "after the first settled episode the learning branch destroys its in-memory gains, rebuilds the journal and recovers from the checkpoint and the log; the run is refused unless the gains are restored exactly",
+   "live": {
+    "id": "d10-live-001",
+    "starts_from": "d10-001/learning's final checkpoint",
+    "status": "dispatch 3"
+   }
+  },
+  "frozen_and_not_decided_by_this_run": [
+   "k = 8",
+   "gain 0.10",
+   "the 20 ms / 100-step window",
+   "the encoder coding rule, its carrier, budget and bounds",
+   "MBON membership and the decoder formula, its sign and THETA_SD = 1.0",
+   "the stored k = 8 baseline artifact",
+   "one normalised learning update per settled outcome",
+   "episode-specific credit assignment",
+   "upstream/ and tests/upstream_audit/",
+   "experiments/d5 .. d9b and every committed IBM artifact"
+  ],
+  "success_is_not": [
+   "profitability",
+   "more BUY actions",
+   "more reward events",
+   "a preferred reward/punishment balance"
+  ],
+  "no_parameter_changes_after_observing_results": true,
+  "profitability_is_not_a_gate_metric": true
+ },
+ "config_sha256": "d5ba4221a4b1ed2fb69e2c1815496d39a0cc5de2ce3228de0d9ad46169b307ab",
+ "plan_sha256": "ef283756db61b844b8cd4560ec36c802895312133b47b8c55e511fe927d6d72f",
+ "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+ "clean_reference_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+ "baseline": {
+  "k": 8,
+  "baseline_hz": -0.844389816810345,
+  "sd_hz": 0.9117185769796697,
+  "theta_sd": 1.0,
+  "theta_hz": 0.9117185769796697,
+  "n_batches": 64,
+  "namespace": "flytrade-k8-baseline-1",
+  "distribution": "the k-presentation aggregate raw valence V_raw = mean(approach) - mean(avoid) at the neutral reference, one sample per BATCH, sample standard deviation with ddof=1 - never the standard error of that mean",
+  "stimulus": "neutral_reference",
+  "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+  "state_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+  "readout_version": "flytrade-readout-1",
+  "decoder_version": "flytrade-action-1",
+  "commit": "4b8e0822f83b579e17b03f94bfa961326019562f",
+  "measured_at": 1789123620.943667,
+  "samples": [
+   -1.3200431034482758,
+   -1.4951508620689653,
+   -0.9832974137931032,
+   -0.8081896551724146,
+   0.1481681034482758,
+   0.2559267241379306,
+   -0.6600215517241379,
+   -0.6869612068965516,
+   -1.1853448275862073,
+   -1.6298491379310347,
+   -1.2392241379310338,
+   -1.8453663793103448,
+   -1.3469827586206895,
+   0.3367456896551726,
+   -0.9698275862068968,
+   -2.2764008620689653,
+   -0.0942887931034484,
+   0.5387931034482758,
+   -1.0641163793103448,
+   -0.7947198275862073,
+   -0.9024784482758621,
+   -1.4547413793103452,
+   -1.872306034482759,
+   0.740840517241379,
+   -1.6971982758620694,
+   -0.4714439655172411,
+   0.1481681034482758,
+   -0.390625,
+   -1.3873922413793105,
+   -0.7139008620689662,
+   -1.0775862068965516,
+   -3.6099137931034484,
+   1.0641163793103452,
+   -1.6702586206896552,
+   -1.131465517241379,
+   1.4951508620689662,
+   -1.091056034482759,
+   -0.4040948275862064,
+   0.350215517241379,
+   -1.1853448275862073,
+   1.1449353448275854,
+   -1.831896551724138,
+   -2.303340517241379,
+   -0.350215517241379,
+   -0.1212284482758621,
+   -0.9428879310344831,
+   -1.0641163793103448,
+   -0.0942887931034484,
+   -1.872306034482759,
+   -1.4143318965517242,
+   -0.7677801724137936,
+   -1.252693965517241,
+   -1.2796336206896552,
+   0.350215517241379,
+   -1.252693965517241,
+   -1.212284482758621,
+   -0.3367456896551726,
+   -1.7376077586206895,
+   -1.7510775862068968,
+   -0.9428879310344831,
+   -1.6702586206896552,
+   -0.7543103448275863,
+   -0.1751077586206895,
+   -0.02693965517241459
+  ]
+ },
+ "encoder": {
+  "version": "pons_encoder_v1",
+  "modalities": [
+   "olfactory"
+  ],
+  "extension_points": [
+   "visual",
+   "taste",
+   "mechanosensory"
+  ],
+  "extension_points_implemented": false,
+  "features": [
+   "age",
+   "ret_30s",
+   "ret_2m",
+   "ret_5m",
+   "flow_imb_2m",
+   "trade_rate_2m",
+   "rv_2m",
+   "drawdown_5m"
+  ],
+  "features_requested": [
+   "age",
+   "ret_30s",
+   "ret_2m",
+   "ret_5m",
+   "flow_imb_2m",
+   "trade_rate_2m",
+   "rv_2m",
+   "drawdown_5m"
+  ],
+  "features_dropped": [],
+  "normalisation": "tanh(raw / scale), fixed declared scales",
+  "scales": {
+   "age": 600.0,
+   "ret_30s": 0.0051,
+   "ret_2m": 0.11,
+   "ret_5m": 0.36,
+   "flow_imb_2m": 1.0,
+   "trade_rate_2m": 6.0,
+   "rv_2m": 0.029,
+   "drawdown_5m": 0.51
+  },
+  "channels": [
+   {
+    "feature": "age",
+    "positive": "VL2a",
+    "pos_orns": 98,
+    "pos_upns": 8,
+    "negative": "VM5d",
+    "neg_orns": 84,
+    "neg_upns": 12
+   },
+   {
+    "feature": "ret_30s",
+    "positive": "DL1",
+    "pos_orns": 83,
+    "pos_upns": 4,
+    "negative": "VL1",
+    "neg_orns": 82,
+    "neg_upns": 4
+   },
+   {
+    "feature": "ret_2m",
+    "positive": "VM4",
+    "pos_orns": 78,
+    "pos_upns": 8,
+    "negative": "DM3",
+    "neg_orns": 63,
+    "neg_upns": 4
+   },
+   {
+    "feature": "ret_5m",
+    "positive": "DM6",
+    "pos_orns": 58,
+    "pos_upns": 7,
+    "negative": "V",
+    "neg_orns": 55,
+    "neg_upns": 4
+   },
+   {
+    "feature": "flow_imb_2m",
+    "positive": "DM2",
+    "pos_orns": 54,
+    "pos_upns": 4,
+    "negative": "DA2",
+    "neg_orns": 48,
+    "neg_upns": 10
+   },
+   {
+    "feature": "trade_rate_2m",
+    "positive": "VL2p",
+    "pos_orns": 45,
+    "pos_upns": 6,
+    "negative": "VM3",
+    "neg_orns": 43,
+    "neg_upns": 4
+   },
+   {
+    "feature": "rv_2m",
+    "positive": "VC4",
+    "pos_orns": 38,
+    "pos_upns": 6,
+    "negative": "VM7d",
+    "neg_orns": 36,
+    "neg_upns": 7
+   },
+   {
+    "feature": "drawdown_5m",
+    "positive": "DC3",
+    "pos_orns": 35,
+    "pos_upns": 6,
+    "negative": "DM5",
+    "neg_orns": 35,
+    "neg_upns": 7
+   }
+  ],
+  "olfactory": {
+   "version": "flytrade-encoder-1",
+   "features": [
+    "age",
+    "ret_30s",
+    "ret_2m",
+    "ret_5m",
+    "flow_imb_2m",
+    "trade_rate_2m",
+    "rv_2m",
+    "drawdown_5m"
+   ],
+   "coding": "normalized",
+   "drive_budget_hz": 12000.0,
+   "drive_max_hz": 150.0,
+   "carrier": 0.1,
+   "steps": 100,
+   "global_gain": 0.1,
+   "glomeruli": [
+    "VL2a",
+    "VM5d",
+    "DL1",
+    "VL1",
+    "VM4",
+    "DM3",
+    "DM6",
+    "V",
+    "DM2",
+    "DA2",
+    "VL2p",
+    "VM3",
+    "VC4",
+    "VM7d",
+    "DC3",
+    "DM5"
+   ],
+   "n_orns": 935
+  }
+ },
+ "decoder": {
+  "version": "flytrade-action-1",
+  "baseline_hz": -0.844389816810345,
+  "theta_hz": 0.9117185769796697,
+  "theta_sd": 1.0,
+  "baseline_sd_hz": 3.241438214716715,
+  "max_kc_fraction": 0.25,
+  "saturated_hz": 431.81818181818176
+ },
+ "readout": {
+  "version": "flytrade-readout-1",
+  "k": 8,
+  "namespace": "comparison_v1",
+  "seed_bits": 64,
+  "seed_rule": "sha256(comparison_v1:observation_id:stable_id:replicate_index)[:8]",
+  "aggregation": "mean of per-neuron rates, decoder applied once",
+  "kc_fraction": "max over replicates",
+  "max_rate_hz": "max over replicates",
+  "decoder": {
+   "version": "flytrade-action-1",
+   "baseline_hz": -0.844389816810345,
+   "theta_hz": 0.9117185769796697,
+   "theta_sd": 1.0,
+   "baseline_sd_hz": 3.241438214716715,
+   "max_kc_fraction": 0.25,
+   "saturated_hz": 431.81818181818176
+  },
+  "decoder_per_replicate": {
+   "version": "flytrade-action-1",
+   "baseline_hz": -2.303340517241379,
+   "theta_hz": 3.241438214716715,
+   "theta_sd": 1.0,
+   "baseline_sd_hz": 3.241438214716715,
+   "max_kc_fraction": 0.25,
+   "saturated_hz": 431.81818181818176
+  },
+  "keyed_to_learned_state": false,
+  "why": "amendment section 6: the stimulus realisation must not change because the weights differ"
+ },
+ "venue": "PONS",
+ "chain_id": 4663,
+ "branches": {
+  "learning": {
+   "branch": "learning",
+   "run_id": "d10-001",
+   "mode": "REPLAY_PAPER",
+   "learning": "LEARN",
+   "ticks": 272,
+   "start_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "end_digest": "999d32450a3b1b6f382edd10e9d95b79a7e12e01cbbbe458bf2087bb79325a9c",
+   "digest_unchanged": false,
+   "tokens_discovered": 991,
+   "tapes": 617,
+   "tally": {
+    "per_candidate_evaluation": {
+     "status": {
+      "VALID": 347,
+      "INVALID_STATE": 1
+     },
+     "action": {
+      "WAIT": 112,
+      "BUY": 75,
+      "NO_RESPONSE": 1,
+      "SELL": 160
+     },
+     "n": 348
+    },
+    "per_decision_round": {
+     "status": {
+      "NO_USABLE_CANDIDATE": 33,
+      "VALID": 232
+     },
+     "action": {
+      "WAIT": 90,
+      "BUY": 67,
+      "SELL": 75
+     },
+     "n": 265
+    },
+    "after_execution_constraints": {
+     "NO_ORDER:WAIT": 13,
+     "BUY": 7,
+     "HOLD:BUY": 60,
+     "HOLD:WAIT": 77,
+     "blocked_by_fixed_hold": 72,
+     "POLICY_CLOSE_FIXED_HOLD": 7,
+     "NO_ORDER:SELL": 3
+    },
+    "admission": {
+     "TAPE_OPENED": 617,
+     "QUOTE_UNSUPPORTED|NO_INITIAL_STATE": 319,
+     "ADMITTED": 4629,
+     "OBSERVATION_UNUSABLE": 2260,
+     "NO_INITIAL_STATE": 55,
+     "CURVE_COMPLETED": 88,
+     "STATE_INVALID": 95,
+     "COVERAGE": 7172
+    },
+    "observation_status": {
+     "OK": 10609,
+     "INSUFFICIENT_TAPE": 2172,
+     "ROUTE_COMPLETED": 88
+    },
+    "candidate_evaluations": 348,
+    "presentations": 2784,
+    "silent_replicates": 187,
+    "silent_replicate_denominator": 2784,
+    "invalid_replicates": 1
+   },
+   "episodes": [
+    {
+     "episode_id": 4000000,
+     "token": "0x60f73368eba40ca13ee44fe51062d7ad24bbfc63",
+     "stable_id": 0,
+     "entry_block": 60722130,
+     "entry_ts": 1789177148,
+     "entry_fill": 1.7078368134809225e-09,
+     "entry_reference": 1.6978842582887071e-09,
+     "exit_block": 60731000,
+     "exit_ts": 1789178048,
+     "exit_fill": 1.7525771356698245e-09,
+     "exit_reference": 1.7629851665402781e-09,
+     "quantity": 5796806.76857045,
+     "fees_eth": 0.000265755630144926,
+     "slippage_eth": 0.0001180263831001405,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": 0.00025935100249265013,
+     "gross_reference_pnl": 0.00037737738559279064,
+     "net_pnl": -6.404627652275858e-06,
+     "return_on_notional": -0.0006404627652275858,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60722130,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60731000,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": {
+      "episode_id": 4000000,
+      "valence": -1,
+      "amount": 0.064046,
+      "accepted": true,
+      "synapses_depressed": 2438,
+      "reason": "",
+      "trace_eligible": 5582,
+      "trace_max": 1.0,
+      "eligibility_source": "replayed_from_decision",
+      "k": 8,
+      "normalisation": "mean_of_deltas",
+      "depressed_per_replicate": [
+       1879,
+       724,
+       392,
+       571,
+       2039,
+       1995,
+       1165,
+       1408
+      ]
+     },
+     "settlement": "SETTLED"
+    },
+    {
+     "episode_id": 36000009,
+     "token": "0xd41786b0d3f66fdbc9923ce7bf077bb6af83dbc9",
+     "stable_id": 9,
+     "entry_block": 60731590,
+     "entry_ts": 1789178108,
+     "entry_fill": 1.6897e-09,
+     "entry_reference": 1.68e-09,
+     "exit_block": 60740446,
+     "exit_ts": 1789179008,
+     "exit_fill": 1.6896999999999999e-09,
+     "exit_reference": 1.699456005952381e-09,
+     "quantity": 5740664.023199384,
+     "fees_eth": 0.000655162120119998,
+     "slippage_eth": 0.0001116903934059876,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -1.1871414957927987e-18,
+     "gross_reference_pnl": 0.00011169039340598641,
+     "net_pnl": -0.0006551621201199992,
+     "return_on_notional": -0.06551621201199992,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60731590,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60740446,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": {
+      "episode_id": 36000009,
+      "valence": -1,
+      "amount": 1.0,
+      "accepted": true,
+      "synapses_depressed": 2830,
+      "reason": "",
+      "trace_eligible": 6452,
+      "trace_max": 1.0,
+      "eligibility_source": "replayed_from_decision",
+      "k": 8,
+      "normalisation": "mean_of_deltas",
+      "depressed_per_replicate": [
+       2765,
+       592,
+       865,
+       372,
+       2122,
+       684,
+       1629,
+       1594
+      ]
+     },
+     "settlement": "SETTLED"
+    },
+    {
+     "episode_id": 68000017,
+     "token": "0x814986804306d14b5a661ff0d7ff6298fcc931d7",
+     "stable_id": 17,
+     "entry_block": 60741037,
+     "entry_ts": 1789179068,
+     "entry_fill": 1.7541049951737288e-09,
+     "entry_reference": 1.7440181338086085e-09,
+     "exit_block": 60749919,
+     "exit_ts": 1789179968,
+     "exit_fill": 1.7486686352579064e-09,
+     "exit_reference": 1.7587665730738045e-09,
+     "quantity": 5643903.886733697,
+     "fees_eth": 0.000262855297191414,
+     "slippage_eth": 0.00011392106655068952,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -3.06822928585935e-05,
+     "gross_reference_pnl": 8.323877369209602e-05,
+     "net_pnl": -0.0002935375900500075,
+     "return_on_notional": -0.02935375900500075,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60741037,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60749919,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": {
+      "episode_id": 68000017,
+      "valence": -1,
+      "amount": 1.0,
+      "accepted": true,
+      "synapses_depressed": 2917,
+      "reason": "",
+      "trace_eligible": 6706,
+      "trace_max": 1.0,
+      "eligibility_source": "replayed_from_decision",
+      "k": 8,
+      "normalisation": "mean_of_deltas",
+      "depressed_per_replicate": [
+       840,
+       1062,
+       394,
+       307,
+       2758,
+       272,
+       1856,
+       1377
+      ]
+     },
+     "settlement": "SETTLED"
+    },
+    {
+     "episode_id": 100000022,
+     "token": "0x382bb253a054b387e4fda2a83235c8ec047c0aff",
+     "stable_id": 22,
+     "entry_block": 60750500,
+     "entry_ts": 1789180028,
+     "entry_fill": 1.697115227183023e-09,
+     "entry_reference": 1.687293976127178e-09,
+     "exit_block": 60759340,
+     "exit_ts": 1789180928,
+     "exit_fill": 1.697115227183023e-09,
+     "exit_reference": 1.7069936449055349e-09,
+     "quantity": 5774504.78496186,
+     "fees_eth": 0.000460162120119998,
+     "slippage_eth": 0.00011375583162278525,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": 0.0,
+     "gross_reference_pnl": 0.00011375583162278527,
+     "net_pnl": -0.000460162120119998,
+     "return_on_notional": -0.0460162120119998,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60750500,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60759340,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": {
+      "episode_id": 100000022,
+      "valence": -1,
+      "amount": 1.0,
+      "accepted": true,
+      "synapses_depressed": 2081,
+      "reason": "",
+      "trace_eligible": 4753,
+      "trace_max": 1.0,
+      "eligibility_source": "replayed_from_decision",
+      "k": 8,
+      "normalisation": "mean_of_deltas",
+      "depressed_per_replicate": [
+       1134,
+       1898,
+       1522,
+       136,
+       1354,
+       1418,
+       1093,
+       1241
+      ]
+     },
+     "settlement": "SETTLED"
+    },
+    {
+     "episode_id": 132000028,
+     "token": "0x8412972958a3e7d0c311218355fd9436c42fef10",
+     "stable_id": 28,
+     "entry_block": 60759930,
+     "entry_ts": 1789180988,
+     "entry_fill": 1.6897e-09,
+     "entry_reference": 1.68e-09,
+     "exit_block": 60768791,
+     "exit_ts": 1789181888,
+     "exit_fill": 1.6896999999999999e-09,
+     "exit_reference": 1.699456005952381e-09,
+     "quantity": 5740664.023199384,
+     "fees_eth": 0.000655162120119998,
+     "slippage_eth": 0.0001116903934059876,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -1.1871414957927987e-18,
+     "gross_reference_pnl": 0.00011169039340598641,
+     "net_pnl": -0.0006551621201199992,
+     "return_on_notional": -0.06551621201199992,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60759930,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60768791,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": {
+      "episode_id": 132000028,
+      "valence": -1,
+      "amount": 1.0,
+      "accepted": true,
+      "synapses_depressed": 2901,
+      "reason": "",
+      "trace_eligible": 6613,
+      "trace_max": 1.0,
+      "eligibility_source": "replayed_from_decision",
+      "k": 8,
+      "normalisation": "mean_of_deltas",
+      "depressed_per_replicate": [
+       534,
+       293,
+       452,
+       161,
+       2589,
+       2556,
+       465,
+       1486
+      ]
+     },
+     "settlement": "SETTLED"
+    },
+    {
+     "episode_id": 165000109,
+     "token": "0x0188995efdfb406bafdabf549464701e3c25666f",
+     "stable_id": 109,
+     "entry_block": 60769680,
+     "entry_ts": 1789181978,
+     "entry_fill": 1.6899000000000001e-09,
+     "entry_reference": 1.68e-09,
+     "exit_block": 60778520,
+     "exit_ts": 1789182878,
+     "exit_fill": 1.6898999999999997e-09,
+     "exit_reference": 1.6998583392857142e-09,
+     "quantity": 5858334.812710811,
+     "fees_eth": 0.000263162120119999,
+     "slippage_eth": 0.00011633680036012501,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -2.422950489459428e-18,
+     "gross_reference_pnl": 0.00011633680036012258,
+     "net_pnl": -0.00026316212012000146,
+     "return_on_notional": -0.026316212012000146,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60769680,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60778520,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": {
+      "episode_id": 165000109,
+      "valence": -1,
+      "amount": 1.0,
+      "accepted": true,
+      "synapses_depressed": 2815,
+      "reason": "",
+      "trace_eligible": 6469,
+      "trace_max": 1.0,
+      "eligibility_source": "replayed_from_decision",
+      "k": 8,
+      "normalisation": "mean_of_deltas",
+      "depressed_per_replicate": [
+       730,
+       2361,
+       2455,
+       2182,
+       1701,
+       579,
+       2229,
+       775
+      ]
+     },
+     "settlement": "SETTLED"
+    },
+    {
+     "episode_id": 203000217,
+     "token": "0x56d4a05d2f2f0dfa0cb547cc644ac60da8a2e211",
+     "stable_id": 217,
+     "entry_block": 60780910,
+     "entry_ts": 1789183118,
+     "entry_fill": 1.6897e-09,
+     "entry_reference": 1.68e-09,
+     "exit_block": 60789764,
+     "exit_ts": 1789184018,
+     "exit_fill": 1.6896999999999999e-09,
+     "exit_reference": 1.699456005952381e-09,
+     "quantity": 5740664.023199384,
+     "fees_eth": 0.000655162120119998,
+     "slippage_eth": 0.0001116903934059876,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -1.1871414957927987e-18,
+     "gross_reference_pnl": 0.00011169039340598641,
+     "net_pnl": -0.0006551621201199992,
+     "return_on_notional": -0.06551621201199992,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60780910,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60789764,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": {
+      "episode_id": 203000217,
+      "valence": -1,
+      "amount": 1.0,
+      "accepted": true,
+      "synapses_depressed": 2714,
+      "reason": "",
+      "trace_eligible": 6214,
+      "trace_max": 1.0,
+      "eligibility_source": "replayed_from_decision",
+      "k": 8,
+      "normalisation": "mean_of_deltas",
+      "depressed_per_replicate": [
+       52,
+       2041,
+       1010,
+       467,
+       2149,
+       2008,
+       600,
+       753
+      ]
+     },
+     "settlement": "SETTLED"
+    }
+   ],
+   "unresolved": [],
+   "marks": 217,
+   "restarts": [
+    {
+     "tick": 35,
+     "after_settled_episodes": 1,
+     "report": {
+      "checkpoint_loaded": true,
+      "last_settled_episode": 4000000,
+      "outcomes_recorded": [
+       4000000
+      ],
+      "learning_recorded": [
+       4000000
+      ],
+      "pending_episode": null,
+      "action": "nothing to do",
+      "reapplied": false,
+      "episode_reopened": null,
+      "log_completed": false
+     },
+     "gains_restored_exactly": true
+    }
+   ],
+   "execution": {
+    "trades": 7,
+    "wins": 0,
+    "losses": 7,
+    "flat": 0,
+    "gross_pnl": 0.00022866870963405065,
+    "gross_reference_pnl": 0.0010257799714857537,
+    "slippage_paid": 0.0007971112618517031,
+    "fees_paid": 0.003217421527936331,
+    "net_pnl": -0.00298875281830228,
+    "reconciliation": {
+     "gross_reference_pnl": 0.0010257799714857537,
+     "minus_fees": 0.003217421527936331,
+     "minus_slippage": 0.0007971112618517031,
+     "equals_net_pnl": -0.002988752818302281,
+     "booked_net_pnl": -0.00298875281830228,
+     "residual": -8.673617379884035e-19
+    },
+    "cash": 9.997011247181694,
+    "equity": 9.997011247181694,
+    "close_reasons": {
+     "POLICY_CLOSE_FIXED_HOLD": 7
+    },
+    "fill_flags": {},
+    "rejections": {
+     "FIXED_HOLD": 72
+    },
+    "rejections_total": 72
+   },
+   "account": {
+    "cash": 9.99701125,
+    "initial_cash": 10.0,
+    "realized_pnl": -0.00298875,
+    "fees_paid": 0.00321742,
+    "slippage_paid": 0.00079711,
+    "equity": 9.99701125,
+    "trades": 7,
+    "position": null
+   },
+   "credit": {
+    "accepted": 7,
+    "open": [],
+    "settled": 7,
+    "rejections": {
+     "EPISODE_MISMATCH": 0,
+     "ALREADY_SETTLED": 0,
+     "UNKNOWN_EPISODE": 0,
+     "TRACE_EXPIRED": 0,
+     "SHAPE_MISMATCH": 0
+    },
+    "rejections_total": 0
+   },
+   "journal": {
+    "events": 1495,
+    "by_kind": {
+     "CHECKPOINT": 8,
+     "PARTITION": 2,
+     "DISCOVERY": 991,
+     "ROUND": 240,
+     "DECISION": 232,
+     "EXECUTION": 7,
+     "OUTCOME": 7,
+     "LEARNING": 7,
+     "RECOVERY": 1
+    },
+    "settled_frozen": 0,
+    "last_settled_episode": 203000217,
+    "pending": null,
+    "credit": {
+     "accepted": 7,
+     "open": [],
+     "settled": 7,
+     "rejections": {
+      "EPISODE_MISMATCH": 0,
+      "ALREADY_SETTLED": 0,
+      "UNKNOWN_EPISODE": 0,
+      "TRACE_EXPIRED": 0,
+      "SHAPE_MISMATCH": 0
+     },
+     "rejections_total": 0
+    }
+   },
+   "final_digest": "999d32450a3b1b6f382edd10e9d95b79a7e12e01cbbbe458bf2087bb79325a9c",
+   "log_path": "./experiments/d10/runs/d10-001/learning/events.jsonl",
+   "trace": [
+    {
+     "event": "BUY",
+     "tick": 4,
+     "cutoff_ts": 1789177146,
+     "token": "0x60f73368eba40ca13ee44fe51062d7ad24bbfc63",
+     "episode_id": 4000000,
+     "v": 2.299,
+     "block": 60722130,
+     "fill": 1.7078368134809225e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 35,
+     "cutoff_ts": 1789178076,
+     "token": "0x60f73368eba40ca13ee44fe51062d7ad24bbfc63",
+     "episode_id": 4000000,
+     "net_pnl": -6.404627652275858e-06
+    },
+    {
+     "event": "BUY",
+     "tick": 36,
+     "cutoff_ts": 1789178106,
+     "token": "0xd41786b0d3f66fdbc9923ce7bf077bb6af83dbc9",
+     "episode_id": 36000009,
+     "v": 3.431,
+     "block": 60731590,
+     "fill": 1.6897e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 67,
+     "cutoff_ts": 1789179036,
+     "token": "0xd41786b0d3f66fdbc9923ce7bf077bb6af83dbc9",
+     "episode_id": 36000009,
+     "net_pnl": -0.0006551621201199992
+    },
+    {
+     "event": "BUY",
+     "tick": 68,
+     "cutoff_ts": 1789179066,
+     "token": "0x814986804306d14b5a661ff0d7ff6298fcc931d7",
+     "episode_id": 68000017,
+     "v": 1.935,
+     "block": 60741037,
+     "fill": 1.7541049951737288e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 99,
+     "cutoff_ts": 1789179996,
+     "token": "0x814986804306d14b5a661ff0d7ff6298fcc931d7",
+     "episode_id": 68000017,
+     "net_pnl": -0.0002935375900500075
+    },
+    {
+     "event": "BUY",
+     "tick": 100,
+     "cutoff_ts": 1789180026,
+     "token": "0x382bb253a054b387e4fda2a83235c8ec047c0aff",
+     "episode_id": 100000022,
+     "v": 1.046,
+     "block": 60750500,
+     "fill": 1.697115227183023e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 131,
+     "cutoff_ts": 1789180956,
+     "token": "0x382bb253a054b387e4fda2a83235c8ec047c0aff",
+     "episode_id": 100000022,
+     "net_pnl": -0.000460162120119998
+    },
+    {
+     "event": "BUY",
+     "tick": 132,
+     "cutoff_ts": 1789180986,
+     "token": "0x8412972958a3e7d0c311218355fd9436c42fef10",
+     "episode_id": 132000028,
+     "v": 1.289,
+     "block": 60759930,
+     "fill": 1.6897e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 163,
+     "cutoff_ts": 1789181916,
+     "token": "0x8412972958a3e7d0c311218355fd9436c42fef10",
+     "episode_id": 132000028,
+     "net_pnl": -0.0006551621201199992
+    },
+    {
+     "event": "BUY",
+     "tick": 165,
+     "cutoff_ts": 1789181976,
+     "token": "0x0188995efdfb406bafdabf549464701e3c25666f",
+     "episode_id": 165000109,
+     "v": 2.407,
+     "block": 60769680,
+     "fill": 1.6899000000000001e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 196,
+     "cutoff_ts": 1789182906,
+     "token": "0x0188995efdfb406bafdabf549464701e3c25666f",
+     "episode_id": 165000109,
+     "net_pnl": -0.00026316212012000146
+    },
+    {
+     "event": "BUY",
+     "tick": 203,
+     "cutoff_ts": 1789183116,
+     "token": "0x56d4a05d2f2f0dfa0cb547cc644ac60da8a2e211",
+     "episode_id": 203000217,
+     "v": 1.72,
+     "block": 60780910,
+     "fill": 1.6897e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 234,
+     "cutoff_ts": 1789184046,
+     "token": "0x56d4a05d2f2f0dfa0cb547cc644ac60da8a2e211",
+     "episode_id": 203000217,
+     "net_pnl": -0.0006551621201199992
+    }
+   ],
+   "wall_s": 98.16,
+   "clean_reference_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "dataset": {
+    "mode": "REPLAY_PAPER",
+    "dataset": "d10-backfill-v1",
+    "directory": "./data/pons/d10-backfill-v1",
+    "events": 62338,
+    "first_block": 60721229,
+    "last_block": 60801426,
+    "first_ts": 1789177056,
+    "last_ts": 1789185205,
+    "admission_last_block": 60792515,
+    "coverage_end_ts": 1789185205,
+    "safe_block": 60801426
+   },
+   "log_sha256": "c05f2d079f63d6d1a38caa71953904a432d672c416b5a624c706bac45c740025",
+   "log_bytes": 2504371,
+   "execution_policy": {
+    "version": "pons_paper_v1",
+    "size_wei": "10000000000000000",
+    "notional_eth": 0.01,
+    "latency_s": 2,
+    "horizon_s": 900,
+    "gas_buy_wei": "26513686360000",
+    "gas_sell_wei": "21543833760000",
+    "gas_approval_wei": "16104600000000",
+    "gas_source": "donor calibration medians over 40 buy and 40 sell receipts; the approval leg is a 60,000-gas assumption at the same gas price, not a receipt",
+    "fee_bps_unused": true,
+    "slippage_bps_unused": true,
+    "cost_model": "curve base fee + creator tax + decaying snipe tax into `fees` with the gas; price impact into `slippage` as the gap between the pre-trade marginal price and the achieved price",
+    "initial_cash_eth": 10.0,
+    "reinforce_full_scale": 0.01,
+    "reinforce_cap": 1.0,
+    "own_impact_carried": true,
+    "changes_the_public_market": false,
+    "unresolved_reasons": [
+     "ROUTE_TRANSITION",
+     "COVERAGE",
+     "PENDING_CONFIRMATION"
+    ]
+   },
+   "admission_policy": {
+    "version": "admission_v1",
+    "size_wei": "10000000000000000",
+    "latency_s": 2,
+    "horizon_s": 900,
+    "max_candidates": 6,
+    "supported_deployment": "pons-v2",
+    "quote_asset": "0x0000000000000000000000000000000000000000",
+    "require_coverage": true,
+    "rules": [
+     "deployment is the supported pons-v2 curve route",
+     "quote asset is native ETH",
+     "observation usable under pons_context_v1",
+     "curve not completed at the cutoff",
+     "sellableTokens > 0 and realQuoteReserve > 0",
+     "the paper buy of size_wei would not exhaust the curve",
+     "cutoff + latency + horizon lies inside the token's coverage"
+    ],
+    "rotation": "round-robin: rounds since last presentation descending, then launch block, then launch log index, then curve address; blind to price, volume, flow and outcome",
+    "reason_codes": [
+     "DEPLOYMENT_UNSUPPORTED",
+     "QUOTE_UNSUPPORTED",
+     "OBSERVATION_UNUSABLE",
+     "CURVE_COMPLETED",
+     "STATE_INVALID",
+     "WOULD_EXHAUST_CURVE",
+     "COVERAGE",
+     "ROTATED"
+    ]
+   },
+   "learned_digest": "999d32450a3b1b6f382edd10e9d95b79a7e12e01cbbbe458bf2087bb79325a9c"
+  },
+  "frozen_reference": {
+   "branch": "frozen_reference",
+   "run_id": "d10-001",
+   "mode": "REPLAY_PAPER",
+   "learning": "FROZEN",
+   "ticks": 272,
+   "start_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "end_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "digest_unchanged": true,
+   "tokens_discovered": 991,
+   "tapes": 617,
+   "tally": {
+    "per_candidate_evaluation": {
+     "status": {
+      "VALID": 293,
+      "INVALID_STATE": 2
+     },
+     "action": {
+      "WAIT": 107,
+      "BUY": 161,
+      "NO_RESPONSE": 2,
+      "SELL": 25
+     },
+     "n": 295
+    },
+    "per_decision_round": {
+     "status": {
+      "NO_USABLE_CANDIDATE": 17,
+      "VALID": 247
+     },
+     "action": {
+      "WAIT": 90,
+      "BUY": 138,
+      "SELL": 19
+     },
+     "n": 264
+    },
+    "after_execution_constraints": {
+     "NO_ORDER:WAIT": 1,
+     "BUY": 8,
+     "HOLD:BUY": 130,
+     "HOLD:WAIT": 89,
+     "blocked_by_fixed_hold": 19,
+     "POLICY_CLOSE_FIXED_HOLD": 8,
+     "SETTLED_FROZEN": 8
+    },
+    "admission": {
+     "TAPE_OPENED": 617,
+     "QUOTE_UNSUPPORTED|NO_INITIAL_STATE": 319,
+     "ADMITTED": 1320,
+     "OBSERVATION_UNUSABLE": 828,
+     "NO_INITIAL_STATE": 55,
+     "CURVE_COMPLETED": 37,
+     "STATE_INVALID": 38,
+     "COVERAGE": 2819
+    },
+    "observation_status": {
+     "OK": 3807,
+     "INSUFFICIENT_TAPE": 791,
+     "ROUTE_COMPLETED": 37
+    },
+    "candidate_evaluations": 295,
+    "presentations": 2360,
+    "silent_replicates": 169,
+    "silent_replicate_denominator": 2360,
+    "invalid_replicates": 2
+   },
+   "episodes": [
+    {
+     "episode_id": 4000000,
+     "token": "0x60f73368eba40ca13ee44fe51062d7ad24bbfc63",
+     "stable_id": 0,
+     "entry_block": 60722130,
+     "entry_ts": 1789177148,
+     "entry_fill": 1.7078368134809225e-09,
+     "entry_reference": 1.6978842582887071e-09,
+     "exit_block": 60731000,
+     "exit_ts": 1789178048,
+     "exit_fill": 1.7525771356698245e-09,
+     "exit_reference": 1.7629851665402781e-09,
+     "quantity": 5796806.76857045,
+     "fees_eth": 0.000265755630144926,
+     "slippage_eth": 0.0001180263831001405,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": 0.00025935100249265013,
+     "gross_reference_pnl": 0.00037737738559279064,
+     "net_pnl": -6.404627652275858e-06,
+     "return_on_notional": -0.0006404627652275858,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60722130,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60731000,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 36000009,
+     "token": "0xd41786b0d3f66fdbc9923ce7bf077bb6af83dbc9",
+     "stable_id": 9,
+     "entry_block": 60731590,
+     "entry_ts": 1789178108,
+     "entry_fill": 1.6897e-09,
+     "entry_reference": 1.68e-09,
+     "exit_block": 60740446,
+     "exit_ts": 1789179008,
+     "exit_fill": 1.6896999999999999e-09,
+     "exit_reference": 1.699456005952381e-09,
+     "quantity": 5740664.023199384,
+     "fees_eth": 0.000655162120119998,
+     "slippage_eth": 0.0001116903934059876,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -1.1871414957927987e-18,
+     "gross_reference_pnl": 0.00011169039340598641,
+     "net_pnl": -0.0006551621201199992,
+     "return_on_notional": -0.06551621201199992,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60731590,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60740446,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 68000016,
+     "token": "0x6dce4fbdd80856277ad7fc3b77807d2f95b0c5f3",
+     "stable_id": 16,
+     "entry_block": 60741037,
+     "entry_ts": 1789179068,
+     "entry_fill": 1.832905669773274e-09,
+     "entry_reference": 1.8225940822666616e-09,
+     "exit_block": 60749919,
+     "exit_ts": 1789179968,
+     "exit_fill": 1.8278929426310221e-09,
+     "exit_reference": 1.8382202380934123e-09,
+     "quantity": 5401259.9574884875,
+     "fees_eth": 0.000262891369696087,
+     "slippage_eth": 0.00011147597214776427,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -2.7075042391260323e-05,
+     "gross_reference_pnl": 8.440092975650396e-05,
+     "net_pnl": -0.0002899664120873473,
+     "return_on_notional": -0.02899664120873473,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60741037,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60749919,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 100000021,
+     "token": "0x5987cb926407f79f92d0bac2d1c2abf63fc9eb3b",
+     "stable_id": 21,
+     "entry_block": 60750500,
+     "entry_ts": 1789180028,
+     "entry_fill": 1.6899000000104598e-09,
+     "entry_reference": 1.6800000000104289e-09,
+     "exit_block": 60759340,
+     "exit_ts": 1789180928,
+     "exit_fill": 1.6899000000104594e-09,
+     "exit_reference": 1.6998583392962046e-09,
+     "quantity": 5858334.812674551,
+     "fees_eth": 0.000263162120119999,
+     "slippage_eth": 0.00011633680035976476,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -2.422950489444431e-18,
+     "gross_reference_pnl": 0.00011633680035976233,
+     "net_pnl": -0.00026316212012000146,
+     "return_on_notional": -0.026316212012000146,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60750500,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60759340,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 132000030,
+     "token": "0xf4a9c152d9b9e9a9d6448d90bd0937150b4d139b",
+     "stable_id": 30,
+     "entry_block": 60759930,
+     "entry_ts": 1789180988,
+     "entry_fill": 1.6897999999999999e-09,
+     "entry_reference": 1.68e-09,
+     "exit_block": 60768791,
+     "exit_ts": 1789181888,
+     "exit_fill": 1.6897999999999999e-09,
+     "exit_reference": 1.6996571666666668e-09,
+     "quantity": 5799502.89975145,
+     "fees_eth": 0.000460162120119998,
+     "slippage_eth": 0.00011400179508423151,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": 0.0,
+     "gross_reference_pnl": 0.00011400179508423151,
+     "net_pnl": -0.000460162120119998,
+     "return_on_notional": -0.0460162120119998,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60759930,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60768791,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 164000102,
+     "token": "0x3d03602b775ca7f18e87e3dbd6c0499993205f1d",
+     "stable_id": 102,
+     "entry_block": 60769382,
+     "entry_ts": 1789181948,
+     "entry_fill": 1.6899000000000001e-09,
+     "entry_reference": 1.68e-09,
+     "exit_block": 60778230,
+     "exit_ts": 1789182848,
+     "exit_fill": 1.6898999999999997e-09,
+     "exit_reference": 1.6998583392857142e-09,
+     "quantity": 5858334.812710811,
+     "fees_eth": 0.000263162120119999,
+     "slippage_eth": 0.00011633680036012501,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -2.422950489459428e-18,
+     "gross_reference_pnl": 0.00011633680036012258,
+     "net_pnl": -0.00026316212012000146,
+     "return_on_notional": -0.026316212012000146,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60769382,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60778230,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 196000173,
+     "token": "0xb5ef24de54b93f3909c77c5c4a464ba8be3fd634",
+     "stable_id": 173,
+     "entry_block": 60778819,
+     "entry_ts": 1789182908,
+     "entry_fill": 1.6899000000170688e-09,
+     "entry_reference": 1.6800000000170186e-09,
+     "exit_block": 60787720,
+     "exit_ts": 1789183808,
+     "exit_fill": 1.6899000000170686e-09,
+     "exit_reference": 1.6998583393028332e-09,
+     "quantity": 5858334.81265164,
+     "fees_eth": 0.000263162120119999,
+     "slippage_eth": 0.00011633680035953633,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": -1.2114752447174775e-18,
+     "gross_reference_pnl": 0.00011633680035953511,
+     "net_pnl": -0.0002631621201200002,
+     "return_on_notional": -0.02631621201200002,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60778819,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60787720,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    },
+    {
+     "episode_id": 228000250,
+     "token": "0xdf7624ba03e8cf844c6119c604293a8c5631b6d5",
+     "stable_id": 250,
+     "entry_block": 60788310,
+     "entry_ts": 1789183868,
+     "entry_fill": 1.6897999999999999e-09,
+     "entry_reference": 1.68e-09,
+     "exit_block": 60797140,
+     "exit_ts": 1789184768,
+     "exit_fill": 1.6897999999999999e-09,
+     "exit_reference": 1.6996571666666668e-09,
+     "quantity": 5799502.89975145,
+     "fees_eth": 0.000460162120119998,
+     "slippage_eth": 0.00011400179508423151,
+     "gas_eth": 6.416212012e-05,
+     "gross_pnl": 0.0,
+     "gross_reference_pnl": 0.00011400179508423151,
+     "net_pnl": -0.000460162120119998,
+     "return_on_notional": -0.0460162120119998,
+     "seconds_held": 900,
+     "close_reason": "POLICY_CLOSE_FIXED_HOLD",
+     "confirmation": {
+      "entry": {
+       "block_number": 60788310,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "exit": {
+       "block_number": 60797140,
+       "confirmed": true,
+       "head": 60801426,
+       "safe_block": 60801426,
+       "confirm_depth": 594,
+       "source": "recorded dataset head (no request)"
+      },
+      "status": "CONFIRMED"
+     },
+     "learning_event": null,
+     "settlement": "SETTLED_FROZEN"
+    }
+   ],
+   "unresolved": [],
+   "marks": 248,
+   "restarts": [],
+   "execution": {
+    "trades": 8,
+    "wins": 0,
+    "losses": 8,
+    "flat": 0,
+    "gross_pnl": 0.00023227596010138256,
+    "gross_reference_pnl": 0.0011504827000031641,
+    "slippage_paid": 0.0009182067399017815,
+    "fees_paid": 0.0028936197205610037,
+    "net_pnl": -0.0026613437604596215,
+    "reconciliation": {
+     "gross_reference_pnl": 0.0011504827000031641,
+     "minus_fees": 0.0028936197205610037,
+     "minus_slippage": 0.0009182067399017815,
+     "equals_net_pnl": -0.002661343760459621,
+     "booked_net_pnl": -0.0026613437604596215,
+     "residual": 4.336808689942018e-19
+    },
+    "cash": 9.997338656239537,
+    "equity": 9.997338656239537,
+    "close_reasons": {
+     "POLICY_CLOSE_FIXED_HOLD": 8
+    },
+    "fill_flags": {},
+    "rejections": {
+     "FIXED_HOLD": 19
+    },
+    "rejections_total": 19
+   },
+   "account": {
+    "cash": 9.99733866,
+    "initial_cash": 10.0,
+    "realized_pnl": -0.00266134,
+    "fees_paid": 0.00289362,
+    "slippage_paid": 0.00091821,
+    "equity": 9.99733866,
+    "trades": 8,
+    "position": null
+   },
+   "credit": {
+    "accepted": 0,
+    "open": [],
+    "settled": 8,
+    "rejections": {
+     "EPISODE_MISMATCH": 0,
+     "ALREADY_SETTLED": 0,
+     "UNKNOWN_EPISODE": 0,
+     "TRACE_EXPIRED": 0,
+     "SHAPE_MISMATCH": 0
+    },
+    "rejections_total": 0
+   },
+   "journal": {
+    "events": 1522,
+    "by_kind": {
+     "CHECKPOINT": 9,
+     "PARTITION": 2,
+     "DISCOVERY": 991,
+     "ROUND": 257,
+     "DECISION": 247,
+     "EXECUTION": 8,
+     "OUTCOME": 8
+    },
+    "settled_frozen": 8,
+    "last_settled_episode": 228000250,
+    "pending": null,
+    "credit": {
+     "accepted": 0,
+     "open": [],
+     "settled": 8,
+     "rejections": {
+      "EPISODE_MISMATCH": 0,
+      "ALREADY_SETTLED": 0,
+      "UNKNOWN_EPISODE": 0,
+      "TRACE_EXPIRED": 0,
+      "SHAPE_MISMATCH": 0
+     },
+     "rejections_total": 0
+    }
+   },
+   "final_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "log_path": "./experiments/d10/runs/d10-001/frozen_reference/events.jsonl",
+   "trace": [
+    {
+     "event": "BUY",
+     "tick": 4,
+     "cutoff_ts": 1789177146,
+     "token": "0x60f73368eba40ca13ee44fe51062d7ad24bbfc63",
+     "episode_id": 4000000,
+     "v": 2.299,
+     "block": 60722130,
+     "fill": 1.7078368134809225e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 35,
+     "cutoff_ts": 1789178076,
+     "token": "0x60f73368eba40ca13ee44fe51062d7ad24bbfc63",
+     "episode_id": 4000000,
+     "net_pnl": -6.404627652275858e-06
+    },
+    {
+     "event": "BUY",
+     "tick": 36,
+     "cutoff_ts": 1789178106,
+     "token": "0xd41786b0d3f66fdbc9923ce7bf077bb6af83dbc9",
+     "episode_id": 36000009,
+     "v": 3.821,
+     "block": 60731590,
+     "fill": 1.6897e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 67,
+     "cutoff_ts": 1789179036,
+     "token": "0xd41786b0d3f66fdbc9923ce7bf077bb6af83dbc9",
+     "episode_id": 36000009,
+     "net_pnl": -0.0006551621201199992
+    },
+    {
+     "event": "BUY",
+     "tick": 68,
+     "cutoff_ts": 1789179066,
+     "token": "0x6dce4fbdd80856277ad7fc3b77807d2f95b0c5f3",
+     "episode_id": 68000016,
+     "v": 2.932,
+     "block": 60741037,
+     "fill": 1.832905669773274e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 99,
+     "cutoff_ts": 1789179996,
+     "token": "0x6dce4fbdd80856277ad7fc3b77807d2f95b0c5f3",
+     "episode_id": 68000016,
+     "net_pnl": -0.0002899664120873473
+    },
+    {
+     "event": "BUY",
+     "tick": 100,
+     "cutoff_ts": 1789180026,
+     "token": "0x5987cb926407f79f92d0bac2d1c2abf63fc9eb3b",
+     "episode_id": 100000021,
+     "v": 3.107,
+     "block": 60750500,
+     "fill": 1.6899000000104598e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 131,
+     "cutoff_ts": 1789180956,
+     "token": "0x5987cb926407f79f92d0bac2d1c2abf63fc9eb3b",
+     "episode_id": 100000021,
+     "net_pnl": -0.00026316212012000146
+    },
+    {
+     "event": "BUY",
+     "tick": 132,
+     "cutoff_ts": 1789180986,
+     "token": "0xf4a9c152d9b9e9a9d6448d90bd0937150b4d139b",
+     "episode_id": 132000030,
+     "v": 2.501,
+     "block": 60759930,
+     "fill": 1.6897999999999999e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 163,
+     "cutoff_ts": 1789181916,
+     "token": "0xf4a9c152d9b9e9a9d6448d90bd0937150b4d139b",
+     "episode_id": 132000030,
+     "net_pnl": -0.000460162120119998
+    },
+    {
+     "event": "BUY",
+     "tick": 164,
+     "cutoff_ts": 1789181946,
+     "token": "0x3d03602b775ca7f18e87e3dbd6c0499993205f1d",
+     "episode_id": 164000102,
+     "v": 2.299,
+     "block": 60769382,
+     "fill": 1.6899000000000001e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 195,
+     "cutoff_ts": 1789182876,
+     "token": "0x3d03602b775ca7f18e87e3dbd6c0499993205f1d",
+     "episode_id": 164000102,
+     "net_pnl": -0.00026316212012000146
+    },
+    {
+     "event": "BUY",
+     "tick": 196,
+     "cutoff_ts": 1789182906,
+     "token": "0xb5ef24de54b93f3909c77c5c4a464ba8be3fd634",
+     "episode_id": 196000173,
+     "v": 4.171,
+     "block": 60778819,
+     "fill": 1.6899000000170688e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 227,
+     "cutoff_ts": 1789183836,
+     "token": "0xb5ef24de54b93f3909c77c5c4a464ba8be3fd634",
+     "episode_id": 196000173,
+     "net_pnl": -0.0002631621201200002
+    },
+    {
+     "event": "BUY",
+     "tick": 228,
+     "cutoff_ts": 1789183866,
+     "token": "0xdf7624ba03e8cf844c6119c604293a8c5631b6d5",
+     "episode_id": 228000250,
+     "v": 4.522,
+     "block": 60788310,
+     "fill": 1.6897999999999999e-09
+    },
+    {
+     "event": "POLICY_CLOSE_FIXED_HOLD",
+     "tick": 259,
+     "cutoff_ts": 1789184796,
+     "token": "0xdf7624ba03e8cf844c6119c604293a8c5631b6d5",
+     "episode_id": 228000250,
+     "net_pnl": -0.000460162120119998
+    }
+   ],
+   "wall_s": 81.49,
+   "clean_reference_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+   "dataset": {
+    "mode": "REPLAY_PAPER",
+    "dataset": "d10-backfill-v1",
+    "directory": "./data/pons/d10-backfill-v1",
+    "events": 62338,
+    "first_block": 60721229,
+    "last_block": 60801426,
+    "first_ts": 1789177056,
+    "last_ts": 1789185205,
+    "admission_last_block": 60792515,
+    "coverage_end_ts": 1789185205,
+    "safe_block": 60801426
+   },
+   "log_sha256": "b6f4ec9f8883c5725f972dc106f039f0e08815741031b01dce6fb096885e3aaf",
+   "log_bytes": 2239148,
+   "execution_policy": {
+    "version": "pons_paper_v1",
+    "size_wei": "10000000000000000",
+    "notional_eth": 0.01,
+    "latency_s": 2,
+    "horizon_s": 900,
+    "gas_buy_wei": "26513686360000",
+    "gas_sell_wei": "21543833760000",
+    "gas_approval_wei": "16104600000000",
+    "gas_source": "donor calibration medians over 40 buy and 40 sell receipts; the approval leg is a 60,000-gas assumption at the same gas price, not a receipt",
+    "fee_bps_unused": true,
+    "slippage_bps_unused": true,
+    "cost_model": "curve base fee + creator tax + decaying snipe tax into `fees` with the gas; price impact into `slippage` as the gap between the pre-trade marginal price and the achieved price",
+    "initial_cash_eth": 10.0,
+    "reinforce_full_scale": 0.01,
+    "reinforce_cap": 1.0,
+    "own_impact_carried": true,
+    "changes_the_public_market": false,
+    "unresolved_reasons": [
+     "ROUTE_TRANSITION",
+     "COVERAGE",
+     "PENDING_CONFIRMATION"
+    ]
+   },
+   "admission_policy": {
+    "version": "admission_v1",
+    "size_wei": "10000000000000000",
+    "latency_s": 2,
+    "horizon_s": 900,
+    "max_candidates": 6,
+    "supported_deployment": "pons-v2",
+    "quote_asset": "0x0000000000000000000000000000000000000000",
+    "require_coverage": true,
+    "rules": [
+     "deployment is the supported pons-v2 curve route",
+     "quote asset is native ETH",
+     "observation usable under pons_context_v1",
+     "curve not completed at the cutoff",
+     "sellableTokens > 0 and realQuoteReserve > 0",
+     "the paper buy of size_wei would not exhaust the curve",
+     "cutoff + latency + horizon lies inside the token's coverage"
+    ],
+    "rotation": "round-robin: rounds since last presentation descending, then launch block, then launch log index, then curve address; blind to price, volume, flow and outcome",
+    "reason_codes": [
+     "DEPLOYMENT_UNSUPPORTED",
+     "QUOTE_UNSUPPORTED",
+     "OBSERVATION_UNUSABLE",
+     "CURVE_COMPLETED",
+     "STATE_INVALID",
+     "WOULD_EXHAUST_CURVE",
+     "COVERAGE",
+     "ROTATED"
+    ]
+   }
+  }
+ }
+}

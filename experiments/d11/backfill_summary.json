@@ -1,0 +1,144 @@
+{
+ "run": "d11-001-backfill",
+ "started_utc": "2026-09-13T04:25:42.168056Z",
+ "elapsed_s": 225.4,
+ "window": {
+  "rule": "twelve contiguous hours ending at the confirmed head at probe time; end_block = min(head - confirm_depth, safe), start_block = the smallest block whose timestamp is at least timestamp(end_block) - 43200",
+  "head_block": 61671056,
+  "safe_block": 61663368,
+  "confirm_depth_blocks": 591,
+  "first_block": 61237774,
+  "last_block": 61663368,
+  "safe_block_used_as_end": true,
+  "blocks": 425595,
+  "first_ts": 1789229564,
+  "last_ts": 1789272764,
+  "seconds": 43200,
+  "window_seconds_requested": 43200,
+  "minutes": 720.0,
+  "median_block_interval_s": 0.10149559411114202,
+  "admission_minutes": 705,
+  "admission_blocks": 416767,
+  "admission_last_block": 61654540,
+  "settlement_tail_minutes": 15,
+  "bisection_steps": 19,
+  "first_ts_utc": "2026-09-12T16:12:44Z",
+  "last_ts_utc": "2026-09-13T04:12:44Z",
+  "overlaps_d10_backfill_v1": false,
+  "d10_backfill_v1": {
+   "first_block": 60721229,
+   "last_block": 60801426,
+   "first_ts": 1789181856,
+   "last_ts": 1789190005,
+   "label": "d10-backfill-v1"
+  },
+  "resolved_at": "2026-09-13T04:25:42.167700Z"
+ },
+ "collection": {
+  "first_block": 61237774,
+  "last_block": 61663368,
+  "segments": 426,
+  "events": 462056,
+  "launches": 9474,
+  "stopped": null,
+  "reached": 61663368,
+  "complete": true
+ },
+ "blocks": 425595,
+ "raw_logs": 462056,
+ "events": 462056,
+ "events_by_kind": {
+  "BuybackLocked": 13,
+  "CreatorFeeRecipientUpdated": 1658,
+  "CurveBuy": 206879,
+  "CurveBuyRefunded": 79,
+  "CurveCompleted": 79,
+  "CurveSell": 171470,
+  "FeesSwept": 18499,
+  "GraduationTokensPermanentlyLocked": 153,
+  "Initialized": 6599,
+  "LaunchSwept": 153,
+  "PoolGraduated": 153,
+  "SnipeTaxCharged": 12319,
+  "SnipeTaxExempted": 34527,
+  "TokenLaunched": 9474,
+  "unmapped": 1
+ },
+ "headers_fetched": 4258,
+ "grid_anchors_expected": 4257,
+ "launches_total": 9474,
+ "launches_native": 6599,
+ "launches_quote_unsupported": 2875,
+ "curve_completed": 79,
+ "initial_states": {
+  "derived_from_the_first_trade": 6110,
+  "derived_from_a_later_trade": 4,
+  "unavailable": 485,
+  "from_eth_call": 0,
+  "rule": "pinned offline from any recorded trade of the launch; the local node is pruned and no historical eth_call is made. PLAN.md 7.12."
+ },
+ "initial_states_reasons": {
+  "NO_TRADE_TO_PIN_THE_CREATOR_TAX": 468,
+  "LAUNCH_CONFIG_NOT_PINNED": 0,
+  "CREATOR_TAX_UNREADABLE": 17
+ },
+ "request_units": {
+  "eth_blockNumber": {
+   "attempts": 1,
+   "units": 1,
+   "errors": 0
+  },
+  "eth_call": {
+   "attempts": 0,
+   "units": 0,
+   "errors": 0
+  },
+  "eth_chainId": {
+   "attempts": 1,
+   "units": 1,
+   "errors": 0
+  },
+  "eth_getBlockByNumber": {
+   "attempts": 4283,
+   "units": 8564,
+   "errors": 0
+  },
+  "eth_getLogs": {
+   "attempts": 2650,
+   "units": 5300,
+   "errors": 0
+  }
+ },
+ "request_attempts": 6935,
+ "request_units_total": 13866,
+ "loopback_attempts": 6935,
+ "remote_attempts": 0,
+ "range_retreats": [],
+ "errors": 0,
+ "files": {
+  "cursor.json": {
+   "sha256": "9089d09c660e4012665f93565de66b507a075cb8e34c1da61d3879177b9a6f1a",
+   "bytes": 257
+  },
+  "discovery.json": {
+   "sha256": "7dfff20353174645b7647f4e56ebdb460f07f28ef5ca02b4d738371fd4323d0c",
+   "bytes": 4679738
+  },
+  "events.jsonl": {
+   "sha256": "ecd79064264873e8001f1b3c158f694197664879bd0b6980b347a805b52d4bdc",
+   "bytes": 494785809
+  },
+  "headers.jsonl": {
+   "sha256": "15e298a403e53701cdeea465b9690320810d5eceed36e5aa203c58805fbad3f4",
+   "bytes": 885664
+  },
+  "initial_states.json": {
+   "sha256": "59d620609b976eacf3fdf3b0685934c2a3e2318a93b5ca6a7544d3069b43ec36",
+   "bytes": 4331305
+  },
+  "raw.jsonl": {
+   "sha256": "9c7c3b801e96f04bf9d8f98eb212f830f5f8f1bc8e2055d4cedffeabbe468d58",
+   "bytes": 465083945
+  }
+ }
+}

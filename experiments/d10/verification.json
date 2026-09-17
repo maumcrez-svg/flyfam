@@ -1,0 +1,122 @@
+{
+ "version": "d10-verification-1",
+ "at": "2026-09-12T04:03:44.408950Z",
+ "endpoint": "<rpc-endpoint>",
+ "endpoint_source": {
+  "env_file": ".env",
+  "env_key": "CHAINSTACK_RPC_HTTPS_KEYED",
+  "note": "read by key name at runtime; never stored"
+ },
+ "max_requests": 20,
+ "chain_id_expected": 4663,
+ "chain_id": 4663,
+ "code_hashes": [
+  {
+   "id": "pons-v2",
+   "address": "0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e",
+   "supported": true,
+   "status": "source-documented",
+   "expected": "0x89a27da6f703e0a7cdd4f233e7cb57604ff75b164530962d3ff7cf8483a67d84",
+   "observed": "0x89a27da6f703e0a7cdd4f233e7cb57604ff75b164530962d3ff7cf8483a67d84",
+   "match": true,
+   "empty": false,
+   "block_tag": "latest"
+  },
+  {
+   "id": "pons-v1",
+   "address": "0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb",
+   "supported": false,
+   "status": "UNSUPPORTED",
+   "expected": "0x0a62b8ed1d88d30c7b342ea8361dfaf0ac336706992cf0c8ba38b129f06391d4",
+   "observed": "0x0a62b8ed1d88d30c7b342ea8361dfaf0ac336706992cf0c8ba38b129f06391d4",
+   "match": true,
+   "empty": false,
+   "block_tag": "latest"
+  }
+ ],
+ "head": {
+  "number": 60807542,
+  "hash": "0xec65d83c9f02ffffa1d4bfe4cf7ea2389120e6cbf0d47d770805c90e591fbde9",
+  "timestamp": 1789185825
+ },
+ "safe_tag": {
+  "supported": true,
+  "detail": {
+   "number": 60801426,
+   "hash": "0x397677bd42b37c36d2e9cacc6d9b29b8cfad1e74b4f16515e5e07e331e1df62e"
+  }
+ },
+ "block_interval": {
+  "samples": [
+   {
+    "number": 60805542,
+    "timestamp": 1789185623
+   },
+   {
+    "number": 60806542,
+    "timestamp": 1789185722
+   },
+   {
+    "number": 60807542,
+    "timestamp": 1789185825
+   }
+  ],
+  "median_s": 0.101
+ },
+ "launch_rate": {
+  "topic0": "0x8d4aad4953d0ca700d468f3753aa14432d1b35b43ec6409f051fb6aa43a89607",
+  "signature": "TokenLaunched(address,address,address,address,uint256,uint256)",
+  "factory": "0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e",
+  "ranges": [
+   {
+    "from": 60804542,
+    "to": 60805542,
+    "logs": 17
+   },
+   {
+    "from": 60805543,
+    "to": 60806543,
+    "logs": 13
+   },
+   {
+    "from": 60806544,
+    "to": 60807542,
+    "logs": 14
+   }
+  ],
+  "blocks_covered": 3001,
+  "seconds_covered": 303.101,
+  "launches": 44,
+  "per_hour": 522.5980778684333
+ },
+ "documentation_says": "v2 docs: \"public launches are closed, so only whitelisted addresses can create a token for now\"",
+ "errors": [],
+ "stopped": null,
+ "cleared_halt": {
+  "at": "2026-09-12T04:02:37.806402Z",
+  "reason": "PROVIDER_QUOTA",
+  "run_id": "d10-verify",
+  "cleared_at": "2026-09-12T04:03:44.401551Z",
+  "cleared_by": "d10-verify",
+  "why": "halt recorded by the first version of the halt path, which did not preserve the provider message; re-verifying once with the message captured and a bounded 3000-block log span"
+ },
+ "block_number": 60807537,
+ "finality": {
+  "median_block_interval_s": 0.101,
+  "confirm_seconds": 60,
+  "confirm_depth_blocks": 594,
+  "safe_tag_supported": true,
+  "headers_sampled": 3,
+  "rule": "a block is confirmed when it is at least confirm_depth behind head, and \u2014 when the endpoint answers the safe tag \u2014 also at or below safe"
+ },
+ "requests": {
+  "attempts": 11,
+  "units": 30,
+  "wave_attempts": 23,
+  "remaining": {
+   "wave": 9977,
+   "run": 9,
+   "day": 9977
+  }
+ }
+}

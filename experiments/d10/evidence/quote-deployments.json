@@ -1,0 +1,26 @@
+{
+  "chainId": 4663,
+  "v4Quoter": "0x8dc178efb8111bb0973dd9d722ebeff267c98f94",
+  "status": "runtime-hash-observed-manager-matched",
+  "source": "https://sourcify.dev/server/v2/contract/4663/0x8dc178efb8111bb0973dd9d722ebeff267c98f94?fields=abi,sources",
+  "matchId": "47290713",
+  "runtimeMatch": "match",
+  "verifiedAt": "2026-09-08T09:38:16Z",
+  "expectedCodeHash": "0xd707b1da8cb165e5ea35a3b4450d971eb562ec171e23492aa117036b78a868f6",
+  "observedBlock": "58380615",
+  "observedBlockHash": "0x0ee09a1c7ba63dc9f092b53cc46463868e2a9389c96e63f4d56e1a0113d09d4d",
+  "sources": [
+    {
+      "path": "docs/evidence/PonsV2BondingCurve.sourcify.sol",
+      "sha256": "9e19cebed3b4ac659b9e3406fe3f8139ff8d59eb1da6e76bd9cbab915cd12684"
+    },
+    {
+      "path": "docs/evidence/PonsV2BondingCurveMath.sol",
+      "sha256": "e4486d95391daf7b3925219766307d3c7c78db80304bd824241f379146e59e58"
+    },
+    {
+      "path": "docs/evidence/V4Quoter.sol",
+      "sha256": "0466f1e83d6362836c0b5256996d13e222a33a2b2810d7992d32a84753a8c0ef"
+    }
+  ]
+}

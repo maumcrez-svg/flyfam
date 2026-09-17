@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 440" fill="none">
+<defs><linearGradient id="body" x1="225" y1="80" x2="304" y2="340" gradientUnits="userSpaceOnUse"><stop stop-color="#515953"/><stop offset=".4" stop-color="#202925"/><stop offset="1" stop-color="#111a17"/></linearGradient><linearGradient id="wing" x1="80" y1="80" x2="290" y2="290" gradientUnits="userSpaceOnUse"><stop stop-color="#ffffff" stop-opacity=".96"/><stop offset=".55" stop-color="#d7e6df" stop-opacity=".75"/><stop offset="1" stop-color="#97b5a8" stop-opacity=".5"/></linearGradient><radialGradient id="eye"><stop stop-color="#fb6a4c"/><stop offset=".6" stop-color="#df3f32"/><stop offset="1" stop-color="#7c2426"/></radialGradient><pattern id="facets" width="10" height="9" patternUnits="userSpaceOnUse"><path d="M0 3 5 0 10 3v3L5 9 0 6Z" stroke="#531f21" stroke-opacity=".32" stroke-width=".8"/></pattern><clipPath id="eyes"><ellipse cx="225" cy="172" rx="38" ry="46" transform="rotate(-22 225 172)"/><ellipse cx="291" cy="166" rx="38" ry="46" transform="rotate(19 291 166)"/></clipPath></defs>
+<!-- Six articulated legs: a fly, not a four-legged mascot. -->
+<g stroke="#26302a" stroke-linecap="round" stroke-linejoin="round"><path d="m232 216-61-25-30-51-26-8m133 104-80 5-54 32-28-5m162-10-49 59-18 43-24 8m136-156 60-30 20-55 25-12m-94 122 74-8 58 26 27-9m-143-1 61 48 24 45 24 5" stroke-width="7"/><path d="m138 142-10 8m39 88-7-12m43 83-12-5m164-130 10 5m-16 48 9-11m-2 81 13-3" stroke-width="2"/></g>
+<ellipse cx="267" cy="290" rx="46" ry="69" transform="rotate(-5 267 290)" fill="url(#body)" stroke="#19241e" stroke-width="3"/>
+<g stroke="#859383" stroke-opacity=".42" stroke-width="2"><path d="M225 271q42 20 80-5m-79 25q39 17 79-4m-74 25q34 13 66-3m-54 21q20 9 40-1"/></g>
+<path d="M246 234C219 185 156 95 85 79 57 73 48 92 59 119c21 50 104 108 187 115Z" fill="url(#wing)" stroke="#a4b9aa" stroke-width="2"/>
+<path d="M278 232c20-55 75-149 145-171 26-8 38 11 30 39-15 54-92 116-175 132Z" fill="url(#wing)" stroke="#a4b9aa" stroke-width="2"/>
+<g stroke="#8fa99b" stroke-opacity=".65" stroke-width="1.5"><path d="m247 234-171-138m157 119-124-70-35-32m109 50-20-54m-36 38-32-4m146 83-125-31m163 37L433 79m-143 134 118-80 27-31m-97 58 16-48m35 36 32-9m-134 90 126-43"/></g>
+<ellipse cx="259" cy="226" rx="42" ry="45" fill="url(#body)" stroke="#19241e" stroke-width="3"/>
+<path d="M245 198q-12 31 2 53m21-54q16 30 4 53" stroke="#687463" stroke-opacity=".5" stroke-width="2"/>
+<path d="m237 210-8-4m9 14-10 1m11 10-9 5m49-20 10-4m-10 14 11 2m-11 9 8 6" stroke="#253328" stroke-width="2"/>
+<ellipse cx="258" cy="172" rx="66" ry="54" fill="#25332a"/>
+<ellipse cx="225" cy="172" rx="38" ry="46" transform="rotate(-22 225 172)" fill="url(#eye)" stroke="#202920" stroke-width="4"/>
+<ellipse cx="291" cy="166" rx="38" ry="46" transform="rotate(19 291 166)" fill="url(#eye)" stroke="#202920" stroke-width="4"/>
+<g clip-path="url(#eyes)"><path d="M175 115h165v110H175z" fill="url(#facets)"/></g>
+<ellipse cx="216" cy="152" rx="9" ry="15" transform="rotate(-20 216 152)" fill="#ffc0a0" fill-opacity=".5"/>
+<ellipse cx="282" cy="145" rx="9" ry="15" transform="rotate(20 282 145)" fill="#ffc0a0" fill-opacity=".5"/>
+<path d="m248 135-8-28-18-9m45 34 7-27 17-12" stroke="#243128" stroke-width="4" stroke-linecap="round"/><circle cx="221" cy="98" r="4" fill="#263329"/><circle cx="292" cy="93" r="4" fill="#263329"/>
+<path d="m250 189 9 17 10-18" fill="#6b7762" stroke="#1b291e" stroke-width="3"/>
+<g stroke="#26332a" stroke-width="1.3"><path d="m222 317-7 8m9-25-10 4m82 8 9 5m-12 14 8 8m-55 12-3 9m23-9 4 9m-30-210-5-10m42 7 4-10"/></g>
+</svg>

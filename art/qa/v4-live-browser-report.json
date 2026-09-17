@@ -1,0 +1,26 @@
+{
+  "chromium": {
+    "page_errors": [],
+    "connection": "LIVE \u00b7 MARKET 12s AGO",
+    "mode": "TRADE MODE",
+    "return": "\u22126.55%",
+    "position": "pons-live:2600011439",
+    "route": null,
+    "mobile": [
+      390,
+      430
+    ]
+  },
+  "webkit": {
+    "page_errors": [],
+    "connection": "LIVE \u00b7 MARKET 14s AGO",
+    "mode": "TRADE MODE",
+    "return": "\u22126.55%",
+    "position": "pons-live:2600011439",
+    "route": null,
+    "mobile": [
+      390,
+      430
+    ]
+  }
+}

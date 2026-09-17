@@ -1,0 +1,282 @@
+{
+  "config_version": "flytrade-d9b-config-1",
+  "plan": "experiments/d9b/PLAN.md",
+  "committed_alone_before_any_run": true,
+  "amendment": "docs/SPEC.md, D9(b) canonical amendment (owner, 2026-09-11) plus the fourteen Fable addenda",
+  "wave": "D9(b)",
+  "label": "RETROSPECTIVE COMPARISON ON PREVIOUSLY EXAMINED DATES",
+  "not_a_holdout": "every date below was already examined by D7 and D8. This is not a new untouched holdout and no report may call it one.",
+
+  "exit_policy": "fixed_hold",
+  "exit_policy_values": {
+    "neural_or_horizon": "D7/D5/D6 behaviour, the default: a decoded SELL while holding closes the position (NEURAL_SELL), and the horizon closes it otherwise (POLICY_CLOSE)",
+    "fixed_hold": "this wave: a decoded SELL while holding is refused by the execution policy with RejectReason.FIXED_HOLD and closes nothing; the position closes only at the declared horizon, labelled CloseReason.POLICY_CLOSE_FIXED_HOLD"
+  },
+
+  "reused_artifacts_sha256": {
+    "data/market/IBM_1min_unadjusted.txt": "b1ace385f069764c6030f1c292595548166c2478e0390284f1875507e2673db9",
+    "data/malecns-v1.0/graph.npz": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+    "experiments/d7/config.json": "e7e1e6eb1d2d5f2953acbba8d606d34c9db70cafd9be9eb6edc922aec6c7a555",
+    "the registered horizon artifact": "bb494cac316edefb4d9e8146894e2630cc12ca4831b4f5f6841d6acbe0639c52",
+    "withheld probe table": "108f11a9e80634885dc0ad64e0855b4118a3f48b2723cc53e41a88b93d5f5c46",
+    "withheld d7 context summary": "f37b1dc56a0f2c6806f367a370c08cc9da9060732cf3ca9f07f5cbec131ab867",
+    "experiments/d7/PROTOCOL.md": "746c4dd18329cc59337eeba920fbbad734dbb0808e0a8cdb2f91749ddf7b67bd",
+    "experiments/d7/evaluate.py": "e8f83f6a5317d42d35508670e781a59cef80020674c17bf3b377f66564c5a504",
+    "experiments/k8_readout/baseline_k8.json": "ff421806b8b6e3b2b08c5cfe0a5e669c438b5fd44b1bd769b44d5cd0443546a1",
+    "experiments/historical/run.py": "e391a476186e0b11e89ea4dcf14b1483016c7caf64f652b7b4ac8ba26bdd8bda"
+  },
+  "reused_artifacts_note": "experiments/historical/run.py is hashed as it stood at commit edcd71d, the loop D7 ran. Commit (2) of this wave adds the exit_policy routing to it and the hash therefore moves; nothing else in the list may move, and experiments/d7/evaluate.py and withheld probe table must be byte-identical at the end of the wave.",
+
+  "dataset": {
+    "label": "HISTORICAL_MARKET",
+    "vendor": "Kibot free one-minute intraday samples",
+    "manifest": "data/MANIFEST.md",
+    "adjustment": "unadjusted",
+    "downloaded_for_this_wave": false,
+    "committed": false,
+    "redistributed": false,
+    "note": "the same file D5/D6/D7/D8 hashed; no new download, no rolling sample, no substitution"
+  },
+
+  "instruments": [
+    {
+      "symbol": "IBM",
+      "stable_id": 0,
+      "file": "IBM_1min_unadjusted.txt",
+      "sha256": "b1ace385f069764c6030f1c292595548166c2478e0390284f1875507e2673db9",
+      "bytes": 1243177,
+      "rows": 23777,
+      "adjustment": "unadjusted"
+    }
+  ],
+  "instruments_used": 1,
+
+  "window": { "first": "2026-06-15", "last": "2026-07-31", "inclusive": true },
+
+  "partitions": {
+    "WARMUP": {
+      "first": "2026-06-15", "last": "2026-07-02", "sessions": 13,
+      "neural": false, "learning": false, "forgetting": false,
+      "note": "feature initialisation only; no brain is run and no decision is written. Identical to D7."
+    },
+    "LEARNING": {
+      "first": "2026-07-06", "last": "2026-07-17", "sessions": 10,
+      "neural": true, "learning": true, "forgetting": false,
+      "note": "the complete sequential decision/outcome/learning loop under the fixed-hold exit policy at H = 90"
+    },
+    "FROZEN": {
+      "first": "2026-07-20", "last": "2026-07-31", "sessions": 10,
+      "neural": true, "learning": false, "forgetting": false,
+      "note": "two branches, frozen_trained and frozen_reference; learning and forgetting off; end digest must equal start digest"
+    }
+  },
+  "holidays_in_window": ["2026-06-19", "2026-07-03"],
+  "partitions_unchanged_from": "experiments/d7/config.json",
+
+  "horizon": {
+    "H": 90,
+    "unit": "elapsed market minutes",
+    "source": "the registered horizon artifact, selected_horizon_minutes",
+    "artifact_sha256": "bb494cac316edefb4d9e8146894e2630cc12ca4831b4f5f6841d6acbe0639c52",
+    "artifact_config_sha256": "e7e1e6eb1d2d5f2953acbba8d606d34c9db70cafd9be9eb6edc922aec6c7a555",
+    "recalibrated": false,
+    "note": "amendment section 1: reuse the previously selected H. No recalibration, no new date window, no search."
+  },
+
+  "anchor": {
+    "rule": "the exit is the open of the first available bar with bar_start >= the ENTRY FILL minute + H, in the same session",
+    "primitive": "flytrade.horizon.locate",
+    "shared_with": ["flytrade.historical.HistoricalExecution.close under POLICY_CLOSE and POLICY_CLOSE_FIXED_HOLD",
+                    "flytrade.horizon.Hold, the evaluator's label",
+                    "the WARMUP calibration's g(t,H)"],
+    "not": "the decision minute + H, and not the decision minute + delay + H measured from the decision",
+    "entry": "the open of the first available bar with bar_start >= decision minute + delay, same session; delay = 1, unchanged",
+    "same_bar_hindsight": false
+  },
+
+  "brain": {
+    "clean_reference_checkpoint": {
+      "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+      "plastic_synapses": 44042,
+      "gain": 1.0,
+      "state_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+      "note": "amendment section 1: start from the clean reference checkpoint used for the original experiment, never from the D7 trained brain"
+    },
+    "gain": 0.10,
+    "steps": 100,
+    "window_ms": 20
+  },
+
+  "readout": {
+    "k": 8,
+    "namespace_learning": "flytrade-k8-round-1",
+    "baseline_artifact": "experiments/k8_readout/baseline_k8.json",
+    "baseline_loaded_exactly": true,
+    "theta_sd": 1.0,
+    "aggregation": "mean of per-neuron rates over the k replicates, decoder applied once"
+  },
+
+  "seeds": {
+    "LEARNING": {
+      "schedule": "D4, unchanged",
+      "namespace": "flytrade-k8-round-1",
+      "rule": "sha256(namespace:state_digest:observation_id:stable_id:replicate_index)[:8]",
+      "keyed_to_learned_state": true,
+      "one_schedule_only": "one preregistered training seed schedule; no search over training seeds and no retained winner"
+    },
+    "FROZEN": {
+      "schedule": "comparison_v1",
+      "namespace": "comparison_v1",
+      "rule": "sha256(namespace:observation_id:stable_id:replicate_index)[:8]",
+      "keyed_to_learned_state": false,
+      "identical_in_both_branches": true,
+      "why": "amendment section 5: seeds must not depend on the checkpoint's weight digest, so a difference between branches is a difference in weights and not in noise"
+    }
+  },
+
+  "execution": {
+    "policy": "flytrade.historical.HistoricalExecution, v1 numbers preserved",
+    "notional": 1000.0,
+    "initial_cash": 10000.0,
+    "max_open_positions": 1,
+    "long_only": true,
+    "fee_bps": 5.0,
+    "slippage_bps": 5.0,
+    "cost_basis": "per execution (charged on the entry and again on the exit)",
+    "delay_minutes": 1,
+    "delay_unit": "market minutes",
+    "horizon_minutes": 90,
+    "horizon_source": "the registered horizon artifact",
+    "entry_eligibility": "bar_end(t) + 1 market minute + H <= 16:00 on the same session",
+    "session_close_rule": "a position still open at its instrument's last available bar of the session closes at that bar's close, flagged SESSION_CLOSE_FILL and counted as an exceptional closure",
+    "sequencing_guard": "an entry may not fill before the previous exit filled",
+    "no_invented_fills": "a due fill or settlement without a valid price is a recorded Rejection, never a fabricated price and never a dropped episode",
+    "reconciliation": "gross_reference_pnl - fees - slippage = net_pnl, residual 0 to 1e-6",
+    "reinforce_full_scale": 0.01,
+    "reinforce_cap": 1.0,
+    "unchanged": "costs, sizing, delay, long-only inventory, session-boundary rules, decoder, thresholds, gain, k, MBON membership and the normalised learning rule are exactly D7's. The single permitted behavioural change in this wave is the exit policy."
+  },
+
+  "closures": {
+    "ordinary": ["POLICY_CLOSE_FIXED_HOLD"],
+    "exceptional_counted_apart": ["SESSION_CLOSE_FILL", "END_OF_DATA"],
+    "forbidden_under_this_flag": ["NEURAL_SELL"],
+    "rule": "only POLICY_CLOSE_FIXED_HOLD is an exact-H outcome. An exceptional closure keeps its own label and its own accounting, is reported separately, is never described as an exact-H outcome and is never silently discarded."
+  },
+
+  "reinforcement": {
+    "updates_per_completed_episode": 1,
+    "attributed_to": "the entry decision's stored eligibility trace set (eligibility_source = replayed_from_decision)",
+    "not_attributed_to": "any observation made while the position was open",
+    "no_intermediate_pnl_reward": true,
+    "no_counterfactual_reward_for_skipped_entries": true,
+    "no_reward_from_a_blocked_sell": true,
+    "no_repeated_punishment_for_one_open_position": true,
+    "rule": "the existing net-outcome rule and costs, unchanged"
+  },
+
+  "evaluation": {
+    "code": "experiments/d9b/evaluate.py, importing probe_grid, labels and frozen_decisions from experiments/d7/evaluate.py without modifying it",
+    "d7_probes_json_must_stay_byte_identical": true,
+    "probe": "the ordinary per-round readout, extracted from the two FROZEN event logs after both branches finished; no runtime hook and no second neural pass",
+    "score": "DECISION.valence_hz, the decoder's continuous centred V, before thresholding and before inventory constraints",
+    "statuses_scored": ["VALID", "NO_RESPONSE", "POLICY_REJECT"],
+    "statuses_excluded": ["INVALID_STATE", "DATA_GAP", "STALE_DATA", "WARMUP"],
+    "grid_rule": "observation status OK and (m + 1) + delay + H <= 390, computed from the session calendar and the price file before either event log is opened",
+    "label": "G(t) = net return on notional of a hypothetical fixed-notional long entered under the existing fill convention and held H market minutes, including unchanged costs; Y(t) = 1 when G(t) > 0",
+    "label_unavailable": "UNAVAILABLE_LABEL, counted; never invented and never replaced by a loss",
+    "primary_metric": "DELTA_AUC = mean across qualifying sessions of [AUC_TRAINED - AUC_REFERENCE]",
+    "auc": "pairwise, ties at 0.5 credit; a one-class session is undefined, not 0.5",
+    "min_per_class": 10,
+    "min_qualifying_sessions": 5,
+    "min_coverage": 0.95,
+    "bootstrap_draws": 2000,
+    "bootstrap_seed": 3219987367,
+    "bootstrap_seed_label": "sha256('flytrade-d7-bootstrap-1')[:4] as a big-endian unsigned integer, the D7 seed, reused unchanged",
+    "bootstrap_unit": "whole qualifying sessions, both branches kept paired",
+    "top_fraction": 0.20,
+    "top_fraction_fixed": "0.20 is fixed and no percentile is searched over",
+    "actual_trading_reported_separately_from_probe_labels": true,
+    "conclusions": ["A: context-discrimination evidence in this experiment",
+                    "B: suppression without demonstrated discrimination improvement",
+                    "C: inconclusive"],
+    "positive_delta_alone_insufficient": "if TRAINED remains at or below chance-level ranking"
+  },
+
+  "target_alignment_invariant": {
+    "statement": "for every completed POLICY_CLOSE_FIXED_HOLD outcome, the realised net PnL equals flytrade.horizon.Hold.net_pnl for the same decision minute, H, delay, notional and costs",
+    "tolerance_net_pnl": 1e-9,
+    "tolerance_basis": "float rounding only; the two computations use the same two reference prices and the same arithmetic, so the difference is expected to be exactly 0.0 and the tolerance is a float guard, not a modelling allowance",
+    "reported": "per episode, with the maximum absolute difference; never assumed",
+    "failure_result": "INVARIANT_BROKEN, reported as such, no conclusion drawn from the AUCs"
+  },
+
+  "expected_activity_before_the_run": {
+    "entry_eligibility_last_minute": 298,
+    "chain_arithmetic": "a decision at minute m fills at m+1 and closes at m+91; the next decision is at m+92, fills at m+93 and closes at m+183. D7's log shows the first usable observation of a LEARNING session at market minute 20, so the chain is 20 -> 111, 112 -> 203, 204 -> 295, 296 -> 387, and a fifth entry would need a decision at minute 388 > 298.",
+    "max_completed_episodes_per_session": 4,
+    "max_completed_episodes_per_branch": 40,
+    "expected_fewer_because": "an entry also needs a decoded BUY inside the open window, and vendor gaps delay fills. D7 executed 42 LEARNING entries over 3,699 rounds under an exit policy that released the inventory after 1 to 19 minutes.",
+    "correction_to_fable_addendum_5": "addendum 5 states at most 3 episodes per session and at most 30 per branch. The arithmetic above gives 4 and 40. The corrected bound is recorded here, before the run, so it cannot be read as a result.",
+    "comparison_d7": {"learning_trades": 42, "frozen_trained_trades": null,
+                      "note": "D7's frozen branches are reported in withheld d7 frozen summary; they are not a target for this wave"}
+  },
+
+  "inconclusive_rule_stated_before_the_run": {
+    "learning": "fewer than 10 completed LEARNING episodes -> INCONCLUSIVE for the learning side",
+    "evaluation": "fewer than 5 qualifying FROZEN sessions under D7's rule (>= 10 of each label class, paired coverage >= 0.95) -> INCONCLUSIVE for the frozen comparison",
+    "either_fires": "the wave reports INCONCLUSIVE plainly and draws no conclusion about discrimination in either direction",
+    "no_manufactured_activity": "the dates, the decoder, the thresholds and the seeds are not changed to produce more trades"
+  },
+
+  "stop_conditions": {
+    "eligibility_after_90_rounds": "PROVEN BEFORE THE RUN. tests/d9b/test_eligibility_replay.py settles one stored k=8 trace set after 1 and after 90 full intervening k=8 decision rounds and asserts an identical LearningEvent and identical gains. Had it failed, the wave would have stopped before any run: changing decay or eligibility is a science change the owner has not authorised.",
+    "invariant_broken": "if any completed POLICY_CLOSE_FIXED_HOLD outcome differs from its Hold label by more than 1e-9 in net PnL, the run is reported as INVARIANT_BROKEN and no AUC conclusion is drawn",
+    "digest_moved": "if a FROZEN branch's end digest differs from its start digest, that branch is void",
+    "artifact_moved": "if any sha256 in reused_artifacts_sha256, other than the shared loop amended by commit (2), differs at the end of the wave, the run is discarded"
+  },
+
+  "allowed_conclusions": {
+    "negative": "no improvement detected under the fixed-hold policy on these periods",
+    "positive": "evidence of context discrimination in this experiment; NOT general trading ability, NOT profitability, NOT skill",
+    "inconclusive": "too few completed episodes or qualifying sessions under the rule above",
+    "forbidden": [
+      "any phrasing of the form 'the fly learned'",
+      "inferring the realised reward rate from the 36.6 % LEARNING-grid positive base rate: selected entries and occupied inventory change which episodes occur",
+      "rewriting D7 conclusion B or any D8 conclusion",
+      "calling these dates a pristine or untouched holdout",
+      "reading a negative scientific result as an engineering-gate failure"
+    ]
+  },
+
+  "runs": {
+    "id_format": "d9b-NNN",
+    "directory": "experiments/d9b/runs/<run_id>/",
+    "gitignored": true,
+    "stages": ["learn", "frozen"],
+    "branches": ["learned", "frozen_trained", "frozen_reference"],
+    "restart_after_settled_episodes": 3,
+    "retry_rule": "a retry after a software correction gets a new run id; the failed run's directory and its explanation are kept and reported",
+    "discard_rule": "a run started before the commit of this file is discarded and said to be discarded",
+    "d7_and_d8_untouched": true
+  },
+
+  "frozen_and_not_decided_by_this_run": [
+    "H = 90",
+    "k = 8", "gain 0.10", "the 20 ms / 100-step window",
+    "the encoder mapping, normalisation algorithm and bounds",
+    "MBON membership: 29 avoid, 16 approach",
+    "the decoder formula, its sign and THETA_SD = 1.0",
+    "the stored k = 8 baseline artifact",
+    "one normalised learning update per settled outcome",
+    "episode-specific credit assignment",
+    "long-only inventory-aware execution, sizing, fees, modelled slippage and delay",
+    "session-boundary rules",
+    "upstream/ and tests/upstream_audit/",
+    "experiments/d7/ and experiments/d8/"
+  ],
+  "success_is_not": ["profitability", "more BUY actions", "more reward events", "a preferred reward/punishment balance"],
+  "no_parameter_changes_after_observing_results": true,
+  "no_repeated_seeds_or_periods_selected_for_a_favourable_outcome": true,
+  "profitability_is_not_a_gate_metric": true
+}

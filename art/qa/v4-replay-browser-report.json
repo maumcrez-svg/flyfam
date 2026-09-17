@@ -1,0 +1,38 @@
+{
+  "chromium": {
+    "page_errors": [],
+    "api_methods": [
+      "GET"
+    ],
+    "episode": "pons-live:974003809",
+    "close_seq": 51886,
+    "credit_seq": 51887,
+    "chart": "6 observed paper marks. Last observed \u221290.11%. Peak +97.00%. Trough \u221290.11%. Gaps are not interpolated. Intermediate observations are omitted; this view preserves observed extrema and the latest point.",
+    "points": 102,
+    "net_return": -0.9010721839560887,
+    "route": "PONS_V4",
+    "share_card": true,
+    "mobile": [
+      390,
+      430
+    ]
+  },
+  "webkit": {
+    "page_errors": [],
+    "api_methods": [
+      "GET"
+    ],
+    "episode": "pons-live:974003809",
+    "close_seq": 51886,
+    "credit_seq": 51887,
+    "chart": "6 observed paper marks. Last observed \u221290.11%. Peak +97.00%. Trough \u221290.11%. Gaps are not interpolated. Intermediate observations are omitted; this view preserves observed extrema and the latest point.",
+    "points": 102,
+    "net_return": -0.9010721839560887,
+    "route": "PONS_V4",
+    "share_card": true,
+    "mobile": [
+      390,
+      430
+    ]
+  }
+}

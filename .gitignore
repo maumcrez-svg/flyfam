@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+
+# Secrets and local env
+.env
+*.env
+!experiments/d11/local_node.env
+!product/*.env.example
+
+# Connectome data and derived graphs: CC-BY, large, never committed.
+# Provenance lives in data/MANIFEST.md.
+data/*/
+!data/MANIFEST.md
+*.feather
+*.npz
+!brains/trader-v1/brain.npz
+!upstream/assets/gains_ui.npz
+
+# Live product runtime
+data/pons/live/
+
+# Experiment run stores (event logs, checkpoints, grid row files)
+experiments/**/runs/**/*.jsonl
+experiments/**/runs/**/*.npz
+experiments/**/runs/**/*.log
+experiments/phase_one/run/
+experiments/k8_readout/run/
+experiments/k8_readout/bench/
+experiments/d11/backfill.out
+experiments/d11/backfill_progress.json
+
+# Upstream build artifacts
+upstream/build/
+upstream/data/
+upstream/.env
+upstream/node_modules/
+build/

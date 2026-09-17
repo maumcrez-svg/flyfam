@@ -1,0 +1,25 @@
+{
+ "version": "d11-001-labels-1",
+ "rows": 5177,
+ "settled": 5021,
+ "unresolved": 156,
+ "unresolved_reasons": {
+  "ROUTE_TRANSITION:SELL": 156
+ },
+ "positive": 488,
+ "negative": 4533,
+ "positive_share": 0.09719179446325434,
+ "net_eth": {
+  "min": -0.009194190143402593,
+  "max": 0.03321692451636823,
+  "median": -0.0006656518616560818,
+  "mean": -0.0013935387838404896
+ },
+ "definition": "a hypothetical buy of 10^16 wei at cutoff + 2 s through PonsPaperExecution.plan_buy on a fresh execution object, the position's own reserve delta carried as the loop carries it, the exit priced by plan_sell at entry_fill_block_timestamp + 900 s; net = quote_out - spent - gas_buy - gas_sell - approval, positive iff net > 0. Unresolved (route transition, coverage) or a QuoteError is UNRESOLVED, excluded from the AUC and counted.",
+ "creates_no_trade": true,
+ "alters_no_bankroll": true,
+ "produces_no_reinforcement": true,
+ "known_answer_test": "tests/d11/test_label.py, the 16 settled D10 entries",
+ "elapsed_s": 7.6,
+ "labels_path": "./experiments/d11/runs/d11-001/grid/labels.jsonl"
+}

@@ -1,0 +1,61 @@
+{
+ "version": "d11-001-grid-scores-1",
+ "branch": "school",
+ "checkpoint": "./experiments/d12/runs/d12-001/school/brain.npz",
+ "start_digest": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+ "end_digest": "29d22e83b9004c90180e193237078a2431eec188b3c0f12e92b8fdf211b99613",
+ "digest_unchanged": true,
+ "clean_reference_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+ "rows": 5177,
+ "readout": {
+  "version": "flytrade-readout-1",
+  "k": 8,
+  "namespace": "comparison_v1",
+  "seed_bits": 64,
+  "seed_rule": "sha256(comparison_v1:observation_id:stable_id:replicate_index)[:8]",
+  "aggregation": "mean of per-neuron rates, decoder applied once",
+  "kc_fraction": "max over replicates",
+  "max_rate_hz": "max over replicates",
+  "decoder": {
+   "version": "flytrade-action-1",
+   "baseline_hz": -0.844389816810345,
+   "theta_hz": 0.9117185769796697,
+   "theta_sd": 1.0,
+   "baseline_sd_hz": 3.241438214716715,
+   "max_kc_fraction": 0.25,
+   "saturated_hz": 431.81818181818176
+  },
+  "decoder_per_replicate": {
+   "version": "flytrade-action-1",
+   "baseline_hz": -2.303340517241379,
+   "theta_hz": 3.241438214716715,
+   "theta_sd": 1.0,
+   "baseline_sd_hz": 3.241438214716715,
+   "max_kc_fraction": 0.25,
+   "saturated_hz": 431.81818181818176
+  },
+  "keyed_to_learned_state": false,
+  "why": "amendment section 6: the stimulus realisation must not change because the weights differ"
+ },
+ "decoder": {
+  "version": "flytrade-action-1",
+  "baseline_hz": -0.844389816810345,
+  "theta_hz": 0.9117185769796697,
+  "theta_sd": 1.0,
+  "baseline_sd_hz": 3.241438214716715,
+  "max_kc_fraction": 0.25,
+  "saturated_hz": 431.81818181818176
+ },
+ "status": {
+  "NO_RESPONSE": 1161,
+  "VALID": 4016
+ },
+ "action": {
+  "NO_RESPONSE": 1161,
+  "SELL": 742,
+  "WAIT": 3272,
+  "BUY": 2
+ },
+ "elapsed_s": 1095.8,
+ "scores_path": "./experiments/d12/runs/d12-001/grid/scores_school.jsonl"
+}

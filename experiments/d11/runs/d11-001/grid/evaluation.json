@@ -1,0 +1,341 @@
+{
+ "version": "d11-001-evaluation-1",
+ "run_id": "d11-001",
+ "dataset": "d11-backfill-v1",
+ "window": {
+  "rule": "twelve contiguous hours ending at the confirmed head at probe time; end_block = min(head - confirm_depth, safe), start_block = the smallest block whose timestamp is at least timestamp(end_block) - 43200",
+  "head_block": 61671056,
+  "safe_block": 61663368,
+  "confirm_depth_blocks": 591,
+  "first_block": 61237774,
+  "last_block": 61663368,
+  "safe_block_used_as_end": true,
+  "blocks": 425595,
+  "first_ts": 1789229564,
+  "last_ts": 1789272764,
+  "seconds": 43200,
+  "window_seconds_requested": 43200,
+  "minutes": 720.0,
+  "median_block_interval_s": 0.10149559411114202,
+  "admission_minutes": 705,
+  "admission_blocks": 416767,
+  "admission_last_block": 61654540,
+  "settlement_tail_minutes": 15,
+  "bisection_steps": 19,
+  "first_ts_utc": "2026-09-12T16:12:44Z",
+  "last_ts_utc": "2026-09-13T04:12:44Z",
+  "overlaps_d10_backfill_v1": false,
+  "d10_backfill_v1": {
+   "first_block": 60721229,
+   "last_block": 60801426,
+   "first_ts": 1789181856,
+   "last_ts": 1789190005,
+   "label": "d10-backfill-v1"
+  },
+  "resolved_at": "2026-09-13T04:25:42.167700Z"
+ },
+ "split": {
+  "rule": "t0 = timestamp(start_block), t1 = timestamp(end_block), T = t0 + floor(0.7 * (t1 - t0)) snapped down to the 30-second tick grid anchored at t0",
+  "t0": 1789229564,
+  "t1": 1789272764,
+  "T": 1789259804,
+  "span_s": 43200,
+  "learning_share": 0.7,
+  "cadence_s": 30,
+  "latency_s": 2,
+  "horizon_s": 900,
+  "settle_s": 902,
+  "slot_s": 932,
+  "learning_ticks": 1009,
+  "learning_first_tick": 1789229564,
+  "learning_last_tick": 1789259804,
+  "learning_last_entry_tick": 1789258874,
+  "learning_entry_rule": "an entry is allowed only if cutoff + 902 <= T",
+  "frozen_ticks": 402,
+  "frozen_first_tick": 1789259804,
+  "frozen_last_tick": 1789271834,
+  "frozen_tick_rule": "T <= cutoff and cutoff + 902 <= t1",
+  "temporal_blocks": [
+   {
+    "block": 1,
+    "from_ts": 1789259804,
+    "to_ts": 1789263814,
+    "ticks": 134,
+    "first_tick": 1789259804,
+    "last_tick": 1789263794
+   },
+   {
+    "block": 2,
+    "from_ts": 1789263814,
+    "to_ts": 1789267824,
+    "ticks": 134,
+    "first_tick": 1789263824,
+    "last_tick": 1789267814
+   },
+   {
+    "block": 3,
+    "from_ts": 1789267824,
+    "to_ts": 1789271834,
+    "ticks": 134,
+    "first_tick": 1789267844,
+    "last_tick": 1789271834
+   }
+  ]
+ },
+ "rows": 5177,
+ "rows_valid_in_both": 5168,
+ "paired_neural_coverage": 0.9982615414332625,
+ "paired_labelled_rows": 5013,
+ "missing_joins": {},
+ "class_balance": {
+  "positive": 488,
+  "negative": 4525
+ },
+ "saturation": {
+  "definition": "computed offline from the logged normalised vectors u = tanh(raw / scale). flytrade.encoder.MarketToSensoryEncoder.weights clips u to [-1, 1] (flytrade/encoder.py:228) and never logs that it did, so saturation is read off the vector: a channel is SATURATED when |u| >= 1 - 1e-12, which is where the clip bites and where float64 tanh has already reached 1.0 (|raw/scale| >~ 19.06).",
+  "rows": 5177,
+  "channels_per_row": 10,
+  "row_channel_pairs": 51770,
+  "saturated_row_channel_pairs": 1460,
+  "saturated_row_channel_fraction": 0.02820166119374155,
+  "rows_with_at_least_one": 1424,
+  "rows_with_at_least_one_fraction": 0.2750627776704655
+ },
+ "invalid_state": {
+  "counts": {
+   "trained": 0,
+   "reference": 0
+  },
+  "rates": {
+   "trained": 0.0,
+   "reference": 0.0
+  }
+ },
+ "primary": {
+  "overall": {
+   "n": 5013,
+   "positive": 488,
+   "negative": 4525,
+   "clusters": 1042,
+   "auc_trained": 0.41157911421066934,
+   "auc_reference": 0.5884543972466262,
+   "spearman_trained": -0.08671304626204117,
+   "spearman_reference": -0.05809553911456245,
+   "delta_auc": -0.17687528303595684,
+   "interval": {
+    "point": -0.17687528303595684,
+    "resamples": 10000,
+    "kept": 10000,
+    "lo": -0.21803023379939399,
+    "hi": -0.12458117966781102,
+    "level": 0.95,
+    "seed": 20260913,
+    "clusters": 1042,
+    "degenerate": false
+   },
+   "wording": "delta AUC (trained - reference) is -0.1769, 95 % interval [-0.2180, -0.1246] \u2014 an interval that excludes 0"
+  },
+  "per_block": [
+   {
+    "block": 1,
+    "from_ts": 1789259804,
+    "to_ts": 1789263814,
+    "n": 1772,
+    "positive": 208,
+    "negative": 1564,
+    "clusters": 396,
+    "auc_trained": 0.37391335087546723,
+    "auc_reference": 0.5820089637025379,
+    "delta_auc": -0.20809561282707062,
+    "interval": {
+     "point": -0.20809561282707062,
+     "resamples": 10000,
+     "kept": 10000,
+     "lo": -0.26957065001992137,
+     "hi": -0.11388880600530288,
+     "level": 0.95,
+     "seed": 20260913,
+     "clusters": 396,
+     "degenerate": false
+    },
+    "wording": "block 1 delta AUC is -0.2081, 95 % interval [-0.2696, -0.1139] \u2014 an interval that excludes 0"
+   },
+   {
+    "block": 2,
+    "from_ts": 1789263814,
+    "to_ts": 1789267824,
+    "n": 1825,
+    "positive": 165,
+    "negative": 1660,
+    "clusters": 389,
+    "auc_trained": 0.4358050383351588,
+    "auc_reference": 0.5761664841182913,
+    "delta_auc": -0.14036144578313248,
+    "interval": {
+     "point": -0.14036144578313248,
+     "resamples": 10000,
+     "kept": 10000,
+     "lo": -0.19600978460335955,
+     "hi": -0.02466063038292105,
+     "level": 0.95,
+     "seed": 20260913,
+     "clusters": 389,
+     "degenerate": false
+    },
+    "wording": "block 2 delta AUC is -0.1404, 95 % interval [-0.1960, -0.0247] \u2014 an interval that excludes 0"
+   },
+   {
+    "block": 3,
+    "from_ts": 1789267824,
+    "to_ts": 1789271834,
+    "n": 1416,
+    "positive": 115,
+    "negative": 1301,
+    "clusters": 305,
+    "auc_trained": 0.44287003308491796,
+    "auc_reference": 0.6182167563412759,
+    "delta_auc": -0.17534672325635797,
+    "interval": {
+     "point": -0.17534672325635797,
+     "resamples": 10000,
+     "kept": 10000,
+     "lo": -0.29935913133729836,
+     "hi": -0.0421288076593832,
+     "level": 0.95,
+     "seed": 20260913,
+     "clusters": 305,
+     "degenerate": false
+    },
+    "wording": "block 3 delta AUC is -0.1753, 95 % interval [-0.2994, -0.0421] \u2014 an interval that excludes 0"
+   }
+  ]
+ },
+ "suppression": {
+  "theta_hz": 0.9117185769796697,
+  "rows_valid_in_both": 5168,
+  "buy_rate_trained": 0.0,
+  "buy_rate_reference": 0.35294117647058826,
+  "action_counts": {
+   "trained": {
+    "SELL": 4899,
+    "WAIT": 269,
+    "NO_RESPONSE": 9
+   },
+   "reference": {
+    "SELL": 749,
+    "BUY": 1824,
+    "WAIT": 2595,
+    "NO_RESPONSE": 9
+   }
+  },
+  "status_counts": {
+   "trained": {
+    "VALID": 5168,
+    "NO_RESPONSE": 9
+   },
+   "reference": {
+    "VALID": 5168,
+    "NO_RESPONSE": 9
+   }
+  },
+  "score": {
+   "trained": {
+    "mean": -3.4838348515733424,
+    "sd": 1.5444188407508597,
+    "min": -8.463261045258621,
+    "p25": -4.557011045258621,
+    "median": -3.5198343211206886,
+    "p75": -2.4287782866379306,
+    "max": 0.6288725754310347
+   },
+   "reference": {
+    "mean": 0.5803598237162381,
+    "sd": 1.5576922831060693,
+    "min": -3.4390153556034484,
+    "p25": -0.5025929418103445,
+    "median": 0.37294585129310365,
+    "p75": 1.4235924030172418,
+    "max": 8.872407058189655
+   }
+  },
+  "per_block": [
+   {
+    "block": 1,
+    "n": 1853,
+    "buy_rate_trained": 0.0,
+    "buy_rate_reference": 0.36157582298974633
+   },
+   {
+    "block": 2,
+    "n": 1864,
+    "buy_rate_trained": 0.0,
+    "buy_rate_reference": 0.33905579399141633
+   },
+   {
+    "block": 3,
+    "n": 1451,
+    "buy_rate_trained": 0.0,
+    "buy_rate_reference": 0.35975189524465884
+   }
+  ],
+  "by_outcome_class": {
+   "positive": {
+    "n": 488,
+    "buy_rate_trained": 0.0,
+    "buy_rate_reference": 0.47950819672131145
+   },
+   "negative": {
+    "n": 4525,
+    "buy_rate_trained": 0.0,
+    "buy_rate_reference": 0.3376795580110497
+   }
+  },
+  "score_difference": {
+   "mean": -4.06419467528958,
+   "sd": 2.188506156624021,
+   "median": -3.90625,
+   "min": -13.631465517241377,
+   "max": 0.04040948275862055
+  },
+  "class_contrast": {
+   "point": 0.14182863871026175,
+   "resamples": 10000,
+   "kept": 10000,
+   "lo": 0.08480605239817698,
+   "hi": 0.19500642909136082,
+   "level": 0.95,
+   "seed": 20260913,
+   "clusters": 1042,
+   "degenerate": false
+  },
+  "class_contrast_wording": "the between-class difference of the trained-minus-reference change in the BUY-crossing rate is +0.1418, 95 % interval [+0.0848, +0.1950] \u2014 an interval that excludes 0",
+  "reading": "contextual (larger drop in the positive class)"
+ },
+ "statistics_plan": {
+  "primary": "dAUC = AUC(TRAINED) - AUC(REFERENCE), over rows VALID in both branches that carry a settled label",
+  "auc": "Mann-Whitney U / (n_pos * n_neg), ties counted one half",
+  "uncertainty": {
+   "method": "paired cluster bootstrap by stable_id \u2014 a token's rows move together",
+   "resamples": 10000,
+   "seed": 20260913,
+   "interval": "percentile 95 %",
+   "reported": "overall and per temporal block"
+  },
+  "wording_rule": "an interval that includes 0 is reported as 'compatible with sampling variation'; one that does not is reported with its bounds. Never 'significant', never 'proves', no rate asserted as measured. An AUC near 0.5 is not evidence that no signal exists.",
+  "secondary_descriptive": [
+   "Spearman(score, net) per branch and their difference",
+   "the distribution of the per-row score difference TRAINED - REFERENCE"
+  ],
+  "suppression": {
+   "on_the_grid": "BUY-crossing rate (valence > theta) per branch, overall, per block and by later outcome class",
+   "preregistered_reading": "the between-class difference of the trained-minus-reference change, with the same clustered interval: 'global' if that interval includes 0, 'contextual' if it excludes 0 with the larger drop in the negative class. Nothing else is said in words.",
+   "a_lower_buy_rate_alone_is_not_learning_success": true
+  },
+  "known_answer_tests": [
+   "AUC 1, 0 and 0.5 on perfect, reversed and constant toy data",
+   "ties counted one half",
+   "identical branches -> dAUC exactly 0",
+   "a one-cluster bootstrap is degenerate"
+  ]
+ }
+}

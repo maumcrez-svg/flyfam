@@ -1,0 +1,226 @@
+{
+  "config_version": "flytrade-d8-config-1",
+  "plan": "experiments/d8/PLAN.md",
+  "committed_alone_before_any_d8_number": true,
+  "amendment": "docs/SPEC.md, D8 canonical amendment (owner, 2026-09-11), its owner rationale, and the thirteen Fable addenda 0-12",
+  "wave": "D8",
+  "label": "RETROSPECTIVE DIAGNOSTIC — D7 RESULTS PREVIOUSLY OBSERVED",
+  "evaluator_only": true,
+  "no_neural_run": true,
+  "no_download": true,
+  "flytrade_unmodified": true,
+
+  "artifacts": {
+    "withheld probe table": "108f11a9e80634885dc0ad64e0855b4118a3f48b2723cc53e41a88b93d5f5c46",
+    "the registered horizon artifact": "bb494cac316edefb4d9e8146894e2630cc12ca4831b4f5f6841d6acbe0639c52",
+    "experiments/d7/config.json": "e7e1e6eb1d2d5f2953acbba8d606d34c9db70cafd9be9eb6edc922aec6c7a555",
+    "withheld d7 context summary": "f37b1dc56a0f2c6806f367a370c08cc9da9060732cf3ca9f07f5cbec131ab867",
+    "data/market/IBM_1min_unadjusted.txt": "b1ace385f069764c6030f1c292595548166c2478e0390284f1875507e2673db9",
+    "experiments/d7/runs/d7-001/learned/events.jsonl": "f24748be0c5af63e1e794a698c7e987d56e4cfb7cbcfe95411e887b2de876206",
+    "experiments/d7/runs/d7-001/frozen_trained/events.jsonl": "e5a2a4351608791732b03a250f7701f9309d1c67f0dea0d21d1543c608763e21",
+    "experiments/d7/runs/d7-001/frozen_reference/events.jsonl": "df8fdb223196b17e8376ecac1cd08d9932fd14ca2d06ca73f2bead2c3a70f87d",
+    "experiments/d7/runs/d7-001/learned/brain.npz": "bafb87839b8fe1657e169cb4d4d3320adfc4b0b87da5588a637d3bd2d6635ba6",
+    "experiments/d7/runs/d7-001/frozen_trained/brain.npz": "2b713cea00152449a3059d8d396a11ddb4b778895a68fc72f7cd8504a529192a",
+    "experiments/d7/runs/d7-001/frozen_reference/brain.npz": "9c85fe87dd8f0b9e1fb57f7f8869fe08ea07825dfb742b4591c39ba450ba3e6b"
+  },
+  "artifacts_rehashed_at_close": true,
+
+  "partitions": {
+    "fitting": {
+      "partition": "D7 LEARNING",
+      "first": "2026-07-06", "last": "2026-07-17", "sessions": 10,
+      "log": "experiments/d7/runs/d7-001/learned/events.jsonl"
+    },
+    "evaluation": {
+      "partition": "D7 FROZEN",
+      "first": "2026-07-20", "last": "2026-07-31", "sessions": 10,
+      "stimulus_log": "experiments/d7/runs/d7-001/frozen_reference/events.jsonl",
+      "stimulus_cross_check_log": "experiments/d7/runs/d7-001/frozen_trained/events.jsonl",
+      "rows": "withheld probe table as stored"
+    }
+  },
+
+  "grids": {
+    "fitting_rule": "PROTOCOL.md D7 section 6 applied to the ten LEARNING sessions: a market minute whose HistoricalSeries observation status is OK and which satisfies the clock rule (m + 1) + delay + H <= 390, and whose H = 90 label is available from flytrade.horizon.hold on the price file. Independent of positions, trades and inventory.",
+    "evaluation_rule": "withheld probe table rows exactly as stored, 2790 reconciled as 279 per session over 10 sessions; Y as stored.",
+    "delay_minutes": 1,
+    "H": 90,
+    "join_key": ["session", "minute"],
+    "unmatched_rows": "a grid row with no DECISION event at its (session, minute) is excluded and counted; coverage is reported",
+    "temporal_order_test": "max exit_ts over the fitting rows must be strictly less than min market_ts over the evaluation rows, asserted from the data"
+  },
+
+  "target": {
+    "G": "net return on notional of a hypothetical fixed-notional LONG entered under the flytrade.horizon fill convention (entry = open of the first available bar with bar_start >= t + 1 market minute, same session; exit = open of the first available bar with bar_start >= entry_minute + 90, same session) and held H = 90 market minutes, with the original cost constants",
+    "Y": "1 when G > 0, else 0",
+    "notional": 1000.0,
+    "fee_bps": 5.0,
+    "slippage_bps": 5.0,
+    "source_fitting": "computed by flytrade.horizon.hold from the price file",
+    "source_evaluation": "Y as stored in withheld probe table",
+    "analysis_only": "no learning event, no bankroll change, never summed into an executable PnL"
+  },
+
+  "representations": {
+    "X_FEATURES": {
+      "dim": 5,
+      "order": ["r1", "r5", "r20", "rv20", "relvol"],
+      "source": "DECISION.observation.normalized, one value per feature name",
+      "units": "dimensionless, u = tanh(z / 2) in (-1, 1), z the causal z-score over the trailing 60 usable rows ending at the cutoff",
+      "stored_precision": "full float64 as written by flytrade.market.MarketObservation.as_dict"
+    },
+    "X_SENSORY": {
+      "dim": 10,
+      "order": ["VL2a", "VM5d", "DL1", "VL1", "VM4", "DM3", "DM6", "V", "DM2", "DA2"],
+      "channel_pairs": {"r1": ["VL2a", "VM5d"], "r5": ["DL1", "VL1"], "r20": ["VM4", "DM3"], "rv20": ["DM6", "V"], "relvol": ["DM2", "DA2"]},
+      "orn_count": {"VL2a": 98, "VM5d": 84, "DL1": 83, "VL1": 82, "VM4": 78, "DM3": 63, "DM6": 58, "V": 55, "DM2": 54, "DA2": 48},
+      "source": "DECISION.stimulus.rates_hz, the deterministic per-glomerulus ORN drive before Bernoulli spike sampling",
+      "units": "Hz per ORN",
+      "stored_precision": "rounded to 4 decimals by flytrade.encoder.Stimulus.as_dict",
+      "sequence": "none: the encoder emits one constant rate vector per presentation, held over the 20 ms window; the amendment's ordered-sequence clause is satisfied vacuously",
+      "not_features": ["n_orns", "total_drive_hz"]
+    },
+    "excluded_by_rule": ["ticker or date identifiers", "brain outputs", "learned-state hashes", "account state", "rewards", "future labels", "new technical indicators"]
+  },
+
+  "verification": {
+    "stored_is_primary": true,
+    "reconstruction": "both representations are rebuilt from the price file with flytrade.historical.HistoricalSeries.observe and flytrade.encoder.MarketToSensoryEncoder, which see only bars of the same session at minutes <= m, i.e. bar_end <= market_ts",
+    "tolerance": 1e-12,
+    "comparison": "X_FEATURES compared at full precision; X_SENSORY compared after applying the same round(x, 4) the stored artifact applies, and the unrounded maximum absolute difference is reported as well",
+    "on_mismatch": "STOP. The mismatch count is reported and no model is fitted.",
+    "frozen_trained_cross_check": "the frozen_trained log must carry an identical stimulus on every shared evaluation row; the count is reported"
+  },
+
+  "preprocessing": {
+    "rows": "no imputation, no clipping, no winsorising; a row with any non-finite value in either representation is excluded and counted",
+    "LINEAR": "sklearn.preprocessing.StandardScaler fitted on the fitting rows only, applied unchanged to the evaluation rows",
+    "NONLINEAR": "no scaling; the representation enters the tree ensemble as stored",
+    "reported": ["finite-value coverage", "constant channels", "clipping", "exact dimensions"]
+  },
+
+  "models": {
+    "count": 4,
+    "families": {
+      "LINEAR": {"scaler": "StandardScaler(fitted on fitting rows only)", "estimator": "sklearn.linear_model.LogisticRegression", "C": 1.0, "solver": "lbfgs", "max_iter": 2000, "penalty": "l2", "class_weight": null, "feature_selection": "none", "report": "n_iter_ per fit; a ConvergenceWarning is reported, never silenced, and max_iter is never raised"},
+      "NONLINEAR": {"estimator": "sklearn.ensemble.HistGradientBoostingClassifier", "learning_rate": 0.1, "max_iter": 100, "max_depth": 3, "max_leaf_nodes": 8, "min_samples_leaf": 20, "l2_regularization": 1.0, "early_stopping": false, "random_state": 8, "class_weight": null}
+    },
+    "representations": ["X_FEATURES", "X_SENSORY"],
+    "score": "predict_proba(...)[:, 1], the continuous probability of Y = 1",
+    "primary": "NONLINEAR on X_SENSORY",
+    "secondary": ["LINEAR on X_FEATURES", "LINEAR on X_SENSORY", "NONLINEAR on X_FEATURES"],
+    "no_tuning": "no parameter search, no extra families, no seed search, no model selected by evaluation performance",
+    "determinism": {"OMP_NUM_THREADS": "1", "test": "two consecutive fits of each family on a fixture produce identical scores"},
+    "isolation": "these are external measurement tools with supervised access to historical labels; they are not biological models, their results are never attributed to the fly, and they have no runtime path to the decoder, orders, reward, plasticity or observer decisions"
+  },
+
+  "orientation": {
+    "scope": ["the five scalar features", "PC1 of X_SENSORY"],
+    "rule": "raw AUC on the fitting rows; sign = +1 if that AUC >= 0.5, else -1",
+    "fitting_only": true,
+    "artifact": "experiments/d8/orientation.json",
+    "written_before_any_evaluation_auc": true,
+    "reporting": "raw AND oriented per-session AUC; never max(AUC, 1 - AUC)"
+  },
+
+  "pca": {
+    "method": "numpy.linalg.svd on the fitting-centred X_SENSORY",
+    "centring": "fitting mean subtracted; no scaling",
+    "whitening": false,
+    "fitted_on": "fitting rows only",
+    "recorded": ["explained variance ratio", "the ten loadings", "the sign convention"],
+    "sign_convention": "the component is signed so that its largest-magnitude loading is positive; the target-based orientation sign is a separate factor chosen on fitting rows only",
+    "degenerate": "a constant or rank-deficient representation makes the PC1 line read 'degenerate' rather than a number"
+  },
+
+  "evaluation_metric": {
+    "auc": "flytrade.metrics.roc_auc, midranks, ties at 0.5 credit, one class undefined (None) and never 0.5",
+    "min_per_class": 10,
+    "aggregate": "equal-session mean AUC over qualifying evaluation sessions",
+    "reported": ["fitting and evaluation row counts", "unique sessions", "class counts", "per-session AUC", "equal-session mean AUC", "coverage", "exclusions"],
+    "paired": "comparisons between X_FEATURES, X_SENSORY and the fly use the same paired evaluation rows and show paired counts",
+    "matched_participation": "NOT computed for D8; flytrade.metrics.matched_participation is not called",
+    "max_auc_flip": "forbidden"
+  },
+
+  "bootstrap": {
+    "draws": 2000,
+    "unit": "whole qualifying evaluation session",
+    "no_fitting_inside": true,
+    "level": {
+      "what": "for each of the four models, each oriented feature and PC1: 2000 whole-session draws, mean AUC per draw, 2.5-97.5 percent interval",
+      "seed_label": "flytrade-d8-bootstrap-1",
+      "seed": 2954118192,
+      "implementation": "experiments/d8/bootstrap.py, unit-tested on a fixture against flytrade.metrics.paired_session_bootstrap"
+    },
+    "paired": {
+      "what": "paired deltas on identical rows and sessions, each diagnostic minus the REFERENCE fly and minus the TRAINED fly, the diagnostic in the first slot",
+      "seed_label": "flytrade-d8-paired-1",
+      "seed": 1942182944,
+      "implementation": "flytrade.metrics.paired_session_bootstrap"
+    },
+    "interpretation": "descriptive and conditional on this dataset and this model fit; minute probes with overlapping 90-minute labels are not independent examples; secondary intervals are not simultaneous family-wise evidence"
+  },
+
+  "alignment_audit": {
+    "source": "the LEARNING event log, parsed through flytrade.records",
+    "episodes": "the ROUND -> DECISION -> EXECUTION -> OUTCOME -> LEARNING chains of the LEARNING partition",
+    "columns": ["entry time", "information cutoff", "actual exit time", "actual exit reason", "actual holding duration", "gross actual outcome", "net actual outcome", "actual reinforcement sign", "hypothetical net outcome at H = 90 when available", "hypothetical fixed-H label"],
+    "hypothetical": "flytrade.horizon.hold at the original decision minute with the original cost constants; its entry fill must equal the actual entry fill price on every episode and the count is reported",
+    "summaries": ["exits before H", "actual versus fixed-H outcome signs", "proportion of sign disagreements", "counts and magnitude of costs", "hypothetical-label availability", "min/median/max actual holding minutes", "sign disagreements split by actual sign"],
+    "artifacts": ["withheld d8 alignment table", "experiments/d8/alignment.md"],
+    "forbidden": "no weight update, no replayed reward, no account change, no rewriting of the original events, and the hypothetical outcomes are never booked as portfolio PnL",
+    "caveat": "these counterfactuals reuse the original entry times; they do not simulate the trades a fixed-hold policy would have taken, because that policy changes inventory and later entry opportunities. This audit measures alignment, not whether fixed-hold training would succeed."
+  },
+
+  "dependency": {
+    "extra": "diagnostics",
+    "pin": "scikit-learn==1.9.1",
+    "resolved_against": {"python": "3.13.9", "numpy": "2.4.2", "scipy": "1.17.1"},
+    "unchanged": "numpy, scipy, pandas and pyarrow are not moved; the main dependencies list is untouched",
+    "transitive": ["joblib==1.6.0", "threadpoolctl==3.6.0", "cloudpickle==3.1.2", "narwhals==2.26.0"],
+    "tests_import_sklearn_directly": "no importorskip; the gate fails loudly if the extra is missing"
+  },
+
+  "isolation": {
+    "no_direct_import_of": ["flytrade.execution", "flytrade.runner", "flytrade.mushroom", "flytrade.state", "flytrade.readout"],
+    "observer": "observer/serve.py contains no path under experiments/d8",
+    "d7_untouched": "nothing is written under experiments/d7/; the three d7-001 event logs and checkpoints are sha256-hashed before and after the wave and both sets appear in results.md",
+    "byte_identity_guard": "re-running experiments/d7/evaluate.py must reproduce withheld-probe-table and context_summary.json byte-identically, and git diff --stat -- experiments/d7 must be empty"
+  },
+
+  "allowed_conclusions": {
+    "sections": ["INPUT DIAGNOSTICS", "TARGET ALIGNMENT", "NEXT-STEP RECOMMENDATION"],
+    "readings": [
+      "detectable ranking from X_SENSORY but not from the fly: supports investigating learning, readout or target alignment; does not prove which component caused the difference",
+      "ranking from X_FEATURES but not X_SENSORY: motivates inspecting encoding or diagnostic model mismatch; does not by itself prove irreversible information loss",
+      "no stable ranking detected: 'no detectable signal with these methods on these periods', never 'nothing can learn from these inputs'"
+    ],
+    "forbidden": [
+      "declaring a discovery by selecting the best column or the one interval that excludes 0.5",
+      "attributing any diagnostic result to the fly",
+      "describing these evaluation dates as a pristine holdout",
+      "rewriting D7 as a success; its conclusion B stands",
+      "launching option (c)"
+    ],
+    "recommendation": "bounded, not an automatic authorisation; a negative D8 does not prohibit fixed-hold experiments and a positive D8 does not guarantee they work"
+  },
+
+  "boundaries_reproduced_verbatim_in_results": "docs/SPEC.md, D8 amendment section 2, the five statements, at the head of the conclusions",
+
+  "delivery": {
+    "commit_order": [
+      "experiments/d8/PLAN.md + config.json, alone",
+      "pyproject.toml optional extra diagnostics",
+      "grids + stored-vs-reconstructed verification",
+      "orientation.json + feature/PC1 table",
+      "the four joint models",
+      "the target-alignment audit",
+      "results.md + report.py",
+      "HANDOFF block"
+    ],
+    "tests": "tests/d8/, committed with the section they test",
+    "gate": ".venv/bin/python -m pytest tests/ twice, only at close",
+    "data_out_of_git": "data/*/ and experiments/d7/runs/ stay gitignored; D8 writes only small JSON tables and markdown; a derived table above ~1 MB is gitignored and its hash recorded"
+  }
+}

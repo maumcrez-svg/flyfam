@@ -1,0 +1,38 @@
+{
+  "mobile": {
+    "chromium-390": {
+      "timer_bottom": 779.890625,
+      "overflow": false,
+      "page_errors": []
+    },
+    "chromium-430": {
+      "timer_bottom": 764.890625,
+      "overflow": false,
+      "page_errors": []
+    },
+    "webkit-390": {
+      "timer_bottom": 777,
+      "overflow": false,
+      "page_errors": []
+    },
+    "webkit-430": {
+      "timer_bottom": 762,
+      "overflow": false,
+      "page_errors": []
+    }
+  },
+  "performance": {
+    "initial_resource_transfer_bytes": 1924721,
+    "steady_transfer_bytes_per_minute": 823975.7228135883,
+    "sample_seconds": 20.00039508898044,
+    "browser_task_cpu_fraction": 0.007295355884264086,
+    "js_heap_used_bytes": 2491500,
+    "source": "STATIC CANONICAL REHEARSAL; not a live-market load test"
+  },
+  "artifacts": {
+    "visible_downloads": [
+      "REPLAY 16:9 \u2193",
+      "REPLAY 9:16 \u2193"
+    ]
+  }
+}

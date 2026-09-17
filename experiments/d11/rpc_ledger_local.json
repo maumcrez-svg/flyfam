@@ -1,0 +1,74 @@
+{
+  "attempts": 9122,
+  "by_day": {
+    "2026-09-13": {
+      "attempts": 9122,
+      "errors": 13,
+      "last_error": "RPC_ERROR_-32000",
+      "units": 16825
+    }
+  },
+  "by_method": {
+    "eth_blockNumber": {
+      "attempts": 3,
+      "errors": 0,
+      "units": 3
+    },
+    "eth_call": {
+      "attempts": 664,
+      "errors": 11,
+      "last_error": "RPC_ERROR_-32000",
+      "units": 693
+    },
+    "eth_chainId": {
+      "attempts": 6,
+      "errors": 2,
+      "last_error": "RPC_TRANSPORT_FAILED",
+      "units": 6
+    },
+    "eth_getBlockByNumber": {
+      "attempts": 5309,
+      "errors": 0,
+      "units": 10203
+    },
+    "eth_getLogs": {
+      "attempts": 3140,
+      "errors": 0,
+      "units": 5920
+    }
+  },
+  "by_run": {
+    "d11-001-backfill": {
+      "attempts": 6961,
+      "errors": 0,
+      "units": 13915
+    },
+    "d11-001-probe": {
+      "attempts": 34,
+      "errors": 13,
+      "last_error": "RPC_ERROR_-32000",
+      "units": 60
+    },
+    "d11-001-state-substitution": {
+      "attempts": 634,
+      "errors": 0,
+      "units": 634
+    },
+    "d11-live-001": {
+      "attempts": 1493,
+      "errors": 0,
+      "units": 2216
+    }
+  },
+  "caps": {
+    "day": 22200,
+    "run": 3000,
+    "wave": 22200
+  },
+  "endpoint_class": "loopback",
+  "errors": 13,
+  "halted": null,
+  "scope": "loopback",
+  "units": 16825,
+  "version": "d10-rpc-ledger-1"
+}

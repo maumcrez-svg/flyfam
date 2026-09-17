@@ -1,0 +1,121 @@
+{
+  "source_sha256": "876a1dd39ab2ac46dccbf47434b3d9c8d588895f850b9725caddc335a6448c33",
+  "original_vertices": 74062,
+  "triangles": 93660,
+  "legs": {
+    "L": {
+      "base_vertices": 1947,
+      "collar_vertices": 191,
+      "joint_names": [
+        "FrontLeg_Upper_L",
+        "FrontLeg_Lower_L",
+        "FrontLeg_Foot_L",
+        "FrontLeg_Toe_L"
+      ],
+      "centers": [
+        [
+          -0.22,
+          0.325,
+          -0.083
+        ],
+        [
+          -0.315,
+          0.205,
+          -0.045
+        ],
+        [
+          -0.425,
+          0.066,
+          0.001
+        ],
+        [
+          -0.44,
+          0.024,
+          0.057
+        ]
+      ],
+      "foreign_arm_weight_after": 0.0
+    },
+    "R": {
+      "base_vertices": 2157,
+      "collar_vertices": 359,
+      "joint_names": [
+        "FrontLeg_Upper_R",
+        "FrontLeg_Lower_R",
+        "FrontLeg_Foot_R",
+        "FrontLeg_Toe_R"
+      ],
+      "centers": [
+        [
+          0.22,
+          0.325,
+          -0.067
+        ],
+        [
+          0.317,
+          0.205,
+          -0.017
+        ],
+        [
+          0.407,
+          0.067,
+          0.054
+        ],
+        [
+          0.42,
+          0.026,
+          0.106
+        ]
+      ],
+      "foreign_arm_weight_after": 0.0
+    }
+  },
+  "rest_geometry_unchanged": true,
+  "max_weight_sum_error": 1.7881393432617188e-07,
+  "joints_after": 46,
+  "max_bind_identity_error": 4.204284129727398e-07,
+  "pose_isolation": {
+    "FrontLeg_Upper_L": {
+      "L": 0.12346051517361115,
+      "R": 0.0,
+      "outside_corrected_regions": 0.0
+    },
+    "FrontLeg_Lower_L": {
+      "L": 0.0800973748044034,
+      "R": 0.0,
+      "outside_corrected_regions": 0.0
+    },
+    "FrontLeg_Upper_R": {
+      "L": 0.0,
+      "R": 0.1280013235841449,
+      "outside_corrected_regions": 0.0
+    },
+    "FrontLeg_Lower_R": {
+      "L": 0.0,
+      "R": 0.08327805007878228,
+      "outside_corrected_regions": 0.0
+    },
+    "Bone_019": {
+      "L": 0.0,
+      "R": 0.0,
+      "outside_corrected_regions": 0.17433670338102766
+    },
+    "Bone_023": {
+      "L": 0.0,
+      "R": 0.0,
+      "outside_corrected_regions": 0.18092445021341505
+    },
+    "Bone_009": {
+      "L": 0.0,
+      "R": 0.0,
+      "outside_corrected_regions": 0.11071299039590987
+    },
+    "Bone_013": {
+      "L": 0.0,
+      "R": 0.0,
+      "outside_corrected_regions": 0.11340989489749062
+    }
+  },
+  "rigged_bytes": 59337384,
+  "web_bytes": 10493540
+}

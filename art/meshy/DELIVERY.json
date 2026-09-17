@@ -1,0 +1,18 @@
+{
+  "original": {
+    "bytes": 60520972,
+    "sha256": "876a1dd39ab2ac46dccbf47434b3d9c8d588895f850b9725caddc335a6448c33"
+  },
+  "master": {
+    "bytes": 59337384,
+    "sha256": "331ef9e2a41133325acb3333bb361f8011d52821b3de829251282f01475cd0b3"
+  },
+  "web": {
+    "bytes": 10493540,
+    "sha256": "68629b48d82eec8e2374a6a0f31bafc9b98cb3b6344f0d36bc1e3cd4c21fa363"
+  },
+  "poster": {
+    "bytes": 122625,
+    "sha256": "495d0dba18a7f8e694e527e63dd75a6b625909c6cbe0fb0ea3eb4f4060fa0909"
+  }
+}

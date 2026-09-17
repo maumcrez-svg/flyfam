@@ -1,0 +1,77 @@
+{
+  "version": "d10-deployments-1",
+  "chain_id": 4663,
+  "network": "Robinhood Chain",
+  "native_asset": "ETH",
+  "quote_asset_supported": "0x0000000000000000000000000000000000000000",
+  "source": "https://docs.ponsfamily.com/ and https://docs.ponsfamily.com/v2, cross-checked against the donor manifest at ~/Documentos/PONS/config/deployments.json (sha256 34db176fa34fe4d3b548fb9581b189310dc1b5db33bf3a9b286e82ddc4e4c064)",
+  "abi_provenance": {
+    "event_evidence": "experiments/d10/evidence/event-evidence.json",
+    "read_abi": "experiments/d10/evidence/pons-v2-read-abi.json",
+    "curve_source": "experiments/d10/evidence/PonsV2BondingCurve.sourcify.sol",
+    "curve_math_source": "experiments/d10/evidence/PonsV2BondingCurveMath.sol",
+    "pons_source_commit": "8b9bf371030279133017b5c1b713823f5889c5d2",
+    "sourcify_match": "43289536"
+  },
+  "deployments": [
+    {
+      "id": "pons-v2",
+      "adapter": "curve",
+      "address": "0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e",
+      "role": "launch factory",
+      "expected_code_hash": "0x89a27da6f703e0a7cdd4f233e7cb57604ff75b164530962d3ff7cf8483a67d84",
+      "status": "source-documented",
+      "supported": true,
+      "quote_assets": ["0x0000000000000000000000000000000000000000"],
+      "lifecycle": "one constant-product bonding curve per launch, phantom quote reserve, base fee + creator tax + decaying snipe tax, graduation when the tradable allocation is sold",
+      "start_block": null,
+      "reason": null
+    },
+    {
+      "id": "pons-v1",
+      "adapter": "uniswap-v3",
+      "address": "0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb",
+      "role": "launch factory (active v1)",
+      "expected_code_hash": "0x0a62b8ed1d88d30c7b342ea8361dfaf0ac336706992cf0c8ba38b129f06391d4",
+      "status": "UNSUPPORTED",
+      "supported": false,
+      "quote_assets": ["0x0bd7d308f8e1639fab988df18a8011f41eacad73"],
+      "lifecycle": "one Uniswap V3 pool per launch at the 1% fee tier, WETH quote, graduation when the locked pool holds 4.2 ETH, no migration",
+      "start_block": null,
+      "reason": "Uniswap V3 route, not priced this wave"
+    },
+    {
+      "id": "pons-v1-legacy",
+      "adapter": "uniswap-v3",
+      "address": "0x0c37a24f5d23a486fa692d1500881d698b1f77a4",
+      "role": "launch factory (legacy v1)",
+      "expected_code_hash": null,
+      "status": "UNSUPPORTED",
+      "supported": false,
+      "quote_assets": ["0x0bd7d308f8e1639fab988df18a8011f41eacad73"],
+      "lifecycle": "as pons-v1",
+      "start_block": null,
+      "reason": "Uniswap V3 route, not priced this wave; no code hash pinned by the donor"
+    },
+    {
+      "id": "uniswap-v4-post-graduation",
+      "adapter": "uniswap-v4",
+      "address": "0xe5e702641ea86f4ae6cc3cdaed2b886f976be044",
+      "role": "Meme Hook for the graduated V4 pool",
+      "expected_code_hash": null,
+      "status": "UNSUPPORTED-this-wave",
+      "supported": false,
+      "quote_assets": ["0x0000000000000000000000000000000000000000"],
+      "lifecycle": "post-graduation route: Uniswap V4 pool with permanently locked liquidity",
+      "start_block": null,
+      "reason": "post-graduation route is out of this wave; a position whose curve completes is UNRESOLVED(ROUTE_TRANSITION), never a loss",
+      "quoter": {
+        "address": "0x8dc178efb8111bb0973dd9d722ebeff267c98f94",
+        "expected_code_hash": "0xd707b1da8cb165e5ea35a3b4450d971eb562ec171e23492aa117036b78a868f6",
+        "evidence": "experiments/d10/evidence/quote-deployments.json",
+        "sourcify_match": "47290713",
+        "match_quality": "match, not exact_match"
+      }
+    }
+  ]
+}

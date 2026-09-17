@@ -1,0 +1,132 @@
+{
+ "version": "d11-feature-scales-1",
+ "rule_x": "RULE X, registered here before it is computed: the scale of a fitted feature is p90 of |x| over the 30-second grid points of the tokens launched in the first 60 minutes of d10-backfill-v1 at which admission_v2 admits that token at that grid point, computed causally at each grid point with the tape truncated there, rounded to two significant figures. No outcome, no post-cutoff return, no PnL and no survival is computed anywhere in the fitting, and the fit is never repeated after a run is observed. The denominator is the admitted (token, grid point) pairs; its size is recorded in experiments/d11/feature_scales_v2.json.",
+ "registered_before_this_file_ran": [
+  "experiments/d11/PLAN.md",
+  "experiments/d11/config.json"
+ ],
+ "fitted_features": [
+  "trade_count_2m",
+  "gross_volume_2m"
+ ],
+ "not_fitted_here": [
+  "age",
+  "since_last_trade",
+  "ret_30s",
+  "ret_2m",
+  "ret_5m",
+  "flow_imb_2m",
+  "rv_2m",
+  "drawdown_5m"
+ ],
+ "dataset": "d10-backfill-v1",
+ "dataset_sha256": {
+  "cursor.json": "32d55a0df694105ccacc7e3aae82c28020c6ef8a88c768f61bde0954dd36e14b",
+  "discovery.json": "70b131a5232c122efc04737f3dbff6bb956624ac1d88a03618817828db030052",
+  "events.jsonl": "3dfa76fbac31d557a6bda8633c8ee630b641fe1d103f730c24f462de828368f9",
+  "headers.jsonl": "4febc4a292bf8e74a4bae408559df15c18ec77974381ce8ec55d09d590089036",
+  "initial_states.json": "bd7e98de09f6e0890966ff33ea6db9ab3602cb13b2d2754d296933679195f2c1",
+  "raw.jsonl": "c0d0b49224422e50989c6bcd43ff5d93d2e77195abba8b5f5667e89e6d5b88f8"
+ },
+ "window": {
+  "rule": "the N minutes of blocks ending at the safe block recorded by verification.json, block count from the measured interval",
+  "safe_block": 60801426,
+  "first_block": 60721229,
+  "last_block": 60801426,
+  "blocks": 80198,
+  "minutes": 135,
+  "median_block_interval_s": 0.101,
+  "admission_minutes": 120,
+  "admission_blocks": 71287,
+  "admission_last_block": 60792515,
+  "settlement_tail_minutes": 15
+ },
+ "coverage_end_ts": 1789185205,
+ "scale_window_minutes": 60,
+ "scale_window_first_launch_ts": 1789177056,
+ "scale_window_last_launch_ts_exclusive": 1789180656,
+ "grid_seconds": 30,
+ "min_age_seconds": 60,
+ "admission": {
+  "version": "admission_v2",
+  "size_wei": "10000000000000000",
+  "latency_s": 2,
+  "horizon_s": 900,
+  "max_candidates": 6,
+  "supported_deployment": "pons-v2",
+  "quote_asset": "0x0000000000000000000000000000000000000000",
+  "require_coverage": true,
+  "recent_window_seconds": 120,
+  "minimum_valid_trades_in_window": 2,
+  "maximum_seconds_since_last_trade": 60,
+  "collector_lag_seconds": 60,
+  "minimum_age_seconds": 60,
+  "rules": [
+   "deployment is the supported pons-v2 curve route",
+   "quote asset is native ETH",
+   "age >= 60 s and the reconstructed tape answers at the cutoff",
+   "curve not completed at the cutoff",
+   "sellableTokens > 0 and realQuoteReserve > 0",
+   "the paper buy of size_wei would not exhaust the curve",
+   "cutoff + latency + horizon lies inside the token's coverage",
+   "at least minimum_valid_trades_in_window valid trades inside (cutoff - recent_window_seconds, cutoff]",
+   "the last valid trade at most maximum_seconds_since_last_trade before the cutoff"
+  ],
+  "valid_trade": "CurveBuy or CurveSell with a nonzero quote leg and a nonzero token leg, deduplicated by log id; buys and sells count the same; creation, liquidity configuration, completion and duplicated logs are not trades",
+  "removed_from_v1": "the '>= 3 trades ever' clause of pons_context_v1",
+  "rotation": "round-robin: rounds since last presentation descending, then launch block, then launch log index, then curve address; blind to price, volume, flow and outcome",
+  "reversible": "recomputed fresh at every tick; an inactive candidate returns on new qualifying activity",
+  "controls_new_entries_only": true,
+  "reason_codes": [
+   "INACTIVE",
+   "INSUFFICIENT_HISTORY",
+   "COLLECTOR_LAG",
+   "QUOTE_UNSUPPORTED",
+   "ROUTE_COMPLETED",
+   "STATE_INVALID",
+   "COVERAGE",
+   "CURVE_EXHAUSTED",
+   "DEPLOYMENT_UNSUPPORTED",
+   "ROTATED"
+  ],
+  "round_statuses": [
+   "NO_ELIGIBLE_CANDIDATES",
+   "DATA_LAG"
+  ]
+ },
+ "tokens_launched_in_the_first_hour": 275,
+ "tokens_with_at_least_one_admitted_grid_point": 248,
+ "grid_points_evaluated": 56932,
+ "grid_points_admitted": 1197,
+ "grid_point_reasons": {
+  "ADMITTED": 1197,
+  "COVERAGE": 8227,
+  "CURVE_EXHAUSTED": 1,
+  "INACTIVE": 55691,
+  "STATE_INVALID": 8
+ },
+ "statistics": {
+  "trade_count_2m": {
+   "n": 1197,
+   "median_abs": 8.0,
+   "p90_abs": 190.4000000000001,
+   "max_abs": 549.0,
+   "scale": 190.0,
+   "rule": "p90(|x|) over the admitted 30-second grid points, rounded to two significant figures (rule X)"
+  },
+  "gross_volume_2m": {
+   "n": 1197,
+   "median_abs": 0.20784852,
+   "p90_abs": 5.719441623280696,
+   "max_abs": 13.198406858504264,
+   "scale": 5.7,
+   "rule": "p90(|x|) over the admitted 30-second grid points, rounded to two significant figures (rule X)"
+  }
+ },
+ "scales": {
+  "trade_count_2m": 190.0,
+  "gross_volume_2m": 5.7
+ },
+ "no_outcome_computed": true,
+ "note": "p90 of |x| over the admitted grid points of the tokens launched in the first hour of the window. No outcome, no PnL, no post-cutoff return and no survival enters this file, and the fit is never repeated after a run is observed."
+}

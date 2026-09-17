@@ -1,0 +1,222 @@
+{
+  "config_version": "flytrade-historical-config-1",
+  "protocol": "experiments/historical/PROTOCOL.md",
+  "committed_alone_before_any_run": true,
+  "amendment": "docs/SPEC.md, D5/D6 canonical amendment (owner, 2026-09-11) plus the eleven Fable addenda",
+
+  "dataset": {
+    "label": "HISTORICAL_MARKET",
+    "vendor": "Kibot free one-minute intraday samples",
+    "source_page": "https://www.kibot.com/free-historical-intraday-data.html",
+    "format_reference": "https://www.kibot.com/file-format/data-format-reference.html",
+    "manifest": "data/MANIFEST.md",
+    "retrieved_utc": "2026-09-11T11:52Z",
+    "adjustment": "unadjusted",
+    "committed": false,
+    "redistributed": false
+  },
+
+  "instruments": [
+    {
+      "symbol": "IBM",
+      "stable_id": 0,
+      "file": "IBM_1min_unadjusted.txt",
+      "url": "https://api.kibot.com/?get=e4Vuqcxk",
+      "sha256": "b1ace385f069764c6030f1c292595548166c2478e0390284f1875507e2673db9",
+      "bytes": 1243177,
+      "rows": 23777,
+      "adjustment": "unadjusted"
+    },
+    {
+      "symbol": "OIH",
+      "stable_id": 1,
+      "file": "OIH_1min_unadjusted.txt",
+      "url": "https://api.kibot.com/?get=NaatWNJD",
+      "sha256": "12311994a99525d4f0f4aaea3a17458192f7020a9775409206fd93b805da9dad",
+      "bytes": 1027065,
+      "rows": 20373,
+      "adjustment": "unadjusted"
+    }
+  ],
+  "instrument_capacity": 6,
+  "instruments_used": 2,
+  "no_duplicated_or_renamed_series": true,
+
+  "window": { "first": "2026-08-03", "last": "2026-09-04", "inclusive": true },
+
+  "partitions": {
+    "WARMUP": {
+      "first": "2026-08-03", "last": "2026-08-14",
+      "neural": false, "learning": false, "forgetting": false,
+      "note": "features only; no brain is run and no DECISION event is written; one WARMUP status per observation"
+    },
+    "LEARNING": {
+      "first": "2026-08-17", "last": "2026-08-28",
+      "neural": true, "learning": true, "forgetting": false,
+      "note": "the complete sequential decision/outcome/learning loop"
+    },
+    "FROZEN": {
+      "first": "2026-08-31", "last": "2026-09-04",
+      "neural": true, "learning": false, "forgetting": false,
+      "note": "transient simulation on; eligibility accumulates and is never applied; OUTCOME settled for accounting as SETTLED_FROZEN; no LEARNING event; end checkpoint hash must equal start hash"
+    }
+  },
+
+  "clock": {
+    "exchange_timezone": "America/New_York",
+    "canonical_storage": "UTC",
+    "session": { "open": "09:30", "close": "16:00", "minutes": 390 },
+    "bar_timestamp_means": "bar_start (bar opening minute)",
+    "observation_instant": "bar_end = bar_start + 60 s",
+    "round_cadence": "one decision round per regular-session minute bar at which any instrument reported a bar, taken at that bar's bar_end",
+    "brain_clock": "one decision cycle per round; DECISION_CYCLE_MS = 500 from flytrade/state.py",
+    "eligibility_decay": "once per round, in brain time, via the round's restored snapshot",
+    "forgetting": "MushroomBody.forget() is not called in the loop in any partition, as in Phase One and D4",
+    "lookbacks_cross_sessions": false,
+    "feature_lookback_minutes": 20,
+    "z_window_rows": 60,
+    "max_reference_staleness_minutes": 5
+  },
+
+  "brain": {
+    "clean_reference_checkpoint": {
+      "graph_sha256": "8feb08a0d2a80cbcf69328f9707d5dd748d73d2e12246526d96e48d995f843b9",
+      "plastic_synapses": 44042,
+      "gain": 1.0,
+      "state_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+      "note": "no learning applied; not the odour-demonstration checkpoint"
+    },
+    "gain": 0.10,
+    "steps": 100,
+    "window_ms": 20
+  },
+
+  "readout": {
+    "k": 8,
+    "namespace_learning": "flytrade-k8-round-1",
+    "baseline_artifact": "experiments/k8_readout/baseline_k8.json",
+    "baseline_loaded_exactly": true,
+    "theta_sd": 1.0,
+    "aggregation": "mean of per-neuron rates over the k replicates, decoder applied once"
+  },
+
+  "seeds": {
+    "LEARNING": {
+      "schedule": "D4, unchanged",
+      "namespace": "flytrade-k8-round-1",
+      "rule": "sha256(namespace:state_digest:observation_id:stable_id:replicate_index)[:8]",
+      "keyed_to_learned_state": true
+    },
+    "FROZEN": {
+      "schedule": "comparison_v1",
+      "namespace": "comparison_v1",
+      "rule": "sha256(namespace:observation_id:stable_id:replicate_index)[:8]",
+      "keyed_to_learned_state": false,
+      "why": "amendment section 6: the comparison stimulus realisation must not change because the weights differ, so the learned-state digest is deliberately absent and both branches draw the same stream for the same observation",
+      "identical_in_both_branches": true
+    }
+  },
+
+  "execution": {
+    "policy": "flytrade.historical.HistoricalExecution, v1 numbers preserved",
+    "notional": 1000.0,
+    "initial_cash": 10000.0,
+    "max_open_positions": 1,
+    "long_only": true,
+    "fee_bps": 5.0,
+    "slippage_bps": 5.0,
+    "cost_basis": "per execution (charged on the entry and again on the exit); a completed round trip therefore costs 20 bps in total and no parameter is applied twice to one execution",
+    "delay_minutes": 1,
+    "horizon_minutes": 8,
+    "delay_unit": "market minutes",
+    "horizon_unit": "market minutes",
+    "fill_rule": "open of the first available regular-session bar with bar_start >= bar_end(decision), same session",
+    "settlement_rule": "open of the first available bar with bar_start >= fill.bar_start + horizon_minutes, same session",
+    "delayed_fill_flag": "DELAYED_FILL, with the elapsed market minutes",
+    "entry_eligibility": "bar_end(t) + 1 minute + horizon_minutes <= 16:00 on the same session (bar_start(t) <= 15:50); refused as POLICY_REJECT / SESSION_HORIZON",
+    "session_close_rule": "a position still open at its instrument's last available bar of the session is closed at that bar's close, flagged SESSION_CLOSE_FILL, close_reason POLICY_CLOSE, counted separately",
+    "sequencing_guard": "an entry may not fill before the previous exit filled",
+    "no_invented_fills": "a due fill or settlement without a valid price is a recorded Rejection, never a fabricated price and never a dropped episode",
+    "reconciliation": "gross_reference_pnl - fees - slippage = net_pnl, residual must be 0 to 1e-6",
+    "reinforce_full_scale": 0.01,
+    "reinforce_cap": 1.0
+  },
+
+  "statuses": {
+    "market": ["OK", "WARMUP", "DATA_GAP", "STALE_DATA"],
+    "readout": ["VALID", "NO_RESPONSE", "INVALID_STATE", "POLICY_REJECT"],
+    "actions": ["BUY", "SELL", "WAIT", "NO_RESPONSE"],
+    "execution": ["NEURAL_SELL", "POLICY_CLOSE", "END_OF_DATA", "DELAYED_FILL", "SESSION_CLOSE_FILL"],
+    "rejections": ["POSITION_OPEN", "NO_POSITION", "NO_FUTURE_BAR", "INSUFFICIENT_CASH", "BAD_PRICE", "SESSION_HORIZON"],
+    "round": ["ROUND_ABORTED"],
+    "never_pooled": true,
+    "denominators": [
+      "per candidate evaluation (one batch of k = 8 presentations)",
+      "per decision round (after selection among the round's candidates)",
+      "after inventory and execution constraints (what became an order)"
+    ],
+    "silent_presentations_unit": "presentation, counted separately from NO_RESPONSE batches"
+  },
+
+  "branches": [
+    {
+      "name": "learned",
+      "partitions": ["WARMUP", "LEARNING", "FROZEN"],
+      "start_checkpoint": "clean reference",
+      "learning_in": ["LEARNING"]
+    },
+    {
+      "name": "reference",
+      "partitions": ["FROZEN"],
+      "start_checkpoint": "clean reference",
+      "learning_in": [],
+      "note": "untrained comparison; same observations, same baseline, same paper policy, same comparison_v1 seeds; separate account, journal and episode-id space"
+    }
+  ],
+
+  "pass_conditions": [
+    "P1 at least one OK observation per instrument in LEARNING, encoded inside the declared ORN drive budget",
+    "P2 more than one distinct normalised feature vector per instrument, and a non-constant Kenyon active fraction",
+    "P3 at least one DECISION event with readout_status VALID on a HISTORICAL_MARKET observation",
+    "P4 at least one EXECUTION event carrying that decision's episode_id",
+    "P5 at least one OUTCOME event settling that episode, with a net PnL and an ACCOUNT field",
+    "P6 at least one accepted LEARNING event with synapses_depressed > 0, and an end-of-LEARNING state digest different from the clean reference digest",
+    "P7 Journal.replay_chain returns ROUND, DECISION, EXECUTION, OUTCOME and LEARNING for at least one episode, from the log alone",
+    "P8 FROZEN learned branch: end checkpoint hash equals start hash, and zero LEARNING events",
+    "P9 accounting residual 0 to 1e-6 in every branch"
+  ],
+
+  "compute_budget": {
+    "measured_ms_per_presentation": 29.3,
+    "estimate_minutes": { "WARMUP": 0, "LEARNING": 24, "FROZEN_learned": 11.5, "FROZEN_reference": 11.5, "total": 47 },
+    "ceiling_minutes": 90,
+    "reduction_rule": "if the pre-run estimate exceeds 90 minutes, LEARNING is run on its last N sessions only, N the largest integer for which the total falls under 90 minutes; the dropped sessions are named in the report; WARMUP and FROZEN are never shortened; dates are never shifted; k is never reduced",
+    "reduction_rule_fires": false,
+    "parallelism": "none, one process"
+  },
+
+  "runs": {
+    "id_format": "hist-NNN",
+    "directory": "experiments/historical/runs/<run_id>/",
+    "gitignored": true,
+    "retry_rule": "a retry after a software correction gets a new run id; the failed run's directory and its explanation are kept and reported",
+    "discard_rule": "a run started before the commit of this file is discarded and said to be discarded; likewise a run that read an adjusted or substituted dataset, or whose frozen-branch checkpoint hash moved"
+  },
+
+  "frozen_and_not_decided_by_this_run": [
+    "k = 8",
+    "gain 0.10",
+    "the 20 ms / 100-step window",
+    "the encoder channel rule, coding, drive budget 12000 Hz, carrier 0.10 and declared bounds",
+    "MBON membership: 29 avoid, 16 approach",
+    "the decoder formula and its sign",
+    "THETA_SD = 1.0",
+    "the stored k = 8 baseline artifact, loaded at full precision",
+    "one normalised learning update per settled outcome",
+    "the paper execution defaults",
+    "upstream/ and tests/upstream_audit/"
+  ],
+  "no_recalibration_against_historical_outcomes": true,
+  "no_heuristic_trader": true,
+  "profitability_is_not_a_gate_metric": true
+}

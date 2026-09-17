@@ -1,0 +1,29 @@
+{
+  "chainId": 4663,
+  "deployments": [
+    {
+      "id": "pons-v1",
+      "adapter": "pons-v1",
+      "address": "0xa5aab3f0c6eeadf30ef1d3eb997108e976351feb",
+      "source": "https://github.com/ponsdotdev/ponsfamily",
+      "status": "source-documented",
+      "expectedCodeHash": "0x0a62b8ed1d88d30c7b342ea8361dfaf0ac336706992cf0c8ba38b129f06391d4",
+      "startBlock": null
+    },
+    {
+      "id": "pons-v2",
+      "adapter": "pons-v2",
+      "address": "0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e",
+      "source": "https://github.com/ponsdotdev/ponsfamily",
+      "status": "source-documented",
+      "expectedCodeHash": "0x89a27da6f703e0a7cdd4f233e7cb57604ff75b164530962d3ff7cf8483a67d84",
+      "startBlock": null
+    }
+  ],
+  "pending": [
+    {
+      "id": "long",
+      "reason": "Factory, deployment identity and event ABI await primary-source and on-chain confirmation."
+    }
+  ]
+}

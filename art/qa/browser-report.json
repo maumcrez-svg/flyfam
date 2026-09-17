@@ -1,0 +1,63 @@
+{
+  "fixture_screenshots": [
+    "webkit-fixture-open.png",
+    "webkit-fixture-mobile-390-position.png",
+    "webkit-fixture-mobile-430-position.png",
+    "webkit-fixture-punishment.png",
+    "chromium-fixture-punishment.png",
+    "webkit-fixture-mobile-430-sniffing.png",
+    "webkit-fixture-missed.png",
+    "webkit-fixture-filtered.png",
+    "chromium-fixture-highlights.png",
+    "chromium-fixture-mobile-390-position.png",
+    "chromium-fixture-pick.png",
+    "chromium-fixture-replay.png",
+    "webkit-fixture-reward.png",
+    "chromium-fixture-mobile-430-position.png",
+    "webkit-fixture-profit.png",
+    "webkit-fixture-mobile-390-sniffing.png",
+    "chromium-fixture-reward.png",
+    "chromium-fixture-leader.png",
+    "webkit-fixture-loss.png",
+    "chromium-fixture-sniffing.png",
+    "chromium-fixture-missed.png",
+    "chromium-fixture-mobile-430-sniffing.png",
+    "chromium-fixture-mobile-390-sniffing.png",
+    "webkit-fixture-stale.png",
+    "chromium-fixture-loss.png",
+    "chromium-fixture-filtered.png",
+    "chromium-fixture-open.png",
+    "chromium-fixture-career.png",
+    "chromium-fixture-share-card.png",
+    "webkit-fixture-highlights.png",
+    "webkit-fixture-share-card.png",
+    "chromium-fixture-stale.png",
+    "webkit-fixture-career.png",
+    "webkit-fixture-pick.png",
+    "webkit-fixture-replay.png",
+    "webkit-fixture-sniffing.png",
+    "webkit-fixture-leader.png",
+    "chromium-fixture-profit.png"
+  ],
+  "engines": {
+    "chromium": {
+      "page_errors": [],
+      "checks": "state flow, truthful accounting, ranks, overtake, follow, reconnect dedup, LIVE/REPLAY, career, missed categories, while-away, share, XSS, mobile overflow",
+      "requests": 109,
+      "all_api_read_only": true
+    },
+    "webkit": {
+      "page_errors": [],
+      "checks": "state flow, truthful accounting, ranks, overtake, follow, reconnect dedup, LIVE/REPLAY, career, missed categories, while-away, share, XSS, mobile overflow",
+      "requests": 109,
+      "all_api_read_only": true
+    }
+  },
+  "real_history": {
+    "page_errors": [],
+    "episode_url": "http://localhost:8797/episode/pons-live%3A666003138",
+    "result": "\u22122.90%",
+    "mode": "REPLAY",
+    "live_source": "STALE_CAPTURE"
+  }
+}

@@ -1,0 +1,133 @@
+{
+ "version": "d12-001-mirror-1",
+ "inputs": {
+  "scores_trained.jsonl": "./experiments/d11/runs/d11-001/grid/scores_trained.jsonl",
+  "scores_reference.jsonl": "./experiments/d11/runs/d11-001/grid/scores_reference.jsonl",
+  "labels.jsonl": "./experiments/d11/runs/d11-001/grid/labels.jsonl"
+ },
+ "input_sha256": {
+  "scores_trained.jsonl": "321d82ef000c95713ebaee5d5bf723e86c3859e6a32ec639cdacad034bb63bff",
+  "scores_reference.jsonl": "cde2a79cf6e22f0a2f5fcb6e82a7c36f9011c3b0162de60e8877086dea4a78e2",
+  "labels.jsonl": "2546d458a3e6aeb2366463bb34b64738a5d13a7bf0d0bcba8a76b58b0f3ef640"
+ },
+ "no_brain_ran": true,
+ "no_socket_was_opened": true,
+ "meta": {
+  "scores_trained": 5177,
+  "scores_reference": 5177,
+  "valid_in_both": 5168,
+  "digest_trained": "bbca5c4ba65c54f99c80f68af17b7143d804b22a48c7a4e7ba34604a25293185",
+  "digest_reference": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5"
+ },
+ "overall": {
+  "n": 5168,
+  "pearson_r": 0.004588131931616053,
+  "spearman_rho": 0.01351035315152993,
+  "kendall_tau": 0.011722110869940688,
+  "ols_trained_on_reference": {
+   "a": -3.486474928978849,
+   "b": 0.004549035439084839,
+   "r2": 2.105095462179296e-05,
+   "n": 5168
+  },
+  "reversed_pairs": {
+   "pairs": 13351528,
+   "discordant": 6570606,
+   "fraction": 0.49212389772915877,
+   "tied_in_x": 26245,
+   "tied_in_y": 29733
+  }
+ },
+ "per_block": [
+  {
+   "block": 1,
+   "n": 1853,
+   "pearson_r": -0.015401446265390679,
+   "spearman_rho": -0.013649679817527998,
+   "kendall_tau": -0.006381752975684936,
+   "ols_trained_on_reference": {
+    "a": -3.469745283922561,
+    "b": -0.015489250770282941,
+    "r2": 0.00023720454706577243,
+    "n": 1853
+   },
+   "reversed_pairs": {
+    "pairs": 1715878,
+    "discordant": 859872,
+    "fraction": 0.5011265369682459,
+    "tied_in_x": 3342,
+    "tied_in_y": 3963
+   }
+  },
+  {
+   "block": 2,
+   "n": 1864,
+   "pearson_r": 0.03933291196928728,
+   "spearman_rho": 0.053906316390355924,
+   "kendall_tau": 0.037698888194449456,
+   "ols_trained_on_reference": {
+    "a": -3.516057893538487,
+    "b": 0.03942362587311191,
+    "r2": 0.0015470779639835675,
+    "n": 1864
+   },
+   "reversed_pairs": {
+    "pairs": 1736316,
+    "discordant": 831893,
+    "fraction": 0.47911382490284027,
+    "tied_in_x": 3549,
+    "tied_in_y": 3941
+   }
+  },
+  {
+   "block": 3,
+   "n": 1451,
+   "pearson_r": -0.015353686522299903,
+   "spearman_rho": -0.0029042064041200706,
+   "kendall_tau": 0.001288816321473977,
+   "ols_trained_on_reference": {
+    "a": -3.466342148791445,
+    "b": -0.014759542144104172,
+    "r2": 0.00023573568982504511,
+    "n": 1451
+   },
+   "reversed_pairs": {
+    "pairs": 1051975,
+    "discordant": 523208,
+    "fraction": 0.49735782694455666,
+    "tied_in_x": 2000,
+    "tied_in_y": 2349
+   }
+  }
+ ],
+ "within_tick": {
+  "ticks_with_a_tau": 402,
+  "ticks_without_one": 0,
+  "mean_tau": 0.0030493369506785026,
+  "median_tau": 0.024550768538475935,
+  "min_tau": -0.6060606060606061,
+  "max_tau": 0.7142857142857143,
+  "sd_tau": 0.2166973431735187,
+  "ticks_with_tau_at_minus_one": 0,
+  "ticks_with_a_negative_tau": 177,
+  "size_weighted_mean_tau": 0.007866488982909352,
+  "cohort_size": {
+   "min": 4,
+   "median": 12.5,
+   "max": 23
+  }
+ },
+ "auc": {
+  "labelled_rows": 5013,
+  "positive": 488,
+  "negative": 4525,
+  "auc_trained": 0.41157911421066934,
+  "auc_reference": 0.5884543972466262,
+  "auc_minus_reference": 0.41154560275337376,
+  "one_minus_auc_reference": 0.4115456027533738,
+  "residual_of_auc_trained_from_one_minus_auc_reference": 3.351145729552085e-05,
+  "residual_of_auc_trained_from_auc_minus_reference": 3.3511457295576363e-05
+ },
+ "wording": "numbers. The mechanistic reading is a hypothesis that b and tau test; it is not a finding until the owner states it as one.",
+ "elapsed_s": 0.1
+}

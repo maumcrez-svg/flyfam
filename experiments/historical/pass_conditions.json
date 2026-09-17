@@ -1,0 +1,158 @@
+{
+ "run_id": "hist-003",
+ "conditions": [
+  {
+   "id": "P1",
+   "pass": true,
+   "detail": {
+    "instruments_with_an_encoded_OK_observation": [
+     "IBM",
+     "OIH"
+    ],
+    "example_episode_ids": {
+     "OIH": 21000001,
+     "IBM": 22000000
+    },
+    "declared_drive_budget_hz": 12000.0,
+    "total_drive_hz": {
+     "OIH": 12000.0,
+     "IBM": 12000.0
+    }
+   }
+  },
+  {
+   "id": "P2",
+   "pass": true,
+   "detail": {
+    "distinct_normalised_feature_vectors": {
+     "OIH": 1506,
+     "IBM": 2183
+    },
+    "distinct_kenyon_active_fractions": {
+     "OIH": 541,
+     "IBM": 595
+    }
+   }
+  },
+  {
+   "id": "P3",
+   "pass": true,
+   "detail": {
+    "valid_decisions_on_historical_observations": 3685,
+    "first_episode_id": 21000001,
+    "first_market_ts": 1786974660,
+    "actions": {
+     "BUY": 59,
+     "SELL": 2735,
+     "WAIT": 891
+    }
+   }
+  },
+  {
+   "id": "P4",
+   "pass": true,
+   "detail": {
+    "execution_events": 37,
+    "linked_to_a_valid_decision": 37,
+    "first_episode_id": 22000000
+   }
+  },
+  {
+   "id": "P5",
+   "pass": true,
+   "detail": {
+    "outcome_events": 37,
+    "with_an_ACCOUNT_field": 37,
+    "first_episode_id": 22000000,
+    "first_net_pnl": -5.77741082
+   }
+  },
+  {
+   "id": "P6",
+   "pass": true,
+   "detail": {
+    "learning_events": 37,
+    "accepted_with_depression": 37,
+    "total_synapses_depressed": 103782,
+    "start_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+    "end_digest": "dcb0f822c1e1d293f890a4588ac3057bad1ea6ec2b0d486c70e720b859bdd083",
+    "clean_reference_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+    "digest_moved": true
+   }
+  },
+  {
+   "id": "P7",
+   "pass": true,
+   "detail": {
+    "episode_id": 22000000,
+    "kinds_found": [
+     "CHECKPOINT",
+     "DECISION",
+     "EXECUTION",
+     "LEARNING",
+     "OUTCOME"
+    ],
+    "appears_in_a_ROUND_event": true
+   }
+  },
+  {
+   "id": "P8",
+   "pass": true,
+   "detail": {
+    "learned_start_digest": "dcb0f822c1e1d293f890a4588ac3057bad1ea6ec2b0d486c70e720b859bdd083",
+    "learned_end_digest": "dcb0f822c1e1d293f890a4588ac3057bad1ea6ec2b0d486c70e720b859bdd083",
+    "learned_digest_unchanged": true,
+    "reference_start_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+    "reference_end_digest": "ba95b60503d658e989b649ecd3994264791fbead92f0bdacfd555e5d86ab61f5",
+    "reference_digest_unchanged": true,
+    "LEARNING_events_in_frozen": {
+     "learned": 0,
+     "reference": 0
+    },
+    "settled_frozen_outcomes": 3
+   }
+  },
+  {
+   "id": "P9",
+   "pass": true,
+   "detail": {
+    "residuals": {
+     "learned/LEARNING": 0.0,
+     "learned/FROZEN": 8.881784197001252e-16,
+     "reference/FROZEN": -2.2737367544323206e-13
+    },
+    "tolerance": 1e-06
+   }
+  },
+  {
+   "id": "OBSERVER-ORDER",
+   "pass": true,
+   "detail": {
+    "rule": "DECISION < EXECUTION < OUTCOME for every settled episode, in both branches"
+   }
+  },
+  {
+   "id": "OBSERVER-CLOCK",
+   "pass": true,
+   "detail": {
+    "rule": "market_ts is non-decreasing within each event kind, in both branches",
+    "interleaved_backward_steps": {
+     "learned": {
+      "backward_steps": 3,
+      "all_exactly_60s": true,
+      "all_decision_to_outcome": true,
+      "horizon_settlements": 3
+     },
+     "reference": {
+      "backward_steps": 99,
+      "all_exactly_60s": true,
+      "all_decision_to_outcome": true,
+      "horizon_settlements": 98
+     }
+    },
+    "explanation": "a horizon settlement fills at the OPEN of the minute whose bar_end produced that same round's decision, so the OUTCOME's market_ts is 60 s before the DECISION written just above it. The exit time was fixed by the horizon clock at entry and uses no information from that round; the episode's own order DECISION < EXECUTION < OUTCOME is unaffected."
+   }
+  }
+ ],
+ "all_pass": true
+}

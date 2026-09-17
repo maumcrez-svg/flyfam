@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flytrade observer — the watch screen</title>
+<link rel="stylesheet" href="static/watch.css">
+</head>
+<body>
+
+<!-- ============================ A. MODE AND TIME =========================
+     Amendment D9(a) §2A. Source, execution, phase, the historical market
+     timestamp, playback state and speed, and the run/branch identity — always
+     visible, never the word that would make a recording look like a feed. -->
+<header>
+  <div class="banner">
+    <span class="stamp" id="stamp">HISTORICAL REPLAY · PAPER</span>
+    <span class="paper">simulated fills — not observed exchange executions</span>
+    <span class="phase" id="phase">phase –</span>
+    <span class="phase clock" id="when">–</span>
+    <span class="phase state" id="pstate">loading</span>
+    <span class="phase id" id="ident">–</span>
+    <span class="note" id="src">loading…</span>
+  </div>
+
+  <div class="controls">
+    <select id="run" title="run"></select>
+    <select id="branch" title="branch"></select>
+    <select id="partition" title="jump to a partition"></select>
+    <button id="home" title="return to the start">|◀ start</button>
+    <button id="stepb" title="one event back">◀ step</button>
+    <button id="play" class="primary">▶ play</button>
+    <button id="stepf" title="one event forward">step ▶</button>
+    <label class="note">speed
+      <select id="speed">
+        <option value="1">1 event/s</option>
+        <option value="4">4</option>
+        <option value="20" selected>20</option>
+        <option value="100">100</option>
+        <option value="500">500</option>
+      </select></label>
+    <button id="nextd" title="the next recorded decision">next decision</button>
+    <button id="nextt" title="the next executed trade">next trade</button>
+    <button id="nextl" title="the next learning event">next learning</button>
+    <input type="range" id="cursor" min="0" max="0" value="0">
+    <span class="note" id="pos">–</span>
+    <button id="showrec">experiment record</button>
+    <button id="showdet">event detail</button>
+  </div>
+
+  <div class="statebar" id="statebar" hidden>
+    <span class="dot"></span><span id="statetext"></span>
+  </div>
+</header>
+
+<main>
+
+<!-- ======================= B. CONTEXT AND SENSES ========================= -->
+<div class="col">
+  <section>
+    <h2>Context <span class="rhs">the market at this cutoff</span></h2>
+    <div class="big" id="i-sym">–</div>
+    <table>
+      <tr><td>observation status</td><td id="i-status">–</td></tr>
+      <tr><td>bar close</td><td id="i-close">–</td></tr>
+      <tr><td>market minute (New York)</td><td id="c-ny">–</td></tr>
+      <tr><td>market minute (UTC)</td><td id="c-utc">–</td></tr>
+      <tr><td>candidates this round</td><td id="i-cand">–</td></tr>
+      <tr><td>dataset</td><td id="i-label">–</td></tr>
+      <tr><td>event</td><td id="c-ev">–</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Senses <span class="rhs">recorded feature → recorded rate</span></h2>
+    <div class="note" style="margin:-3px 0 7px">the five normalised features
+      the encoder recorded for this observation.</div>
+    <div class="bars" id="s-feat"></div>
+    <div class="rule"></div>
+    <div class="note" style="margin:0 0 7px">the glomerular rates it produced.
+      This market encoder uses the declared olfactory path; there is no visual
+      pathway and none is drawn.</div>
+    <div class="bars" id="s-glom"></div>
+    <table>
+      <tr><td>total ORN drive</td><td id="s-drive">–</td></tr>
+      <tr><td>driven ORNs</td><td id="s-orns">–</td></tr>
+    </table>
+  </section>
+</div>
+
+<!-- ================== C. THE FLY AND THE NEURAL RESPONSE ================= -->
+<div class="col">
+  <section class="chamber">
+    <h2>The fly <span class="rhs">populations that were measured</span></h2>
+    <div class="figure">
+      <span class="schematic-tag">SCHEMATIC</span>
+      <!-- An original diagram authored in this wave (observer/static/NOTICE).
+           Every element that moves is driven by a recorded field: glomerular
+           rates, the Kenyon-cell active fraction, the two MBON population
+           rates, and — only on a LEARNING event — the recorded number of
+           depressed synapses. Nothing here is an anatomical coordinate, and
+           no individual spike train is drawn: the log records population
+           rates, so the figure shows population intensity. -->
+      <svg viewBox="0 0 520 300" role="img"
+           aria-label="Schematic of the recorded circuit: antennal input,
+                       glomeruli, Kenyon cells, two readout populations">
+        <defs>
+          <linearGradient id="gAx" x1="0" x2="1">
+            <stop offset="0" stop-color="#22323d"/>
+            <stop offset="1" stop-color="#3f6b7c"/>
+          </linearGradient>
+        </defs>
+
+        <!-- the fly, as a body plan, not a portrait -->
+        <g id="fly" opacity=".85">
+          <ellipse cx="62" cy="150" rx="17" ry="21" fill="#1b242c"
+                   stroke="#3a4b58"/>
+          <ellipse cx="62" cy="182" rx="13" ry="26" fill="#161e25"
+                   stroke="#31414d"/>
+          <circle cx="54" cy="133" r="7" fill="#24323c" stroke="#46606f"/>
+          <circle cx="70" cy="133" r="7" fill="#24323c" stroke="#46606f"/>
+          <path d="M52 126 L44 108 M72 126 L80 108" stroke="#5b7787"
+                stroke-width="2" fill="none"/>
+          <circle id="ant-l" cx="44" cy="105" r="4" fill="#78d2e6"
+                  opacity=".25"/>
+          <circle id="ant-r" cx="80" cy="105" r="4" fill="#78d2e6"
+                  opacity=".25"/>
+          <path d="M46 152 q-22 -16 -30 -4 M78 152 q22 -16 30 -4"
+                stroke="#2e3d49" stroke-width="1.5" fill="none"/>
+        </g>
+        <text x="62" y="222" font-size="9" fill="#6d7b89"
+              text-anchor="middle">antennae · ORNs</text>
+
+        <!-- antennal lobe: one mark per recorded glomerulus -->
+        <g id="al"></g>
+        <text x="162" y="222" font-size="9" fill="#6d7b89"
+              text-anchor="middle">antennal lobe</text>
+        <text x="162" y="234" font-size="8" fill="#47535f"
+              text-anchor="middle" id="al-note">–</text>
+
+        <path d="M96 150 L124 150" stroke="url(#gAx)" stroke-width="3"/>
+        <path d="M200 150 L236 150" stroke="url(#gAx)" stroke-width="3"/>
+
+        <!-- Kenyon cells: a proportion, never identified cells -->
+        <g id="kc"></g>
+        <text x="290" y="222" font-size="9" fill="#6d7b89"
+              text-anchor="middle">Kenyon cells</text>
+        <text x="290" y="234" font-size="8" fill="#47535f"
+              text-anchor="middle" id="kc-note">–</text>
+
+        <path id="syn-a" d="M334 138 L382 104" stroke="#33505f"
+              stroke-width="2.5" fill="none"/>
+        <path id="syn-b" d="M334 162 L382 196" stroke="#33505f"
+              stroke-width="2.5" fill="none"/>
+
+        <!-- the two readout populations -->
+        <circle id="mb-app" cx="412" cy="100" r="20" fill="#1d3a2b"
+                stroke="#4fb477" stroke-width="1.5"/>
+        <circle id="mb-avo" cx="412" cy="200" r="20" fill="#3a1f1d"
+                stroke="#d9584f" stroke-width="1.5"/>
+        <text x="412" y="70" font-size="9" fill="#4fb477"
+              text-anchor="middle">approach MBONs</text>
+        <text x="412" y="240" font-size="9" fill="#d9584f"
+              text-anchor="middle">avoid MBONs</text>
+        <text id="mb-app-hz" x="412" y="104" font-size="10" fill="#cfe6da"
+              text-anchor="middle">–</text>
+        <text id="mb-avo-hz" x="412" y="204" font-size="10" fill="#efd4d2"
+              text-anchor="middle">–</text>
+
+        <path d="M434 108 L470 142 M434 192 L470 158" stroke="#33505f"
+              stroke-width="2" fill="none"/>
+        <rect x="466" y="132" width="44" height="36" rx="4" fill="#141a20"
+              stroke="#2b3945"/>
+        <text x="488" y="147" font-size="8" fill="#6d7b89"
+              text-anchor="middle">decoder</text>
+        <text id="dec-v" x="488" y="160" font-size="10" fill="#dce4ec"
+              text-anchor="middle">–</text>
+
+        <!-- learning: shown only when a LEARNING event was recorded -->
+        <g id="plast" opacity="0">
+          <path d="M334 138 L382 104" stroke="#e8ac45" stroke-width="2.5"
+                stroke-dasharray="4 3" fill="none"/>
+          <path d="M334 162 L382 196" stroke="#e8ac45" stroke-width="2.5"
+                stroke-dasharray="4 3" fill="none"/>
+          <text id="plast-t" x="356" y="268" font-size="9" fill="#e8ac45"
+                text-anchor="middle">–</text>
+        </g>
+      </svg>
+    </div>
+    <div class="legend">
+      <span><b>glomeruli</b> recorded rates_hz</span>
+      <span><b>Kenyon cells</b> recorded active fraction — a proportion, not
+        identified cells</span>
+      <span><b>MBONs</b> recorded population rates</span>
+      <span><b>dashed</b> a recorded LEARNING delta</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Neural response<span class="tag actual">actual</span>
+      <span class="rhs">k = 8 measurement policy</span></h2>
+    <table>
+      <tr><td>approach (PPL1-side)</td><td id="n-app">–</td></tr>
+      <tr><td>avoid (PAM-side)</td><td id="n-avo">–</td></tr>
+      <tr><td>Kenyon cells active</td><td id="n-kc">–</td></tr>
+      <tr><td>peak read rate</td><td id="n-max">–</td></tr>
+      <tr><td>presentations (k)</td><td id="n-k">–</td></tr>
+      <tr><td>silent replicates</td><td id="n-sil">–</td></tr>
+    </table>
+    <div class="reps" id="n-reps"></div>
+    <div class="note" style="margin-top:6px">the eight marks are the recorded
+      status and score of each replicate: a <b>completed measurement</b>. The
+      log holds no per-replicate timing, so nothing here is animated as if it
+      were happening now. Population rates only — no per-neuron spike was
+      logged, so none is shown.</div>
+  </section>
+</div>
+
+<!-- ================= D / E. DECISION, POSITION, RESULT =================== -->
+<div class="col">
+  <section>
+    <h2>Decision<span class="tag actual">actual</span></h2>
+    <div class="headline">
+      <div class="huge" id="d-act">–</div>
+      <span class="badge" id="d-exec">–</span>
+    </div>
+    <div class="gauge" id="d-gauge">
+      <div class="zone" id="d-zone"></div><div class="tick" id="d-zero"></div>
+      <div class="mark" id="d-mark"></div>
+      <div class="lab" style="left:2px">SELL</div>
+      <div class="lab" style="right:2px">BUY</div>
+    </div>
+    <div style="height:14px"></div>
+    <table>
+      <tr><td>V (centred)</td><td id="d-v">–</td></tr>
+      <tr><td>±θ</td><td id="d-theta">–</td></tr>
+      <tr><td>readout status</td><td id="d-status">–</td></tr>
+    </table>
+    <div class="note" id="d-why" style="margin-top:6px"></div>
+  </section>
+
+  <section>
+    <h2>Paper position<span class="tag actual">actual</span></h2>
+    <table>
+      <tr><td>state</td><td id="p-state">flat</td></tr>
+      <tr><td>instrument</td><td id="p-sym">–</td></tr>
+      <tr><td>entry fill</td><td id="p-entry">–</td></tr>
+      <tr><td>quantity</td><td id="p-qty">–</td></tr>
+      <tr><td>entry fee</td><td id="p-fee">–</td></tr>
+      <tr><td>fill timing</td><td id="p-flag">–</td></tr>
+      <tr><td>market minutes held</td><td id="p-held">–</td></tr>
+      <tr><td>remaining maximum policy horizon</td><td id="p-horizon">–</td></tr>
+    </table>
+    <div class="note" style="margin-top:6px" id="p-note">H is the existing
+      policy ceiling, not a promise that a trade stays open that long.</div>
+  </section>
+
+  <section>
+    <h2>Result and memory<span class="tag actual">actual</span></h2>
+    <div id="o-none" class="empty">no episode has settled yet</div>
+    <div id="o-body" hidden>
+      <div class="headline">
+        <div class="big" id="o-net-big">–</div>
+        <span class="badge" id="o-mem">–</span>
+      </div>
+      <table id="o-tab">
+        <tr><td>closed by</td><td id="o-reason">–</td></tr>
+        <tr><td>held</td><td id="o-held">–</td></tr>
+        <tr><td>gross (reference prices)</td><td id="o-grossref">–</td></tr>
+        <tr><td>− modelled slippage</td><td id="o-slip">–</td></tr>
+        <tr><td>− fees</td><td id="o-fees">–</td></tr>
+        <tr><td>= net realised</td><td id="o-net">–</td></tr>
+        <tr><td>fill timing</td><td id="o-flag">–</td></tr>
+        <tr><td>settlement</td><td id="o-settle">–</td></tr>
+        <tr><td>dopamine</td><td id="o-dop">–</td></tr>
+        <tr><td>synapses depressed</td><td id="o-syn">–</td></tr>
+        <tr><td>learning event</td><td id="o-learn">–</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Paper account<span class="tag actual">actual</span></h2>
+    <table>
+      <tr><td>cash</td><td id="a-cash">–</td></tr>
+      <tr><td>equity</td><td id="a-eq">–</td></tr>
+      <tr><td>cumulative realised PnL</td><td id="a-pnl">–</td></tr>
+      <tr><td>fees paid</td><td id="a-fees">–</td></tr>
+      <tr><td>slippage paid</td><td id="a-slip">–</td></tr>
+      <tr><td>trades booked</td><td id="a-tr">–</td></tr>
+    </table>
+    <div class="note" style="margin-top:6px">every figure above is a field of
+      the last <code>OUTCOME</code> event the cursor has reached. This page
+      never adds money up. Unrealised value and marked equity between
+      settlements were not recorded, and are shown as unavailable rather than
+      estimated.</div>
+  </section>
+
+  <section>
+    <h2>What she has done so far <span class="rhs">at this cursor</span></h2>
+    <table id="counts"></table>
+    <div class="note" style="margin-top:6px">counted by this page from the
+      events already replayed; money never is.</div>
+  </section>
+</div>
+
+<!-- ===================== the expandable detail panel ====================== -->
+<div class="drawer" id="drawer-det" hidden>
+  <section>
+    <h2>Event detail <span class="rhs" id="det-src">–</span></h2>
+    <div class="inner">
+      <div>
+        <table id="det-tab"></table>
+        <div class="rule"></div>
+        <div class="note" style="margin-bottom:4px">linked events of this
+          episode, as far as the cursor has reached — each is a line of the
+          same log:</div>
+        <table id="det-link"></table>
+      </div>
+      <div>
+        <div class="note" style="margin-bottom:5px">the canonical event, as
+          the run wrote it — fetched one line at a time, so the large arrays
+          never travel with the watch stream.</div>
+        <pre class="detail" id="det-raw">–</pre>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================= the experiment record ========================== -->
+<div class="drawer" id="drawer-rec" hidden>
+  <section>
+    <h2>Experiment record <span class="rhs">accepted results, not watch
+      mode</span></h2>
+    <div class="inner">
+      <div>
+        <h2>The scientific summary</h2>
+        <table>
+          <tr><td>D7</td><td id="rec-d7">suppression without demonstrated
+            improvement in the fixed-horizon context-discrimination
+            metric</td></tr>
+          <tr><td>D8</td><td id="rec-d8">no detectable signal with the
+            specified diagnostic methods on the tested periods</td></tr>
+          <tr><td>training / evaluation target</td><td id="rec-mis">early-exit
+            outcomes were used for reinforcement while the D7 probe target
+            used a 90-minute hold</td></tr>
+        </table>
+        <div class="note" style="margin-top:7px">None of this is proof that no
+          learner can use these inputs, proof of learned profitable trading, or
+          proof that the target mismatch has been corrected. The
+          fixed-hold experiment is pending and separate; the 36.6 % positive
+          base rate of the D7 grid describes probes on a grid and does not
+          predict the reward rate of a selected, inventory-constrained
+          fixed-hold policy that has not been executed.</div>
+        <div class="rule"></div>
+        <table class="mini" id="rec-num"></table>
+      </div>
+
+      <div>
+        <section id="sec-horizon" hidden>
+          <h2>Selected horizon H*<span class="tag">WARMUP only</span></h2>
+          <table>
+            <tr><td>H*</td><td id="h-star">–</td></tr>
+            <tr><td>rule</td><td id="h-rule">–</td></tr>
+            <tr><td>C, measured round trip</td><td id="h-cost">–</td></tr>
+            <tr><td>threshold 2·C</td><td id="h-thr">–</td></tr>
+            <tr><td>calibrated on</td><td id="h-win">–</td></tr>
+            <tr><td>qualifying sessions</td><td id="h-ses">–</td></tr>
+            <tr><td>artifact</td><td id="h-art">–</td></tr>
+          </table>
+          <table class="mini" id="h-table"></table>
+          <div class="note" style="margin-top:6px">a movement-versus-cost
+            operating rule measured on the WARMUP partition alone. Not a
+            forecast of profitability and not a claim that returns are
+            predictable.</div>
+        </section>
+      </div>
+
+      <div>
+        <section id="sec-probe" class="hyp" hidden>
+          <h2>Probe at this minute<span class="tag hypo">hypothetical</span></h2>
+          <table>
+            <tr><td>this minute is in the probe grid</td><td id="pr-in">–</td></tr>
+            <tr><td>probe score, this branch</td><td id="pr-score">–</td></tr>
+            <tr><td>paired counterpart</td><td id="pr-pair">–</td></tr>
+            <tr><td>hypothetical entry</td><td id="pr-entry">–</td></tr>
+            <tr><td>hypothetical exit</td><td id="pr-exit">–</td></tr>
+            <tr><td>this minute's label</td><td id="pr-g">–</td></tr>
+          </table>
+          <div class="note" style="margin-top:6px">the most recent probe whose
+            exit price <b>has</b> printed by this instant:</div>
+          <table>
+            <tr><td>matured probe origin</td><td id="pr-m-at">–</td></tr>
+            <tr><td>its score, this branch</td><td id="pr-m-score">–</td></tr>
+            <tr><td>label G(t), net on notional</td><td id="pr-m-g">–</td></tr>
+            <tr><td>label Y(t)</td><td id="pr-m-y">–</td></tr>
+          </table>
+          <div class="note" style="margin-top:6px">the score is the decoder's
+            own recorded V for this round — an <b>actual</b> measurement. The
+            label is an <b>evaluator-only counterfactual</b>:
+            no order, no learning event, no change to the account, and
+            never added to any other probe. It stays sealed until the replay
+            reaches the minute its exit price existed.</div>
+        </section>
+      </div>
+
+      <div>
+        <section id="sec-context" hidden>
+          <h2>Context discrimination<span class="tag hypo">after
+            evaluation</span></h2>
+          <div id="cx-sealed" class="sealed">sealed until the replay reaches
+            the end of this branch — it is a summary of outcomes this replay
+            has not reached yet.</div>
+          <div id="cx-body" hidden>
+            <div class="big" id="cx-verdict">–</div>
+            <table>
+              <tr><td>DELTA_AUC</td><td id="cx-delta">–</td></tr>
+              <tr><td>mean AUC trained / reference</td><td id="cx-levels">–</td></tr>
+              <tr><td>qualifying sessions</td><td id="cx-q">–</td></tr>
+              <tr><td>paired probes · coverage</td><td id="cx-cov">–</td></tr>
+              <tr><td>bootstrap (2,000 paired session draws)</td><td id="cx-boot">–</td></tr>
+              <tr><td>top 20 % mean G, trained / reference</td><td id="cx-mp">–</td></tr>
+              <tr><td>actual completed trades</td><td id="cx-tr">–</td></tr>
+            </table>
+            <table class="mini" id="cx-table"></table>
+            <div class="note" id="cx-why" style="margin-top:6px"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  Read-only replay of one run's canonical <code>events.jsonl</code>, projected
+  by <code>observer/projection.py</code> and rendered here. Playback controls
+  move an event-index cursor and nothing else: no brain time, seed, choice,
+  weight or logged event is affected by pausing, stepping, seeking or changing
+  speed. Bound to 127.0.0.1.
+  <span id="foot-run"></span>
+  <div class="note" id="foot-prov" style="margin-top:5px"></div>
+</footer>
+
+</main>
+
+<script>
+"use strict";
+/* ----------------------------------------------------------------------
+   The page merges server-built frames and renders them. It folds no domain
+   state: every "as of this cursor" value is a field of the frame at that
+   index, or a pointer to another frame, both computed once in Python by
+   observer/projection.py and covered by tests/observer. Nothing here decodes,
+   prices, accumulates money or counts learning.
+   ---------------------------------------------------------------------- */
+const $ = id => document.getElementById(id);
+const fmt = (x, n=2) => (x===null||x===undefined||Number.isNaN(x)) ? "–"
+  : Number(x).toLocaleString("en-US",{minimumFractionDigits:n,maximumFractionDigits:n});
+const sgn = (x, n=2) => (x===null||x===undefined) ? "–" : (x>=0?"+":"") + fmt(x,n);
+const UNAVAIL = '<span class="unavailable">unavailable</span>';
+const or = (x, s) => (x===null||x===undefined) ? UNAVAIL : s;
+
+/* EV is the frame stream: one frame per canonical event, in file order.
+   I is the cursor — an index into it, and nothing else. */
+let EV = [], I = 0, timer = null, RUNS = [], META = null, PTAB = [];
+let DETAIL_ON = false, LAST_DETAIL = -1;
+
+/* D7 read-only artifacts, fetched once per run. The page displays them and
+   recomputes no field of either. PROBES is keyed by the probe's own
+   market_ts, which is the DECISION event's market_ts for the same minute. */
+let HORIZON = null, CONTEXT = null, PROBES = null, PROBE_LIST = [],
+    BRANCH_KEY = "";
+
+function tsNY(s){ if(!s) return "–";
+  return new Date(s*1000).toLocaleString("en-US",
+    {timeZone:"America/New_York", hour12:false,
+     year:"numeric",month:"2-digit",day:"2-digit",
+     hour:"2-digit",minute:"2-digit"}) + " ET"; }
+function tsUTC(s){ if(!s) return "–";
+  return new Date(s*1000).toISOString().replace("T"," ").slice(0,16) + "Z"; }
+
+/* ---------- the as-of view: pointers dereferenced, nothing folded ------- */
+function frame(i){ return (i===null||i===undefined) ? null : (EV[i]||null); }
+function stateAt(i){
+  const f = EV[i];
+  if(!f) return {partition:null, decision:null, execution:null, outcome:null,
+                 learning:null, at:{}, counts:{}};
+  const at = f.at || {};
+  const st = {
+    at,
+    /* renderPhase reads st.partition.partition: the partition is interned
+       server-side and this is the table row it points at. */
+    partition: (at.p===undefined ? null : (PTAB[at.p]||null)),
+    decision: frame(at.decision),
+    round: frame(at.round),
+    execution: frame(at.position),
+    outcome: frame(at.outcome),
+    learning: frame(at.learning),
+    counts: {}
+  };
+  const names = (META && META.counters) || [];
+  const c = at.c || [];
+  names.forEach((k,n) => { st.counts[k] = c[n]||0; });
+  return st;
+}
+
+/* --------------------------------- render ------------------------------- */
+function render(){
+  const f = EV[I] || null;
+  const st = stateAt(I);
+  const at = st.at || {};
+  $("pos").textContent = EV.length ? `${I+1} / ${EV.length}` : "no events";
+  $("c-ev").textContent = f ? f.kind : "–";
+
+  const mt = (f && f.ts) ? f.ts : (at.ts || null);
+  $("c-ny").textContent  = tsNY(mt);
+  $("c-utc").textContent = tsUTC(mt);
+
+  renderPhase(st, mt);
+  renderPlaybackState();
+  renderSenses(st);
+  renderNeural(st);
+  renderDecision(st);
+  renderPosition(st);
+  renderResult(st);
+  renderCounts(st);
+
+  const d = st.decision ? {market_ts: st.decision.ts} : null;
+  renderProbe(d, mt);
+  renderContext();
+  if(DETAIL_ON) loadDetail();
+}
+
+/* ---- §2A: the phase, the branch and the historical instant ------------- */
+function renderPhase(st, mt){
+  const part = st.partition ? st.partition.partition : null;
+  const br = st.partition ? (st.partition.branch||"") : "";
+  $("phase").textContent = part ? `phase ${part}${br?" · "+br:""}` : "phase –";
+  const on = st.partition ? st.partition.learning : null;
+  $("phase").className = "phase" + (on===false ? " frozen" : "");
+  if(part) $("phase").textContent += on===true ? " · learning on"
+                                   : on===false ? " · learning off" : "";
+  $("when").textContent = mt ? tsNY(mt) : "–";
+}
+
+/* ---- §6: loading / playing / paused / completed / missing / skipped ---- */
+let SKIPPED = null;
+function renderPlaybackState(){
+  const el = $("pstate");
+  let label = "paused", cls = "phase state";
+  if(!EV.length){ label = "missing data"; cls += " missing"; }
+  else if(timer){ label = "playing · " + $("speed").value + " events/s";
+                  cls += " playing"; }
+  else if(I >= EV.length-1){ label = "completed"; }
+  el.textContent = label; el.className = cls;
+  const bar = $("statebar");
+  if(!EV.length){
+    bar.hidden = false; bar.className = "statebar missing";
+    $("statetext").textContent = "no event log for this run and branch on "
+      + "this machine — the run stores are not committed to the repository.";
+  } else if(SKIPPED){
+    bar.hidden = false; bar.className = "statebar skipped";
+    $("statetext").textContent = SKIPPED;
+  } else if(I >= EV.length-1){
+    bar.hidden = false; bar.className = "statebar completed";
+    $("statetext").textContent = "replay completed — the branch ends here. "
+      + "A completed replay is not an outage.";
+  } else { bar.hidden = true; }
+}
+
+/* ---- §2B: the market context and the sensory pattern it produced ------- */
+function renderSenses(st){
+  const d = st.decision, r = st.round;
+  const e = d ? d.ev : null;
+  $("i-sym").textContent = (e && e.symbol) || (r && r.ev.symbol) || "–";
+  $("i-status").innerHTML = e ? (e.observation_status || UNAVAIL)
+    : (r ? (r.ev.observation_status || UNAVAIL) : "–");
+  $("i-close").innerHTML = e ? or(e.close, fmt(e.close,2)) : "–";
+  $("i-cand").textContent = r ? (r.ev.n_candidates ?? "–") : "–";
+  $("i-label").textContent = (e && e.dataset_label)
+    || (META && META.dataset_label) || "–";
+  drawFeatures(e ? e.features : null);
+  drawGlom(e ? e.glomeruli : null);
+  $("s-drive").innerHTML = e ? or(e.total_drive_hz,
+    fmt(e.total_drive_hz,0)+" Hz") : "–";
+  $("s-orns").innerHTML = e ? or(e.n_orns, e.n_orns) : "–";
+}
+
+/* ---- §2C: measured population activity and the replicate marks -------- */
+function renderNeural(st){
+  const d = st.decision, e = d ? d.ev : null;
+  if(!e){ $("n-app").textContent = "–"; $("n-avo").textContent = "–";
+          drawReps(null); drawCircuit(null, null); return; }
+  const pop = e.pop || [];
+  /* the population size is a D7-era field; a D5/D6 log does not carry it and
+     the reading is then shown without a count rather than with a guess. */
+  $("n-app").innerHTML = or(e.approach_hz, fmt(e.approach_hz,3)+" Hz"
+    + (pop[0]===undefined ? "" : "  ("+pop[0]+" MBONs)"));
+  $("n-avo").innerHTML = or(e.avoid_hz, fmt(e.avoid_hz,3)+" Hz"
+    + (pop[1]===undefined ? "" : "  ("+pop[1]+" MBONs)"));
+  $("n-kc").innerHTML = or(e.kc_active,
+    `${e.kc_active}  (${fmt(100*e.kc_fraction,2)} %)`);
+  $("n-max").innerHTML = or(e.max_rate_hz, fmt(e.max_rate_hz,1)+" Hz");
+  $("n-k").innerHTML = or(e.k, e.k);
+  $("n-sil").innerHTML = or(e.silent_replicates,
+    `${e.silent_replicates} / ${e.k ?? "?"}`);
+  drawReps(e);
+  drawCircuit(e, st.learning);
+}
+
+/* ---- §4: the decision, and whether anything was executed -------------- */
+function renderDecision(st){
+  const d = st.decision, e = d ? d.ev : null;
+  if(!e){ $("d-act").textContent = "–"; $("d-exec").textContent = "–";
+          $("d-why").textContent = ""; return; }
+  $("d-act").textContent = e.action;
+  $("d-act").className = "huge " + e.action;
+  $("d-status").textContent = e.status;
+  $("d-status").className = e.status;
+  $("d-v").innerHTML = or(e.valence_hz, sgn(e.valence_hz,3)+" Hz");
+  $("d-theta").innerHTML = or(e.theta_hz, "±"+fmt(e.theta_hz,4)+" Hz");
+  drawGauge(e.valence_hz, e.theta_hz);
+
+  /* A SELL signal without a position is not an executed sale; a rejected BUY
+     is not a trade; a NO_RESPONSE is not a decision at all. */
+  const open = st.at.position !== undefined && st.at.position !== null;
+  const filled = st.execution && st.execution.seq > d.seq;
+  let badge = "signal only — nothing was executed", cls = "badge signal",
+      why = "";
+  if(e.status === "NO_RESPONSE"){
+    badge = "no response — nothing was decoded"; cls = "badge";
+    why = "both readout populations were silent. An absence of activity is "
+        + "recorded as an absence, never as a choice to wait.";
+  } else if(e.status === "INVALID_STATE"){
+    badge = "invalid readout — outside the operating range";
+    cls = "badge policy";
+    why = "the readout was saturated or over-recruited, so no action was "
+        + "decoded from it.";
+  } else if(e.status === "POLICY_REJECT" && e.reject_reason === "FIXED_HOLD"){
+    /* D9(b): the position is held to a declared horizon, so a SELL signal
+       observed while holding is recorded and not acted on. */
+    badge = "SELL signal · blocked by fixed-hold policy"; cls = "badge policy";
+    why = "under the fixed-hold exit policy the position runs to its declared "
+        + "horizon. The decoder did emit SELL and it is in the log; nothing "
+        + "was sold, and no reward or punishment came of it.";
+  } else if(e.status === "POLICY_REJECT"){
+    badge = "execution policy refused this " + e.action
+          + (e.reject_reason ? " · " + e.reject_reason : "");
+    cls = "badge policy";
+    why = "the decoder did decide; the execution policy declined to act on "
+        + "it. Nothing was bought or sold.";
+  } else if(e.action === "WAIT"){
+    badge = "decoded WAIT — no order"; cls = "badge signal";
+    why = "|V| stayed inside ±θ. This is a decision, and it is the one she "
+        + "takes most often.";
+  } else if(e.action === "SELL" && !open){
+    badge = "SELL signal · no position open"; cls = "badge signal";
+    why = "a SELL reduces exposure. With nothing open there was nothing to "
+        + "sell, so no sale was executed.";
+  } else if(filled){
+    badge = "executed — see the fill"; cls = "badge filled";
+  }
+  $("d-exec").textContent = badge;
+  $("d-exec").className = cls;
+  $("d-why").textContent = why;
+}
+
+/* ---- §4 and §5: the open paper position and the policy ceiling -------- */
+function renderPosition(st){
+  const p = st.execution, e = p ? p.ev : null;
+  $("p-state").textContent = e ? (e.side === "BUY" ? "LONG open" : "open")
+                               : "flat";
+  $("p-sym").textContent = e ? (e.symbol || "–") : "–";
+  $("p-entry").innerHTML = e ? or(e.fill_price,
+    fmt(e.fill_price,4)+"  @ "+tsNY(p.ts)) : "–";
+  $("p-qty").innerHTML = e ? or(e.quantity, fmt(e.quantity,4)) : "–";
+  $("p-fee").innerHTML = e ? or(e.fee, fmt(e.fee,4)) : "–";
+  $("p-flag").textContent = e ? (e.flag
+      ? e.flag+" (+"+e.delay_minutes+" market min)" : "next minute, as asked")
+    : "–";
+  const at = st.at;
+  $("p-held").innerHTML = e ? or(at.held, at.held + " market minutes") : "–";
+  if(!e){ $("p-horizon").textContent = "–"; }
+  else if(at.horizon_left === undefined || at.horizon_left === null){
+    $("p-horizon").innerHTML = UNAVAIL;
+  } else {
+    $("p-horizon").textContent = at.horizon_left + " of "
+      + (META ? META.horizon_minutes : "?") + " market minutes";
+  }
+  $("p-note").textContent = META && META.horizon_minutes
+    ? `H = ${META.horizon_minutes} market minutes is the existing policy `
+      + `ceiling (${META.horizon_source}), not a promise that a trade stays `
+      + `open that long.`
+    : "no maximum policy horizon is recorded for this run, so no countdown "
+      + "is shown.";
+}
+
+/* ---- §4 and §2E: the actual result and, only if it exists, the update -- */
+function renderResult(st){
+  const of_ = st.outcome;
+  $("o-none").hidden = !!of_;
+  $("o-body").hidden = !of_;
+  if(!of_) return;
+  const o = of_.ev;                    /* the recorded OUTCOME event */
+  $("o-net-big").innerHTML = or(o.net_pnl, sgn(o.net_pnl,4));
+  $("o-net-big").className = "big " + (o.net_pnl>=0 ? "pos" : "neg");
+  $("o-reason").textContent = o.close_reason || "–";
+  $("o-held").innerHTML = or(o.market_minutes_held,
+    o.market_minutes_held + " market minutes");
+  $("o-grossref").innerHTML = or(o.gross_reference_pnl,
+    sgn(o.gross_reference_pnl,4));
+  $("o-slip").innerHTML = or(o.slippage, fmt(o.slippage,4));
+  $("o-fees").innerHTML = or(o.fees, fmt(o.fees,4));
+  $("o-net").innerHTML = or(o.net_pnl, sgn(o.net_pnl,4));
+  $("o-net").className = o.net_pnl>=0 ? "pos" : "neg";
+  $("o-flag").textContent = o.exit_flag || "as asked";
+  $("o-settle").textContent = o.settlement || "settled with learning enabled";
+
+  /* The learning block reads the recorded LEARNING event. In FROZEN there is
+     none, and the settlement marker — not the branch name — says so. */
+  const L = st.learning ? st.learning.ev : null;
+  const frozenSettle = o.settlement === "SETTLED_FROZEN";
+  let mem = "no learning event recorded", memcls = "badge";
+  if(frozenSettle){
+    mem = (o.net_pnl>=0 ? "positive result — learning frozen"
+                        : "result — learning frozen");
+    memcls = "badge frozen";
+  } else if(L && L.accepted){
+    mem = (L.valence>0 ? "reward applied" : L.valence<0 ? "punishment applied"
+                                                        : "no update: flat");
+    memcls = "badge filled";
+  } else if(L && !L.accepted){
+    mem = "no update — " + (L.reason || "refused");
+    memcls = "badge policy";
+  } else {
+    mem = "no learning event at this cursor";
+  }
+  $("o-mem").textContent = mem;
+  $("o-mem").className = memcls;
+
+  $("o-dop").innerHTML = L && L.valence!==undefined
+    ? (L.valence>0?"PAM (+1)":L.valence<0?"PPL1 (−1)":"none (flat outcome)")
+      + (L.amount!==undefined ? " ×"+fmt(L.amount,3) : "")
+    : (frozenSettle ? "none — learning is off for this partition" : UNAVAIL);
+  $("o-syn").innerHTML = L && L.synapses_depressed!==undefined
+    ? L.synapses_depressed.toLocaleString("en-US")
+    : (frozenSettle ? "none — no weight moved" : UNAVAIL);
+  $("o-learn").textContent = L
+    ? (L.accepted ? `accepted · ${L.normalisation||""} k=${L.k??""}`
+                  : "refused: "+(L.reason||""))
+    : (frozenSettle ? "none written (frozen evaluation)"
+                    : "not reached yet at this cursor");
+
+  /* The account is the sub-object the run wrote into this very event. The
+     page copies it; it adds nothing up and carries nothing forward. */
+  const a = o.account || {};
+  $("a-cash").innerHTML = or(a.cash, fmt(a.cash,2));
+  $("a-eq").innerHTML = or(a.equity, fmt(a.equity,2));
+  $("a-pnl").innerHTML = or(o.cumulative_realized_pnl ?? a.realized_pnl,
+    sgn(o.cumulative_realized_pnl ?? a.realized_pnl,4));
+  $("a-fees").innerHTML = or(a.fees_paid, fmt(a.fees_paid,4));
+  $("a-slip").innerHTML = or(a.slippage_paid, fmt(a.slippage_paid,4));
+  $("a-tr").innerHTML = or(a.trades, a.trades);
+}
+
+const COUNT_LABEL = {
+  rounds:"observation rounds", rounds_no_decision:"rounds with no decision",
+  decisions:"decisions decoded", buy:"BUY signals", sell:"SELL signals",
+  wait:"WAIT decisions", no_response:"NO_RESPONSE", invalid_state:"invalid readouts",
+  policy_reject:"execution-policy rejections", executions:"orders filled",
+  outcomes:"episodes settled", neural_sell:"closed by a neural SELL",
+  policy_close:"closed by the policy horizon", learning:"learning events",
+  settled_frozen:"settled with learning frozen", aborted:"rounds aborted",
+  warmup:"WARMUP sessions"};
+function renderCounts(st){
+  const rows = Object.entries(st.counts)
+    .filter(([k,v]) => v>0 || ["decisions","executions","outcomes","learning"]
+      .indexOf(k)>=0);
+  $("counts").innerHTML = rows.map(([k,v]) =>
+    `<tr><td>${COUNT_LABEL[k]||k}</td><td>${v.toLocaleString("en-US")}</td></tr>`
+  ).join("");
+}
+
+/* ---- D7, addition 1: the selected horizon and its provenance ---------- */
+function renderHorizon(){
+  const on = !!HORIZON;
+  $("sec-horizon").hidden = !on;
+  if(!on) return;
+  const c = HORIZON.cost || {}, cal = HORIZON.calibration || {};
+  $("h-star").textContent = HORIZON.selected_horizon_minutes + " market minutes";
+  $("h-rule").textContent = cal.rule || "–";
+  $("h-cost").textContent = fmt(c.round_trip_cost_bps_measured,4) + " bps"
+    + "  (" + fmt(c.per_leg_bps,1) + " bps per leg, measured through the "
+    + "execution policy)";
+  $("h-thr").textContent = fmt(HORIZON.threshold_bps,4) + " bps";
+  $("h-win").textContent = HORIZON.partition + "  " + HORIZON.window.first
+    + " … " + HORIZON.window.last;
+  $("h-ses").textContent = HORIZON.n_qualifying + " of "
+    + HORIZON.warmup_sessions_examined + " examined";
+  $("h-art").textContent = "registered-horizon-artifact · config " +
+    (HORIZON.config_sha256||"").slice(0,12) + " · data " +
+    (HORIZON.data_sha256||"").slice(0,12);
+  const hs = cal.horizons || [];
+  $("h-table").innerHTML =
+    "<tr><td>H</td>" + hs.map(h=>`<td>${h}</td>`).join("") + "</tr>" +
+    "<tr><td>A(H) bps</td>" + hs.map(h=>{
+      const a = HORIZON.A_bps[String(h)];
+      const hit = a >= HORIZON.threshold_bps;
+      const sel = h === HORIZON.selected_horizon_minutes;
+      return `<td class="${sel?"pos":(hit?"":"muted")}">${fmt(a,2)}${sel?" ←":""}</td>`;
+    }).join("") + "</tr>";
+}
+
+/* ---- D7, addition 2: actual versus hypothetical, with no future leak --- */
+function renderProbe(d, mt){
+  const on = !!PROBES;
+  $("sec-probe").hidden = !on;
+  if(!on) return;
+  const pr = (d && d.market_ts) ? PROBES.get(d.market_ts) : null;
+  $("pr-in").textContent = pr ? "yes" : (d ? "no — this minute is not an "
+    + "eligible probe origin" : "–");
+  const mine = pr ? (BRANCH_KEY==="frozen_reference" ? pr.v_reference
+                                                     : pr.v_trained) : null;
+  const other = pr ? (BRANCH_KEY==="frozen_reference" ? pr.v_trained
+                                                      : pr.v_reference) : null;
+  $("pr-score").textContent = pr ? sgn(mine,3)+" Hz  ("+pr.status_trained+"/"
+    +pr.status_reference+")" : "–";
+  $("pr-pair").textContent = pr ? sgn(other,3)+" Hz  (the other branch, same "
+    + "observation, same seeds)" : "–";
+  /* the exit bar's final price exists only at its bar_end. Before that
+     instant the label does not exist for this replay and is not shown. The
+     probe at the cursor's own minute is therefore always sealed: its exit is
+     H* minutes in this replay's future. */
+  const revealed = !!(pr && mt && mt >= pr.exit_ts + 60);
+  $("pr-entry").textContent = pr ? ("minute "+pr.entry_minute) : "–";
+  $("pr-exit").textContent = pr ? ("minute "+pr.exit_minute+"  ("+tsNY(pr.exit_ts)+")") : "–";
+  if(revealed){
+    $("pr-g").textContent = sgn(1e4*pr.G,2)+" bps on notional  (gross "
+      + sgn(pr.gross_bps,2) + " bps)";
+    $("pr-g").className = pr.G>=0 ? "pos" : "neg";
+  } else {
+    $("pr-g").textContent = pr ? "sealed until "+tsNY(pr.exit_ts+60)
+      + " — its exit price has not printed yet" : "–";
+    $("pr-g").className = "sealed";
+  }
+  /* and the most recent probe that HAS matured by this instant: a real,
+     already-printed label, shown only because the replay has passed it. */
+  let m = null;
+  if(mt) for(const row of PROBE_LIST){
+    if(row.exit_ts + 60 <= mt) m = row; else break;
+  }
+  $("pr-m-at").textContent = m ? (m.session+" minute "+m.minute+"  ("
+    + tsNY(m.market_ts) + ")") : "none yet in this replay";
+  const ms = m ? (BRANCH_KEY==="frozen_reference" ? m.v_reference : m.v_trained) : null;
+  $("pr-m-score").textContent = m ? sgn(ms,3)+" Hz" : "–";
+  $("pr-m-g").textContent = m ? sgn(1e4*m.G,2)+" bps on notional  (gross "
+    + sgn(m.gross_bps,2)+" bps)" : "–";
+  if(m) $("pr-m-g").className = m.G>=0 ? "pos" : "neg";
+  $("pr-m-y").textContent = m
+    ? (m.Y ? "1 — profitable context" : "0 — nonprofitable context") : "–";
+}
+
+/* ---- D7, addition 4: the final summary, after the evaluation ---------- */
+function renderContext(){
+  const on = !!CONTEXT;
+  $("sec-context").hidden = !on;
+  if(!on) return;
+  const atEnd = EV.length>0 && I >= EV.length-1;
+  $("cx-sealed").hidden = atEnd;
+  $("cx-body").hidden = !atEnd;
+  if(!atEnd) return;
+  const c = CONTEXT.conclusion || {}, b = CONTEXT.bootstrap || {},
+        cov = CONTEXT.coverage || {}, mp = CONTEXT.matched_participation || {};
+  $("cx-verdict").textContent = c.conclusion || "–";
+  $("cx-delta").textContent = sgn(CONTEXT.delta_auc,4);
+  $("cx-levels").textContent = fmt(c.mean_auc_trained,4)+" / "+fmt(c.mean_auc_reference,4);
+  $("cx-q").textContent = CONTEXT.n_qualifying_sessions + " of "
+    + (CONTEXT.sessions||[]).length;
+  $("cx-cov").textContent = (cov.paired_probes||0).toLocaleString("en-US")
+    + " · trained "+fmt(100*cov.trained_coverage,2)+" % · reference "
+    + fmt(100*cov.reference_coverage,2)+" % · paired "
+    + fmt(100*cov.paired_coverage,2)+" %";
+  $("cx-boot").textContent = b.draws
+    ? `mean ${sgn(b.mean,4)}, sd ${fmt(b.sd,4)}, 2.5–97.5 % ${sgn(b["p2.5"],4)} … ${sgn(b["p97.5"],4)}, ${fmt(100*b.fraction_of_draws_above_zero,1)} % of draws above zero`
+    : "–";
+  $("cx-mp").textContent = (mp.trained && mp.reference)
+    ? sgn(1e4*mp.trained.mean_G,2)+" / "+sgn(1e4*mp.reference.mean_G,2)+" bps "
+      + "at the same selected fraction" : "–";
+  const tr = (CONTEXT.dependence||{}).actual_completed_trades || {};
+  $("cx-tr").textContent = Object.entries(tr).map(([k,v])=>`${k} ${v}`).join(" · ");
+  $("cx-table").innerHTML =
+    "<tr><td>session</td><td>n</td><td>pos</td><td>neg</td><td>AUC trained</td>"
+    + "<td>AUC reference</td><td>delta</td><td></td></tr>"
+    + (CONTEXT.sessions||[]).map(s=>`<tr><td>${s.session}</td><td>${s.n}</td>`
+      + `<td>${s.n_pos}</td><td>${s.n_neg}</td><td>${fmt(s.auc_trained,4)}</td>`
+      + `<td>${fmt(s.auc_reference,4)}</td><td>${sgn(s.delta_auc,4)}</td>`
+      + `<td class="muted">${s.qualifies?"":"excluded: "+s.reason}</td></tr>`).join("");
+  $("cx-why").textContent = c.reason ? (c.conclusion+" — "+c.reason
+    + ". Day-resampled uncertainty conditional on this one training run; not a "
+    + "significance test, and no trading skill is claimed.") : "";
+  renderRecordNumbers();
+}
+
+function renderRecordNumbers(){
+  if(!CONTEXT){ $("rec-num").innerHTML = ""; return; }
+  const c = CONTEXT.conclusion || {};
+  const rows = [
+    ["D7 conclusion", c.conclusion + " — " + (c.reason||"")],
+    ["D7 DELTA_AUC", sgn(CONTEXT.delta_auc,4) + " over "
+      + CONTEXT.n_qualifying_sessions + " qualifying sessions"],
+    ["D7 mean AUC trained / reference",
+      fmt(c.mean_auc_trained,4)+" / "+fmt(c.mean_auc_reference,4)],
+    ["selected horizon H*", (CONTEXT.selected_horizon_minutes||"?")
+      + " market minutes"]];
+  $("rec-num").innerHTML = rows.map(([k,v]) =>
+    `<tr><td>${k}</td><td>${v}</td></tr>`).join("");
+}
+
+/* -------------------------------- drawing ------------------------------- */
+function drawFeatures(n){
+  const el = $("s-feat");
+  if(!n){ el.innerHTML = '<div class="empty">no encodable observation was '
+    + 'recorded for this event</div>'; return; }
+  const order = (META && META.features) || ["r1","r5","r20","rv20","relvol"];
+  el.innerHTML = order.map((k,i) => {
+    const v = n[i], w = Math.min(100, Math.abs(v||0)*100);
+    return `<div class="muted">${k}</div>
+      <div class="bar${v<0?" neg":""}"><i style="width:${w}%"></i></div>
+      <div>${sgn(v,3)}</div>`;
+  }).join("");
+}
+function drawGlom(r){
+  const el = $("s-glom");
+  if(!r){ el.innerHTML = '<div class="empty">no stimulus was encoded for '
+    + 'this event</div>'; return; }
+  const ks = (META && META.channels) || [];
+  const mx = Math.max(...r.map(v=>v||0), 1);
+  el.innerHTML = ks.map((k,i) =>
+    `<div class="muted">${k}</div>
+     <div class="bar glom"><i style="width:${100*(r[i]||0)/mx}%"></i></div>
+     <div>${fmt(r[i],1)} Hz</div>`).join("");
+}
+function drawReps(e){
+  const el = $("n-reps");
+  const legend = (META && META.replicate_legend) || {};
+  if(!e || !e.reps){ el.innerHTML =
+    '<span class="muted" style="flex:1;border:0">no per-replicate status was '
+    + 'recorded</span>'; return; }
+  el.innerHTML = [...e.reps].map((ch,i) => {
+    const s = legend[ch] || ch;
+    const v = e.rep_scores ? e.rep_scores[i] : null;
+    return `<span class="${s}" title="replicate ${i}: ${s}, V₁ ${fmt(v,3)} Hz">`
+      + `${i}</span>`;
+  }).join("");
+}
+function drawGauge(v, th){
+  const span = Math.max(4*(th||1), Math.abs(v||0)*1.25, 1);
+  const pct = x => (0.5 + 0.5*Math.max(-1,Math.min(1, x/span)))*100;
+  $("d-zone").style.left = pct(-th)+"%";
+  $("d-zone").style.width = (pct(th)-pct(-th))+"%";
+  $("d-zero").style.left = "50%";
+  $("d-mark").style.left = pct(v)+"%";
+}
+
+/* The schematic. Every attribute set here is a recorded quantity; when the
+   field is absent the element is drawn at rest rather than invented. */
+function drawCircuit(e, learningFrame){
+  const al = $("al"), kc = $("kc");
+  const chans = (META && META.channels) || [];
+  const rates = (e && e.glomeruli) || null;
+  const mx = rates ? Math.max(...rates.map(v=>v||0), 1) : 1;
+  if(!al.dataset.built){
+    al.innerHTML = chans.map((c,i) => {
+      const y = 108 + i*9.4;
+      return `<rect x="128" y="${y}" width="68" height="7" rx="2"
+        fill="#101820" stroke="#25323c"/>
+        <rect id="gl${i}" x="128" y="${y}" width="0" height="7" rx="2"
+        fill="#78d2e6" opacity=".85"><title>${c}</title></rect>`;
+    }).join("");
+    kc.innerHTML = Array.from({length: 40}, (_, i) => {
+      const cx = 246 + (i % 8) * 11, cy = 112 + Math.floor(i / 8) * 14;
+      return `<circle id="kc${i}" cx="${cx}" cy="${cy}" r="3.4"
+        fill="#1a232b" stroke="#2b3945"/>`;
+    }).join("");
+    al.dataset.built = "1";
+  }
+  chans.forEach((c,i) => {
+    const el = document.getElementById("gl"+i);
+    if(el) el.setAttribute("width", rates ? 68*(rates[i]||0)/mx : 0);
+  });
+  const frac = (e && e.kc_fraction!==undefined) ? e.kc_fraction : null;
+  const lit = frac===null ? 0 : Math.round(Math.min(1, frac/0.25) * 40);
+  for(let i=0;i<40;i++){
+    const el = document.getElementById("kc"+i);
+    if(!el) continue;
+    el.setAttribute("fill", i < lit ? "#78d2e6" : "#1a232b");
+    el.setAttribute("opacity", i < lit ? "0.9" : "1");
+  }
+  $("al-note").textContent = e && e.total_drive_hz!==undefined
+    ? fmt(e.total_drive_hz,0)+" Hz drive" : "no stimulus";
+  $("kc-note").textContent = (e && e.kc_active!==undefined)
+    ? e.kc_active + " of " + fmt(100*e.kc_fraction,2) + " %" : "no readout";
+  const app = e && e.approach_hz!==undefined ? e.approach_hz : null;
+  const avo = e && e.avoid_hz!==undefined ? e.avoid_hz : null;
+  const R = hz => 12 + Math.min(16, Math.sqrt(Math.max(0, hz||0)) * 3.4);
+  $("mb-app").setAttribute("r", app===null ? 12 : R(app));
+  $("mb-avo").setAttribute("r", avo===null ? 12 : R(avo));
+  $("mb-app-hz").textContent = app===null ? "–" : fmt(app,1);
+  $("mb-avo-hz").textContent = avo===null ? "–" : fmt(avo,1);
+  $("dec-v").textContent = (e && e.valence_hz!==undefined)
+    ? sgn(e.valence_hz,2) : "–";
+  const opac = (e && (e.approach_hz||e.avoid_hz)) ? ".95" : ".45";
+  $("ant-l").setAttribute("opacity", opac);
+  $("ant-r").setAttribute("opacity", opac);
+
+  /* the dashed overlay appears only on a frame whose as-of learning pointer
+     is the LEARNING event itself — never in FROZEN, never on a positive
+     outcome that produced no update. */
+  const L = learningFrame ? learningFrame.ev : null;
+  const show = !!(L && L.accepted && EV[I] && EV[I].kind === "LEARNING");
+  $("plast").setAttribute("opacity", show ? "1" : "0");
+  if(show) $("plast-t").textContent =
+    (L.valence>0 ? "reward · " : "punishment · ")
+    + L.synapses_depressed.toLocaleString("en-US") + " synapses depressed";
+}
+
+/* ---------------------------- the detail panel -------------------------- */
+const DETAIL_ROWS = [
+  ["run_id","run"], ["episode_id","episode"], ["stable_id","instrument id"],
+  ["bar_index","bar index"], ["cutoff_ts","historical observation cutoff"],
+  ["symbol","instrument"], ["observation_status","observation status"],
+  ["decoded_action","action"], ["readout_status","readout status"],
+  ["valence_hz","aggregate decoder score V (Hz)"],
+  ["theta_hz","decision threshold ±θ (Hz)"],
+  ["approach_hz","approach population (Hz)"],
+  ["avoid_hz","avoid population (Hz)"],
+  ["close_reason","closed by"], ["settlement","settlement"],
+  ["net_pnl","net realised (recorded)"], ["fees","fees (recorded)"],
+  ["slippage","slippage (recorded)"], ["accepted","learning accepted"],
+  ["valence","dopamine sign"], ["synapses_depressed","synapses depressed"],
+  ["checkpoint_digest","checkpoint reference"],
+  ["decision_digest","decision digest"], ["seed","seed"],
+  ["brain_cycle","brain cycle"], ["brain_ms","brain time (ms)"],
+  ["partition","partition"], ["branch","branch"],
+  ["dataset_label","dataset"]];
+
+async function loadDetail(){
+  const f = EV[I];
+  if(!f) return;
+  if(LAST_DETAIL === f.seq) return;
+  LAST_DETAIL = f.seq;
+  const run = $("run").value, branch = $("branch").value;
+  const q = `/api/detail?run=${run}&branch=${branch}&seq=${f.seq}`;
+  const r = await fetch(q).then(x=>x.json()).catch(()=>null);
+  if(!r || r.error){ $("det-raw").textContent = "unavailable"; return; }
+  const e = r.event;
+  $("det-src").textContent = `${run} · ${branch} · line ${f.seq} · ${e.kind}`;
+  const rows = DETAIL_ROWS.filter(([k]) => e[k] !== undefined)
+    .map(([k,label]) => `<tr><td>${label}</td><td>${
+      typeof e[k]==="string" && e[k].length>24 ? e[k].slice(0,20)+"…" : e[k]
+    }</td></tr>`);
+  const v = e.versions || {};
+  const vs = Object.keys(v).map(k =>
+    `<tr><td>version · ${k}</td><td>${String(v[k]).slice(0,20)}</td></tr>`);
+  $("det-tab").innerHTML = rows.concat(vs).join("");
+  $("det-raw").textContent = JSON.stringify(e, null, 1);
+
+  /* §7: the linked fill / outcome / learning events. The pointers are the
+     as-of ones, so nothing later than the cursor is ever listed. */
+  const st = stateAt(I);
+  const link = [
+    ["decision", st.decision, x => `${x.ev.action} · ${x.ev.status}`],
+    ["order / fill", st.execution, x => `${x.ev.side} @ ${x.ev.fill_price}`],
+    ["outcome", st.outcome, x => `${x.ev.close_reason} · net `
+      + sgn(x.ev.net_pnl,4)],
+    ["learning", st.learning, x => x.ev.accepted
+      ? `accepted · valence ${x.ev.valence}` : `refused: ${x.ev.reason}`]];
+  $("det-link").innerHTML = link.map(([label, fr_, fmt_]) => {
+    const cell = fr_ ? `line ${fr_.seq} — ${fmt_(fr_)}`
+      : '<span class="unavailable">not reached at this cursor</span>';
+    return `<tr><td>${label}</td><td>${cell}</td></tr>`;
+  }).join("");
+}
+
+/* -------------------------------- playback ------------------------------ */
+/* The cursor is an index into the loaded frames. Nothing else moves.        */
+function setI(i){
+  I = Math.max(0, Math.min(EV.length-1, i));
+  $("cursor").value = I;
+  render();
+}
+function jump(to, what){
+  if(to===null||to===undefined){ SKIPPED = "no further " + what
+    + " in this branch"; render(); return; }
+  const from = I, a = EV[from], b = EV[to];
+  const mins = (a && b && a.at && b.at)
+    ? Math.round(((b.ts || b.at.ts || 0) - (a.ts || a.at.ts || 0))/60) : null;
+  SKIPPED = to > from + 1
+    ? `skipped ${to-from-1} events` + (mins!==null && mins>0
+        ? ` · ${mins.toLocaleString("en-US")} market minutes with no `
+          + `${what}` : "")
+    : null;
+  stop(); setI(to);
+}
+function nextOf(key, what){
+  const list = (META && META.index && META.index[key]) || [];
+  jump(list.find(s => s > I), what);
+}
+function play(){
+  if(timer){ stop(); return; }
+  if(I >= EV.length-1) setI(0);
+  const hz = Number($("speed").value);
+  timer = setInterval(() => {
+    if(I >= EV.length-1){ stop(); return; }
+    SKIPPED = null;
+    setI(I+1);
+  }, Math.max(8, 1000/hz));
+  $("play").textContent = "❚❚ pause";
+  render();
+}
+function stop(){ clearInterval(timer); timer = null; $("play").textContent = "▶ play"; render(); }
+
+/* --------------------------------- loading ------------------------------ */
+/* A deep link to one recorded instant: ?run=&branch=&seq=&record=1&detail=1.
+   It selects and seeks; it changes nothing about the record. This is what the
+   evidence capture and a shared "look at this episode" use. */
+const QS = new URLSearchParams(location.search);
+
+async function loadRuns(){
+  const r = await fetch("/api/runs").then(x=>x.json()).catch(()=>({runs:[]}));
+  RUNS = r.runs || [];
+  $("run").innerHTML = RUNS.map(x=>`<option>${x.run_id}</option>`).join("");
+  if(!RUNS.length){
+    $("src").textContent = "no runs on disk";
+    EV = []; renderPlaybackState(); return;
+  }
+  /* §6 and addendum 2: the default is the latest accepted LEARNING trace,
+     chosen by identity — never because a branch has a better result. */
+  const want = QS.get("run");
+  const pref = RUNS.find(x => x.run_id === want)
+            || RUNS.find(x => x.run_id === "d7-001") || RUNS[RUNS.length-1];
+  $("run").value = pref.run_id;
+  if(QS.get("record") === "1") $("showrec").click();
+  if(QS.get("detail") === "1") $("showdet").click();
+  onRun();
+}
+function currentRun(){ return RUNS.find(x=>x.run_id===$("run").value); }
+async function artifact(run, name){
+  const r = await fetch(`/api/artifact?run=${run}&name=${name}`)
+    .then(x=>x.json()).catch(()=>({error:"unavailable"}));
+  return r && !r.error ? r : null;
+}
+async function loadArtifacts(run){
+  HORIZON = await artifact(run, "horizon");
+  CONTEXT = await artifact(run, "context");
+  const pr = await artifact(run, "probes");
+  PROBES = null; PROBE_LIST = [];
+  if(pr && pr.rows){
+    PROBES = new Map();
+    for(const row of pr.rows) PROBES.set(row.market_ts, row);
+    PROBE_LIST = pr.rows.slice().sort((a,b)=>a.market_ts-b.market_ts);
+  }
+  renderHorizon();
+  renderRecordNumbers();
+}
+async function onRun(){
+  const r = currentRun();
+  $("branch").innerHTML = r.branches.map(b=>`<option>${b.branch}</option>`).join("");
+  const want = QS.get("branch");
+  const learned = r.branches.find(b => b.branch === want)
+               || r.branches.find(b => b.branch === "learned");
+  if(learned) $("branch").value = learned.branch;
+  await loadArtifacts(r.run_id);
+  onBranch();
+}
+function onBranch(){
+  BRANCH_KEY = $("branch").value;
+  loadFrames();
+}
+async function loadFrames(){
+  const run = $("run").value, branch = $("branch").value;
+  $("src").textContent = "loading the presentation stream…";
+  $("pstate").textContent = "loading";
+  $("pstate").className = "phase state";
+  $("statebar").hidden = false;
+  $("statebar").className = "statebar loading";
+  $("statetext").textContent = "reading and projecting the canonical event "
+    + "log for " + run + " · " + branch + "…";
+  const t0 = performance.now();
+  const r = await fetch(`/api/presentation?run=${run}&branch=${branch}`)
+    .then(x=>x.json()).catch(()=>({error:"the local observer did not answer"}));
+  if(r.error){
+    EV = []; META = null; PTAB = []; $("src").textContent = r.error;
+    $("cursor").max = 0; SKIPPED = null; render(); return;
+  }
+  META = r.meta; EV = r.frames; PTAB = META.partition_table || [];
+  const ms = Math.round(performance.now() - t0);
+  $("cursor").max = Math.max(0, EV.length-1);
+  const k = META.kinds || {};
+  $("src").textContent =
+    `${EV.length.toLocaleString("en-US")} canonical events · `
+    + `${(k.DECISION||0).toLocaleString("en-US")} decisions · `
+    + `${k.EXECUTION||0} fills · ${k.OUTCOME||0} outcomes · `
+    + `${k.LEARNING||0} learning · loaded in ${ms} ms`;
+  const src = (META.dataset_label === "SYNTHETIC_FIXTURE")
+    ? "SYNTHETIC FIXTURE" : "HISTORICAL REPLAY";
+  $("stamp").textContent = src + " · PAPER";
+  $("stamp").className = "stamp" + (src==="SYNTHETIC FIXTURE"
+    ? " synthetic" : "");
+  $("ident").textContent = run + " · " + branch;
+  const ps = META.partitions || [];
+  $("partition").innerHTML = '<option value="">whole branch</option>' +
+    ps.map(p=>`<option value="${p.start}">${p.partition} (${p.events} events)</option>`).join("");
+  const r0 = currentRun();
+  const dir = (r0 && r0.wave==="D7") ? "experiments/d7/runs"
+                                     : "experiments/historical/runs";
+  $("foot-run").textContent = ` Source: ${dir}/${run}/${branch}/events.jsonl`
+    + ` — presentation contract ${META.contract}.`;
+  const pv = META.provenance || {};
+  $("foot-prov").textContent = "graph " + String(pv.graph_sha256||"?").slice(0,12)
+    + " · encoder " + (pv.encoder||"?") + " · decoder " + (pv.decoder||"?")
+    + " · readout " + (pv.readout||"?") + " k=" + (pv.k||"?")
+    + " · maximum policy horizon " + (META.horizon_minutes ?? "unavailable")
+    + " (" + META.horizon_source + ")";
+  SKIPPED = null;
+  LAST_DETAIL = -1;
+  const seq = Number(QS.get("seq"));
+  setI(Number.isFinite(seq) && QS.has("seq") ? seq : 0);
+}
+
+$("play").onclick = play;
+$("stepf").onclick = () => { stop(); SKIPPED = null; setI(I+1); };
+$("stepb").onclick = () => { stop(); SKIPPED = null; setI(I-1); };
+$("home").onclick = () => { stop(); SKIPPED = null; setI(0); };
+$("nextd").onclick = () => nextOf("decisions", "decision");
+$("nextt").onclick = () => nextOf("executions", "executed trade");
+$("nextl").onclick = () => nextOf("learning", "learning event");
+$("cursor").oninput = e => { stop(); SKIPPED = null; setI(Number(e.target.value)); };
+$("speed").onchange = () => { if(timer){ stop(); play(); } else render(); };
+$("run").onchange = onRun;
+$("branch").onchange = onBranch;
+$("partition").onchange = e => {
+  if(e.target.value === "") return;
+  jump(Number(e.target.value), "event");
+};
+$("showrec").onclick = () => {
+  const d = $("drawer-rec"); d.hidden = !d.hidden;
+  $("showrec").className = d.hidden ? "" : "primary";
+};
+$("showdet").onclick = () => {
+  const d = $("drawer-det"); d.hidden = !d.hidden;
+  DETAIL_ON = !d.hidden;
+  $("showdet").className = d.hidden ? "" : "primary";
+  LAST_DETAIL = -1;
+  if(DETAIL_ON) loadDetail();
+};
+document.addEventListener("keydown", ev => {
+  if(ev.target.tagName === "SELECT" || ev.target.tagName === "INPUT") return;
+  if(ev.key===" "){ ev.preventDefault(); play(); }
+  if(ev.key==="ArrowRight"){ stop(); SKIPPED = null; setI(I+1); }
+  if(ev.key==="ArrowLeft"){ stop(); SKIPPED = null; setI(I-1); }
+  if(ev.key==="Home"){ stop(); SKIPPED = null; setI(0); }
+});
+loadRuns();
+</script>
+</body>
+</html>

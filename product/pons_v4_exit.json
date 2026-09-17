@@ -1,0 +1,42 @@
+{
+  "version": "pons-v4-paper-exit-1",
+  "chain_id": 4663,
+  "factory": {
+    "address": "0x7ed598bcef8bd9edd8c97a195c6d13f40801ec7e",
+    "runtime_keccak256": "0x89a27da6f703e0a7cdd4f233e7cb57604ff75b164530962d3ff7cf8483a67d84"
+  },
+  "manager": {
+    "address": "0x8366a39cc670b4001a1121b8f6a443a643e40951",
+    "runtime_keccak256": "0xbd3881180b547f5fe817545743cfb4343e96b1bc6640dcd70c106b0066e95626"
+  },
+  "hook": {
+    "address": "0xe5e702641ea86f4ae6cc3cdaed2b886f976be044",
+    "runtime_keccak256": "0xc21b1e6c1b45403e81a581f22ed6d9c747997af1cfdac1b1dc9f4b1d346a10db"
+  },
+  "quoter": {
+    "address": "0x8dc178efb8111bb0973dd9d722ebeff267c98f94",
+    "runtime_keccak256": "0xd707b1da8cb165e5ea35a3b4450d971eb562ec171e23492aa117036b78a868f6"
+  },
+  "observed_block": 62752033,
+  "supported_pair": "native ETH / Pons factory token",
+  "quoter_source": "https://sourcify.dev/server/v2/contract/4663/0x8dc178efb8111bb0973dd9d722ebeff267c98f94?fields=abi,sources",
+  "gas": "existing declared paper sell + approval constants; quoter gas is diagnostic only",
+  "fee_accounting": "V4 swap/hook fees included in output; bundled with price impact in execution drag, never charged twice",
+  "sources": [
+    {
+      "path": "product/evidence/v4/BaseV4Quoter.sol",
+      "sha256": "78c4d90510c21e90dfd20242bf42bf79ed911d172a6f5fa67912cee936a2632a",
+      "source_path": "src/base/BaseV4Quoter.sol"
+    },
+    {
+      "path": "product/evidence/v4/V4Quoter.sol",
+      "sha256": "0466f1e83d6362836c0b5256996d13e222a33a2b2810d7992d32a84753a8c0ef",
+      "source_path": "src/lens/V4Quoter.sol"
+    },
+    {
+      "path": "product/evidence/v4/StateLibrary.sol",
+      "sha256": "eebdbc1b6e431072ce5521b9e1b603d43831e3b6e062743e6665e070d5cf8a1a",
+      "source_path": "lib/v4-core/src/libraries/StateLibrary.sol"
+    }
+  ]
+}

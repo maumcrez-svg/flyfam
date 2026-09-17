@@ -1,0 +1,162 @@
+{
+ "version": "d11-001-grid-rows-1",
+ "dataset": "d11-backfill-v1",
+ "window": {
+  "rule": "twelve contiguous hours ending at the confirmed head at probe time; end_block = min(head - confirm_depth, safe), start_block = the smallest block whose timestamp is at least timestamp(end_block) - 43200",
+  "head_block": 61671056,
+  "safe_block": 61663368,
+  "confirm_depth_blocks": 591,
+  "first_block": 61237774,
+  "last_block": 61663368,
+  "safe_block_used_as_end": true,
+  "blocks": 425595,
+  "first_ts": 1789229564,
+  "last_ts": 1789272764,
+  "seconds": 43200,
+  "window_seconds_requested": 43200,
+  "minutes": 720.0,
+  "median_block_interval_s": 0.10149559411114202,
+  "admission_minutes": 705,
+  "admission_blocks": 416767,
+  "admission_last_block": 61654540,
+  "settlement_tail_minutes": 15,
+  "bisection_steps": 19,
+  "first_ts_utc": "2026-09-12T16:12:44Z",
+  "last_ts_utc": "2026-09-13T04:12:44Z",
+  "overlaps_d10_backfill_v1": false,
+  "d10_backfill_v1": {
+   "first_block": 60721229,
+   "last_block": 60801426,
+   "first_ts": 1789181856,
+   "last_ts": 1789190005,
+   "label": "d10-backfill-v1"
+  },
+  "resolved_at": "2026-09-13T04:25:42.167700Z"
+ },
+ "split": {
+  "rule": "t0 = timestamp(start_block), t1 = timestamp(end_block), T = t0 + floor(0.7 * (t1 - t0)) snapped down to the 30-second tick grid anchored at t0",
+  "t0": 1789229564,
+  "t1": 1789272764,
+  "T": 1789259804,
+  "span_s": 43200,
+  "learning_share": 0.7,
+  "cadence_s": 30,
+  "latency_s": 2,
+  "horizon_s": 900,
+  "settle_s": 902,
+  "slot_s": 932,
+  "learning_ticks": 1009,
+  "learning_first_tick": 1789229564,
+  "learning_last_tick": 1789259804,
+  "learning_last_entry_tick": 1789258874,
+  "learning_entry_rule": "an entry is allowed only if cutoff + 902 <= T",
+  "frozen_ticks": 402,
+  "frozen_first_tick": 1789259804,
+  "frozen_last_tick": 1789271834,
+  "frozen_tick_rule": "T <= cutoff and cutoff + 902 <= t1",
+  "temporal_blocks": [
+   {
+    "block": 1,
+    "from_ts": 1789259804,
+    "to_ts": 1789263814,
+    "ticks": 134,
+    "first_tick": 1789259804,
+    "last_tick": 1789263794
+   },
+   {
+    "block": 2,
+    "from_ts": 1789263814,
+    "to_ts": 1789267824,
+    "ticks": 134,
+    "first_tick": 1789263824,
+    "last_tick": 1789267814
+   },
+   {
+    "block": 3,
+    "from_ts": 1789267824,
+    "to_ts": 1789271834,
+    "ticks": 134,
+    "first_tick": 1789267844,
+    "last_tick": 1789271834
+   }
+  ]
+ },
+ "geometric_ceiling": {
+  "ceiling": 32,
+  "first_eligible_tick": 1789229654,
+  "last_entry_tick": 1789258902,
+  "span_s": 29248,
+  "slot_s": 932,
+  "rule": "the number of non-overlapping 932-second slots (902 s plus one tick) between the first LEARNING tick with at least one v2-eligible candidate and T - 902"
+ },
+ "stable_id_rule": "assigned once over the reconstructible native launches in launch order (launch_block, launched_at, curve); never from the address spelling's sort position",
+ "admission": {
+  "version": "admission_v2",
+  "size_wei": "10000000000000000",
+  "latency_s": 2,
+  "horizon_s": 900,
+  "max_candidates": 1000000000,
+  "supported_deployment": "pons-v2",
+  "quote_asset": "0x0000000000000000000000000000000000000000",
+  "require_coverage": true,
+  "recent_window_seconds": 120,
+  "minimum_valid_trades_in_window": 2,
+  "maximum_seconds_since_last_trade": 60,
+  "collector_lag_seconds": 60,
+  "minimum_age_seconds": 60,
+  "rules": [
+   "deployment is the supported pons-v2 curve route",
+   "quote asset is native ETH",
+   "age >= 60 s and the reconstructed tape answers at the cutoff",
+   "curve not completed at the cutoff",
+   "sellableTokens > 0 and realQuoteReserve > 0",
+   "the paper buy of size_wei would not exhaust the curve",
+   "cutoff + latency + horizon lies inside the token's coverage",
+   "at least minimum_valid_trades_in_window valid trades inside (cutoff - recent_window_seconds, cutoff]",
+   "the last valid trade at most maximum_seconds_since_last_trade before the cutoff"
+  ],
+  "valid_trade": "CurveBuy or CurveSell with a nonzero quote leg and a nonzero token leg, deduplicated by log id; buys and sells count the same; creation, liquidity configuration, completion and duplicated logs are not trades",
+  "removed_from_v1": "the '>= 3 trades ever' clause of pons_context_v1",
+  "rotation": "round-robin: rounds since last presentation descending, then launch block, then launch log index, then curve address; blind to price, volume, flow and outcome",
+  "reversible": "recomputed fresh at every tick; an inactive candidate returns on new qualifying activity",
+  "controls_new_entries_only": true,
+  "reason_codes": [
+   "INACTIVE",
+   "INSUFFICIENT_HISTORY",
+   "COLLECTOR_LAG",
+   "QUOTE_UNSUPPORTED",
+   "ROUTE_COMPLETED",
+   "STATE_INVALID",
+   "COVERAGE",
+   "CURVE_EXHAUSTED",
+   "DEPLOYMENT_UNSUPPORTED",
+   "ROTATED"
+  ],
+  "round_statuses": [
+   "NO_ELIGIBLE_CANDIDATES",
+   "DATA_LAG"
+  ]
+ },
+ "tapes": 6131,
+ "unreconstructible_launches": 468,
+ "rows": 5177,
+ "tokens_with_at_least_one_row": 1050,
+ "ticks": 402,
+ "zero_eligible_ticks": 0,
+ "empty_round_status": {},
+ "eligible_per_tick": {
+  "min": 4,
+  "max": 23,
+  "median": 13.0,
+  "mean": 12.878109452736318
+ },
+ "admission_reasons": {
+  "ADMITTED": 5177,
+  "COVERAGE": 1892,
+  "INACTIVE": 166236,
+  "ROUTE_COMPLETED": 1892,
+  "STATE_INVALID": 1944
+ },
+ "rows_path": "./experiments/d11/runs/d11-001/grid/rows.jsonl",
+ "elapsed_s": 29.9
+}
