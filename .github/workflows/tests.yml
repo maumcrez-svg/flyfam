@@ -1,0 +1,44 @@
+name: tests
+
+# Only the suites that run on a clean clone: no connectome download, no
+# network, no credentials. The rest of tests/ needs one of four things this
+# runner does not and should not have — the 1.15 GB CC-BY connectome, an RPC
+# endpoint in a local .env, market-data rows licensed for internal use only, or
+# the full commit history that proves each experiment protocol was committed
+# before its run (this repository is a curated single-commit snapshot).
+# README.md#quickstart has the table.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pytest:
+    name: pytest (offline suites)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e '.[dev]'
+
+      - name: Show the pins
+        run: pip list
+
+      - name: Run the offline suites
+        run: |
+          pytest tests/core tests/upstream_audit tests/phase_one \
+                 tests/k8_readout tests/d7 tests/historical

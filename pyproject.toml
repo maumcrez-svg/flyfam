@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "flytrade"
 version = "0.0.0"
@@ -31,6 +35,15 @@ diagnostics = ["scikit-learn==1.9.1"]
 # scipy==1.17.1 / pandas==3.0.1 / pyarrow==23.0.1 on Python 3.13.9 without
 # moving any of them.
 chain = ["pycryptodome==3.23.0"]
+
+# Only `flytrade` is an importable package. Everything else at the top level
+# (tests, product, observer, spectacle, upstream, experiments, docs, art,
+# contracts, brains, data) is a directory of this repository, not a module of
+# the distribution, so automatic discovery is turned off and the package list
+# is explicit. Without this, `pip install -e .` fails on a flat layout with
+# several top-level directories.
+[tool.setuptools.packages.find]
+include = ["flytrade*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

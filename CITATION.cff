@@ -1,0 +1,78 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, or the mushroom-body compartment correction it
+  documents, please cite it using the metadata below. Please also cite the
+  FlyEM male CNS connectome dataset separately — it is CC-BY 4.0 and its
+  attribution obligation travels with every derived artifact.
+title: >-
+  FLYFAM: a simulated Drosophila connectome trading Pons v2 memecoins on paper,
+  with holder-voted exits
+abstract: >-
+  A leaky integrate-and-fire simulation of the FlyEM male Drosophila CNS
+  connectome v1.0 (165,122 traced neurons, 10,228,000 signed edges), wired to a
+  live memecoin market on Robinhood Chain through a pre-registered sensory
+  encoder and action decoder. Includes a correction to a transposed
+  dopaminergic read in the upstream mushroom-body plasticity code, a
+  pre-registered associative-conditioning experiment against the corrected
+  compartment split, and a holder-voted paper-trading product. Execution is
+  paper only: nothing is signed or broadcast, and no claim of trading skill is
+  made.
+type: software
+authors:
+  - name: FLYFAM
+    website: 'https://flyfam.xyz'
+repository-code: 'https://github.com/maumcrez-svg/flyfam'
+url: 'https://flyfam.xyz'
+keywords:
+  - connectomics
+  - Drosophila
+  - mushroom body
+  - spiking neural network
+  - leaky integrate-and-fire
+  - associative conditioning
+  - paper trading
+references:
+  - type: data
+    title: >-
+      FlyEM male Drosophila central nervous system connectome, version 1.0
+      (MaleCNS v1.0)
+    authors:
+      - name: HHMI Janelia FlyEM
+      - name: Cambridge Connectomics Group
+      - name: Google Research
+    license: CC-BY-4.0
+    notes: >-
+      The dataset is not redistributed in this repository. Source URLs, byte
+      sizes and sha256 for the three feather tables are in data/MANIFEST.md.
+  - type: software
+    title: flycoinrh
+    authors:
+      - name: fruitflydev
+    repository-code: 'https://github.com/fruitflydev/flycoinrh'
+    license: MIT
+    notes: >-
+      Vendored unmodified under upstream/ at commit
+      5aab4e7895a1f5930319bf3bde8010b350a163a2 and byte-pinned by
+      docs/UPSTREAM_MANIFEST.txt. The mushroom-body compartment correction in
+      this project is a fix to a defect in that code, made in our own modules;
+      no upstream file is modified. A standalone minimal repro and fix is at
+      https://github.com/maumcrez-svg/flysim-mushroom-fix
+  - type: article
+    title: >-
+      A leaky integrate-and-fire computational model based on the connectome of
+      the entire adult Drosophila brain reveals insights into sensorimotor
+      processing
+    authors:
+      - family-names: Shiu
+        given-names: Philip K.
+    year: 2024
+    notes: The simulation approach this project reuses from upstream follows this work.
+  - type: article
+    title: >-
+      Connectome-constrained networks predict neural activity across the fly
+      visual system
+    authors:
+      - family-names: Lappalainen
+        given-names: Janne K.
+    year: 2024
+    notes: Referenced by the upstream simulator's modelling approach.
